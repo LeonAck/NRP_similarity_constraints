@@ -1,0 +1,641 @@
+{
+  "rules": [
+    {
+      "is_mandatory": false,
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "rule_id": 2
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "rule_id": 14
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 100,
+      "rule_id": 1
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 690,
+      "parameter_2": 0,
+      "penalty": 1,
+      "rule_id": 10
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 720,
+      "parameter_2": 0,
+      "penalty": 1000,
+      "rule_id": 5
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 7,
+      "parameter_2": 0,
+      "penalty": 1000000,
+      "rule_id": 7
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 2,
+      "parameter_2": 0,
+      "penalty": 1000,
+      "rule_id": 15
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 180,
+      "parameter_2": 0,
+      "penalty": 1,
+      "rule_id": 11
+    }
+  ],
+  "settings": {
+    "cost_objective": 1,
+    "fairness_objective": 0,
+    "finish": 1613325599,
+    "proficiency_objective": 0,
+    "rule_objective": 100000,
+    "runtime": 30,
+    "start": 1612072800,
+    "linear_relaxation": true,
+    "time_zone": "America/Chicago"
+  },
+  "shifts": [
+    {
+      "breaks": [],
+      "finish": 1612726200,
+      "id": 95645269,
+      "licenses": [],
+      "skills": [],
+      "start": 1612711800,
+      "subshifts": [
+        {
+          "department_id": 439639,
+          "finish": 1612726200,
+          "start": 1612711800
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1612742400,
+      "id": 95645271,
+      "licenses": [],
+      "skills": [],
+      "start": 1612724400,
+      "subshifts": [
+        {
+          "department_id": 439639,
+          "finish": 1612742400,
+          "start": 1612724400
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1613158200,
+      "id": 95645273,
+      "licenses": [],
+      "skills": [],
+      "start": 1613143800,
+      "subshifts": [
+        {
+          "department_id": 439639,
+          "finish": 1613158200,
+          "start": 1613143800
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1613174400,
+      "id": 95645274,
+      "licenses": [],
+      "skills": [],
+      "start": 1613156400,
+      "subshifts": [
+        {
+          "department_id": 439639,
+          "finish": 1613174400,
+          "start": 1613156400
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1613244600,
+      "id": 95645276,
+      "licenses": [],
+      "skills": [],
+      "start": 1613230200,
+      "subshifts": [
+        {
+          "department_id": 439639,
+          "finish": 1613244600,
+          "start": 1613230200
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1613260800,
+      "id": 95645279,
+      "licenses": [],
+      "skills": [],
+      "start": 1613242800,
+      "subshifts": [
+        {
+          "department_id": 439639,
+          "finish": 1613260800,
+          "start": 1613242800
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1612721700,
+      "id": 95645270,
+      "licenses": [],
+      "skills": [],
+      "start": 1612711800,
+      "subshifts": [
+        {
+          "department_id": 439644,
+          "finish": 1612721700,
+          "start": 1612711800
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1613240100,
+      "id": 95645277,
+      "licenses": [],
+      "skills": [],
+      "start": 1613230200,
+      "subshifts": [
+        {
+          "department_id": 439644,
+          "finish": 1613240100,
+          "start": 1613230200
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1612742400,
+      "id": 95645272,
+      "licenses": [],
+      "skills": [],
+      "start": 1612726200,
+      "subshifts": [
+        {
+          "department_id": null,
+          "finish": 1612742400,
+          "start": 1612726200
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1613174400,
+      "id": 95645275,
+      "licenses": [],
+      "skills": [],
+      "start": 1613158200,
+      "subshifts": [
+        {
+          "department_id": null,
+          "finish": 1613174400,
+          "start": 1613158200
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1613253600,
+      "id": 95645278,
+      "licenses": [],
+      "skills": [],
+      "start": 1613239200,
+      "subshifts": [
+        {
+          "department_id": null,
+          "finish": 1613253600,
+          "start": 1613239200
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1613260800,
+      "id": 95645280,
+      "licenses": [],
+      "skills": [],
+      "start": 1613244600,
+      "subshifts": [
+        {
+          "department_id": null,
+          "finish": 1613260800,
+          "start": 1613244600
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    }
+  ],
+  "users": [
+    {
+      "department_ids": [
+        {
+          "id": 490920
+        },
+        {
+          "id": 490919
+        },
+        {
+          "id": 490918
+        },
+        {
+          "id": 490917
+        },
+        {
+          "id": 490488
+        },
+        {
+          "id": 439636
+        },
+        {
+          "id": 439633
+        },
+        {
+          "id": 439635
+        },
+        {
+          "id": 439639
+        },
+        {
+          "id": 439632
+        },
+        {
+          "id": 439623
+        },
+        {
+          "id": 439621
+        },
+        {
+          "id": 439617
+        }
+      ],
+      "employment_type_ids": [
+        "Hourly",
+        "Texas"
+      ],
+      "hourly_rate": 15,
+      "id": 1551800,
+      "licenses": [
+        {
+          "expires": 1666656000,
+          "from": 0,
+          "id": 16929
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": [
+        {
+          "start": 1612884600,
+          "finish": 1612895400
+        },
+        {
+          "start": 1613073600,
+          "finish": 1613084400
+        },
+        {
+          "start": 1612972800,
+          "finish": 1612983600
+        }
+      ]
+    },
+    {
+      "department_ids": [
+        {
+          "id": 439633
+        },
+        {
+          "id": 439635
+        },
+        {
+          "id": 439639
+        },
+        {
+          "id": 439632
+        },
+        {
+          "id": 439637
+        }
+      ],
+      "employment_type_ids": [
+        "Hourly",
+        "Texas"
+      ],
+      "hourly_rate": 16,
+      "id": 1551817,
+      "licenses": [
+        {
+          "expires": 1624147200,
+          "from": 0,
+          "id": 16929
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 439633
+        },
+        {
+          "id": 439635
+        },
+        {
+          "id": 439639
+        },
+        {
+          "id": 439632
+        }
+      ],
+      "employment_type_ids": [
+        "Hourly",
+        "Texas"
+      ],
+      "hourly_rate": 16,
+      "id": 1551820,
+      "licenses": [
+        {
+          "expires": 1623369600,
+          "from": 0,
+          "id": 16929
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 439641
+        },
+        {
+          "id": 439636
+        },
+        {
+          "id": 439633
+        },
+        {
+          "id": 439640
+        },
+        {
+          "id": 439635
+        },
+        {
+          "id": 439639
+        },
+        {
+          "id": 439644
+        },
+        {
+          "id": 439632
+        }
+      ],
+      "employment_type_ids": [
+        "Hourly",
+        "Texas"
+      ],
+      "hourly_rate": 20,
+      "id": 1551821,
+      "licenses": [
+        {
+          "expires": 1622505600,
+          "from": 0,
+          "id": 16929
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 439641
+        },
+        {
+          "id": 439636
+        },
+        {
+          "id": 439633
+        },
+        {
+          "id": 439635
+        },
+        {
+          "id": 439639
+        },
+        {
+          "id": 439632
+        }
+      ],
+      "employment_type_ids": [
+        "Hourly",
+        "Texas"
+      ],
+      "hourly_rate": 16,
+      "id": 1551822,
+      "licenses": [
+        {
+          "expires": 1623456000,
+          "from": 0,
+          "id": 16929
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": [
+        {
+          "start": 1612764000,
+          "finish": 1612850400
+        },
+        {
+          "start": 1612850400,
+          "finish": 1612936800
+        },
+        {
+          "start": 1612936800,
+          "finish": 1613023200
+        },
+        {
+          "start": 1613023200,
+          "finish": 1613109600
+        },
+        {
+          "start": 1613109600,
+          "finish": 1613196000
+        }
+      ]
+    },
+    {
+      "department_ids": [
+        {
+          "id": 439636
+        },
+        {
+          "id": 439633
+        },
+        {
+          "id": 439635
+        },
+        {
+          "id": 439639
+        },
+        {
+          "id": 439644
+        },
+        {
+          "id": 439632
+        }
+      ],
+      "employment_type_ids": [
+        "Hourly",
+        "Texas"
+      ],
+      "hourly_rate": 16,
+      "id": 1551824,
+      "licenses": [
+        {
+          "expires": 1629590400,
+          "from": 0,
+          "id": 16929
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": [
+        {
+          "start": 1612789200,
+          "finish": 1612809000
+        },
+        {
+          "start": 1612891800,
+          "finish": 1612918800
+        },
+        {
+          "start": 1613064600,
+          "finish": 1613091600
+        }
+      ]
+    },
+    {
+      "department_ids": [
+        {
+          "id": 439635
+        },
+        {
+          "id": 439636
+        },
+        {
+          "id": 439633
+        },
+        {
+          "id": 439644
+        },
+        {
+          "id": 439632
+        }
+      ],
+      "employment_type_ids": [
+        "Hourly",
+        "Texas"
+      ],
+      "hourly_rate": 15,
+      "id": 1551825,
+      "licenses": [
+        {
+          "expires": 1617753600,
+          "from": 0,
+          "id": 16929
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 439644
+        },
+        {
+          "id": 439632
+        }
+      ],
+      "employment_type_ids": [
+        "Hourly",
+        "Texas"
+      ],
+      "hourly_rate": 15,
+      "id": 1551827,
+      "licenses": [
+        {
+          "expires": 1650931200,
+          "from": 0,
+          "id": 16929
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    }
+  ]
+}

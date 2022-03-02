@@ -1,0 +1,41 @@
+{
+  "result": 1,
+  "goal_score": 1160.0,
+  "shifts": [
+    {
+      "shift_id": "shift_1577865600_1577894400-0",
+      "violation_costs": 0,
+      "user_id": "2",
+      "department_id": "Test1",
+      "start": 1577865600,
+      "finish": 1577894400,
+      "pay_duration": 480.0,
+      "shift_costs": 80
+    },
+    {
+      "shift_id": "shift_1577865600_1577894400-1",
+      "violation_costs": 0,
+      "user_id": "0",
+      "department_id": "Test1",
+      "start": 1577865600,
+      "finish": 1577894400,
+      "pay_duration": 480.0,
+      "shift_costs": 80
+    }
+  ],
+  "rule_violations": [
+    {
+      "rule_id": "1",
+      "shift_id": "shift_1577865600_1577894400-2",
+      "violation_costs": 1000.0,
+      "date": 1577865600,
+      "shift_start": 1577865600,
+      "shift_finish": 1577894400,
+      "department_id": "Test1",
+      "relevant_shifts": [
+        "shift_1577865600_1577894400-2"
+      ],
+      "violation_description": "Shift with ID shift_1577865600_1577894400-2 is not assigned to any employee"
+    }
+  ]
+}

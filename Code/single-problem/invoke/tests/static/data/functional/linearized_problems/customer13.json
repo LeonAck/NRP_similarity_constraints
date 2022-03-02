@@ -1,0 +1,5919 @@
+{
+  "users": [
+    {
+      "id": 202526,
+      "start_contract": 1506988800,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 903571200,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612274400,
+          "finish": 1612299600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612879200,
+          "finish": 1612904400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611964800,
+          "finish": 1612051199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612569600,
+          "finish": 1612655999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611964799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612483200,
+          "finish": 1612569599,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202467,
+      "start_contract": 1386633600,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10012",
+          "from": 1592179200,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202553,
+      "start_contract": 1433289600,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 4560,
+      "payperiod_minutes_max": 4560,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1452124800,
+          "expires": 1767744000
+        },
+        {
+          "id": "QL10012",
+          "from": 1400630400,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611964799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612483199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612483200,
+          "finish": 1612569599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612278000,
+          "finish": 1612299600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612882800,
+          "finish": 1612904400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612018800,
+          "finish": 1612040400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612623600,
+          "finish": 1612645200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612105200,
+          "finish": 1612126800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612710000,
+          "finish": 1612731600,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202535,
+      "start_contract": 1552867200,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 983664000,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611878400,
+          "finish": 1611964799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611964800,
+          "finish": 1612051199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612483200,
+          "finish": 1612569599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612569600,
+          "finish": 1612655999,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202507,
+      "start_contract": 1431907200,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1456531200,
+          "expires": 1614297600
+        },
+        {
+          "id": "QL10004",
+          "from": 1553644800,
+          "expires": 1869264000
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611964799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611964800,
+          "finish": 1612051199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612483199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612483200,
+          "finish": 1612569599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612569600,
+          "finish": 1612655999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611750600,
+          "finish": 1611781200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612355400,
+          "finish": 1612386000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612960200,
+          "finish": 1612990800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612188000,
+          "finish": 1612213200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612792800,
+          "finish": 1612818000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612274400,
+          "finish": 1612299600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612879200,
+          "finish": 1612904400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612105200,
+          "finish": 1612126800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612710000,
+          "finish": 1612731600,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 200116,
+          "from": 1607431464,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 238647,
+      "start_contract": 1580688000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 864864000,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202575,
+      "start_contract": 1556064000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1591660800,
+          "expires": 1907193600
+        },
+        {
+          "id": "QL10008",
+          "from": 1600128000,
+          "expires": 1607990400
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202545,
+      "start_contract": 1571788800,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 993945600,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202901,
+      "start_contract": 1554854400,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 4560,
+      "payperiod_minutes_max": 4560,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1265328000,
+          "expires": 1580860800
+        },
+        {
+          "id": "QL10007",
+          "from": 591926400,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202458,
+      "start_contract": 1386633600,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1488499200,
+          "expires": 1804032000
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202524,
+      "start_contract": 1506988800,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1456876800,
+          "expires": 1772409600
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611964799,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202492,
+      "start_contract": 1391385600,
+      "finish_contract": null,
+      "hourly_rate": 26.03,
+      "payperiod_minutes_min": 4560,
+      "payperiod_minutes_max": 4560,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10012",
+          "from": 784166400,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 214724,
+      "start_contract": 1576022400,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 4560,
+      "payperiod_minutes_max": 4560,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1562198400,
+          "expires": 1877817600
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202510,
+      "start_contract": 1456272000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1320019200,
+          "expires": 1635638400
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611842400,
+          "finish": 1611867600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612447200,
+          "finish": 1612472400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611928800,
+          "finish": 1611954000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612533600,
+          "finish": 1612558800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611756000,
+          "finish": 1611781200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611842400,
+          "finish": 1611867600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611928800,
+          "finish": 1611954000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612015200,
+          "finish": 1612040400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612101600,
+          "finish": 1612126800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612188000,
+          "finish": 1612213200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612274400,
+          "finish": 1612299600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612360800,
+          "finish": 1612386000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612447200,
+          "finish": 1612472400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612533600,
+          "finish": 1612558800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612620000,
+          "finish": 1612645200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612706400,
+          "finish": 1612731600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612792800,
+          "finish": 1612818000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612879200,
+          "finish": 1612904400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612965600,
+          "finish": 1612990800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612098000,
+          "finish": 1612126800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612702800,
+          "finish": 1612731600,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202522,
+      "start_contract": 1500940800,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1536796800,
+          "expires": 1852416000
+        },
+        {
+          "id": "QL10004",
+          "from": 1536796800,
+          "expires": 1852416000
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 238661,
+      "start_contract": 1580688000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 999734400,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202970,
+      "start_contract": 1526256000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 3600,
+      "payperiod_minutes_max": 3600,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 1090800000,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612483200,
+          "finish": 1612569599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612569600,
+          "finish": 1612655999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612656000,
+          "finish": 1612742399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612656000,
+          "finish": 1612742399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612742400,
+          "finish": 1612828799,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202497,
+      "start_contract": 1400630400,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1470009600,
+          "expires": 1785542400
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202462,
+      "start_contract": 1386633600,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10012",
+          "from": 795052800,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202466,
+      "start_contract": 1386633600,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1561939200,
+          "expires": 1878422400
+        },
+        {
+          "id": "QL10007",
+          "from": 1599782400,
+          "expires": null
+        },
+        {
+          "id": "QL10012",
+          "from": 1599782400,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202489,
+      "start_contract": 1386633600,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 957484800,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202505,
+      "start_contract": 1411603200,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": true,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1596499200,
+          "expires": 1622678400
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 200116,
+          "from": 1607431464,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202465,
+      "start_contract": 1386633600,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1496016000,
+          "expires": 1811548800
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611964800,
+          "finish": 1612051199,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 200116,
+          "from": 1607431464,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202495,
+      "start_contract": 1399420800,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1472688000,
+          "expires": 1788220800
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612483199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612062000,
+          "finish": 1612090800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612666800,
+          "finish": 1612695600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612483199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202518,
+      "start_contract": 1487116800,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 676166400,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202506,
+      "start_contract": 1423008000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1452124800,
+          "expires": 1767744000
+        },
+        {
+          "id": "QL10012",
+          "from": 1359158400,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612137600,
+          "finish": 1612223999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612742400,
+          "finish": 1612828799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611759600,
+          "finish": 1611781200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612364400,
+          "finish": 1612386000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612969200,
+          "finish": 1612990800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611759600,
+          "finish": 1611781200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611846000,
+          "finish": 1611867600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611932400,
+          "finish": 1611954000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612018800,
+          "finish": 1612040400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612105200,
+          "finish": 1612126800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612191600,
+          "finish": 1612213200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612278000,
+          "finish": 1612299600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612364400,
+          "finish": 1612386000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612450800,
+          "finish": 1612472400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612537200,
+          "finish": 1612558800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612623600,
+          "finish": 1612645200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612710000,
+          "finish": 1612731600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612796400,
+          "finish": 1612818000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612882800,
+          "finish": 1612904400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612969200,
+          "finish": 1612990800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612018800,
+          "finish": 1612040400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612623600,
+          "finish": 1612645200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611846000,
+          "finish": 1611867600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612450800,
+          "finish": 1612472400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612105200,
+          "finish": 1612126800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612710000,
+          "finish": 1612731600,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202573,
+      "start_contract": 1556064000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1571097600,
+          "expires": 1886716800
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160311,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202476,
+      "start_contract": 1488326400,
+      "finish_contract": null,
+      "hourly_rate": 22.704,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 841276800,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160253,
+          "from": 1574059216,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160304,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160285,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202491,
+      "start_contract": 1391299200,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10012",
+          "from": 1338163200,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612137600,
+          "finish": 1612223999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612742400,
+          "finish": 1612828799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202554,
+      "start_contract": 1476316800,
+      "finish_contract": null,
+      "hourly_rate": 22.7,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1455580800,
+          "expires": 1771200000
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612483199,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160313,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160253,
+          "from": 1574059216,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160304,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202515,
+      "start_contract": 1478476800,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1466121600,
+          "expires": 1623801600
+        },
+        {
+          "id": "QL10008",
+          "from": 1600128000,
+          "expires": 1607990400
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612483199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202867,
+      "start_contract": 1412640000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1544486400,
+          "expires": 1702166400
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202481,
+      "start_contract": 1506988800,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1487289600,
+          "expires": 1802822400
+        },
+        {
+          "id": "QL10008",
+          "from": 1600128000,
+          "expires": 1607990400
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611964799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612483200,
+          "finish": 1612569599,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 200115,
+          "from": 1607431314,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202513,
+      "start_contract": 1476316800,
+      "finish_contract": null,
+      "hourly_rate": 26.93,
+      "payperiod_minutes_min": 4560,
+      "payperiod_minutes_max": 4560,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10002",
+          "from": 1513641600,
+          "expires": 1672617600
+        },
+        {
+          "id": "QL10004",
+          "from": 1461024000,
+          "expires": 1776556800
+        },
+        {
+          "id": "QL10008",
+          "from": 1600128000,
+          "expires": 1607990400
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202567,
+      "start_contract": 1538524800,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 3600,
+      "payperiod_minutes_max": 3600,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1515542400,
+          "expires": 1831075200
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612137600,
+          "finish": 1612223999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612742400,
+          "finish": 1612828799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612195200,
+          "finish": 1612213200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612800000,
+          "finish": 1612818000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611763200,
+          "finish": 1611781200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612368000,
+          "finish": 1612386000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612972800,
+          "finish": 1612990800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612094400,
+          "finish": 1612119600,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160311,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202529,
+      "start_contract": 1517356800,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1544400000,
+          "expires": 1860019200
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 214737,
+      "start_contract": 1571788800,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": true,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1469059200,
+          "expires": 1784592000
+        },
+        {
+          "id": "QL10008",
+          "from": 1600128000,
+          "expires": 1607990400
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612051200,
+          "finish": 1612137599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612137600,
+          "finish": 1612223999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612656000,
+          "finish": 1612742399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612742400,
+          "finish": 1612828799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611964799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611964799,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202523,
+      "start_contract": 1501545600,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10007",
+          "from": 904176000,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202511,
+      "start_contract": 1457481600,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1459296000,
+          "expires": 1774828800
+        },
+        {
+          "id": "QL10007",
+          "from": 3335385600,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612483199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612137600,
+          "finish": 1612223999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612742400,
+          "finish": 1612828799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 200116,
+          "from": 1607431464,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202493,
+      "start_contract": 1391558400,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10012",
+          "from": 1573430400,
+          "expires": null
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202521,
+      "start_contract": 1495497600,
+      "finish_contract": null,
+      "hourly_rate": 21.54,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1486339200,
+          "expires": 1828051200
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1611705600,
+          "finish": 1611791999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611792000,
+          "finish": 1611878399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612396799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612483199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1613001599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611964800,
+          "finish": 1612051199,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160293,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 200116,
+          "from": 1607431464,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160280,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202571,
+      "start_contract": 1554336000,
+      "finish_contract": null,
+      "hourly_rate": 20.82,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1596585600,
+          "expires": null
+        },
+        {
+          "id": "QL10008",
+          "from": 1600128000,
+          "expires": 1607990400
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612051200,
+          "finish": 1612137599,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612137600,
+          "finish": 1612223999,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612656000,
+          "finish": 1612742399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612742400,
+          "finish": 1612828799,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611705600,
+          "finish": 1611759600,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612310400,
+          "finish": 1612364400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612915200,
+          "finish": 1612969200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611792000,
+          "finish": 1611846000,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612396800,
+          "finish": 1612450800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611932400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612483200,
+          "finish": 1612537200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611878400,
+          "finish": 1611932400,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612483200,
+          "finish": 1612537200,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611964800,
+          "finish": 1612018800,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612569600,
+          "finish": 1612623600,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160311,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160302,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160284,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    },
+    {
+      "id": 202460,
+      "start_contract": 1386633600,
+      "finish_contract": null,
+      "hourly_rate": 22.704,
+      "payperiod_minutes_min": 1800,
+      "payperiod_minutes_max": 1800,
+      "payperiod_length_days": 14,
+      "is_fixed": false,
+      "skills": [],
+      "licenses": [
+        {
+          "id": "QL10004",
+          "from": 1448323200,
+          "expires": 1763942400
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1612224000,
+          "finish": 1612310399,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612828800,
+          "finish": 1612915199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1611964800,
+          "finish": 1612051199,
+          "type": 1,
+          "pay_duration": 0
+        },
+        {
+          "start": 1612569600,
+          "finish": 1612655999,
+          "type": 1,
+          "pay_duration": 0
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 160253,
+          "from": 1574059216,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160304,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        },
+        {
+          "id": 160285,
+          "from": 1574059446,
+          "proficiency_rating": 3
+        }
+      ]
+    }
+  ],
+  "shifts": [
+    {
+      "id": 25474340,
+      "start": 1611738000,
+      "finish": 1611748800,
+      "is_fixed": true,
+      "user_id": 214737,
+      "pay_duration": 180,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1611738000,
+          "finish": 1611748800,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26000580,
+      "start": 1611738000,
+      "finish": 1611765000,
+      "is_fixed": true,
+      "user_id": 202505,
+      "pay_duration": 450,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1611738000,
+          "finish": 1611765000,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26382514,
+      "start": 1611747000,
+      "finish": 1611775800,
+      "is_fixed": true,
+      "user_id": 202524,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611760500,
+          "finish": 1611762300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611747000,
+          "finish": 1611775800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382981,
+      "start": 1611747000,
+      "finish": 1611777600,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611761400,
+          "finish": 1611763200
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611747000,
+          "finish": 1611777600,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382561,
+      "start": 1611748800,
+      "finish": 1611777600,
+      "is_fixed": true,
+      "user_id": 202481,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611762300,
+          "finish": 1611764100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611748800,
+          "finish": 1611777600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382710,
+      "start": 1611748800,
+      "finish": 1611777600,
+      "is_fixed": true,
+      "user_id": 202970,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611762300,
+          "finish": 1611764100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611748800,
+          "finish": 1611777600,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26382987,
+      "start": 1611748800,
+      "finish": 1611777600,
+      "is_fixed": true,
+      "user_id": 202526,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611762300,
+          "finish": 1611764100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611748800,
+          "finish": 1611777600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26383016,
+      "start": 1611759600,
+      "finish": 1611777600,
+      "is_fixed": true,
+      "user_id": 202571,
+      "pay_duration": 300,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1611759600,
+          "finish": 1611777600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 25474341,
+      "start": 1611824400,
+      "finish": 1611835200,
+      "is_fixed": true,
+      "user_id": 214737,
+      "pay_duration": 180,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1611824400,
+          "finish": 1611835200,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26382603,
+      "start": 1611833400,
+      "finish": 1611862200,
+      "is_fixed": true,
+      "user_id": 202491,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611846900,
+          "finish": 1611848700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611833400,
+          "finish": 1611862200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382979,
+      "start": 1611833400,
+      "finish": 1611864000,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611847800,
+          "finish": 1611849600
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611833400,
+          "finish": 1611864000,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382577,
+      "start": 1611835200,
+      "finish": 1611864000,
+      "is_fixed": true,
+      "user_id": 202524,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611848700,
+          "finish": 1611850500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611835200,
+          "finish": 1611864000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382721,
+      "start": 1611835200,
+      "finish": 1611864000,
+      "is_fixed": true,
+      "user_id": 202518,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611848700,
+          "finish": 1611850500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611835200,
+          "finish": 1611864000,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26382992,
+      "start": 1611835200,
+      "finish": 1611864000,
+      "is_fixed": true,
+      "user_id": 202526,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611848700,
+          "finish": 1611850500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611835200,
+          "finish": 1611864000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26385375,
+      "start": 1611846000,
+      "finish": 1611864000,
+      "is_fixed": true,
+      "user_id": 202571,
+      "pay_duration": 300,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1611846000,
+          "finish": 1611864000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 25474342,
+      "start": 1611910800,
+      "finish": 1611921600,
+      "is_fixed": true,
+      "user_id": 214737,
+      "pay_duration": 180,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1611910800,
+          "finish": 1611921600,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26382540,
+      "start": 1611919800,
+      "finish": 1611948600,
+      "is_fixed": true,
+      "user_id": 202575,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611933300,
+          "finish": 1611935100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611919800,
+          "finish": 1611948600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382950,
+      "start": 1611919800,
+      "finish": 1611950400,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611934200,
+          "finish": 1611936000
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611919800,
+          "finish": 1611950400,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382578,
+      "start": 1611921600,
+      "finish": 1611950400,
+      "is_fixed": true,
+      "user_id": 202970,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611935100,
+          "finish": 1611936900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611921600,
+          "finish": 1611950400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382723,
+      "start": 1611921600,
+      "finish": 1611950400,
+      "is_fixed": true,
+      "user_id": 202518,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611935100,
+          "finish": 1611936900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611921600,
+          "finish": 1611950400,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26382995,
+      "start": 1611921600,
+      "finish": 1611950400,
+      "is_fixed": true,
+      "user_id": 202491,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611935100,
+          "finish": 1611936900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611921600,
+          "finish": 1611950400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26385377,
+      "start": 1611932400,
+      "finish": 1611950400,
+      "is_fixed": true,
+      "user_id": 202571,
+      "pay_duration": 300,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1611932400,
+          "finish": 1611950400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382544,
+      "start": 1612006200,
+      "finish": 1612035000,
+      "is_fixed": true,
+      "user_id": 202524,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612019700,
+          "finish": 1612021500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612006200,
+          "finish": 1612035000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382959,
+      "start": 1612006200,
+      "finish": 1612036800,
+      "is_fixed": true,
+      "user_id": 202476,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612020600,
+          "finish": 1612022400
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612006200,
+          "finish": 1612036800,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382579,
+      "start": 1612008000,
+      "finish": 1612036800,
+      "is_fixed": true,
+      "user_id": 202970,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612021500,
+          "finish": 1612023300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612008000,
+          "finish": 1612036800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382753,
+      "start": 1612008000,
+      "finish": 1612036800,
+      "is_fixed": true,
+      "user_id": 202489,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612021500,
+          "finish": 1612023300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612008000,
+          "finish": 1612036800,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383002,
+      "start": 1612008000,
+      "finish": 1612036800,
+      "is_fixed": true,
+      "user_id": 202575,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612021500,
+          "finish": 1612023300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612008000,
+          "finish": 1612036800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26385379,
+      "start": 1612018800,
+      "finish": 1612036800,
+      "is_fixed": true,
+      "user_id": 202571,
+      "pay_duration": 300,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1612018800,
+          "finish": 1612036800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382542,
+      "start": 1612092600,
+      "finish": 1612121400,
+      "is_fixed": true,
+      "user_id": 202575,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612106100,
+          "finish": 1612107900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612092600,
+          "finish": 1612121400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382960,
+      "start": 1612092600,
+      "finish": 1612123200,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612107000,
+          "finish": 1612108800
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612092600,
+          "finish": 1612123200,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382580,
+      "start": 1612094400,
+      "finish": 1612123200,
+      "is_fixed": true,
+      "user_id": 202491,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612107900,
+          "finish": 1612109700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612094400,
+          "finish": 1612123200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382728,
+      "start": 1612094400,
+      "finish": 1612123200,
+      "is_fixed": true,
+      "user_id": 202489,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612107900,
+          "finish": 1612109700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612094400,
+          "finish": 1612123200,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26382997,
+      "start": 1612094400,
+      "finish": 1612123200,
+      "is_fixed": true,
+      "user_id": 202481,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612107900,
+          "finish": 1612109700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612094400,
+          "finish": 1612123200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382998,
+      "start": 1612094400,
+      "finish": 1612123200,
+      "is_fixed": true,
+      "user_id": 202526,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612107900,
+          "finish": 1612109700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612094400,
+          "finish": 1612123200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382545,
+      "start": 1612179000,
+      "finish": 1612207800,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612192500,
+          "finish": 1612194300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612179000,
+          "finish": 1612207800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382966,
+      "start": 1612179000,
+      "finish": 1612209600,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612193400,
+          "finish": 1612195200
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612179000,
+          "finish": 1612209600,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382586,
+      "start": 1612180800,
+      "finish": 1612209600,
+      "is_fixed": true,
+      "user_id": 202526,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612194300,
+          "finish": 1612196100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612180800,
+          "finish": 1612209600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382741,
+      "start": 1612180800,
+      "finish": 1612209600,
+      "is_fixed": true,
+      "user_id": 202489,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612194300,
+          "finish": 1612196100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612180800,
+          "finish": 1612209600,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383005,
+      "start": 1612180800,
+      "finish": 1612209600,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612194300,
+          "finish": 1612196100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612180800,
+          "finish": 1612209600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26383008,
+      "start": 1612180800,
+      "finish": 1612209600,
+      "is_fixed": true,
+      "user_id": 202481,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612194300,
+          "finish": 1612196100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612180800,
+          "finish": 1612209600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382546,
+      "start": 1612265400,
+      "finish": 1612294200,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612278900,
+          "finish": 1612280700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612265400,
+          "finish": 1612294200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382963,
+      "start": 1612265400,
+      "finish": 1612296000,
+      "is_fixed": true,
+      "user_id": 202476,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612279800,
+          "finish": 1612281600
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612265400,
+          "finish": 1612296000,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382587,
+      "start": 1612267200,
+      "finish": 1612296000,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612280700,
+          "finish": 1612282500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612267200,
+          "finish": 1612296000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382770,
+      "start": 1612267200,
+      "finish": 1612296000,
+      "is_fixed": true,
+      "user_id": 202489,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612280700,
+          "finish": 1612282500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612267200,
+          "finish": 1612296000,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383020,
+      "start": 1612267200,
+      "finish": 1612296000,
+      "is_fixed": true,
+      "user_id": 202575,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612280700,
+          "finish": 1612282500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612267200,
+          "finish": 1612296000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26383021,
+      "start": 1612267200,
+      "finish": 1612296000,
+      "is_fixed": true,
+      "user_id": 202970,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612280700,
+          "finish": 1612282500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612267200,
+          "finish": 1612296000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382548,
+      "start": 1612351800,
+      "finish": 1612380600,
+      "is_fixed": true,
+      "user_id": 202481,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612365300,
+          "finish": 1612367100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612351800,
+          "finish": 1612380600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382969,
+      "start": 1612351800,
+      "finish": 1612382400,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612366200,
+          "finish": 1612368000
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612351800,
+          "finish": 1612382400,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382779,
+      "start": 1612353600,
+      "finish": 1612382400,
+      "is_fixed": true,
+      "user_id": 202970,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612367100,
+          "finish": 1612368900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612353600,
+          "finish": 1612382400,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383023,
+      "start": 1612353600,
+      "finish": 1612382400,
+      "is_fixed": true,
+      "user_id": 202524,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612367100,
+          "finish": 1612368900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612353600,
+          "finish": 1612382400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26383024,
+      "start": 1612353600,
+      "finish": 1612382400,
+      "is_fixed": true,
+      "user_id": 202575,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612367100,
+          "finish": 1612368900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612353600,
+          "finish": 1612382400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26385520,
+      "start": 1612364400,
+      "finish": 1612382400,
+      "is_fixed": true,
+      "user_id": 202571,
+      "pay_duration": 300,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1612364400,
+          "finish": 1612382400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382550,
+      "start": 1612438200,
+      "finish": 1612467000,
+      "is_fixed": true,
+      "user_id": 202567,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612451700,
+          "finish": 1612453500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612438200,
+          "finish": 1612467000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382970,
+      "start": 1612438200,
+      "finish": 1612468800,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612452600,
+          "finish": 1612454400
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612438200,
+          "finish": 1612468800,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382594,
+      "start": 1612440000,
+      "finish": 1612468800,
+      "is_fixed": true,
+      "user_id": 202970,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612453500,
+          "finish": 1612455300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612440000,
+          "finish": 1612468800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382809,
+      "start": 1612440000,
+      "finish": 1612468800,
+      "is_fixed": true,
+      "user_id": 202518,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612453500,
+          "finish": 1612455300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612440000,
+          "finish": 1612468800,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383026,
+      "start": 1612440000,
+      "finish": 1612468800,
+      "is_fixed": true,
+      "user_id": 202481,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612453500,
+          "finish": 1612455300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612440000,
+          "finish": 1612468800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26385449,
+      "start": 1612450800,
+      "finish": 1612468800,
+      "is_fixed": true,
+      "user_id": 202571,
+      "pay_duration": 300,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1612450800,
+          "finish": 1612468800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382552,
+      "start": 1612524600,
+      "finish": 1612553400,
+      "is_fixed": true,
+      "user_id": 202575,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612538100,
+          "finish": 1612539900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612524600,
+          "finish": 1612553400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382972,
+      "start": 1612524600,
+      "finish": 1612555200,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612539000,
+          "finish": 1612540800
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612524600,
+          "finish": 1612555200,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382591,
+      "start": 1612526400,
+      "finish": 1612555200,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612539900,
+          "finish": 1612541700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612526400,
+          "finish": 1612555200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382791,
+      "start": 1612526400,
+      "finish": 1612555200,
+      "is_fixed": true,
+      "user_id": 202518,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612539900,
+          "finish": 1612541700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612526400,
+          "finish": 1612555200,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383034,
+      "start": 1612526400,
+      "finish": 1612555200,
+      "is_fixed": true,
+      "user_id": 202524,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612539900,
+          "finish": 1612541700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612526400,
+          "finish": 1612555200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26385453,
+      "start": 1612537200,
+      "finish": 1612555200,
+      "is_fixed": true,
+      "user_id": 202571,
+      "pay_duration": 300,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1612537200,
+          "finish": 1612555200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382553,
+      "start": 1612611000,
+      "finish": 1612639800,
+      "is_fixed": true,
+      "user_id": 202567,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612624500,
+          "finish": 1612626300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612611000,
+          "finish": 1612639800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382973,
+      "start": 1612611000,
+      "finish": 1612641600,
+      "is_fixed": true,
+      "user_id": 202476,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612625400,
+          "finish": 1612627200
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612611000,
+          "finish": 1612641600,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382592,
+      "start": 1612612800,
+      "finish": 1612641600,
+      "is_fixed": true,
+      "user_id": 202575,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612626300,
+          "finish": 1612628100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612612800,
+          "finish": 1612641600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382841,
+      "start": 1612612800,
+      "finish": 1612641600,
+      "is_fixed": true,
+      "user_id": 202518,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612626300,
+          "finish": 1612628100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612612800,
+          "finish": 1612641600,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383035,
+      "start": 1612612800,
+      "finish": 1612641600,
+      "is_fixed": true,
+      "user_id": 202524,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612626300,
+          "finish": 1612628100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612612800,
+          "finish": 1612641600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26385454,
+      "start": 1612623600,
+      "finish": 1612641600,
+      "is_fixed": true,
+      "user_id": 202571,
+      "pay_duration": 300,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1612623600,
+          "finish": 1612641600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382554,
+      "start": 1612697400,
+      "finish": 1612726200,
+      "is_fixed": true,
+      "user_id": 202481,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612710900,
+          "finish": 1612712700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612697400,
+          "finish": 1612726200,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382974,
+      "start": 1612697400,
+      "finish": 1612728000,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612711800,
+          "finish": 1612713600
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612697400,
+          "finish": 1612728000,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382593,
+      "start": 1612699200,
+      "finish": 1612728000,
+      "is_fixed": true,
+      "user_id": 202575,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612712700,
+          "finish": 1612714500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612699200,
+          "finish": 1612728000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382848,
+      "start": 1612699200,
+      "finish": 1612728000,
+      "is_fixed": true,
+      "user_id": 202518,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612712700,
+          "finish": 1612714500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612699200,
+          "finish": 1612728000,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383038,
+      "start": 1612699200,
+      "finish": 1612728000,
+      "is_fixed": true,
+      "user_id": 202567,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612712700,
+          "finish": 1612714500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612699200,
+          "finish": 1612728000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26383040,
+      "start": 1612699200,
+      "finish": 1612728000,
+      "is_fixed": true,
+      "user_id": 202526,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612712700,
+          "finish": 1612714500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612699200,
+          "finish": 1612728000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26366731,
+      "start": 1612774800,
+      "finish": 1612796400,
+      "is_fixed": true,
+      "user_id": 202970,
+      "pay_duration": 360,
+      "break_duration": 0,
+      "skills": [],
+      "licenses": [],
+      "breaks": [],
+      "subshifts": [
+        {
+          "start": 1612774800,
+          "finish": 1612796400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382556,
+      "start": 1612783800,
+      "finish": 1612812600,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612797300,
+          "finish": 1612799100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612783800,
+          "finish": 1612812600,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382976,
+      "start": 1612783800,
+      "finish": 1612814400,
+      "is_fixed": true,
+      "user_id": 202460,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612798200,
+          "finish": 1612800000
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612783800,
+          "finish": 1612814400,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382597,
+      "start": 1612785600,
+      "finish": 1612814400,
+      "is_fixed": true,
+      "user_id": 202481,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612799100,
+          "finish": 1612800900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612785600,
+          "finish": 1612814400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382867,
+      "start": 1612785600,
+      "finish": 1612814400,
+      "is_fixed": true,
+      "user_id": 202518,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612799100,
+          "finish": 1612800900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612785600,
+          "finish": 1612814400,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383043,
+      "start": 1612785600,
+      "finish": 1612814400,
+      "is_fixed": true,
+      "user_id": 202524,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612799100,
+          "finish": 1612800900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612785600,
+          "finish": 1612814400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26383045,
+      "start": 1612785600,
+      "finish": 1612814400,
+      "is_fixed": true,
+      "user_id": 202526,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612799100,
+          "finish": 1612800900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612785600,
+          "finish": 1612814400,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382557,
+      "start": 1612870200,
+      "finish": 1612899000,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612883700,
+          "finish": 1612885500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612870200,
+          "finish": 1612899000,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382977,
+      "start": 1612870200,
+      "finish": 1612900800,
+      "is_fixed": true,
+      "user_id": 202476,
+      "pay_duration": 480,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612884600,
+          "finish": 1612886400
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612870200,
+          "finish": 1612900800,
+          "department_id": 160304
+        }
+      ]
+    },
+    {
+      "id": 26382598,
+      "start": 1612872000,
+      "finish": 1612900800,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612885500,
+          "finish": 1612887300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612872000,
+          "finish": 1612900800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26382877,
+      "start": 1612872000,
+      "finish": 1612900800,
+      "is_fixed": true,
+      "user_id": 202970,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612885500,
+          "finish": 1612887300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612872000,
+          "finish": 1612900800,
+          "department_id": 160293
+        }
+      ]
+    },
+    {
+      "id": 26383046,
+      "start": 1612872000,
+      "finish": 1612900800,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612885500,
+          "finish": 1612887300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612872000,
+          "finish": 1612900800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26383049,
+      "start": 1612872000,
+      "finish": 1612900800,
+      "is_fixed": false,
+      "user_id": null,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612885500,
+          "finish": 1612887300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612872000,
+          "finish": 1612900800,
+          "department_id": 160302
+        }
+      ]
+    },
+    {
+      "id": 26374370,
+      "start": 1611719100,
+      "finish": 1611747000,
+      "is_fixed": true,
+      "user_id": 202465,
+      "pay_duration": 435,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611732000,
+          "finish": 1611733800
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611719100,
+          "finish": 1611747000,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374372,
+      "start": 1611806400,
+      "finish": 1611835200,
+      "is_fixed": true,
+      "user_id": 202465,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611819900,
+          "finish": 1611821700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611806400,
+          "finish": 1611835200,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374378,
+      "start": 1612067400,
+      "finish": 1612096200,
+      "is_fixed": true,
+      "user_id": 202465,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612080900,
+          "finish": 1612082700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612067400,
+          "finish": 1612096200,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374380,
+      "start": 1612151100,
+      "finish": 1612180800,
+      "is_fixed": true,
+      "user_id": 202465,
+      "pay_duration": 465,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612164900,
+          "finish": 1612166700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612151100,
+          "finish": 1612180800,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374385,
+      "start": 1612410300,
+      "finish": 1612440000,
+      "is_fixed": true,
+      "user_id": 202465,
+      "pay_duration": 465,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612424100,
+          "finish": 1612425900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612410300,
+          "finish": 1612440000,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374387,
+      "start": 1612499400,
+      "finish": 1612528200,
+      "is_fixed": true,
+      "user_id": 202465,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612512900,
+          "finish": 1612514700
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612499400,
+          "finish": 1612528200,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374389,
+      "start": 1612585800,
+      "finish": 1612612800,
+      "is_fixed": true,
+      "user_id": 202465,
+      "pay_duration": 420,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612598400,
+          "finish": 1612600200
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612585800,
+          "finish": 1612612800,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374451,
+      "start": 1611748800,
+      "finish": 1611777600,
+      "is_fixed": true,
+      "user_id": 202476,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611762300,
+          "finish": 1611764100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611748800,
+          "finish": 1611777600,
+          "department_id": 160285
+        }
+      ]
+    },
+    {
+      "id": 26374414,
+      "start": 1612240200,
+      "finish": 1612267200,
+      "is_fixed": true,
+      "user_id": 202507,
+      "pay_duration": 420,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612252800,
+          "finish": 1612254600
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612240200,
+          "finish": 1612267200,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374421,
+      "start": 1612323900,
+      "finish": 1612353600,
+      "is_fixed": true,
+      "user_id": 202507,
+      "pay_duration": 465,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612337700,
+          "finish": 1612339500
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612323900,
+          "finish": 1612353600,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374437,
+      "start": 1612845000,
+      "finish": 1612872000,
+      "is_fixed": true,
+      "user_id": 202507,
+      "pay_duration": 420,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612857600,
+          "finish": 1612859400
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612845000,
+          "finish": 1612872000,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374376,
+      "start": 1611981000,
+      "finish": 1612009800,
+      "is_fixed": true,
+      "user_id": 202511,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611994500,
+          "finish": 1611996300
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611981000,
+          "finish": 1612009800,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374374,
+      "start": 1611894600,
+      "finish": 1611923400,
+      "is_fixed": true,
+      "user_id": 202521,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1611908100,
+          "finish": 1611909900
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1611894600,
+          "finish": 1611923400,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374391,
+      "start": 1612674000,
+      "finish": 1612702800,
+      "is_fixed": true,
+      "user_id": 202521,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612684800,
+          "finish": 1612686600
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612674000,
+          "finish": 1612702800,
+          "department_id": 200116
+        }
+      ]
+    },
+    {
+      "id": 26374393,
+      "start": 1612756800,
+      "finish": 1612785600,
+      "is_fixed": true,
+      "user_id": 202521,
+      "pay_duration": 450,
+      "break_duration": 30,
+      "skills": [],
+      "licenses": [],
+      "breaks": [
+        {
+          "start": 1612770300,
+          "finish": 1612772100
+        }
+      ],
+      "subshifts": [
+        {
+          "start": 1612756800,
+          "finish": 1612785600,
+          "department_id": 200116
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": 1,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202901,
+        214724
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 2000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 1,
+      "department_ids": [
+        160302
+      ],
+      "user_ids": [
+        202522,
+        202497,
+        202867,
+        202529,
+        202523,
+        202493
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 2000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 1,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        160311,
+        160313,
+        160253,
+        160304
+      ],
+      "user_ids": [
+        202535,
+        202545,
+        202970,
+        202573,
+        202554,
+        202515,
+        202567,
+        202571
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 2000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 1,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202492,
+        202513
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 2000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 1,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        200116,
+        160253,
+        160304,
+        160285,
+        200115
+      ],
+      "user_ids": [
+        202526,
+        202467,
+        202553,
+        202507,
+        238647,
+        202575,
+        202458,
+        202524,
+        202510,
+        238661,
+        202462,
+        202466,
+        202489,
+        202505,
+        202465,
+        202495,
+        202518,
+        202506,
+        202476,
+        202491,
+        202481,
+        214737,
+        202511,
+        202521,
+        202460
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 2000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 11,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202901,
+        214724
+      ],
+      "parameter_1": 240,
+      "parameter_2": 0,
+      "penalty": 1666,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 11,
+      "department_ids": [
+        160302
+      ],
+      "user_ids": [
+        202522,
+        202497,
+        202867,
+        202529,
+        202523,
+        202493
+      ],
+      "parameter_1": 120,
+      "parameter_2": 0,
+      "penalty": 1666,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 11,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        160311,
+        160313,
+        160253,
+        160304
+      ],
+      "user_ids": [
+        202535,
+        202545,
+        202970,
+        202573,
+        202554,
+        202515,
+        202567,
+        202571
+      ],
+      "parameter_1": 180,
+      "parameter_2": 0,
+      "penalty": 1666,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 11,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202492,
+        202513
+      ],
+      "parameter_1": 240,
+      "parameter_2": 0,
+      "penalty": 1666,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 11,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        200116,
+        160253,
+        160304,
+        160285,
+        200115
+      ],
+      "user_ids": [
+        202526,
+        202467,
+        202553,
+        202507,
+        238647,
+        202575,
+        202458,
+        202524,
+        202510,
+        238661,
+        202462,
+        202466,
+        202489,
+        202505,
+        202465,
+        202495,
+        202518,
+        202506,
+        202476,
+        202491,
+        202481,
+        214737,
+        202511,
+        202521,
+        202460
+      ],
+      "parameter_1": 180,
+      "parameter_2": 0,
+      "penalty": 1666,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 14,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202901,
+        214724
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 14,
+      "department_ids": [
+        160302
+      ],
+      "user_ids": [
+        202522,
+        202497,
+        202867,
+        202529,
+        202523,
+        202493
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 14,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        160311,
+        160313,
+        160253,
+        160304
+      ],
+      "user_ids": [
+        202535,
+        202545,
+        202970,
+        202573,
+        202554,
+        202515,
+        202567,
+        202571
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 14,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202492,
+        202513
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 14,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        200116,
+        160253,
+        160304,
+        160285,
+        200115
+      ],
+      "user_ids": [
+        202526,
+        202467,
+        202553,
+        202507,
+        238647,
+        202575,
+        202458,
+        202524,
+        202510,
+        238661,
+        202462,
+        202466,
+        202489,
+        202505,
+        202465,
+        202495,
+        202518,
+        202506,
+        202476,
+        202491,
+        202481,
+        214737,
+        202511,
+        202521,
+        202460
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 16,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202901,
+        214724
+      ],
+      "parameter_1": 360,
+      "parameter_2": 30,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 16,
+      "department_ids": [
+        160302
+      ],
+      "user_ids": [
+        202522,
+        202497,
+        202867,
+        202529,
+        202523,
+        202493
+      ],
+      "parameter_1": 360,
+      "parameter_2": 30,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 16,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        160311,
+        160313,
+        160253,
+        160304
+      ],
+      "user_ids": [
+        202535,
+        202545,
+        202970,
+        202573,
+        202554,
+        202515,
+        202567,
+        202571
+      ],
+      "parameter_1": 360,
+      "parameter_2": 30,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 16,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202492,
+        202513
+      ],
+      "parameter_1": 300,
+      "parameter_2": 30,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 16,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        200116,
+        160253,
+        160304,
+        160285,
+        200115
+      ],
+      "user_ids": [
+        202526,
+        202467,
+        202553,
+        202507,
+        238647,
+        202575,
+        202458,
+        202524,
+        202510,
+        238661,
+        202462,
+        202466,
+        202489,
+        202505,
+        202465,
+        202495,
+        202518,
+        202506,
+        202476,
+        202491,
+        202481,
+        214737,
+        202511,
+        202521,
+        202460
+      ],
+      "parameter_1": 360,
+      "parameter_2": 30,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 19,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202901,
+        214724
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 19,
+      "department_ids": [
+        160302
+      ],
+      "user_ids": [
+        202522,
+        202497,
+        202867,
+        202529,
+        202523,
+        202493
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 19,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        160311,
+        160313,
+        160253,
+        160304
+      ],
+      "user_ids": [
+        202535,
+        202545,
+        202970,
+        202573,
+        202554,
+        202515,
+        202567,
+        202571
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 19,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202492,
+        202513
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 19,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        200116,
+        160253,
+        160304,
+        160285,
+        200115
+      ],
+      "user_ids": [
+        202526,
+        202467,
+        202553,
+        202507,
+        238647,
+        202575,
+        202458,
+        202524,
+        202510,
+        238661,
+        202462,
+        202466,
+        202489,
+        202505,
+        202465,
+        202495,
+        202518,
+        202506,
+        202476,
+        202491,
+        202481,
+        214737,
+        202511,
+        202521,
+        202460
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202901,
+        214724
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "department_ids": [
+        160302
+      ],
+      "user_ids": [
+        202522,
+        202497,
+        202867,
+        202529,
+        202523,
+        202493
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        160311,
+        160313,
+        160253,
+        160304
+      ],
+      "user_ids": [
+        202535,
+        202545,
+        202970,
+        202573,
+        202554,
+        202515,
+        202567,
+        202571
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202492,
+        202513
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        200116,
+        160253,
+        160304,
+        160285,
+        200115
+      ],
+      "user_ids": [
+        202526,
+        202467,
+        202553,
+        202507,
+        238647,
+        202575,
+        202458,
+        202524,
+        202510,
+        238661,
+        202462,
+        202466,
+        202489,
+        202505,
+        202465,
+        202495,
+        202518,
+        202506,
+        202476,
+        202491,
+        202481,
+        214737,
+        202511,
+        202521,
+        202460
+      ],
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 0,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202901,
+        214724
+      ],
+      "parameter_1": 600,
+      "parameter_2": 0,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "department_ids": [
+        160302
+      ],
+      "user_ids": [
+        202522,
+        202497,
+        202867,
+        202529,
+        202523,
+        202493
+      ],
+      "parameter_1": 600,
+      "parameter_2": 0,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        160311,
+        160313,
+        160253,
+        160304
+      ],
+      "user_ids": [
+        202535,
+        202545,
+        202970,
+        202573,
+        202554,
+        202515,
+        202567,
+        202571
+      ],
+      "parameter_1": 600,
+      "parameter_2": 0,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "department_ids": [
+        160302,
+        160293
+      ],
+      "user_ids": [
+        202492,
+        202513
+      ],
+      "parameter_1": 600,
+      "parameter_2": 0,
+      "penalty": 99999,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "department_ids": [
+        160302,
+        160284,
+        160293,
+        160280,
+        200116,
+        160253,
+        160304,
+        160285,
+        200115
+      ],
+      "user_ids": [
+        202526,
+        202467,
+        202553,
+        202507,
+        238647,
+        202575,
+        202458,
+        202524,
+        202510,
+        238661,
+        202462,
+        202466,
+        202489,
+        202505,
+        202465,
+        202495,
+        202518,
+        202506,
+        202476,
+        202491,
+        202481,
+        214737,
+        202511,
+        202521,
+        202460
+      ],
+      "parameter_1": 600,
+      "parameter_2": 0,
+      "penalty": 99999,
+      "is_mandatory": false
+    }
+  ],
+  "settings": {
+    "start": 1611705600,
+    "finish": 1612915200,
+    "runtime": 300,
+    "cost_objective": 1,
+    "rule_objective": 1,
+    "fairness_objective": 0,
+    "linear_relaxation": true,
+    "proficiency_objective": 0
+  }
+}

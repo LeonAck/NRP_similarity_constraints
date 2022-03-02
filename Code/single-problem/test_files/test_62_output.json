@@ -1,0 +1,184 @@
+{
+  "result": 1,
+  "lower_bound": 100.0,
+  "upper_bound": 100.0,
+  "goal_score": 100.0,
+  "shifts": [
+    {
+      "shift_id": 531940561,
+      "violation_costs": 0,
+      "user_id": 1690577,
+      "department_id": "403244",
+      "start": 1624253400,
+      "finish": 1624284000,
+      "pay_duration": 480.0,
+      "shift_types": [],
+      "shift_group": "0",
+      "breaks": [
+        {
+          "start": 1624267800,
+          "finish": 1624269600
+        }
+      ],
+      "shift_costs": 0,
+      "group_id": "0"
+    },
+    {
+      "shift_id": 531940926,
+      "violation_costs": 0,
+      "user_id": 1690577,
+      "department_id": "403240",
+      "start": 1624599000,
+      "finish": 1624629600,
+      "pay_duration": 480.0,
+      "shift_types": [],
+      "shift_group": "3",
+      "breaks": [
+        {
+          "start": 1624613400,
+          "finish": 1624615200
+        }
+      ],
+      "shift_costs": 0,
+      "group_id": "3"
+    },
+    {
+      "shift_id": 531940984,
+      "violation_costs": 0,
+      "user_id": 1690601,
+      "department_id": "403244",
+      "start": 1624685400,
+      "finish": 1624716000,
+      "pay_duration": 480.0,
+      "shift_types": [
+        1
+      ],
+      "shift_group": "1",
+      "breaks": [
+        {
+          "start": 1624699800,
+          "finish": 1624701600
+        }
+      ],
+      "shift_costs": 0,
+      "group_id": "1"
+    },
+    {
+      "shift_id": 531941013,
+      "violation_costs": 0,
+      "user_id": 1690653,
+      "department_id": "403244",
+      "start": 1624685400,
+      "finish": 1624716000,
+      "pay_duration": 480.0,
+      "shift_types": [
+        1
+      ],
+      "shift_group": "2",
+      "breaks": [
+        {
+          "start": 1624699800,
+          "finish": 1624701600
+        }
+      ],
+      "shift_costs": 0,
+      "group_id": "2"
+    },
+    {
+      "shift_id": 531940958,
+      "violation_costs": 0,
+      "user_id": 1690577,
+      "department_id": "403240",
+      "start": 1624685400,
+      "finish": 1624716000,
+      "pay_duration": 480.0,
+      "shift_types": [
+        1
+      ],
+      "shift_group": "1",
+      "breaks": [
+        {
+          "start": 1624699800,
+          "finish": 1624701600
+        }
+      ],
+      "shift_costs": 0,
+      "group_id": "1"
+    },
+    {
+      "shift_id": 531941007,
+      "violation_costs": 0,
+      "user_id": 1690661,
+      "department_id": "403240",
+      "start": 1624685400,
+      "finish": 1624716000,
+      "pay_duration": 480.0,
+      "shift_types": [
+        1
+      ],
+      "shift_group": "2",
+      "breaks": [
+        {
+          "start": 1624699800,
+          "finish": 1624701600
+        }
+      ],
+      "shift_costs": 0,
+      "group_id": "2"
+    },
+    {
+      "shift_id": 531940800,
+      "violation_costs": 0,
+      "user_id": 1690653,
+      "department_id": "403244",
+      "start": 1624599000,
+      "finish": 1624629600,
+      "pay_duration": 480.0,
+      "shift_types": [],
+      "shift_group": "3",
+      "breaks": [
+        {
+          "start": 1624613400,
+          "finish": 1624615200
+        }
+      ],
+      "shift_costs": 0,
+      "group_id": "3"
+    },
+    {
+      "shift_id": 531940571,
+      "violation_costs": 0,
+      "user_id": 1690653,
+      "department_id": "403240",
+      "start": 1624253400,
+      "finish": 1624284000,
+      "pay_duration": 480.0,
+      "shift_types": [],
+      "shift_group": "0",
+      "breaks": [
+        {
+          "start": 1624267800,
+          "finish": 1624269600
+        }
+      ],
+      "shift_costs": 0,
+      "group_id": "0"
+    }
+  ],
+  "rule_violations": [
+    {
+      "rule_id": "62",
+      "violation_costs": 100.0,
+      "parameters": "skill_idCBD - Tv installatie",
+      "shift_group": 1
+    }
+  ],
+  "technical_kpis": {
+    "runtime": 0.083438,
+    "lower_bound": 100.0,
+    "upper_bound": 100.0,
+    "mip_gap": 0.0,
+    "use_shifting_window": false,
+    "use_improvement_heuristic": false
+  }
+}

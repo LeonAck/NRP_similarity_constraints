@@ -1,0 +1,1452 @@
+{
+  "shifts": [
+    {
+      "id": 552635775,
+      "start": 1635748200,
+      "finish": 1635778800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635762600,
+          "finish": 1635764400
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635782,
+      "start": 1635748200,
+      "finish": 1635778800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635762600,
+          "finish": 1635764400
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635784,
+      "start": 1635748200,
+      "finish": 1635778800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635762600,
+          "finish": 1635764400
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635777,
+      "start": 1635748200,
+      "finish": 1635787800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544634,
+      "breaks": [
+        {
+          "start": 1635748200,
+          "finish": 1635750000
+        },
+        {
+          "start": 1635764400,
+          "finish": 1635766200
+        },
+        {
+          "start": 1635780600,
+          "finish": 1635787800
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544634
+      ]
+    },
+    {
+      "id": 552635774,
+      "start": 1635757200,
+      "finish": 1635787800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1635771600,
+          "finish": 1635773400
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635772,
+      "start": 1635787800,
+      "finish": 1635834600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 780,
+      "department_id": 546626,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546626
+      ]
+    },
+    {
+      "id": 552635804,
+      "start": 1635787800,
+      "finish": 1635834600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 780,
+      "department_id": 544660,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        544660
+      ]
+    },
+    {
+      "id": 552635768,
+      "start": 1635834600,
+      "finish": 1635865200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635849000,
+          "finish": 1635850800
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635792,
+      "start": 1635834600,
+      "finish": 1635865200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635849000,
+          "finish": 1635850800
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635794,
+      "start": 1635834600,
+      "finish": 1635865200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635849000,
+          "finish": 1635850800
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635780,
+      "start": 1635834600,
+      "finish": 1635874200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544634,
+      "breaks": [
+        {
+          "start": 1635834600,
+          "finish": 1635836400
+        },
+        {
+          "start": 1635850800,
+          "finish": 1635852600
+        },
+        {
+          "start": 1635867000,
+          "finish": 1635874200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544634
+      ]
+    },
+    {
+      "id": 552635786,
+      "start": 1635843600,
+      "finish": 1635874200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1635858000,
+          "finish": 1635859800
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635790,
+      "start": 1635843600,
+      "finish": 1635874200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1635858000,
+          "finish": 1635859800
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635764,
+      "start": 1635874200,
+      "finish": 1635921000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 780,
+      "department_id": 546626,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546626
+      ]
+    },
+    {
+      "id": 552635765,
+      "start": 1635874200,
+      "finish": 1635921000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 780,
+      "department_id": 544660,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        544660
+      ]
+    },
+    {
+      "id": 552635773,
+      "start": 1635921000,
+      "finish": 1635951600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635935400,
+          "finish": 1635937200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635783,
+      "start": 1635921000,
+      "finish": 1635951600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635935400,
+          "finish": 1635937200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635797,
+      "start": 1635921000,
+      "finish": 1635951600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1635935400,
+          "finish": 1635937200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635767,
+      "start": 1635921000,
+      "finish": 1635960600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544634,
+      "breaks": [
+        {
+          "start": 1635921000,
+          "finish": 1635922800
+        },
+        {
+          "start": 1635937200,
+          "finish": 1635939000
+        },
+        {
+          "start": 1635953400,
+          "finish": 1635960600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544634
+      ]
+    },
+    {
+      "id": 552635787,
+      "start": 1635930000,
+      "finish": 1635960600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1635944400,
+          "finish": 1635946200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635791,
+      "start": 1635930000,
+      "finish": 1635960600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1635944400,
+          "finish": 1635946200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635761,
+      "start": 1635960600,
+      "finish": 1636007400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 780,
+      "department_id": 544660,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        544660
+      ]
+    },
+    {
+      "id": 552635770,
+      "start": 1635960600,
+      "finish": 1636007400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 780,
+      "department_id": 546626,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546626
+      ]
+    },
+    {
+      "id": 552635763,
+      "start": 1636007400,
+      "finish": 1636038000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1636021800,
+          "finish": 1636023600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635779,
+      "start": 1636007400,
+      "finish": 1636038000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1636021800,
+          "finish": 1636023600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635799,
+      "start": 1636007400,
+      "finish": 1636038000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1636021800,
+          "finish": 1636023600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635802,
+      "start": 1636007400,
+      "finish": 1636047000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544634,
+      "breaks": [
+        {
+          "start": 1636007400,
+          "finish": 1636009200
+        },
+        {
+          "start": 1636023600,
+          "finish": 1636025400
+        },
+        {
+          "start": 1636039800,
+          "finish": 1636047000
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544634
+      ]
+    },
+    {
+      "id": 552635788,
+      "start": 1636016400,
+      "finish": 1636047000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1636030800,
+          "finish": 1636032600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635796,
+      "start": 1636016400,
+      "finish": 1636047000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1636030800,
+          "finish": 1636032600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635769,
+      "start": 1636047000,
+      "finish": 1636093800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 780,
+      "department_id": 544660,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        544660
+      ]
+    },
+    {
+      "id": 552635776,
+      "start": 1636047000,
+      "finish": 1636093800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 780,
+      "department_id": 546626,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546626
+      ]
+    },
+    {
+      "id": 552635781,
+      "start": 1636093800,
+      "finish": 1636124400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1636108200,
+          "finish": 1636110000
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635789,
+      "start": 1636093800,
+      "finish": 1636124400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1636108200,
+          "finish": 1636110000
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635801,
+      "start": 1636093800,
+      "finish": 1636124400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544627,
+      "breaks": [
+        {
+          "start": 1636108200,
+          "finish": 1636110000
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544627
+      ]
+    },
+    {
+      "id": 552635803,
+      "start": 1636093800,
+      "finish": 1636133400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544634,
+      "breaks": [
+        {
+          "start": 1636093800,
+          "finish": 1636095600
+        },
+        {
+          "start": 1636110000,
+          "finish": 1636111800
+        },
+        {
+          "start": 1636126200,
+          "finish": 1636133400
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544634
+      ]
+    },
+    {
+      "id": 552635778,
+      "start": 1636102800,
+      "finish": 1636133400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1636117200,
+          "finish": 1636119000
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635785,
+      "start": 1636102800,
+      "finish": 1636133400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544720,
+      "breaks": [
+        {
+          "start": 1636117200,
+          "finish": 1636119000
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544720
+      ]
+    },
+    {
+      "id": 552635762,
+      "start": 1636133400,
+      "finish": 1636185600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 870,
+      "department_id": 544660,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        544660
+      ]
+    },
+    {
+      "id": 552635766,
+      "start": 1636133400,
+      "finish": 1636185600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 870,
+      "department_id": 546626,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546626
+      ]
+    },
+    {
+      "id": 552635771,
+      "start": 1636185600,
+      "finish": 1636216200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 544722,
+      "breaks": [
+        {
+          "start": 1636200000,
+          "finish": 1636201800
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        544722
+      ]
+    },
+    {
+      "id": 552635798,
+      "start": 1636216200,
+      "finish": 1636266600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 840,
+      "department_id": 546625,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546625
+      ]
+    },
+    {
+      "id": 552635800,
+      "start": 1636216200,
+      "finish": 1636266600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 840,
+      "department_id": 546630,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546630
+      ]
+    },
+    {
+      "id": 552635793,
+      "start": 1636266600,
+      "finish": 1636353000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 1440,
+      "department_id": 546625,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546625
+      ]
+    },
+    {
+      "id": 552635795,
+      "start": 1636266600,
+      "finish": 1636353000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 1440,
+      "department_id": 546630,
+      "breaks": [],
+      "tasks": null,
+      "shift_types": [
+        546630
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1881623,
+      "department_ids": [
+        {
+          "id": 544627,
+          "from": 0,
+          "proficiency_rating": 5,
+          "to": null
+        },
+        {
+          "id": 544634,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544660,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544720,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544722,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546625,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546626,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546630,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1620000000,
+          "end": 1488153600,
+          "quinyxAgreementId": 3377631,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "start": 1620000000,
+          "end": 1636412399,
+          "quinyxAgreementId": 3377631,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        }
+      ],
+      "start_contract": 1488153600
+    },
+    {
+      "id": 1881619,
+      "department_ids": [
+        {
+          "id": 544627,
+          "from": 0,
+          "proficiency_rating": 5,
+          "to": null
+        },
+        {
+          "id": 544634,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544660,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544720,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544722,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546625,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546626,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546630,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1620000000,
+          "end": 1496016000,
+          "quinyxAgreementId": 3377627,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "start": 1620000000,
+          "end": 1636412399,
+          "quinyxAgreementId": 3377627,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        }
+      ],
+      "start_contract": 1496016000
+    },
+    {
+      "id": 1881622,
+      "department_ids": [
+        {
+          "id": 544627,
+          "from": 0,
+          "proficiency_rating": 5,
+          "to": null
+        },
+        {
+          "id": 544634,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544660,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544720,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544722,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546625,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546626,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546630,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1620000000,
+          "end": 1472688000,
+          "quinyxAgreementId": 3377630,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "start": 1620000000,
+          "end": 1636412399,
+          "quinyxAgreementId": 3377630,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        }
+      ],
+      "start_contract": 1472688000
+    },
+    {
+      "id": 1881620,
+      "department_ids": [
+        {
+          "id": 544627,
+          "from": 0,
+          "proficiency_rating": 5,
+          "to": null
+        },
+        {
+          "id": 544634,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544660,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544720,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544722,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546625,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546626,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546630,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1620000000,
+          "end": 1636412399,
+          "quinyxAgreementId": 3377628,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        }
+      ],
+      "start_contract": 949363200
+    },
+    {
+      "id": 1881621,
+      "department_ids": [
+        {
+          "id": 544627,
+          "from": 0,
+          "proficiency_rating": 5,
+          "to": null
+        },
+        {
+          "id": 544634,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544660,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544720,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544722,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546625,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546626,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546630,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1620000000,
+          "end": 1241395200,
+          "quinyxAgreementId": 3377629,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "start": 1620000000,
+          "end": 1636412399,
+          "quinyxAgreementId": 3377629,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        }
+      ],
+      "start_contract": 1241395200
+    },
+    {
+      "id": 1881624,
+      "department_ids": [
+        {
+          "id": 544627,
+          "from": 0,
+          "proficiency_rating": 5,
+          "to": null
+        },
+        {
+          "id": 544634,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544660,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544720,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 544722,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546625,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546626,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 546630,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1620000000,
+          "end": 1513555200,
+          "quinyxAgreementId": 3377632,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "start": 1620000000,
+          "end": 1636412399,
+          "quinyxAgreementId": 3377632,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 38517,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 7,
+          "schedulePeriodStartDate": "2021-05-03T00:00:00.000Z"
+        }
+      ],
+      "start_contract": 1513555200
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 100,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 15,
+      "parameter_1": 1,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 66,
+      "parameter_1": 7,
+      "parameter_2": 1,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "shift_types": [546626, 544634, 544720, 546626, 544660],
+      "penalty": 50,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "parameter_1": 720,
+      "penalty": 10000,
+      "is_mandatory": false,
+      "user_ids": [
+        1881623,
+        1881619,
+        1881622,
+        1881620,
+        1881621,
+        1881624
+      ]
+    },
+    {
+      "rule_id": 25,
+      "parameter_1": 2400,
+      "parameter_2": 7,
+      "penalty": 10,
+      "is_mandatory": false,
+      "user_ids": [
+        1881623,
+        1881619,
+        1881622,
+        1881620,
+        1881621,
+        1881624
+      ]
+    },
+    {
+      "rule_id": 30,
+      "parameter_1": 7,
+      "parameter_2": 1,
+      "parameter_3": 8,
+      "penalty": 10000,
+      "is_mandatory": false,
+      "user_ids": [
+        1881623,
+        1881619,
+        1881622,
+        1881620,
+        1881621,
+        1881624
+      ]
+    }
+  ],
+  "settings": {
+    "start": 1635116400,
+    "finish": 1636930799,
+    "runtime": 900,
+    "time_zone": "Europe/Amsterdam",
+    "linear_relaxation": true
+  },
+  "shift_type_definitions": []
+}

@@ -1,0 +1,838 @@
+[
+  {
+    "rule_id": "25",
+    "violation_costs": 6600000.0,
+    "user_id": 198361,
+    "date": 1609714800,
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609718400_0",
+      "10834114:2021-02-08_1609718400_0",
+      "10834114:2021-02-08_1609804800_0",
+      "10834114:2021-02-08_1609891200_0",
+      "10834114:2021-02-08_1609977600_0",
+      "10834114:2021-02-08_1610064000_0",
+      "10834114:2021-02-08_1610323200_0",
+      "10834114:2021-02-08_1610409600_0",
+      "10834114:2021-02-08_1610496000_0",
+      "10834114:2021-02-08_1610582400_0",
+      "10834114:2021-02-08_1610668800_0",
+      "10834114:2021-02-08_1610928000_0",
+      "10834114:2021-02-08_1611014400_0",
+      "10834114:2021-02-08_1611100800_0",
+      "10834114:2021-02-08_1611187200_0",
+      "10834114:2021-02-08_1611273600_0",
+      "10834114:2021-02-08_1611532800_0",
+      "10834114:2021-02-08_1611619200_0",
+      "10834114:2021-02-08_1611705600_0",
+      "10834114:2021-02-08_1611792000_0",
+      "10834114:2021-02-08_1611878400_0"
+    ],
+    "violation_description": "More than 220.0 working hours in the period of 28 days starting on 1609714800",
+    "parameters": {
+      "parameter_1": 13200,
+      "parameter_2": 28,
+      "parameter_3": 0,
+      "parameter_4": 0,
+      "parameter_5": 0,
+      "parameter_6": 7
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609718400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1609743600,
+    "shift_start": 1609743600,
+    "shift_finish": 1609783200,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609718400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1609718400_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609718400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1609783200,
+    "shift_start": 1609783200,
+    "shift_finish": 1609630000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609718400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1609718400_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609804800_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1609830000,
+    "shift_start": 1609830000,
+    "shift_finish": 1609869600,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609804800_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1609804800_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609891200_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1609916400,
+    "shift_start": 1609916400,
+    "shift_finish": 1609956000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609891200_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1609891200_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609977600_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610002800,
+    "shift_start": 1610002800,
+    "shift_finish": 1610042400,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609977600_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1609977600_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610064000_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610089200,
+    "shift_start": 1610089200,
+    "shift_finish": 1610128800,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610064000_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1610064000_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610323200_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610348400,
+    "shift_start": 1610348400,
+    "shift_finish": 1610388000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610323200_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1610323200_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610409600_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610434800,
+    "shift_start": 1610434800,
+    "shift_finish": 1610474400,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610409600_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1610409600_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610496000_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610521200,
+    "shift_start": 1610521200,
+    "shift_finish": 1610560800,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610496000_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1610496000_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610582400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610607600,
+    "shift_start": 1610607600,
+    "shift_finish": 1610647200,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610582400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1610582400_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610668800_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610694000,
+    "shift_start": 1610694000,
+    "shift_finish": 1610733600,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610668800_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1610668800_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610928000_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610953200,
+    "shift_start": 1610953200,
+    "shift_finish": 1610992800,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610928000_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1610928000_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611014400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611039600,
+    "shift_start": 1611039600,
+    "shift_finish": 1611079200,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611014400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611014400_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611100800_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611126000,
+    "shift_start": 1611126000,
+    "shift_finish": 1611165600,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611100800_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611100800_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611187200_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611212400,
+    "shift_start": 1611212400,
+    "shift_finish": 1611252000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611187200_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611187200_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611273600_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611298800,
+    "shift_start": 1611298800,
+    "shift_finish": 1611338400,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611273600_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611273600_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611532800_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611558000,
+    "shift_start": 1611558000,
+    "shift_finish": 1611597600,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611532800_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611532800_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611619200_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611644400,
+    "shift_start": 1611644400,
+    "shift_finish": 1611684000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611619200_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611619200_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611705600_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611730800,
+    "shift_start": 1611730800,
+    "shift_finish": 1611770400,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611705600_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611705600_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611792000_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611817200,
+    "shift_start": 1611817200,
+    "shift_finish": 1611856800,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611792000_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611792000_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611878400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611903600,
+    "shift_start": 1611903600,
+    "shift_finish": 1611943200,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611878400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.5 hours for shift 10834114:2021-02-08_1611878400_0",
+    "parameters": {
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609718400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1609743600,
+    "shift_start": 1609743600,
+    "shift_finish": 1609783200,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609718400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1609718400_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609718400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1609783200,
+    "shift_start": 1609783200,
+    "shift_finish": 1609630000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609718400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1609718400_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609804800_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1609830000,
+    "shift_start": 1609830000,
+    "shift_finish": 1609869600,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609804800_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1609804800_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609891200_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1609916400,
+    "shift_start": 1609916400,
+    "shift_finish": 1609956000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609891200_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1609891200_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1609977600_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610002800,
+    "shift_start": 1610002800,
+    "shift_finish": 1610042400,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1609977600_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1609977600_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610064000_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610089200,
+    "shift_start": 1610089200,
+    "shift_finish": 1610128800,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610064000_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1610064000_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610323200_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610348400,
+    "shift_start": 1610348400,
+    "shift_finish": 1610388000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610323200_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1610323200_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610409600_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610434800,
+    "shift_start": 1610434800,
+    "shift_finish": 1610474400,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610409600_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1610409600_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610496000_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610521200,
+    "shift_start": 1610521200,
+    "shift_finish": 1610560800,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610496000_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1610496000_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610582400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610607600,
+    "shift_start": 1610607600,
+    "shift_finish": 1610647200,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610582400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1610582400_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610668800_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610694000,
+    "shift_start": 1610694000,
+    "shift_finish": 1610733600,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610668800_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1610668800_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1610928000_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1610953200,
+    "shift_start": 1610953200,
+    "shift_finish": 1610992800,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1610928000_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1610928000_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611014400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611039600,
+    "shift_start": 1611039600,
+    "shift_finish": 1611079200,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611014400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611014400_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611100800_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611126000,
+    "shift_start": 1611126000,
+    "shift_finish": 1611165600,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611100800_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611100800_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611187200_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611212400,
+    "shift_start": 1611212400,
+    "shift_finish": 1611252000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611187200_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611187200_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611273600_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611298800,
+    "shift_start": 1611298800,
+    "shift_finish": 1611338400,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611273600_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611273600_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611532800_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611558000,
+    "shift_start": 1611558000,
+    "shift_finish": 1611597600,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611532800_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611532800_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611619200_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611644400,
+    "shift_start": 1611644400,
+    "shift_finish": 1611684000,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611619200_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611619200_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611705600_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611730800,
+    "shift_start": 1611730800,
+    "shift_finish": 1611770400,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611705600_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611705600_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611792000_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611817200,
+    "shift_start": 1611817200,
+    "shift_finish": 1611856800,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611792000_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611792000_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  },
+  {
+    "rule_id": "46",
+    "shift_id": "10834114:2021-02-08_1611878400_0",
+    "violation_costs": 10000.0,
+    "user_id": 198361,
+    "date": 1611903600,
+    "shift_start": 1611903600,
+    "shift_finish": 1611943200,
+    "department_id": "99",
+    "relevant_shifts": [
+      "10834114:2021-02-08_1611878400_0"
+    ],
+    "violation_description": "The total break time of breaks with a minimum length of 0.25 hours is less than 0.75 hours for shift 10834114:2021-02-08_1611878400_0",
+    "parameters": {
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15
+    }
+  }
+]

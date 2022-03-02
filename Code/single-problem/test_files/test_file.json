@@ -1,0 +1,16 @@
+{
+  "users": [],
+  "shifts": [],
+  "shift_type_definitions": [],
+  "rules": [],
+  "settings": {
+    "start": "1530748800",
+    "finish": "1531353600",
+    "runtime": "300",
+    "cost_objective": 1,
+    "rule_objective": 100,
+    "fairness_objective": 10
+  }
+}
+
+

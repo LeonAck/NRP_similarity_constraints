@@ -1,0 +1,13 @@
+[
+  {
+    "rule_id": "16",
+    "violation_costs": 1.0,
+    "user_id": "100",
+    "rule_tag": "shift_break_correct_timing_and_length",
+    "shift_id": "1",
+    "date": 1637161200,
+    "shift_start": 1637161200,
+    "shift_finish": 1637190000,
+    "department_id": "main"
+  }
+]
