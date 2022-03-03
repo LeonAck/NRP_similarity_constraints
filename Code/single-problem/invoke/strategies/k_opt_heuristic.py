@@ -7,6 +7,7 @@ import multiprocessing
 from domain.employee import EmployeeCollection
 from domain.shift import ShiftCollection
 
+
 class KOptHeuristic(object):
     def __init__(self, domain):
         self.domain = domain

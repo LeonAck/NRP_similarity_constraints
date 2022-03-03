@@ -30,7 +30,6 @@ class DayCollection:
     def __len__(self):
         return len(self._collection)
 
-    #
     def get_day_from_date(self, date):
         if isinstance(date, datetime):
             for day in self._collection:
@@ -87,10 +86,19 @@ class DayCollection:
 
         date = date.replace(hour=0, minute=0, second=0)
         index = 0
+        # create days from each day that fits between the start and endtime
+        # of the settings
         while int(date.timestamp()) < settings.end:
             day = Day(date, shifts)
+
+            # add day to day collection
             self._collection.append(day)
+
+            # add increment to date
+            # ????? what does this comment do?
             date = settings.time_zone.localize(date.replace(tzinfo=None) + timedelta(days=1))
+
+            # add index to dictionary
             day.day_number_in_schedule = index
             self._index_map[index] = day
             index += 1
@@ -106,10 +114,13 @@ class Day:
         self.date_time = date_time
         self.date = int(date_time.timestamp())
         self.weekday = date_time.weekday()
-        self.shifts_starts_on_day = shifts.get_shifts_starts_in_interval(self.date, self.date + CONSTANTS.time.seconds_per_day)
-        self.day_number_in_schedule = None
+        self.shifts_starts_on_day = shifts.get_shifts_starts_in_interval(self.date, self.date + CONSTANTS.time.seconds_per_day) # nog uitzoeken
+        self.day_number_in_schedule = None # later replaced by index
 
     def in_interval(self, start, end):
+        """
+        Function to say if function is within a set interval
+        """
         if isinstance(start, datetime):
             return start <= self.date_time < end
         return start <= self.date < end

@@ -4,7 +4,12 @@ DEFAULTS = configuration.domain.settings.defaults
 
 
 class Settings:
+
     def __init__(self, settings_spec):
+        """
+        Get all settings from settings spec file.
+        If not in there, it takes default values
+        """
         self.start = settings_spec["start"]
         self.end = settings_spec["end"]
         self.time_zone = settings_spec.get("time_zone", DEFAULTS.time_zone)
@@ -21,6 +26,7 @@ class Settings:
         self.disallow_employee_mix = settings_spec.get("disallow_employee_mix", DEFAULTS.disallow_employee_mix)
         self.add_subshifts_to_output = settings_spec.get("add_subshifts_to_output", DEFAULTS.add_subshifts_to_output)
 
+        # settings for all heuristics
         self.runtime = settings_spec.get("runtime", DEFAULTS.runtime)
         self.mip_gap = settings_spec.get("mip_gap")
         self.max_solutions = settings_spec.get("max_solutions")

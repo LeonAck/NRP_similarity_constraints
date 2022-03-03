@@ -74,6 +74,7 @@ class EmployeeCollection:
             if sg not in new_list:
                 new_list.append(sg)
         return new_list
+
     def get_employees_skill_group(self, skill_group):
         return EmployeeCollection([employee for employee in self._collection if employee.checkSkillGroup(skill_group)])
 
@@ -92,6 +93,7 @@ class EmployeeCollection:
         except Exception as e:
             raise type(e)(str(e) +
                           ' seems to trip up the import of user with ID = ' + employee_spec.get("id", "'missing id'")).with_traceback(sys.exc_info()[2])
+        # sort based on employee id
         self._collection.sort(key=lambda employee: employee.id)
         return self
 

@@ -15,8 +15,6 @@ class ShiftTypeCollection:
             shift_types = []
         self._collection = shift_types
 
-    #
-
     def __getitem__(self, key):
         return self._collection[key]
 
@@ -89,10 +87,11 @@ class ShiftType:
         minutesEndFromMidnight = (end_time_local - start_time_local.replace(hour=0, minute=0, second=0,
                                                                             microsecond=0)).total_seconds() / 60
 
-        ##Check minimum duration before such that a combination of minimum duration and start/end times are possible
+        # Check minimum duration before such that a combination of minimum duration and start/end times are possible
         if self.minimum_duration is not None:
             shift_duration = shift.pay_duration
             is_shift_type = True
+
             if shift_duration < self.minimum_duration:
                 is_shift_type = False
                 return is_shift_type

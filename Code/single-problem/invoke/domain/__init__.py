@@ -35,12 +35,12 @@ class Domain:
         if self.settings.use_travel_expenses:
             self.travel_expenses_matrix = self.create_travel_expenses_matrix()
 
-    def input_initial_solution(self, shiftFillData):
+    def input_initial_solution(self, shift_fill_specifications):
         # initial solution definition
         initial_solution = []
         try:
-            if 'initial_solution' in shiftFillData:
-                initial_solution_data = shiftFillData['initial_solution']
+            if 'initial_solution' in shift_fill_specifications:
+                initial_solution_data = shift_fill_specifications['initial_solution']
                 for initial_solution_var in initial_solution_data:
                     initialVarObject = initialSolutionVar(initial_solution_var)
                     initial_solution.append(initialVarObject)
@@ -52,13 +52,13 @@ class Domain:
         return initial_solution
 
 
-    def create_kpi_properties(self, shiftFillData):
+    def create_kpi_properties(self, shift_fill_specifications):
         kpi_properties = {}
-        settings = shiftFillData['settings']
-        if 'users' in shiftFillData:
-            kpi_properties['number_of_employees'] = len(shiftFillData['users'])
-        if 'globalOrganisationId' in shiftFillData:
-            kpi_properties['entity'] = shiftFillData.get("globalOrganisationId")
+        settings = shift_fill_specifications['settings']
+        if 'users' in shift_fill_specifications:
+            kpi_properties['number_of_employees'] = len(shift_fill_specifications['users'])
+        if 'globalOrganisationId' in shift_fill_specifications:
+            kpi_properties['entity'] = shift_fill_specifications.get("globalOrganisationId")
         elif 'globalOrganisationId' in settings:
             kpi_properties['entity'] = settings.get("globalOrganisationId")
         else:

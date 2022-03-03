@@ -101,14 +101,15 @@ class ShiftCollection:
         try:
             for shift_spec in shifts_specs:
                 shift = Shift(shift_spec, shift_type_definitions, settings)
-                if shift.pay_duration >= 0:
+                if shift.pay_duration >= 0: # do I need this?
+                    # check if shift is pre-assigned
                     if (shift.is_fixed and shift.employee_id) or not shift.is_fixed:
                         self._collection.append(Shift(shift_spec, shift_type_definitions, settings))
         except Exception as e:
             raise type(e)(str(e) +
                           ' seems to trip up the import of shift with ID = ' + shift_spec.get("id", "'missing id'")).with_traceback(
                 sys.exc_info()[2])
-
+        # sort shifts based on starting time
         self._collection.sort(key=lambda x: x.start)
 
         return self
