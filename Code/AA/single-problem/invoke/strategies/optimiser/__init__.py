@@ -107,17 +107,24 @@ class Optimiser(object):
             objective_value = round(self.solver.objective_value, 2)
 
         if objective_value is not None:
-            response["shifts"] = output.generate_shifts_output(self.solver, self.domain.employees, self.domain.settings, self.domain.travel_expenses_matrix)
-            response["unassigned_shifts"] = output.generate_unassigned_shifts_output(self.solver, self.domain)
+            response["shifts"] = output.generate_shifts_output(
+                self.solver, self.domain.employees, self.domain.settings,
+                self.domain.travel_expenses_matrix)
+            response["unassigned_shifts"] = output.generate_unassigned_shifts_output(
+                self.solver, self.domain)
             violations = self.get_violations()
             # for rule_id in set([violation.rule_id for violation in violations]):
             #     print(rule_id, " : ", sum([violation.rule_id == rule_id for violation in violations]))
             response["rule_violations"] = [violation.generate_output() for violation in violations]
 
-            # response["violations"] = output.generate_violation_output(self.solver, self.domain.settings, objective, self.domain.employees, self.domain.shifts, self.domain.days, f"{rule_id}.{index}")
+            # response["violations"] = output.generate_violation_output(self.solver,
+            # self.domain.settings, objective, self.domain.employees, self.domain.shifts,
+            # self.domain.days, f"{rule_id}.{index}")
 
-            lower_bound = self.solver._solver.objective_bound if self.solver._solver.objective_bound != 0 else 1e-8
-            response["technical_kpis"]["mip_gap"] = (self.solver._solver.objective_value - lower_bound) / lower_bound
+            lower_bound = self.solver._solver.objective_bound \
+                if self.solver._solver.objective_bound != 0 else 1e-8
+            response["technical_kpis"]["mip_gap"] = (self.solver._solver.objective_value - lower_bound
+                                                     ) / lower_bound
 
         return response
 

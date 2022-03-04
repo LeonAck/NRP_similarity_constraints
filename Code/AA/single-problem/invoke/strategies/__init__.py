@@ -3,6 +3,7 @@ from strategies.optimiser import Optimiser
 from strategies.shifting_window_heuristic import ShiftingWindowHeuristic
 from strategies.combined_heuristic import CombinedHeuristic
 from strategies.skill_group_optimiser import SkillGroupOptimiser
+from strategies.metaheuristic import Metaheuristic
 
 class Strategies(object):
     def __init__(self, domain):
@@ -15,6 +16,8 @@ class Strategies(object):
             return KOptHeuristic(self.domain)
         elif self.domain.settings.run_shifting_window:
             return ShiftingWindowHeuristic(self.domain)
+        elif self.domain.settings.run_metaheuristic:
+            return Metaheuristic(self.domain)
         else:
             if not self.domain.settings.split_skills:
                 return Optimiser(self.domain)
