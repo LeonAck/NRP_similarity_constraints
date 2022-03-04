@@ -1,4 +1,4 @@
-class PCO:
+class MetaHeuristic:
     """
     Class to perform Particle Swarm Optimization
     """
