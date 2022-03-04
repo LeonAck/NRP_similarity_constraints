@@ -79,7 +79,7 @@ class Instance:
         return self.instance_dict
 
 
-instance = Instance("n030w4", "Data/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON")
+instance = Instance("n030w4", "C:/Master_thesis/Data/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON")
 #instance.load_instances()
 pprint.pprint(instance.get_instance_dict())
 
