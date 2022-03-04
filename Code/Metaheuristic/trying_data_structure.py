@@ -32,21 +32,33 @@ def check_swap(solution, info):
       # check whether each nurse has the right skill
 
       return None
-def swap_assignments_operator(solution, nurse_1, nurse_2, shift_1, shift_2, other_info):
+
+def swap_assignments_operator(solution, nurse_1, nurse_2, shift_1, shift_2):
       """
       Function to change the nurses of two shifts after we have checked whether
       the shift is allowed
       :param solution:
       :param nurse_1:
       :param nurse_2:
-      :param other_info:
       :return:
       """
+      # swap nurse 1 from shift 1 to shift 2
+      solution[nurse_1, shift_1[0], shift_1[1], shift_1[2]] = 0
+      solution[nurse_1, shift_2[0], shift_2[1], shift_2[2]] = 1
 
+      # swap nurse 2 from shift 2 to shift 1
+      solution[nurse_2, shift_1[0], shift_1[1], shift_1[2]] = 1
+      solution[nurse_2, shift_2[0], shift_2[1], shift_2[2]] = 0
 
-def check_whether_nurse_works_shift_with_skill(dec_var):
+      return solution
+
+def assign_employee_operator(solution)
+
+def check_employee_shift_skill_assignment(solution, employee, day, shift, skill):
       """
       Function to check whether nures
-      :param dec_var:
       :return:
+      0 for unassigned
+      1 for assigned
       """
+      return dec_var[employee, day, shift, skill]
