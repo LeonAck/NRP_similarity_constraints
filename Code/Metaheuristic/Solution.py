@@ -5,6 +5,6 @@ class Solution:
     """
 
     def __init__(self, initial_solution, solution):
-        self.solution =
+        self.solution = solution
         self.best_solution = solution
 
