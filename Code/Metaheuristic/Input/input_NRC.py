@@ -79,7 +79,7 @@ class Instance:
         return self.instance_dict
 
 
-instance = Instance("n120w32", "C:\Master_thesis\Code\Metaheuristic\Input\sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON")
+instance = Instance("n012w8", "C:\Master_thesis\Code\Metaheuristic\Input\sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON")
 
 #instance.load_instances()
 pprint.pprint(instance.get_instance_dict())
