@@ -14,8 +14,7 @@ class ObjectiveValue:
         self.current_solution_obj = None
         self.best_solution_obj = None
 
-        # skill counter. Object with dimensions
-        self.skill_counter = None
+
 
     def calc_objective(self):
         """
@@ -33,12 +32,6 @@ class ObjectiveValue:
         # use matrix multiplication of violations increments x weights + old_value
         return None
 
-    def create_skill_counter(self, num_days, num_shift_types, num_skill_sets):
-        """
-        Function to create skill counter
-        :return:
-        Array with dimensions num_days x num_shift_types x (sum of skill sets x skills per skill set)
-        """
-        return np.zeros((num_days, num_shift_types, num_skill_sets))
+
 
 

@@ -16,7 +16,7 @@ class Settings:
             self.instance_name = "n005w4"
             self.path = "C:\Master_thesis\Code\Metaheuristic\Input\sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 2
-            self.weeks = [7, 4, 2, 3]
+            self.weeks = [1, 2, 3, 4]
 
         # problem settings
         self.soft_constraints = None

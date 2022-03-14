@@ -1,3 +1,4 @@
+import numpy as np
 
 class Scenario:
     """
@@ -8,10 +9,16 @@ class Scenario:
     forbidden shift type successions
     """
 
-    def __init__(self, settings):
+    def __init__(self, settings, instance):
         """
         Initialize parameters
         """
+
+        # initialize instance data
+        self.weeks_data = instance.weeks_data
+        self.history_data = instance.history_data
+        self.scenario_data = instance.scenario_data
+        self.problem_horizon = instance.problem_horizon
 
         self.contract_collection = None
 
@@ -21,6 +28,7 @@ class Scenario:
         # store all present skill sets
         self.skill_sets = self.initialize_skill_sets()
 
+
     def collect_contracts(self):
         """
         Class to store all contracts
@@ -28,6 +36,12 @@ class Scenario:
         dict of contracts
         """
         return None
+
+    def initialize_shift_types(self):
+        """
+        Class to get shift types in the solution
+        """
+        #self.scenario_data['shiftTypes']
 
     def initialize_skill_sets(self):
         """
@@ -39,8 +53,11 @@ class Scenario:
         """
         Create array of skill requests
         :return:
-        array with dimensions num_days x num_shift_types x num_
+        array with dimensions num_days x num_shift_types x num_skill types
         """
+        request_array = np.zeros((self.problem_horizon * 7,
+                                  ))
+        return None
 
 
 class Contract:
@@ -74,3 +91,8 @@ class SkillSet:
 
         # get id of skills in counter
         self.skill_set_index = None
+
+class ShiftType:
+    """
+    Class to collect shift type information
+    """

@@ -2,7 +2,7 @@ import json
 import pprint # to pretty print
 import os
 from settings import Settings
-
+from scenario import Scenario
 
 class Instance:
     """
@@ -21,10 +21,9 @@ class Instance:
         self.problem_horizon = self.set_problem_horizon()
 
         # create dict to store json files
-        self.history_data = dict(
-        )
+        self.history_data = dict()
         self.scenario_data = dict()
-        self.weeks_dict = dict()
+        self.weeks_data = dict()
         self.load_instance()
 
     #def get_instance_dict(self): return self.instance_dict
@@ -141,18 +140,19 @@ class Instance:
             file_path = path_to_json + "/{}".format(file + ".json")
 
             # add json file to dictionary
-            self.weeks_dict[file] = self.load_json_file(file_path)
+            self.weeks_data[file] = self.load_json_file(file_path)
 
         return None
 
 settings = Settings()
 instance = Instance(settings)
+scenario = Scenario(settings, instance)
 
 #instance.load_instances()
-pprint.pprint(instance.history_data)
-pprint.pprint(instance.scenario_data)
-pprint.pprint(instance.weeks_dict)
-
+# pprint.pprint(instance.history_data)
+# pprint.pprint(instance.scenario_data)
+# pprint.pprint(instance.weeks_data)
+pprint.pprint(scenario.scenario_data)
 """
 def getListOfFiles(dirName):
     # create a list of file and sub directories

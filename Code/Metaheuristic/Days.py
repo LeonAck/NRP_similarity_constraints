@@ -27,7 +27,7 @@ class Day:
         """
         Decide whether a day is a week day or a weekend day
         """
-
+        # may change to true/false or 0/1
         if self.index % 6 == 0 or self.index % 7 == 0:
             return "weekend"
         else:
