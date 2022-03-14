@@ -13,10 +13,10 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n012w8"
+            self.instance_name = "n005w4"
             self.path = "C:\Master_thesis\Code\Metaheuristic\Input\sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
-            self.problem_size = self.get_problem_size()
-            self.problem_horizon = self.get_problem_horizon()
+            self.history_file = 2
+            self.weeks = [7, 4, 2, 3]
 
         # problem settings
         self.soft_constraints = None
@@ -26,16 +26,3 @@ class Settings:
 
         # heuristic settings
 
-    def get_problem_size(self):
-        """
-        Function to get problem size from instance string
-        """
-        return int(self.instance[1:4])
-
-    def get_problem_horizon(self):
-        """
-        Function to get number of weeks from instance string
-        :return:
-        number of weeks (int)
-        """
-        return int(self.instance[5:])

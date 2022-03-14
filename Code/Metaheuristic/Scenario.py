@@ -8,7 +8,7 @@ class Scenario:
     forbidden shift type successions
     """
 
-    def __init__(self, input_data):
+    def __init__(self, settings):
         """
         Initialize parameters
         """
