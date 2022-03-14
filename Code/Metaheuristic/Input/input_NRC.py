@@ -26,6 +26,9 @@ class Instance:
         self.weeks_data = dict()
         self.load_instance()
 
+        # simplify notation
+        self.simplify_week_data()
+
     #def get_instance_dict(self): return self.instance_dict
 
     def set_problem_size(self):
@@ -144,6 +147,70 @@ class Instance:
 
         return None
 
+    def abbreviate_skills(self, skill_string):
+        """
+        Save first letter and
+        """
+        return skill_string[0].lower()
+
+    def weekday_to_index(self, string):
+        """
+        Function to change weekday string to index
+        Monday --> 0
+        Tuesday --> 1
+        etc.
+
+        """
+        if string == "Monday":
+            return 0
+        if string == "Tuesday":
+            return 1
+        if string == "Wednesday":
+            return 2
+        if string == "Thursday":
+            return 3
+        if string == "Friday":
+            return 4
+        if string == "Saturday":
+            return 5
+        if string == "Sunday":
+            return 6
+        else:
+            raise Exception("This is not a weekday")
+
+    def simplify_week_key(self, week_key):
+        """
+        Change weekday string to "Wx" where x is week number
+        """
+        if isinstance(week_key, str):
+            return int(week_key.removeprefix("WD-"+self.instance_name+"-"))
+        else:
+            return week_key
+
+    def simplify_week_data(self):
+        """
+        Function to simplify scenario
+        """
+
+        # change week key into integer
+        translate = {}
+        # save new keys
+        for key in self.weeks_data.keys():
+            translate[key] = self.simplify_week_key(key)
+
+        # replace old keys by new keys
+        for old, new in translate.items():
+            self.weeks_data[new] = self.weeks_data.pop(old)
+
+        # save first letter of shift type as capital
+
+        # save first letter of skill as lower case
+        # change in list of skills
+        self.scenario_data["skills"] = [self.abbreviate_skills(skill)
+                                        for skill in self.scenario_data["skills"]]
+
+        # change skills for each nurse
+
 settings = Settings()
 instance = Instance(settings)
 scenario = Scenario(settings, instance)
@@ -151,8 +218,9 @@ scenario = Scenario(settings, instance)
 #instance.load_instances()
 # pprint.pprint(instance.history_data)
 # pprint.pprint(instance.scenario_data)
-# pprint.pprint(instance.weeks_data)
+pprint.pprint(instance.weeks_data)
 pprint.pprint(scenario.scenario_data)
+
 """
 def getListOfFiles(dirName):
     # create a list of file and sub directories
