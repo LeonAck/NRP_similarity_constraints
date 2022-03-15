@@ -1,0 +1,487 @@
+{
+  "users": [
+    {
+      "id": 198361,
+      "birthdate": 721436400,
+      "age": 28,
+      "department_ids": [
+        {
+          "id": 99
+        }
+      ]
+    }
+  ],
+  "shifts": [
+    {
+      "id": "10834114:2021-02-08_1609718400_0",
+      "start": 1609740000,
+      "finish": 1609783200,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1609804800_0",
+      "start": 1609826400,
+      "finish": 1609869600,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1609891200_0",
+      "start": 1609912800,
+      "finish": 1609956000,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1609977600_0",
+      "start": 1609999200,
+      "finish": 1610042400,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610064000_0",
+      "start": 1610085600,
+      "finish": 1610128800,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610150400_0",
+      "start": 1610172000,
+      "finish": 1610215200,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610236800_0",
+      "start": 1610258400,
+      "finish": 1610301600,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610323200_0",
+      "start": 1610344800,
+      "finish": 1610388000,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610409600_0",
+      "start": 1610431200,
+      "finish": 1610474400,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610496000_0",
+      "start": 1610517600,
+      "finish": 1610560800,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610582400_0",
+      "start": 1610604000,
+      "finish": 1610647200,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610668800_0",
+      "start": 1610690400,
+      "finish": 1610733600,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610755200_0",
+      "start": 1610776800,
+      "finish": 1610820000,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    },
+    {
+      "id": "10834114:2021-02-08_1610841600_0",
+      "start": 1610863200,
+      "finish": 1610906400,
+      "user_id": 198361,
+      "pay_duration": 720,
+      "break_duration": 0,
+      "is_sunday": false,
+      "is_night_shift": false,
+      "is_fixed": true,
+      "department_id": 99
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 100,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 10,
+      "parameter_1": 720,
+      "parameter_2": null,
+      "parameter_3": 1,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 10,
+      "parameter_1": 720,
+      "parameter_2": 1,
+      "parameter_3": 1,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 25,
+      "parameter_1": 3600,
+      "parameter_2": 7,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 25,
+      "parameter_1": 13200,
+      "parameter_2": 28,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": 7,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1607299200
+    },
+    {
+      "rule_id": 46,
+      "parameter_1": 330,
+      "parameter_2": 30,
+      "parameter_3": 15,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 46,
+      "parameter_1": 600,
+      "parameter_2": 45,
+      "parameter_3": 15,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 42,
+      "parameter_1": 660,
+      "parameter_2": 1440,
+      "parameter_3": 1,
+      "parameter_4": 480,
+      "parameter_5": 10080,
+      "parameter_6": 2,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 47,
+      "parameter_1": 14,
+      "parameter_2": 4320,
+      "parameter_3": 1920,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1608508800
+    },
+    {
+      "rule_id": 43,
+      "parameter_1": 840,
+      "parameter_2": "0",
+      "parameter_3": 1,
+      "parameter_4": 120,
+      "parameter_5": 1,
+      "parameter_6": 10080,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "parameter_7": 600,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 48,
+      "parameter_1": 7,
+      "parameter_2": 1,
+      "parameter_3": 1920,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609200000
+    },
+    {
+      "rule_id": 25,
+      "parameter_1": 46080,
+      "parameter_2": 112,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": 1,
+      "parameter_6": 7,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1600041600
+    },
+    {
+      "rule_id": 25,
+      "parameter_1": 38400,
+      "parameter_2": 112,
+      "parameter_3": 16,
+      "parameter_4": 1,
+      "parameter_5": 1,
+      "parameter_6": 7,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1600041600
+    },
+    {
+      "rule_id": 52,
+      "parameter_1": 13,
+      "parameter_2": 52,
+      "parameter_3": 7,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1578268800
+    },
+    {
+      "rule_id": 29,
+      "parameter_1": 1,
+      "parameter_2": 36,
+      "parameter_3": 112,
+      "parameter_4": 120,
+      "parameter_5": 7,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1600041600
+    },
+    {
+      "rule_id": 5,
+      "parameter_1": 480,
+      "parameter_2": "0",
+      "parameter_3": 1,
+      "parameter_4": 120,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 45,
+      "parameter_1": 1,
+      "parameter_2": 3,
+      "parameter_3": 2760,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": 29,
+      "parameter_1": 2,
+      "parameter_2": 5,
+      "parameter_3": 14,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1608508800
+    },
+    {
+      "rule_id": 29,
+      "parameter_1": 2,
+      "parameter_2": 22,
+      "parameter_3": 364,
+      "parameter_4": null,
+      "parameter_5": 7,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1578268800
+    },
+    {
+      "rule_id": 5,
+      "parameter_1": 720,
+      "parameter_2": null,
+      "parameter_3": 2,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    },
+    {
+      "rule_id": "0",
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "penalty": 100,
+      "is_mandatory": false,
+      "rule_start": 1609718400
+    }
+  ],
+  "settings": {
+    "runtime": 30,
+    "rule_objective": 10,
+    "cost_objective": "0",
+    "start": 1578268800,
+    "finish": 1610928000,
+    "time_zone": "Europe/Amsterdam"
+  },
+  "shift_type_definitions": [
+    {
+      "name": "night",
+      "id": 1,
+      "end_after": 1501,
+      "end_before": 2880
+    },
+    {
+      "name": "night",
+      "id": 1,
+      "start_after": 0,
+      "start_before": 299,
+      "minimum_duration": 61
+    },
+    {
+      "name": "night",
+      "id": 1,
+      "end_after": 61,
+      "end_before": 359,
+      "minimum_duration": 61
+    },
+    {
+      "name": "night",
+      "id": 2,
+      "end_after": 1501,
+      "end_before": 2880,
+      "minimum_duration": 601
+    },
+    {
+      "name": "night",
+      "id": 2,
+      "start_after": 0,
+      "start_before": 299,
+      "minimum_duration": 601
+    },
+    {
+      "name": "night",
+      "id": 2,
+      "end_after": 61,
+      "end_before": 359,
+      "minimum_duration": 601
+    }
+  ]
+}

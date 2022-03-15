@@ -1,0 +1,1583 @@
+{
+  "shifts": [
+    {
+      "id": 88124,
+      "start": 1610987400,
+      "finish": 1611005400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88128,
+      "start": 1611005400,
+      "finish": 1611037800,
+      "is_fixed": false,
+      "pay_duration": 510,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611028800,
+          "finish": 1611030600
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88130,
+      "start": 1610949600,
+      "finish": 1610969400,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88131,
+      "start": 1610969400,
+      "finish": 1610987400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88125,
+      "start": 1611091800,
+      "finish": 1611122400,
+      "is_fixed": false,
+      "pay_duration": 480,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611115200,
+          "finish": 1611117000
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88126,
+      "start": 1611037800,
+      "finish": 1611055800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88127,
+      "start": 1611055800,
+      "finish": 1611073800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88132,
+      "start": 1611073800,
+      "finish": 1611091800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88129,
+      "start": 1611122400,
+      "finish": 1611140400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88133,
+      "start": 1611160200,
+      "finish": 1611178200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88134,
+      "start": 1611140400,
+      "finish": 1611160200,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88138,
+      "start": 1611178200,
+      "finish": 1611210600,
+      "is_fixed": false,
+      "pay_duration": 510,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611201600,
+          "finish": 1611203400
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88135,
+      "start": 1611228600,
+      "finish": 1611246600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88139,
+      "start": 1611246600,
+      "finish": 1611264600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88140,
+      "start": 1611210600,
+      "finish": 1611228600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88143,
+      "start": 1611264600,
+      "finish": 1611297000,
+      "is_fixed": false,
+      "pay_duration": 510,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611288000,
+          "finish": 1611289800
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88136,
+      "start": 1611351000,
+      "finish": 1611381600,
+      "is_fixed": false,
+      "pay_duration": 480,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611374400,
+          "finish": 1611376200
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88137,
+      "start": 1611297000,
+      "finish": 1611315000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88141,
+      "start": 1611333000,
+      "finish": 1611351000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88142,
+      "start": 1611315000,
+      "finish": 1611333000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88144,
+      "start": 1611381600,
+      "finish": 1611401400,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88145,
+      "start": 1611401400,
+      "finish": 1611419400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88146,
+      "start": 1611419400,
+      "finish": 1611439200,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88149,
+      "start": 1611439200,
+      "finish": 1611471600,
+      "is_fixed": false,
+      "pay_duration": 510,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611464400,
+          "finish": 1611466200
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88147,
+      "start": 1611514800,
+      "finish": 1611532800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88150,
+      "start": 1611493200,
+      "finish": 1611514800,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611500400,
+          "finish": 1611502200
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88151,
+      "start": 1611471600,
+      "finish": 1611502200,
+      "is_fixed": false,
+      "pay_duration": 480,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611493200,
+          "finish": 1611495000
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 88148,
+      "start": 1611532800,
+      "finish": 1611565200,
+      "is_fixed": true,
+      "pay_duration": 510,
+      "department_id": 9,
+      "unit": 21,
+      "breaks": [
+        {
+          "start": 1611545400,
+          "finish": 1611547200
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3200,
+      "date_of_birth": -283219200,
+      "start_contract": 742431600,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2340,
+      "payperiod_minutes_max": 2340,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [
+        {
+          "start": 1611014400,
+          "finish": 1611100800
+        },
+        {
+          "start": 1611273600,
+          "finish": 1611360000
+        },
+        {
+          "start": 1611360000,
+          "finish": 1611446400
+        },
+        {
+          "start": 1610928000,
+          "finish": 1611014400
+        },
+        {
+          "start": 1610841600,
+          "finish": 1610928000
+        },
+        {
+          "start": 1611446400,
+          "finish": 1611532800
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3214,
+      "date_of_birth": 424738800,
+      "start_contract": 1294790400,
+      "hourly_rate": 9.6,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 7,
+          "name": "McDonalds",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1577750400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1586044800,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3224,
+      "date_of_birth": 335574000,
+      "start_contract": 1344466800,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [
+        {
+          "start": 1610150400,
+          "finish": 1611446399,
+          "unavailability_workdays": [
+            {
+              "start": 1610355600,
+              "finish": 1610382600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1610442000,
+              "finish": 1610469000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1610528400,
+              "finish": 1610555400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1610614800,
+              "finish": 1610641800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1610701200,
+              "finish": 1610728200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1610960400,
+              "finish": 1610987400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1611046800,
+              "finish": 1611073800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1611133200,
+              "finish": 1611160200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1611219600,
+              "finish": 1611246600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1611306000,
+              "finish": 1611333000,
+              "pay_duration": 420
+            }
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1577750400,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3246,
+      "date_of_birth": 331081200,
+      "start_contract": 1459724400,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 15,
+          "name": "Grocery",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1574208000,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "id": 3250,
+      "date_of_birth": 389746800,
+      "start_contract": 1465513200,
+      "hourly_rate": 9.6,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 15,
+          "name": "Grocery",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1586044800,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3274,
+      "date_of_birth": -262918800,
+      "start_contract": 1508713200,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 15,
+          "name": "Grocery",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 21,
+          "name": "FFC",
+          "from": 1574640000,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1581897600,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 16,
+          "name": "Leon",
+          "from": 1581984000,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1586044800,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3281,
+      "date_of_birth": 132364800,
+      "start_contract": 1511913600,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 15,
+          "name": "Grocery",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 28,
+          "name": "Minibus (Clacket Only)",
+          "from": 1597968000,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1597968000,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3284,
+      "date_of_birth": 326934000,
+      "start_contract": 1517443200,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1573603200,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1577750400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1586044800,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "id": 3291,
+      "date_of_birth": 138236400,
+      "start_contract": 1521417600,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 15,
+          "name": "Grocery",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1574035200,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 28,
+          "name": "Minibus (Clacket Only)",
+          "from": 1597968000,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3295,
+      "date_of_birth": 590022000,
+      "start_contract": 1522710000,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "skills": [
+        {
+          "id": 15,
+          "name": "Grocery",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1597622400,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3305,
+      "date_of_birth": 235004400,
+      "start_contract": 1529881200,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1580601600,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 28,
+          "name": "Minibus (Clacket Only)",
+          "from": 1597968000,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3312,
+      "date_of_birth": 737247600,
+      "start_contract": 1535929200,
+      "hourly_rate": 9.6,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2880,
+      "payperiod_minutes_max": 2880,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 15,
+          "name": "Grocery",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 21,
+          "name": "FFC",
+          "from": 1574208000,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1574208000,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 9,
+          "name": "Chozen",
+          "from": 1574208000,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 13,
+          "name": "Restbite",
+          "from": 1581984000,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3348,
+      "date_of_birth": 964134000,
+      "start_contract": 1549324800,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 28,
+          "name": "Minibus (Clacket Only)",
+          "from": 1597968000,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3374,
+      "date_of_birth": 982886400,
+      "start_contract": 1561158000,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 28,
+          "name": "Minibus (Clacket Only)",
+          "from": 1597968000,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 17,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3399,
+      "date_of_birth": 747529200,
+      "start_contract": 1567378800,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [
+        {
+          "start": 1610928000,
+          "finish": 1611532799,
+          "unavailability_workdays": [
+            {
+              "start": 1610960400,
+              "finish": 1610989200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1611046800,
+              "finish": 1611075600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1611133200,
+              "finish": 1611162000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1611219600,
+              "finish": 1611248400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1611306000,
+              "finish": 1611334800,
+              "pay_duration": 480
+            }
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "id": 7,
+          "name": "McDonalds",
+          "from": 1575244800,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1575244800,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1586044800,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3850,
+      "date_of_birth": 372380400,
+      "start_contract": 1574035200,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 16,
+          "name": "Leon",
+          "from": 1580601600,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1580601600,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1586044800,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3933,
+      "date_of_birth": 503884800,
+      "start_contract": 1579478400,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 7,
+          "name": "McDonalds",
+          "from": 1581984000,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1583366400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1586044800,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3967,
+      "date_of_birth": 752976000,
+      "start_contract": 1581897600,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 0,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 9,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 10,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1601251200,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 4044,
+      "date_of_birth": 534124800,
+      "start_contract": 1598223600,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": 1,
+      "parameter_1": "0",
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "parameter_1": "0",
+      "parameter_2": "0",
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 14,
+      "parameter_1": 1,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 25,
+      "parameter_1": 2880,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 28,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 0.1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 7,
+      "parameter_1": 6,
+      "parameter_2": 1,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10000,
+      "is_mandatory": false
+    }
+  ],
+  "settings": {
+    "runtime": 350,
+    "cost_objective": 0,
+    "rule_objective": 10,
+    "fairness_objective": 10,
+    "proficiency_objective": 0,
+    "start": 1610323200,
+    "finish": 1611532799,
+    "skill_objective": 0,
+    "linear_relaxation": true,
+    "split_skills": true
+  },
+  "shift_type_definitions": []
+}

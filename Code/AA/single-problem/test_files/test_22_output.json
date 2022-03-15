@@ -1,0 +1,59 @@
+{
+  "result": 1,
+  "lower_bound": 400.0,
+  "upper_bound": 400.0,
+  "goal_score": 400.0,
+  "shifts": [
+    {
+      "shift_id": "shift_1577836800_1577865600-0",
+      "violation_costs": 0,
+      "user_id": "1",
+      "department_id": "Test1",
+      "start": 1577836800,
+      "finish": 1577865600,
+      "pay_duration": 480.0,
+      "shift_costs": 80
+    },
+    {
+      "shift_id": "shift_1577872800_1577901600-0",
+      "violation_costs": 0,
+      "user_id": "1",
+      "department_id": "Test1",
+      "start": 1577872800,
+      "finish": 1577901600,
+      "pay_duration": 480.0,
+      "shift_costs": 80
+    },
+    {
+      "shift_id": "shift_1578268800_1578297600-0",
+      "violation_costs": 0,
+      "user_id": "1",
+      "department_id": "Test1",
+      "start": 1578268800,
+      "finish": 1578297600,
+      "pay_duration": 480.0,
+      "shift_costs": 80
+    },
+    {
+      "shift_id": "shift_1578355200_1578384000-0",
+      "violation_costs": 0,
+      "user_id": "1",
+      "department_id": "Test1",
+      "start": 1578355200,
+      "finish": 1578384000,
+      "pay_duration": 480.0,
+      "shift_costs": 80
+    },
+    {
+      "shift_id": "shift_1578384000_1578412800-0",
+      "violation_costs": 0,
+      "user_id": "1",
+      "department_id": "Test1",
+      "start": 1578384000,
+      "finish": 1578412800,
+      "pay_duration": 480.0,
+      "shift_costs": 80
+    }
+  ],
+  "rule_violations": []
+}

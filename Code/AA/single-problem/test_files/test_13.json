@@ -1,0 +1,73 @@
+{
+  "shifts": [
+    {
+      "id": "shift_1577858400_1577869200-0",
+      "start": 1577858400,
+      "finish": 1577869200,
+      "breaks": [],
+      "is_fixed": false,
+      "pay_duration": 180,
+      "department_id": "Test1"
+    },
+    {
+      "id": "shift_1577869200_1577880000-1",
+      "start": 1577869200,
+      "finish": 1577880000,
+      "breaks": [],
+      "is_fixed": false,
+      "pay_duration": 180,
+      "department_id": "Test1"
+    },
+    {
+      "id": "shift_1577880000_1577890800-2",
+      "start": 1577880000,
+      "finish": 1577890800,
+      "breaks": [],
+      "is_fixed": false,
+      "pay_duration": 180,
+      "department_id": "Test1"
+    }
+  ],
+  "users": [
+    {
+      "id": "0",
+      "department_ids": [
+        {
+          "id": "Test1"
+        }
+      ],
+      "hourly_rate": 10.0,
+      "payperiod_length_days": 28,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 9120
+    }
+  ],
+  "settings": {
+    "start": 1577836800,
+    "finish": 1578441600,
+    "runtime": 60,
+    "cost_objective": 1,
+    "rule_objective": 10,
+    "time_zone": "UTC",
+    "skill_objective": 0,
+    "proficiency_objective": 0
+  },
+  "rules": [
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "penalty": 100,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 13,
+      "parameter_1": 360,
+      "parameter_2": null,
+      "penalty": 1000,
+      "is_mandatory": false
+    }
+  ],
+  "shift_type_definitions": []
+}

@@ -1,0 +1,15 @@
+id: 44db90d3-333d-401c-892b-20e580fba06e
+version: 0.0.2
+description: updated rule 5
+
+functions:
+  - invoke:
+      provider:
+        name: aws
+        architecture: serverless
+        runtime: python3.6
+        timeout: 900
+        instance:
+          memory: 3008
+      function:
+        handler: main.run

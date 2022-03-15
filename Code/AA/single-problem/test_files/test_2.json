@@ -1,0 +1,92 @@
+{
+  "shifts": [
+    {
+      "id": "shift_1577836800_1577865600-0",
+      "start": 1577836800,
+      "finish": 1577865600,
+      "breaks": [],
+      "is_fixed": false,
+      "pay_duration": 480,
+      "department_id": "Test1"
+    },
+    {
+      "id": "shift_1577872800_1577901600-0",
+      "start": 1577872800,
+      "finish": 1577901600,
+      "breaks": [],
+      "is_fixed": false,
+      "pay_duration": 480,
+      "department_id": "Test1"
+    },
+    {
+      "id": "shift_1578268800_1578297600-0",
+      "start": 1578268800,
+      "finish": 1578297600,
+      "breaks": [],
+      "is_fixed": false,
+      "pay_duration": 480,
+      "department_id": "Test1"
+    },
+    {
+      "id": "shift_1578355200_1578384000-0",
+      "start": 1578355200,
+      "finish": 1578384000,
+      "breaks": [],
+      "is_fixed": false,
+      "pay_duration": 480,
+      "department_id": "Test1"
+    },
+    {
+      "id": "shift_1578384000_1578412800-0",
+      "start": 1578384000,
+      "finish": 1578412800,
+      "breaks": [],
+      "is_fixed": false,
+      "pay_duration": 480,
+      "department_id": "Test1"
+    }
+  ],
+  "users": [
+    {
+      "id": "0",
+      "department_ids": [
+        {
+          "id": "Test1"
+        }
+      ],
+      "hourly_rate": 10.0,
+      "payperiod_length_days": 28,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 2000
+    }
+  ],
+  "settings": {
+    "start": 1577836800,
+    "finish": 1578441600,
+    "runtime": 60,
+    "cost_objective": 1,
+    "rule_objective": 10,
+    "time_zone": "UTC",
+    "skill_objective": 0,
+    "proficiency_objective": 0
+  },
+  "rules": [
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "penalty": 100,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "penalty": 1000,
+      "is_mandatory": false
+    }
+  ],
+  "shift_type_definitions": []
+}

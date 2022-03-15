@@ -1,0 +1,1541 @@
+{
+  "rules": [
+    {
+      "is_mandatory": false,
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "rule_id": 2
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1,
+      "rule_id": 14
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 100,
+      "rule_id": 1
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 690,
+      "parameter_2": 0,
+      "penalty": 1,
+      "rule_id": 10
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 480,
+      "parameter_2": 0,
+      "penalty": 1000,
+      "rule_id": 5
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 5,
+      "parameter_2": 0,
+      "penalty": 1000000,
+      "rule_id": 7
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 1,
+      "parameter_2": 0,
+      "penalty": 1000,
+      "rule_id": 15
+    },
+    {
+      "is_mandatory": false,
+      "parameter_1": 180,
+      "parameter_2": 0,
+      "penalty": 1,
+      "rule_id": 11
+    }
+  ],
+  "settings": {
+    "cost_objective": 1,
+    "fairness_objective": 0,
+    "finish": 1610935199,
+    "proficiency_objective": 0,
+    "rule_objective": 100000,
+    "runtime": 30,
+    "start": 1609682400,
+    "linear_relaxation": true,
+    "time_zone": "Australia/Brisbane"
+  },
+  "shifts": [
+    {
+      "breaks": [],
+      "finish": 1610333100,
+      "id": 95439713,
+      "licenses": [],
+      "skills": [],
+      "start": 1610322300,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610333100,
+          "start": 1610322300
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610333100,
+      "id": 95439714,
+      "licenses": [],
+      "skills": [],
+      "start": 1610322300,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610333100,
+          "start": 1610322300
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610343000,
+      "id": 95439715,
+      "licenses": [],
+      "skills": [],
+      "start": 1610324100,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610343000,
+          "start": 1610324100
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610336700,
+      "id": 95439716,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325000,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610336700,
+          "start": 1610325000
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610343000,
+      "id": 95439718,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325900,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610343000,
+          "start": 1610325900
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610345700,
+      "id": 95439719,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325900,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610345700,
+          "start": 1610325900
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610346600,
+      "id": 95439720,
+      "licenses": [],
+      "skills": [],
+      "start": 1610327700,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610346600,
+          "start": 1610327700
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610349300,
+      "id": 95439721,
+      "licenses": [],
+      "skills": [],
+      "start": 1610327700,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610349300,
+          "start": 1610327700
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610427600,
+      "id": 95432546,
+      "licenses": [],
+      "skills": [],
+      "start": 1610409600,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610427600,
+          "start": 1610409600
+        }
+      ],
+      "user_id": 1639853,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610425800,
+      "id": 95432548,
+      "licenses": [],
+      "skills": [],
+      "start": 1610398800,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610425800,
+          "start": 1610398800
+        }
+      ],
+      "user_id": 1639858,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610694000,
+      "id": 95432589,
+      "licenses": [],
+      "skills": [],
+      "start": 1610667000,
+      "subshifts": [
+        {
+          "department_id": 502390,
+          "finish": 1610694000,
+          "start": 1610667000
+        }
+      ],
+      "user_id": 1639864,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610334000,
+      "id": 95439722,
+      "licenses": [],
+      "skills": [],
+      "start": 1610323200,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610334000,
+          "start": 1610323200
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610334000,
+      "id": 95439723,
+      "licenses": [],
+      "skills": [],
+      "start": 1610323200,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610334000,
+          "start": 1610323200
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610346600,
+      "id": 95439724,
+      "licenses": [],
+      "skills": [],
+      "start": 1610324100,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610346600,
+          "start": 1610324100
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610336700,
+      "id": 95439725,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325000,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610336700,
+          "start": 1610325000
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610343000,
+      "id": 95439726,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325900,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610343000,
+          "start": 1610325900
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610349300,
+      "id": 95439727,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325900,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610349300,
+          "start": 1610325900
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610343000,
+      "id": 95439728,
+      "licenses": [],
+      "skills": [],
+      "start": 1610327700,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610343000,
+          "start": 1610327700
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610345700,
+      "id": 95439729,
+      "licenses": [],
+      "skills": [],
+      "start": 1610327700,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610345700,
+          "start": 1610327700
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610433000,
+      "id": 95432549,
+      "licenses": [],
+      "skills": [],
+      "start": 1610413200,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610433000,
+          "start": 1610413200
+        }
+      ],
+      "user_id": 1639859,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610434800,
+      "id": 95432552,
+      "licenses": [],
+      "skills": [],
+      "start": 1610407800,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610434800,
+          "start": 1610407800
+        }
+      ],
+      "user_id": 1639860,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610514000,
+      "id": 95432559,
+      "licenses": [],
+      "skills": [],
+      "start": 1610496000,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610514000,
+          "start": 1610496000
+        }
+      ],
+      "user_id": 1639856,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610512200,
+      "id": 95432565,
+      "licenses": [],
+      "skills": [],
+      "start": 1610485200,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610512200,
+          "start": 1610485200
+        }
+      ],
+      "user_id": 1639870,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610512200,
+      "id": 95432568,
+      "licenses": [],
+      "skills": [],
+      "start": 1610485200,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610512200,
+          "start": 1610485200
+        }
+      ],
+      "user_id": 1639873,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610605800,
+      "id": 95432573,
+      "licenses": [],
+      "skills": [],
+      "start": 1610586000,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610605800,
+          "start": 1610586000
+        }
+      ],
+      "user_id": 1639870,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610600400,
+      "id": 95432578,
+      "licenses": [],
+      "skills": [],
+      "start": 1610582400,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610600400,
+          "start": 1610582400
+        }
+      ],
+      "user_id": 1639866,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610605800,
+      "id": 95432580,
+      "licenses": [],
+      "skills": [],
+      "start": 1610586000,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610605800,
+          "start": 1610586000
+        }
+      ],
+      "user_id": 1639873,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610686800,
+      "id": 95432590,
+      "licenses": [],
+      "skills": [],
+      "start": 1610668800,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610686800,
+          "start": 1610668800
+        }
+      ],
+      "user_id": 1639861,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610686800,
+      "id": 95432597,
+      "licenses": [],
+      "skills": [],
+      "start": 1610668800,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610686800,
+          "start": 1610668800
+        }
+      ],
+      "user_id": 1639874,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610773200,
+      "id": 95432599,
+      "licenses": [],
+      "skills": [],
+      "start": 1610755200,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610773200,
+          "start": 1610755200
+        }
+      ],
+      "user_id": 1639874,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610857800,
+      "id": 95432603,
+      "licenses": [],
+      "skills": [],
+      "start": 1610830800,
+      "subshifts": [
+        {
+          "department_id": 502391,
+          "finish": 1610857800,
+          "start": 1610830800
+        }
+      ],
+      "user_id": 1639873,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610333100,
+      "id": 95439730,
+      "licenses": [],
+      "skills": [],
+      "start": 1610322300,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610333100,
+          "start": 1610322300
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610333100,
+      "id": 95439731,
+      "licenses": [],
+      "skills": [],
+      "start": 1610322300,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610333100,
+          "start": 1610322300
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610336700,
+      "id": 95439732,
+      "licenses": [],
+      "skills": [],
+      "start": 1610324100,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610336700,
+          "start": 1610324100
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610343000,
+      "id": 95439733,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325000,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610343000,
+          "start": 1610325000
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610345700,
+      "id": 95439734,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325900,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610345700,
+          "start": 1610325900
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610346600,
+      "id": 95439735,
+      "licenses": [],
+      "skills": [],
+      "start": 1610325900,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610346600,
+          "start": 1610325900
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610343000,
+      "id": 95439736,
+      "licenses": [],
+      "skills": [],
+      "start": 1610327700,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610343000,
+          "start": 1610327700
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610349300,
+      "id": 95439737,
+      "licenses": [],
+      "skills": [],
+      "start": 1610327700,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610349300,
+          "start": 1610327700
+        }
+      ],
+      "user_id": null,
+      "is_fixed": false
+    },
+    {
+      "breaks": [],
+      "finish": 1610440200,
+      "id": 95432551,
+      "licenses": [],
+      "skills": [],
+      "start": 1610424000,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610440200,
+          "start": 1610424000
+        }
+      ],
+      "user_id": 1639875,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610440200,
+      "id": 95432553,
+      "licenses": [],
+      "skills": [],
+      "start": 1610424000,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610440200,
+          "start": 1610424000
+        }
+      ],
+      "user_id": 1639844,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610406000,
+      "id": 95432557,
+      "licenses": [],
+      "skills": [],
+      "start": 1610397000,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610406000,
+          "start": 1610397000
+        }
+      ],
+      "user_id": 1639869,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610492400,
+      "id": 95432566,
+      "licenses": [],
+      "skills": [],
+      "start": 1610483400,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610492400,
+          "start": 1610483400
+        }
+      ],
+      "user_id": 1639869,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610665200,
+      "id": 95432586,
+      "licenses": [],
+      "skills": [],
+      "start": 1610656200,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610665200,
+          "start": 1610656200
+        }
+      ],
+      "user_id": 1639844,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610665200,
+      "id": 95432595,
+      "licenses": [],
+      "skills": [],
+      "start": 1610656200,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610665200,
+          "start": 1610656200
+        }
+      ],
+      "user_id": 1639865,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610785800,
+      "id": 95432600,
+      "licenses": [],
+      "skills": [],
+      "start": 1610769600,
+      "subshifts": [
+        {
+          "department_id": 502396,
+          "finish": 1610785800,
+          "start": 1610769600
+        }
+      ],
+      "user_id": 1639844,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610346600,
+      "id": 95432533,
+      "licenses": [],
+      "skills": [],
+      "start": 1610326800,
+      "subshifts": [
+        {
+          "department_id": 502389,
+          "finish": 1610346600,
+          "start": 1610326800
+        }
+      ],
+      "user_id": 1639867,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610348400,
+      "id": 95432539,
+      "licenses": [],
+      "skills": [],
+      "start": 1610321400,
+      "subshifts": [
+        {
+          "department_id": 502389,
+          "finish": 1610348400,
+          "start": 1610321400
+        }
+      ],
+      "user_id": 1639863,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610346600,
+      "id": 95432541,
+      "licenses": [],
+      "skills": [],
+      "start": 1610326800,
+      "subshifts": [
+        {
+          "department_id": 502389,
+          "finish": 1610346600,
+          "start": 1610326800
+        }
+      ],
+      "user_id": 1639868,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610427600,
+      "id": 95432554,
+      "licenses": [],
+      "skills": [],
+      "start": 1610409600,
+      "subshifts": [
+        {
+          "department_id": 502389,
+          "finish": 1610427600,
+          "start": 1610409600
+        }
+      ],
+      "user_id": 1639868,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610514000,
+      "id": 95432570,
+      "licenses": [],
+      "skills": [],
+      "start": 1610496000,
+      "subshifts": [
+        {
+          "department_id": 502389,
+          "finish": 1610514000,
+          "start": 1610496000
+        }
+      ],
+      "user_id": 1639852,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610348400,
+      "id": 95432543,
+      "licenses": [],
+      "skills": [],
+      "start": 1610321400,
+      "subshifts": [
+        {
+          "department_id": 502392,
+          "finish": 1610348400,
+          "start": 1610321400
+        }
+      ],
+      "user_id": 1639850,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610425800,
+      "id": 95432550,
+      "licenses": [],
+      "skills": [],
+      "start": 1610398800,
+      "subshifts": [
+        {
+          "department_id": 502392,
+          "finish": 1610425800,
+          "start": 1610398800
+        }
+      ],
+      "user_id": 1639851,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610512200,
+      "id": 95432561,
+      "licenses": [],
+      "skills": [],
+      "start": 1610485200,
+      "subshifts": [
+        {
+          "department_id": 502392,
+          "finish": 1610512200,
+          "start": 1610485200
+        }
+      ],
+      "user_id": 1639851,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610521200,
+      "id": 95432563,
+      "licenses": [],
+      "skills": [],
+      "start": 1610494200,
+      "subshifts": [
+        {
+          "department_id": 502392,
+          "finish": 1610521200,
+          "start": 1610494200
+        }
+      ],
+      "user_id": 1639850,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610605800,
+      "id": 95432584,
+      "licenses": [],
+      "skills": [],
+      "start": 1610586000,
+      "subshifts": [
+        {
+          "department_id": 502392,
+          "finish": 1610605800,
+          "start": 1610586000
+        }
+      ],
+      "user_id": 1639851,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610694000,
+      "id": 95432585,
+      "licenses": [],
+      "skills": [],
+      "start": 1610667000,
+      "subshifts": [
+        {
+          "department_id": 502392,
+          "finish": 1610694000,
+          "start": 1610667000
+        }
+      ],
+      "user_id": 1639851,
+      "is_fixed": true
+    },
+    {
+      "breaks": [],
+      "finish": 1610694000,
+      "id": 95432587,
+      "licenses": [],
+      "skills": [],
+      "start": 1610667000,
+      "subshifts": [
+        {
+          "department_id": 502392,
+          "finish": 1610694000,
+          "start": 1610667000
+        }
+      ],
+      "user_id": 1639850,
+      "is_fixed": true
+    }
+  ],
+  "users": [
+    {
+      "department_ids": [
+        {
+          "id": 502396
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Full Time TOIL",
+        "Childrens Services Employee Level 4.2"
+      ],
+      "hourly_rate": 18.81,
+      "id": 1639844,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502392
+        }
+      ],
+      "employment_type_ids": [
+        "Salaried",
+        "Childrens Services Employee Level 1.1"
+      ],
+      "hourly_rate": 19.53,
+      "id": 1639850,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": [
+        {
+          "start": 1610632800,
+          "finish": 1610719199,
+          "pay_duration": 456
+        },
+        {
+          "start": 1610892000,
+          "finish": 1610978399,
+          "pay_duration": 456
+        },
+        {
+          "start": 1610978400,
+          "finish": 1611064799,
+          "pay_duration": 456
+        },
+        {
+          "start": 1611064800,
+          "finish": 1611151199,
+          "pay_duration": 456
+        },
+        {
+          "start": 1611151200,
+          "finish": 1611237599,
+          "pay_duration": 456
+        }
+      ]
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502392
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Support Worker Level 1.1"
+      ],
+      "hourly_rate": 21.29,
+      "id": 1639851,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502389
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Childrens Services Employee Level 2.1"
+      ],
+      "hourly_rate": 35,
+      "id": 1639852,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502390
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Childrens Services Employee Level 1.1"
+      ],
+      "hourly_rate": 18.81,
+      "id": 1639853,
+      "licenses": [
+        {
+          "expires": 1671926400,
+          "from": 0,
+          "id": 18349
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502391
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Full Time RDO",
+        "Support Worker Level 1.1"
+      ],
+      "hourly_rate": 19.53,
+      "id": 1639856,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502390
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Apprentice",
+        "Childrens Services Employee Level 6A.3"
+      ],
+      "hourly_rate": 19.8,
+      "id": 1639858,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502391
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Support Worker Level 1.1"
+      ],
+      "hourly_rate": 26,
+      "id": 1639859,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502391
+        }
+      ],
+      "employment_type_ids": [
+        "Apprentice",
+        "Childrens Services Employee Level 5.2"
+      ],
+      "hourly_rate": 19.8,
+      "id": 1639860,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502391
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Childrens Services Employee Level 1.1"
+      ],
+      "hourly_rate": 19.53,
+      "id": 1639861,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502389
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Support Worker Level 1.1"
+      ],
+      "hourly_rate": 19.53,
+      "id": 1639863,
+      "licenses": [
+        {
+          "expires": 1610668800,
+          "from": 0,
+          "id": 18350
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502390
+        }
+      ],
+      "employment_type_ids": [
+        "Full Time",
+        "Childrens Services Employee Level 2.2"
+      ],
+      "hourly_rate": 19.53,
+      "id": 1639864,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502396
+        }
+      ],
+      "employment_type_ids": [
+        "Salaried",
+        "Childrens Services Employee Level 1.1"
+      ],
+      "hourly_rate": 19.8,
+      "id": 1639865,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502391
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Full Time",
+        "Childrens Services Employee Level 4A.3"
+      ],
+      "hourly_rate": 18.81,
+      "id": 1639866,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502389
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Support Worker Level 2.1"
+      ],
+      "hourly_rate": 24.56,
+      "id": 1639867,
+      "licenses": [
+        {
+          "expires": 1610323200,
+          "from": 0,
+          "id": 18351
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502389
+        }
+      ],
+      "employment_type_ids": [
+        "Part Time",
+        "Childrens Services Employee Level 2.2"
+      ],
+      "hourly_rate": 30,
+      "id": 1639868,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": [
+        {
+          "start": 1610679600,
+          "finish": 1610697600,
+          "pay_duration": 300
+        },
+        {
+          "start": 1610587800,
+          "finish": 1610602200,
+          "pay_duration": 240
+        }
+      ]
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502396
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Full Time RDO",
+        "Support Worker Level 2.1"
+      ],
+      "hourly_rate": 18.81,
+      "id": 1639869,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502391
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Full Time RDO",
+        "Childrens Services Employee Level 4.3"
+      ],
+      "hourly_rate": 19.53,
+      "id": 1639870,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502391
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Childrens Services Employee Level 2.2"
+      ],
+      "hourly_rate": 21.29,
+      "id": 1639873,
+      "licenses": [
+        {
+          "expires": 1641168000,
+          "from": 0,
+          "id": 18350
+        }
+      ],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502391
+        },
+        {
+          "id": 502398
+        }
+      ],
+      "employment_type_ids": [
+        "Salaried",
+        "Support Worker Level 1.1"
+      ],
+      "hourly_rate": 19.81,
+      "id": 1639874,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": [
+        {
+          "start": 1610668800,
+          "finish": 1610690400
+        }
+      ]
+    },
+    {
+      "department_ids": [
+        {
+          "id": 502396
+        }
+      ],
+      "employment_type_ids": [
+        "Casual",
+        "Support Worker Level 1.1"
+      ],
+      "hourly_rate": 15.65,
+      "id": 1639875,
+      "licenses": [],
+      "payperiod_length_days": 7,
+      "payperiod_minutes_max": 2400,
+      "payperiod_minutes_min": 60,
+      "unavailabilities": []
+    }
+  ]
+}

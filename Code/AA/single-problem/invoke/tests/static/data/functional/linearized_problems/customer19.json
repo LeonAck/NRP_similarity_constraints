@@ -1,0 +1,5937 @@
+{
+  "shifts": [
+    {
+      "id": 552465238,
+      "start": 1632035700,
+      "finish": 1632066300,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403244,
+      "breaks": [
+        {
+          "start": 1632050100,
+          "finish": 1632051900
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552472759,
+      "start": 1631674800,
+      "finish": 1631705400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631689200,
+          "finish": 1631691000
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552471833,
+      "start": 1631592000,
+      "finish": 1631622600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631608200,
+          "finish": 1631610000
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552471874,
+      "start": 1631678400,
+      "finish": 1631709000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631694600,
+          "finish": 1631696400
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552471980,
+      "start": 1631851200,
+      "finish": 1631881800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631867400,
+          "finish": 1631869200
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465126,
+      "start": 1631512500,
+      "finish": 1631543100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631526900,
+          "finish": 1631528700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 66
+    },
+    {
+      "id": 552471996,
+      "start": 1631937600,
+      "finish": 1631968200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631953800,
+          "finish": 1631955600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552465220,
+      "start": 1631944500,
+      "finish": 1631975100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631958900,
+          "finish": 1631960700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ],
+      "group_id": 77
+    },
+    {
+      "id": 552465142,
+      "start": 1631598900,
+      "finish": 1631629500,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403244,
+      "breaks": [
+        {
+          "start": 1631613300,
+          "finish": 1631615100
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 67
+    },
+    {
+      "id": 552472001,
+      "start": 1631937600,
+      "finish": 1631968200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631953800,
+          "finish": 1631955600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552471838,
+      "start": 1631592000,
+      "finish": 1631622600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631608200,
+          "finish": 1631610000
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552473711,
+      "start": 1632023100,
+      "finish": 1632053700,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1632034800,
+          "finish": 1632036600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552471994,
+      "start": 1631937600,
+      "finish": 1631968200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631953800,
+          "finish": 1631955600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552471678,
+      "start": 1631505600,
+      "finish": 1631536200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631521800,
+          "finish": 1631523600
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465217,
+      "start": 1631944500,
+      "finish": 1631975100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403244,
+      "breaks": [
+        {
+          "start": 1631958900,
+          "finish": 1631960700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552472245,
+      "start": 1631764800,
+      "finish": 1631795400,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545346,
+      "breaks": [
+        {
+          "start": 1631786100,
+          "finish": 1631787900
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 550251444,
+      "start": 1631952000,
+      "finish": 1631982600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 541986,
+      "breaks": [
+        {
+          "start": 1631966400,
+          "finish": 1631968200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552471716,
+      "start": 1631505600,
+      "finish": 1631536200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631521800,
+          "finish": 1631523600
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465204,
+      "start": 1631944500,
+      "finish": 1631975100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631958900,
+          "finish": 1631960700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ],
+      "group_id": 73
+    },
+    {
+      "id": 552473375,
+      "start": 1631761200,
+      "finish": 1631791800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631775600,
+          "finish": 1631777400
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552471709,
+      "start": 1631505600,
+      "finish": 1631536200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631521800,
+          "finish": 1631523600
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465184,
+      "start": 1631858100,
+      "finish": 1631888700,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631872500,
+          "finish": 1631874300
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 69
+    },
+    {
+      "id": 552472172,
+      "start": 1632029400,
+      "finish": 1632060000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1632040200,
+          "finish": 1632042000
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552473518,
+      "start": 1631847600,
+      "finish": 1631878200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631862000,
+          "finish": 1631863800
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552472680,
+      "start": 1631588400,
+      "finish": 1631619000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631602800,
+          "finish": 1631604600
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552471728,
+      "start": 1631505600,
+      "finish": 1631536200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631521800,
+          "finish": 1631523600
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465152,
+      "start": 1631685300,
+      "finish": 1631715900,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631699700,
+          "finish": 1631701500
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 25
+    },
+    {
+      "id": 552472673,
+      "start": 1631588400,
+      "finish": 1631619000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631602800,
+          "finish": 1631604600
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465198,
+      "start": 1631944500,
+      "finish": 1631975100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403244,
+      "breaks": [
+        {
+          "start": 1631958900,
+          "finish": 1631960700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ],
+      "group_id": 71
+    },
+    {
+      "id": 552442655,
+      "start": 1631601000,
+      "finish": 1631631600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 402795,
+      "breaks": [
+        {
+          "start": 1631610000,
+          "finish": 1631611800
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465123,
+      "start": 1631512500,
+      "finish": 1631543100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403244,
+      "breaks": [
+        {
+          "start": 1631526900,
+          "finish": 1631528700
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552471691,
+      "start": 1631505600,
+      "finish": 1631536200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631521800,
+          "finish": 1631523600
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552472040,
+      "start": 1632029400,
+      "finish": 1632060000,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1632040200,
+          "finish": 1632042000
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552465124,
+      "start": 1631512500,
+      "finish": 1631543100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631526900,
+          "finish": 1631528700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 61
+    },
+    {
+      "id": 552465121,
+      "start": 1631512500,
+      "finish": 1631543100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631526900,
+          "finish": 1631528700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 51
+    },
+    {
+      "id": 552465140,
+      "start": 1631598900,
+      "finish": 1631629500,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631613300,
+          "finish": 1631615100
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 62
+    },
+    {
+      "id": 552465208,
+      "start": 1631944500,
+      "finish": 1631975100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631958900,
+          "finish": 1631960700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ],
+      "group_id": 75
+    },
+    {
+      "id": 552473601,
+      "start": 1631934000,
+      "finish": 1631964600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631948400,
+          "finish": 1631950200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552465200,
+      "start": 1631944500,
+      "finish": 1631975100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403244,
+      "breaks": [
+        {
+          "start": 1631958900,
+          "finish": 1631960700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ],
+      "group_id": 72
+    },
+    {
+      "id": 552465170,
+      "start": 1631771700,
+      "finish": 1631802300,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631786100,
+          "finish": 1631787900
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 40
+    },
+    {
+      "id": 552471975,
+      "start": 1631851200,
+      "finish": 1631881800,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631867400,
+          "finish": 1631869200
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552473525,
+      "start": 1631847600,
+      "finish": 1631878200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631862000,
+          "finish": 1631863800
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465197,
+      "start": 1631944500,
+      "finish": 1631975100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631958900,
+          "finish": 1631960700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ],
+      "group_id": 70
+    },
+    {
+      "id": 552465228,
+      "start": 1632035700,
+      "finish": 1632066300,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1632050100,
+          "finish": 1632051900
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ],
+      "group_id": 55
+    },
+    {
+      "id": 552465133,
+      "start": 1631598900,
+      "finish": 1631629500,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631613300,
+          "finish": 1631615100
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 34
+    },
+    {
+      "id": 552465206,
+      "start": 1631944500,
+      "finish": 1631975100,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631958900,
+          "finish": 1631960700
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ],
+      "group_id": 74
+    },
+    {
+      "id": 552472478,
+      "start": 1631502000,
+      "finish": 1631532600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631516400,
+          "finish": 1631518200
+        }
+      ],
+      "tasks": null,
+      "shift_types": []
+    },
+    {
+      "id": 552465156,
+      "start": 1631685300,
+      "finish": 1631715900,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 403240,
+      "breaks": [
+        {
+          "start": 1631699700,
+          "finish": 1631701500
+        }
+      ],
+      "tasks": null,
+      "shift_types": [],
+      "group_id": 50
+    },
+    {
+      "id": 552473590,
+      "start": 1631934000,
+      "finish": 1631964600,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545348,
+      "breaks": [
+        {
+          "start": 1631948400,
+          "finish": 1631950200
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    },
+    {
+      "id": 552471991,
+      "start": 1631937600,
+      "finish": 1631968200,
+      "is_fixed": false,
+      "is_preference": false,
+      "is_absence": false,
+      "pay_duration": 480,
+      "department_id": 545347,
+      "breaks": [
+        {
+          "start": 1631953800,
+          "finish": 1631955600
+        }
+      ],
+      "tasks": null,
+      "shift_types": [
+        1
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1690436,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1609110000,
+          "quinyxAgreementId": 2950773,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1609110000,
+          "end": 1630879200,
+          "quinyxAgreementId": 2950773,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 2950773,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1979-12-05T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1690377,
+      "department_ids": [
+        {
+          "id": 402795,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1609110000,
+          "quinyxAgreementId": 2950712,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1609110000,
+          "end": 1630879200,
+          "quinyxAgreementId": 2950712,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 2950712,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1989-01-11T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1882873,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1630879200,
+          "quinyxAgreementId": 3379939,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 1440,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1630879200,
+          "end": 1659304800,
+          "quinyxAgreementId": 3379939,
+          "payperiod_minutes_min": 960,
+          "payperiod_minutes_max": 960,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.4,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 1440,
+          "payperiod_minutes_min_old": 960
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1659304800,
+      "dateOfBirth": "1956-12-13T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690434,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1621807200,
+          "quinyxAgreementId": 3148137,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1621807200,
+          "end": 1630879200,
+          "quinyxAgreementId": 3148137,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3148137,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "2000-09-08T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1896730,
+      "department_ids": [
+        {
+          "id": 402795,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1630879200,
+          "quinyxAgreementId": 3414794,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2160,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3414794,
+          "payperiod_minutes_min": 1920,
+          "payperiod_minutes_max": 1920,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.8,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2160,
+          "payperiod_minutes_min_old": 1920
+        }
+      ],
+      "start_contract": 1630886400,
+      "preferences": [
+        {
+          "start": 1631484000,
+          "finish": 1631570400
+        },
+        {
+          "start": 1631570400,
+          "finish": 1631656800
+        },
+        {
+          "start": 1631656800,
+          "finish": 1631743200
+        },
+        {
+          "start": 1631743200,
+          "finish": 1631829600
+        },
+        {
+          "start": 1631829600,
+          "finish": 1631916000
+        }
+      ],
+      "dateOfBirth": "1992-01-26T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1690487,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403345,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 1
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 1
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1632051000,
+          "finish": 1632065400,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632034800,
+          "finish": 1632049200,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632027600,
+          "finish": 1632042000,
+          "pay_duration": 240
+        },
+        {
+          "start": 1632043800,
+          "finish": 1632058200,
+          "pay_duration": 240
+        }
+      ],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1621202400,
+          "quinyxAgreementId": 3150578,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1621202400,
+          "end": 1630879200,
+          "quinyxAgreementId": 3150578,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1636930800,
+          "quinyxAgreementId": 3150578,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1636930800,
+      "dateOfBirth": "1990-10-18T00:00:00.000Z",
+      "skills": [
+        {
+          "name": "CBD - Tv installatie",
+          "id": "CBD - Tv installatie"
+        },
+        {
+          "name": "CBD - Gas & Elektra",
+          "id": "CBD - Gas & Elektra"
+        }
+      ]
+    },
+    {
+      "id": 1690405,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1609110000,
+          "quinyxAgreementId": 2950740,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1609110000,
+          "end": 1630879200,
+          "quinyxAgreementId": 2950740,
+          "payperiod_minutes_min": 960,
+          "payperiod_minutes_max": 960,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.4,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 960
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 2950740,
+          "payperiod_minutes_min": 960,
+          "payperiod_minutes_max": 960,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.4,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 960
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1996-03-07T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1856003,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1625436000,
+          "quinyxAgreementId": 3346628,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1625436000,
+          "end": 1630879200,
+          "quinyxAgreementId": 3346628,
+          "payperiod_minutes_min": 450,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.1875,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 450
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1643583600,
+          "quinyxAgreementId": 3346628,
+          "payperiod_minutes_min": 450,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.1875,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 450
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1643583600,
+      "dateOfBirth": "2001-08-13T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690494,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403345,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 1
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 1
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1624226400,
+          "quinyxAgreementId": 3257488,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1624226400,
+          "end": 1630879200,
+          "quinyxAgreementId": 3257488,
+          "payperiod_minutes_min": 2160,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.9,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2160
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1638140400,
+          "quinyxAgreementId": 3257488,
+          "payperiod_minutes_min": 2160,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.9,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2160
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1638140400,
+      "dateOfBirth": "1994-09-19T00:00:00.000Z",
+      "skills": [
+        {
+          "name": "CBD - Tv installatie",
+          "id": "CBD - Tv installatie"
+        },
+        {
+          "name": "CBD - Gas & Elektra",
+          "id": "CBD - Gas & Elektra"
+        }
+      ]
+    },
+    {
+      "id": 1690462,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403345,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 1
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 1
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1633078800,
+          "finish": 1633107600,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632992400,
+          "finish": 1633021200,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632906000,
+          "finish": 1632934800,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632819600,
+          "finish": 1632848400,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632733200,
+          "finish": 1632762000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632474000,
+          "finish": 1632502800,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632387600,
+          "finish": 1632416400,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632301200,
+          "finish": 1632330000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632214800,
+          "finish": 1632243600,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1632128400,
+          "finish": 1632157200,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631869200,
+          "finish": 1631898000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631782800,
+          "finish": 1631811600,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631696400,
+          "finish": 1631725200,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631610000,
+          "finish": 1631638800,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631523600,
+          "finish": 1631552400,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631516400,
+          "finish": 1631545200,
+          "pay_duration": 480
+        },
+        {
+          "start": 1631602800,
+          "finish": 1631631600,
+          "pay_duration": 480
+        },
+        {
+          "start": 1631689200,
+          "finish": 1631718000,
+          "pay_duration": 480
+        },
+        {
+          "start": 1631775600,
+          "finish": 1631804400,
+          "pay_duration": 480
+        },
+        {
+          "start": 1631862000,
+          "finish": 1631890800,
+          "pay_duration": 480
+        }
+      ],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1630879200,
+          "quinyxAgreementId": 3401790,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3401790,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        }
+      ],
+      "start_contract": 1631318400,
+      "dateOfBirth": "1989-03-10T00:00:00.000Z",
+      "skills": [
+        {
+          "name": "CBD - Tv installatie",
+          "id": "CBD - Tv installatie"
+        },
+        {
+          "name": "CBD - Gas & Elektra",
+          "id": "CBD - Gas & Elektra"
+        }
+      ],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1882882,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1630879200,
+          "quinyxAgreementId": 3379948,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1630879200,
+          "end": 1630879200,
+          "quinyxAgreementId": 3379948,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1630879200,
+      "dateOfBirth": "2002-12-23T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690413,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1612134000,
+          "quinyxAgreementId": 2950748,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1612134000,
+          "end": 1630879200,
+          "quinyxAgreementId": 2950748,
+          "payperiod_minutes_min": 1200,
+          "payperiod_minutes_max": 1440,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.5,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 1200
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 2950748,
+          "payperiod_minutes_min": 1200,
+          "payperiod_minutes_max": 1440,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.5,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 1200
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1989-11-26T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1690510,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1632634200,
+          "finish": 1632648600,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631511000,
+          "finish": 1631525400,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631424600,
+          "finish": 1631439000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631165400,
+          "finish": 1631179800,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631079000,
+          "finish": 1631093400,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1630992600,
+          "finish": 1631007000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1630906200,
+          "finish": 1630920600,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1630899000,
+          "finish": 1630913400,
+          "pay_duration": 240
+        },
+        {
+          "start": 1630985400,
+          "finish": 1630999800,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631071800,
+          "finish": 1631086200,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631158200,
+          "finish": 1631172600,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631417400,
+          "finish": 1631431800,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631503800,
+          "finish": 1631518200,
+          "pay_duration": 240
+        }
+      ],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1625436000,
+          "quinyxAgreementId": 3270460,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1625436000,
+          "end": 1630879200,
+          "quinyxAgreementId": 3270460,
+          "payperiod_minutes_min": 1500,
+          "payperiod_minutes_max": 1920,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.625,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 1500
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1641164400,
+          "quinyxAgreementId": 3270460,
+          "payperiod_minutes_min": 1500,
+          "payperiod_minutes_max": 1920,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.625,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 1500
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1641164400,
+      "dateOfBirth": "1959-06-26T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690546,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1625436000,
+          "quinyxAgreementId": 3366263,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1625436000,
+          "end": 1630879200,
+          "quinyxAgreementId": 3366263,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1631484000,
+          "quinyxAgreementId": 3366263,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1631484000,
+      "dateOfBirth": "2001-06-06T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690502,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1622412000,
+          "quinyxAgreementId": 3206769,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1622412000,
+          "end": 1630879200,
+          "quinyxAgreementId": 3206769,
+          "payperiod_minutes_min": 2160,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.9,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2160
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1639954800,
+          "quinyxAgreementId": 3206769,
+          "payperiod_minutes_min": 2160,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.9,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2160
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1639954800,
+      "dateOfBirth": "1997-03-16T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690399,
+      "department_ids": [
+        {
+          "id": 402795,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1624831200,
+          "quinyxAgreementId": 3354366,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1624831200,
+          "end": 1630879200,
+          "quinyxAgreementId": 3354366,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3354366,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1982-02-20T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1882880,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1630879200,
+          "quinyxAgreementId": 3379946,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1630879200,
+          "end": 1661119200,
+          "quinyxAgreementId": 3379946,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1661119200,
+      "dateOfBirth": "1994-10-19T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690371,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402944,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1619388000,
+          "quinyxAgreementId": 3150577,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1619388000,
+          "end": 1630879200,
+          "quinyxAgreementId": 3150577,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3150577,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1991-05-23T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1896729,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1631923200,
+          "finish": 1632700800,
+          "reason": "Vakantie (volledige week)"
+        },
+        {
+          "start": 1631952000,
+          "finish": 1631982600,
+          "pay_duration": 480
+        },
+        {
+          "start": 1632035700,
+          "finish": 1632066300,
+          "pay_duration": 480
+        }
+      ],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1630879200,
+          "quinyxAgreementId": 3414793,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1630879200,
+          "end": 1660514400,
+          "quinyxAgreementId": 3414793,
+          "payperiod_minutes_min": 2160,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.9,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2160
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1660514400,
+      "dateOfBirth": "1995-11-20T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690490,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403345,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 1
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1625436000,
+          "quinyxAgreementId": 3346626,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1625436000,
+          "end": 1630879200,
+          "quinyxAgreementId": 3346626,
+          "payperiod_minutes_min": 2160,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.9,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2160
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1648418400,
+          "quinyxAgreementId": 3346626,
+          "payperiod_minutes_min": 2160,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.9,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2400,
+          "payperiod_minutes_min_old": 2160
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1648418400,
+      "dateOfBirth": "1998-08-17T00:00:00.000Z",
+      "skills": [
+        {
+          "name": "CBD - Tv installatie",
+          "id": "CBD - Tv installatie"
+        }
+      ]
+    },
+    {
+      "id": 1896731,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1630879200,
+          "quinyxAgreementId": 3414795,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3414795,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1996-11-08T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1690549,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1624831200,
+          "quinyxAgreementId": 3366264,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1624831200,
+          "end": 1630879200,
+          "quinyxAgreementId": 3366264,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1631484000,
+          "quinyxAgreementId": 3366264,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        },
+        {
+          "id": 4,
+          "start": 1601848800,
+          "end": 1631484000,
+          "quinyxAgreementId": 3383617,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 5,
+          "start": 1631484000,
+          "end": 1662933600,
+          "quinyxAgreementId": 3383617,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1662933600,
+      "dateOfBirth": "1999-06-13T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690394,
+      "department_ids": [
+        {
+          "id": 402795,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1631836800,
+          "finish": 1632096000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631791800,
+          "finish": 1631806200,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631775600,
+          "finish": 1631790000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631689200,
+          "finish": 1631703600,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631705400,
+          "finish": 1631719800,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631619000,
+          "finish": 1631633400,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631602800,
+          "finish": 1631617200,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631532600,
+          "finish": 1631547000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631516400,
+          "finish": 1631530800,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631359800,
+          "finish": 1631374200,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631343600,
+          "finish": 1631358000,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1631339700,
+          "finish": 1631350800,
+          "pay_duration": 184.8
+        },
+        {
+          "start": 1631352600,
+          "finish": 1631367000,
+          "pay_duration": 210
+        },
+        {
+          "start": 1631509200,
+          "finish": 1631523600,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631525400,
+          "finish": 1631539800,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631595600,
+          "finish": 1631610000,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631611800,
+          "finish": 1631626200,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631682000,
+          "finish": 1631696400,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631698200,
+          "finish": 1631712600,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631768400,
+          "finish": 1631782800,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631784600,
+          "finish": 1631799000,
+          "pay_duration": 240
+        },
+        {
+          "start": 1631858400,
+          "finish": 1631887200,
+          "pay_duration": 480
+        },
+        {
+          "start": 1631944800,
+          "finish": 1631973600,
+          "pay_duration": 480
+        },
+        {
+          "start": 1632031200,
+          "finish": 1632060000,
+          "pay_duration": 480
+        }
+      ],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1609110000,
+          "quinyxAgreementId": 2950729,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2040,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1609110000,
+          "end": 1630879200,
+          "quinyxAgreementId": 2950729,
+          "payperiod_minutes_min": 1920,
+          "payperiod_minutes_max": 1920,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.8,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2040,
+          "payperiod_minutes_min_old": 1920
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 2950729,
+          "payperiod_minutes_min": 1920,
+          "payperiod_minutes_max": 1920,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.8,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2040,
+          "payperiod_minutes_min_old": 1920
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1999-01-01T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1896732,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1630879200,
+          "quinyxAgreementId": 3414796,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 1680,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1630879200,
+          "end": 1661119200,
+          "quinyxAgreementId": 3414796,
+          "payperiod_minutes_min": 1200,
+          "payperiod_minutes_max": 1440,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.5,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 1680,
+          "payperiod_minutes_min_old": 1200
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1661119200,
+      "dateOfBirth": "1974-06-28T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690410,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1614553200,
+          "quinyxAgreementId": 3115625,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1614553200,
+          "end": 1630879200,
+          "quinyxAgreementId": 3115625,
+          "payperiod_minutes_min": 480,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.2,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 480
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3115625,
+          "payperiod_minutes_min": 480,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.2,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 480
+        }
+      ],
+      "start_contract": 1630886400,
+      "preferences": [
+        {
+          "start": 1631944800,
+          "finish": 1631970000
+        }
+      ],
+      "dateOfBirth": "1998-06-15T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1690412,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1633174200,
+          "finish": 1633188600,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        },
+        {
+          "start": 1633158000,
+          "finish": 1633172400,
+          "reason": "Vakantie (dag / 8 uur)",
+          "pay_duration": 480
+        }
+      ],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1609110000,
+          "quinyxAgreementId": 2950747,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1609110000,
+          "end": 1630879200,
+          "quinyxAgreementId": 2950747,
+          "payperiod_minutes_min": 480,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.2,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 480
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 2950747,
+          "payperiod_minutes_min": 480,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.2,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 480
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "2000-01-06T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1690437,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1609110000,
+          "quinyxAgreementId": 2950774,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1609110000,
+          "end": 1630879200,
+          "quinyxAgreementId": 2950774,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1637535600,
+          "quinyxAgreementId": 2950774,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 34723,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 2880,
+          "payperiod_minutes_min_old": 2400
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1637535600,
+      "dateOfBirth": "1965-03-08T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1690373,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1623621600,
+          "quinyxAgreementId": 3346616,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 960,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1623621600,
+          "end": 1630879200,
+          "quinyxAgreementId": 3346616,
+          "payperiod_minutes_min": 480,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.2,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 960,
+          "payperiod_minutes_min_old": 480
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3346616,
+          "payperiod_minutes_min": 480,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.2,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 960,
+          "payperiod_minutes_min_old": 480
+        }
+      ],
+      "start_contract": 1630886400,
+      "dateOfBirth": "1994-08-16T00:00:00.000Z",
+      "skills": [],
+      "finish_contract": 1632088800
+    },
+    {
+      "id": 1723419,
+      "department_ids": [
+        {
+          "id": 402797,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402798,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403244,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 414117,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 442900,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 541986,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545346,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545347,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 545348,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1613948400,
+          "quinyxAgreementId": 3115624,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 1680,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1613948400,
+          "end": 1630879200,
+          "quinyxAgreementId": 3115624,
+          "payperiod_minutes_min": 2160,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.9,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 1680,
+          "payperiod_minutes_min_old": 2160
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1632088800,
+          "quinyxAgreementId": 3115624,
+          "payperiod_minutes_min": 1200,
+          "payperiod_minutes_max": 1440,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.5,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 1680,
+          "payperiod_minutes_min_old": 1200
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1632088800,
+      "dateOfBirth": "2000-06-20T00:00:00.000Z",
+      "skills": []
+    },
+    {
+      "id": 1868785,
+      "department_ids": [
+        {
+          "id": 402799,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402800,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 403240,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 443040,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 444766,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        },
+        {
+          "id": 509738,
+          "from": 0,
+          "to": null,
+          "proficiency_rating": 0
+        }
+      ],
+      "unavailabilities": [],
+      "agreements": [
+        {
+          "id": 1,
+          "start": 1601848800,
+          "end": 1626645600,
+          "quinyxAgreementId": 3354368,
+          "payperiod_minutes_min": 2400,
+          "payperiod_minutes_max": 2400,
+          "payperiod_length_days": 7,
+          "employmentRate": 1,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 2400
+        },
+        {
+          "id": 2,
+          "start": 1626645600,
+          "end": 1630879200,
+          "quinyxAgreementId": 3354368,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        },
+        {
+          "id": 3,
+          "start": 1630879200,
+          "end": 1644793200,
+          "quinyxAgreementId": 3354368,
+          "payperiod_minutes_min": 360,
+          "payperiod_minutes_max": 480,
+          "payperiod_length_days": 7,
+          "employmentRate": 0.15,
+          "employee_type_id": 39003,
+          "hourly_rate": 0,
+          "schedulePeriodType": 1,
+          "schedulePeriodLength": 28,
+          "schedulePeriodStartDate": "2020-10-05T00:00:00.000Z",
+          "payperiod_minutes_max_old": 600,
+          "payperiod_minutes_min_old": 360
+        }
+      ],
+      "start_contract": 1630886400,
+      "finish_contract": 1644793200,
+      "dateOfBirth": "1999-10-04T00:00:00.000Z",
+      "skills": []
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 100,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 20,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 100,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 30,
+      "parameter_1": 5,
+      "parameter_2": 1,
+      "parameter_3": 6,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 50000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "parameter_1": 660,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 64,
+      "parameter_1": 1,
+      "parameter_2": 1,
+      "parameter_3": 7,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 100,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": "0",
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": "0",
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 28,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 20,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 15,
+      "parameter_1": 1,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 50000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 14,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 200,
+      "is_mandatory": false,
+      "department_ids": [
+        "403244",
+        "403240"
+      ]
+    },
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 400,
+      "is_mandatory": false,
+      "department_ids": [
+        "402797"
+      ]
+    },
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 800,
+      "is_mandatory": false,
+      "department_ids": [
+        "414117",
+        "414118"
+      ]
+    },
+    {
+      "rule_id": 1,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1600,
+      "is_mandatory": false,
+      "department_ids": [
+        "403345"
+      ]
+    },
+    {
+      "rule_id": 62,
+      "parameter_1": 1,
+      "parameter_2": 1,
+      "parameter_3": 2,
+      "skill_id": "CBD - Tv installatie",
+      "skill_id_2": "CBD - Gas & Elektra",
+      "penalty": 50000,
+      "is_mandatory": false,
+      "shift_group_ids": []
+    }
+  ],
+  "settings": {
+    "start": 1630879200,
+    "finish": 1632088799,
+    "time_zone": "Europe/Amsterdam",
+    "add_output_kpis": true,
+    "runtime": 1800,
+    "linear_relaxation": true
+  },
+  "shift_type_definitions": []
+}

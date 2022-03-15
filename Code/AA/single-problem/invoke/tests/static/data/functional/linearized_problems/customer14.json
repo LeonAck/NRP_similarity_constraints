@@ -1,0 +1,2310 @@
+{
+  "shifts": [
+    {
+      "id": 97737,
+      "start": 1612764000,
+      "finish": 1612792800,
+      "is_fixed": false,
+      "pay_duration": 450,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [
+        {
+          "start": 1612773000,
+          "finish": 1612774800
+        }
+      ],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97742,
+      "start": 1612792800,
+      "finish": 1612810800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97751,
+      "start": 1612801800,
+      "finish": 1612821600,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97758,
+      "start": 1612782000,
+      "finish": 1612801800,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97759,
+      "start": 1612764000,
+      "finish": 1612782000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97771,
+      "start": 1612801800,
+      "finish": 1612821600,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97774,
+      "start": 1612764000,
+      "finish": 1612783800,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97776,
+      "start": 1612783800,
+      "finish": 1612801800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97739,
+      "start": 1612868400,
+      "finish": 1612897200,
+      "is_fixed": false,
+      "pay_duration": 450,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [
+        {
+          "start": 1612881000,
+          "finish": 1612882800
+        }
+      ],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97745,
+      "start": 1612850400,
+      "finish": 1612868400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97752,
+      "start": 1612888200,
+      "finish": 1612908000,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97754,
+      "start": 1612868400,
+      "finish": 1612888200,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97757,
+      "start": 1612850400,
+      "finish": 1612868400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97772,
+      "start": 1612870200,
+      "finish": 1612890000,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97779,
+      "start": 1612890000,
+      "finish": 1612908000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97780,
+      "start": 1612850400,
+      "finish": 1612870200,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97738,
+      "start": 1612936800,
+      "finish": 1612954800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97743,
+      "start": 1612954800,
+      "finish": 1612983600,
+      "is_fixed": false,
+      "pay_duration": 450,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [
+        {
+          "start": 1612967400,
+          "finish": 1612969200
+        }
+      ],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97750,
+      "start": 1612956600,
+      "finish": 1612976400,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97753,
+      "start": 1612936800,
+      "finish": 1612956600,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97756,
+      "start": 1612976400,
+      "finish": 1612994400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97773,
+      "start": 1612956600,
+      "finish": 1612976400,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97775,
+      "start": 1612936800,
+      "finish": 1612956600,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97777,
+      "start": 1612976400,
+      "finish": 1612994400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97736,
+      "start": 1613041200,
+      "finish": 1613070000,
+      "is_fixed": false,
+      "pay_duration": 450,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [
+        {
+          "start": 1613050200,
+          "finish": 1613052000
+        }
+      ],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97744,
+      "start": 1613023200,
+      "finish": 1613041200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97755,
+      "start": 1613062800,
+      "finish": 1613080800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97761,
+      "start": 1613023200,
+      "finish": 1613043000,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97764,
+      "start": 1613043000,
+      "finish": 1613062800,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97778,
+      "start": 1613062800,
+      "finish": 1613080800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97783,
+      "start": 1613023200,
+      "finish": 1613043000,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97785,
+      "start": 1613043000,
+      "finish": 1613062800,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97740,
+      "start": 1613138400,
+      "finish": 1613156400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97741,
+      "start": 1613109600,
+      "finish": 1613138400,
+      "is_fixed": false,
+      "pay_duration": 450,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [
+        {
+          "start": 1613118600,
+          "finish": 1613120400
+        }
+      ],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97760,
+      "start": 1613149200,
+      "finish": 1613167200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97765,
+      "start": 1613109600,
+      "finish": 1613129400,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97769,
+      "start": 1613129400,
+      "finish": 1613149200,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97781,
+      "start": 1613149200,
+      "finish": 1613167200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97786,
+      "start": 1613109600,
+      "finish": 1613129400,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97787,
+      "start": 1613129400,
+      "finish": 1613149200,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97746,
+      "start": 1613214000,
+      "finish": 1613242800,
+      "is_fixed": false,
+      "pay_duration": 450,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [
+        {
+          "start": 1613221200,
+          "finish": 1613223000
+        }
+      ],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97747,
+      "start": 1613196000,
+      "finish": 1613214000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97763,
+      "start": 1613196000,
+      "finish": 1613214000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97766,
+      "start": 1613214000,
+      "finish": 1613233800,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97768,
+      "start": 1613233800,
+      "finish": 1613253600,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97782,
+      "start": 1613196000,
+      "finish": 1613214000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97788,
+      "start": 1613233800,
+      "finish": 1613253600,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97789,
+      "start": 1613214000,
+      "finish": 1613233800,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97748,
+      "start": 1613311200,
+      "finish": 1613329200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97749,
+      "start": 1613282400,
+      "finish": 1613311200,
+      "is_fixed": false,
+      "pay_duration": 450,
+      "department_id": 11,
+      "unit": 34,
+      "breaks": [
+        {
+          "start": 1613289600,
+          "finish": 1613291400
+        }
+      ],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97762,
+      "start": 1613322000,
+      "finish": 1613340000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97767,
+      "start": 1613282400,
+      "finish": 1613302200,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97770,
+      "start": 1613302200,
+      "finish": 1613322000,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 33,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97784,
+      "start": 1613282400,
+      "finish": 1613300400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97790,
+      "start": 1613300400,
+      "finish": 1613320200,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    },
+    {
+      "id": 97791,
+      "start": 1613320200,
+      "finish": 1613340000,
+      "is_fixed": false,
+      "pay_duration": 330,
+      "department_id": 11,
+      "unit": 39,
+      "breaks": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "min_level": 3
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3115,
+      "date_of_birth": -286156800,
+      "start_contract": 1189983600,
+      "hourly_rate": 8.87,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 1440,
+      "payperiod_minutes_max": 1440,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "id": 3134,
+      "date_of_birth": 304815600,
+      "start_contract": 1466982000,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1573603200,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "id": 3136,
+      "date_of_birth": 956098800,
+      "start_contract": 1470783600,
+      "hourly_rate": 8.97,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 480,
+      "payperiod_minutes_max": 480,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1573603200,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "id": 3141,
+      "date_of_birth": 977097600,
+      "start_contract": 1502319600,
+      "hourly_rate": 8.97,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2880,
+      "payperiod_minutes_max": 2880,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1573603200,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "id": 3144,
+      "date_of_birth": 638665200,
+      "start_contract": 1508972400,
+      "hourly_rate": 8.97,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1573603200,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "id": 3146,
+      "date_of_birth": 906505200,
+      "start_contract": 1510704000,
+      "hourly_rate": 8.97,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2880,
+      "payperiod_minutes_max": 2880,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1573603200,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "id": 3147,
+      "date_of_birth": 967417200,
+      "start_contract": 1512777600,
+      "hourly_rate": 8.97,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 480,
+      "payperiod_minutes_max": 480,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3153,
+      "date_of_birth": 950572800,
+      "start_contract": 1536015600,
+      "hourly_rate": 6.96,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [
+        {
+          "start": 1603062000,
+          "finish": 1634597999,
+          "unavailability_workdays": [
+            {
+              "start": 1603098000,
+              "finish": 1603126800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1603184400,
+              "finish": 1603213200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1603270800,
+              "finish": 1603296000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1603702800,
+              "finish": 1603731600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1603789200,
+              "finish": 1603818000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1603875600,
+              "finish": 1603900800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1604307600,
+              "finish": 1604336400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1604394000,
+              "finish": 1604422800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1604480400,
+              "finish": 1604505600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1604912400,
+              "finish": 1604941200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1604998800,
+              "finish": 1605027600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1605085200,
+              "finish": 1605110400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1605517200,
+              "finish": 1605546000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1605603600,
+              "finish": 1605632400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1605690000,
+              "finish": 1605715200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1606122000,
+              "finish": 1606150800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1606208400,
+              "finish": 1606237200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1606294800,
+              "finish": 1606320000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1606726800,
+              "finish": 1606755600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1606813200,
+              "finish": 1606842000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1606899600,
+              "finish": 1606924800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1607331600,
+              "finish": 1607360400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1607418000,
+              "finish": 1607446800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1607504400,
+              "finish": 1607529600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1607936400,
+              "finish": 1607965200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1608022800,
+              "finish": 1608051600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1608109200,
+              "finish": 1608134400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1608541200,
+              "finish": 1608570000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1608627600,
+              "finish": 1608656400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1608714000,
+              "finish": 1608739200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1609146000,
+              "finish": 1609174800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1609232400,
+              "finish": 1609261200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1609318800,
+              "finish": 1609344000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1609750800,
+              "finish": 1609779600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1609837200,
+              "finish": 1609866000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1609923600,
+              "finish": 1609948800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1610355600,
+              "finish": 1610384400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1610442000,
+              "finish": 1610470800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1610528400,
+              "finish": 1610553600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1610960400,
+              "finish": 1610989200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1611046800,
+              "finish": 1611075600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1611133200,
+              "finish": 1611158400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1611565200,
+              "finish": 1611594000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1611651600,
+              "finish": 1611680400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1611738000,
+              "finish": 1611763200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1612170000,
+              "finish": 1612198800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1612256400,
+              "finish": 1612285200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1612342800,
+              "finish": 1612368000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1612774800,
+              "finish": 1612803600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1612861200,
+              "finish": 1612890000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1612947600,
+              "finish": 1612972800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1613379600,
+              "finish": 1613408400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1613466000,
+              "finish": 1613494800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1613552400,
+              "finish": 1613577600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1613984400,
+              "finish": 1614013200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1614070800,
+              "finish": 1614099600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1614157200,
+              "finish": 1614182400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1614589200,
+              "finish": 1614618000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1614675600,
+              "finish": 1614704400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1614762000,
+              "finish": 1614787200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1615194000,
+              "finish": 1615222800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1615280400,
+              "finish": 1615309200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1615366800,
+              "finish": 1615392000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1615798800,
+              "finish": 1615827600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1615885200,
+              "finish": 1615914000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1615971600,
+              "finish": 1615996800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1616403600,
+              "finish": 1616432400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1616490000,
+              "finish": 1616518800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1616576400,
+              "finish": 1616601600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1617008400,
+              "finish": 1617037200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1617094800,
+              "finish": 1617123600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1617181200,
+              "finish": 1617206400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1617613200,
+              "finish": 1617642000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1617699600,
+              "finish": 1617728400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1617786000,
+              "finish": 1617811200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1618218000,
+              "finish": 1618246800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1618304400,
+              "finish": 1618333200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1618390800,
+              "finish": 1618416000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1618822800,
+              "finish": 1618851600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1618909200,
+              "finish": 1618938000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1618995600,
+              "finish": 1619020800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1619427600,
+              "finish": 1619456400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1619514000,
+              "finish": 1619542800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1619600400,
+              "finish": 1619625600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1620032400,
+              "finish": 1620061200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1620118800,
+              "finish": 1620147600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1620205200,
+              "finish": 1620230400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1620637200,
+              "finish": 1620666000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1620723600,
+              "finish": 1620752400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1620810000,
+              "finish": 1620835200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1621242000,
+              "finish": 1621270800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1621328400,
+              "finish": 1621357200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1621414800,
+              "finish": 1621440000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1621846800,
+              "finish": 1621875600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1621933200,
+              "finish": 1621962000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1622019600,
+              "finish": 1622044800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1622451600,
+              "finish": 1622480400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1622538000,
+              "finish": 1622566800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1622624400,
+              "finish": 1622649600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1623056400,
+              "finish": 1623085200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1623142800,
+              "finish": 1623171600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1623229200,
+              "finish": 1623254400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1623661200,
+              "finish": 1623690000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1623747600,
+              "finish": 1623776400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1623834000,
+              "finish": 1623859200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1624266000,
+              "finish": 1624294800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1624352400,
+              "finish": 1624381200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1624438800,
+              "finish": 1624464000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1624870800,
+              "finish": 1624899600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1624957200,
+              "finish": 1624986000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1625043600,
+              "finish": 1625068800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1625475600,
+              "finish": 1625504400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1625562000,
+              "finish": 1625590800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1625648400,
+              "finish": 1625673600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1626080400,
+              "finish": 1626109200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1626166800,
+              "finish": 1626195600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1626253200,
+              "finish": 1626278400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1626685200,
+              "finish": 1626714000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1626771600,
+              "finish": 1626800400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1626858000,
+              "finish": 1626883200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1627290000,
+              "finish": 1627318800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1627376400,
+              "finish": 1627405200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1627462800,
+              "finish": 1627488000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1627894800,
+              "finish": 1627923600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1627981200,
+              "finish": 1628010000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1628067600,
+              "finish": 1628092800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1628499600,
+              "finish": 1628528400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1628586000,
+              "finish": 1628614800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1628672400,
+              "finish": 1628697600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1629104400,
+              "finish": 1629133200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1629190800,
+              "finish": 1629219600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1629277200,
+              "finish": 1629302400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1629709200,
+              "finish": 1629738000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1629795600,
+              "finish": 1629824400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1629882000,
+              "finish": 1629907200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1630314000,
+              "finish": 1630342800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1630400400,
+              "finish": 1630429200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1630486800,
+              "finish": 1630512000,
+              "pay_duration": 420
+            },
+            {
+              "start": 1630918800,
+              "finish": 1630947600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1631005200,
+              "finish": 1631034000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1631091600,
+              "finish": 1631116800,
+              "pay_duration": 420
+            },
+            {
+              "start": 1631523600,
+              "finish": 1631552400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1631610000,
+              "finish": 1631638800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1631696400,
+              "finish": 1631721600,
+              "pay_duration": 420
+            },
+            {
+              "start": 1632128400,
+              "finish": 1632157200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1632214800,
+              "finish": 1632243600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1632301200,
+              "finish": 1632326400,
+              "pay_duration": 420
+            },
+            {
+              "start": 1632733200,
+              "finish": 1632762000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1632819600,
+              "finish": 1632848400,
+              "pay_duration": 480
+            },
+            {
+              "start": 1632906000,
+              "finish": 1632931200,
+              "pay_duration": 420
+            },
+            {
+              "start": 1633338000,
+              "finish": 1633366800,
+              "pay_duration": 480
+            },
+            {
+              "start": 1633424400,
+              "finish": 1633453200,
+              "pay_duration": 480
+            },
+            {
+              "start": 1633510800,
+              "finish": 1633539600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1633942800,
+              "finish": 1633971600,
+              "pay_duration": 480
+            },
+            {
+              "start": 1634029200,
+              "finish": 1634058000,
+              "pay_duration": 480
+            },
+            {
+              "start": 1634115600,
+              "finish": 1634140800,
+              "pay_duration": 420
+            }
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1573603200,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3156,
+      "date_of_birth": 505785600,
+      "start_contract": 1544572800,
+      "hourly_rate": 8.97,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1573603200,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3165,
+      "date_of_birth": 829954800,
+      "start_contract": 1560985200,
+      "hourly_rate": 8.97,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 1440,
+      "payperiod_minutes_max": 1440,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 8,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "skills": [
+        {
+          "id": 17,
+          "name": "Admin",
+          "from": 1420070400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 22,
+          "name": "Duty Manager",
+          "from": 1578268800,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 14,
+          "name": "Costa",
+          "from": 1601510400,
+          "expires": null,
+          "level": 10
+        },
+        {
+          "id": 6,
+          "name": "Costa Drive Thru",
+          "from": 1601510400,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "unavailabilities": [],
+      "id": 3176,
+      "date_of_birth": 641084400,
+      "start_contract": 1270508400,
+      "hourly_rate": 1,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 2400,
+      "payperiod_minutes_max": 2400,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    },
+    {
+      "department_ids": [
+        {
+          "id": 11,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "skills": [
+        {
+          "id": 8,
+          "name": "WHSmiths",
+          "from": 1595116800,
+          "expires": null,
+          "level": 10
+        }
+      ],
+      "id": 3996,
+      "date_of_birth": 872463600,
+      "start_contract": 1583280000,
+      "hourly_rate": 8.33,
+      "payperiod_length_days": 7,
+      "payperiod_minutes_min": 960,
+      "payperiod_minutes_max": 960,
+      "minimum_time_between_shifts": 660,
+      "maximum_shift_duration": 780
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": 7,
+      "parameter_1": 6,
+      "parameter_2": 1,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 28,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "parameter_1": "0",
+      "parameter_2": "0",
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 1,
+      "parameter_1": "0",
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 25,
+      "parameter_1": 2880,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 10,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 2,
+      "parameter_1": null,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 0.1,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 14,
+      "parameter_1": 1,
+      "parameter_2": null,
+      "parameter_3": null,
+      "parameter_4": null,
+      "parameter_5": null,
+      "parameter_6": null,
+      "penalty": 1,
+      "is_mandatory": false
+    }
+  ],
+  "settings": {
+    "runtime": 350,
+    "cost_objective": 0,
+    "rule_objective": 10,
+    "fairness_objective": 10,
+    "proficiency_objective": 0,
+    "start": 1612137600,
+    "finish": 1613347199,
+    "linear_relaxation": true,
+    "skill_objective": 0,
+    "split_skills": true
+  },
+  "shift_type_definitions": []
+}

@@ -1,0 +1,716 @@
+{
+  "shifts": [
+    {
+      "id": "494839789_1613343600_0",
+      "start": 1613361600,
+      "finish": 1613379600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1613430000_0",
+      "start": 1613448000,
+      "finish": 1613466000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1613516400_0",
+      "start": 1613534400,
+      "finish": 1613552400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1613602800_0",
+      "start": 1613620800,
+      "finish": 1613638800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1613689200_0",
+      "start": 1613707200,
+      "finish": 1613725200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1613775600_0",
+      "start": 1613793600,
+      "finish": 1613811600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1613862000_0",
+      "start": 1613880000,
+      "finish": 1613898000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1613948400_0",
+      "start": 1613966400,
+      "finish": 1613984400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614034800_0",
+      "start": 1614052800,
+      "finish": 1614070800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614121200_0",
+      "start": 1614139200,
+      "finish": 1614157200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614207600_0",
+      "start": 1614225600,
+      "finish": 1614243600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614294000_0",
+      "start": 1614312000,
+      "finish": 1614330000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614380400_0",
+      "start": 1614398400,
+      "finish": 1614416400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614466800_0",
+      "start": 1614484800,
+      "finish": 1614502800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614553200_0",
+      "start": 1614571200,
+      "finish": 1614589200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614639600_0",
+      "start": 1614657600,
+      "finish": 1614675600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614726000_0",
+      "start": 1614744000,
+      "finish": 1614762000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614812400_0",
+      "start": 1614830400,
+      "finish": 1614848400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614898800_0",
+      "start": 1614916800,
+      "finish": 1614934800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1614985200_0",
+      "start": 1615003200,
+      "finish": 1615021200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1615071600_0",
+      "start": 1615089600,
+      "finish": 1615107600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1615158000_0",
+      "start": 1615176000,
+      "finish": 1615194000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1615244400_0",
+      "start": 1615262400,
+      "finish": 1615280400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1615330800_0",
+      "start": 1615348800,
+      "finish": 1615366800,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1615417200_0",
+      "start": 1615435200,
+      "finish": 1615453200,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1615503600_0",
+      "start": 1615521600,
+      "finish": 1615539600,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1615590000_0",
+      "start": 1615608000,
+      "finish": 1615626000,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    },
+    {
+      "id": "494839789_1615676400_0",
+      "start": 1615694400,
+      "finish": 1615712400,
+      "is_fixed": false,
+      "pay_duration": 300,
+      "department_id": 402847,
+      "shift_types": []
+    }
+  ],
+  "users": [
+    {
+      "id": 1692115,
+      "department_ids": [
+        {
+          "id": 386452,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 387590,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 387591,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 389887,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 390509,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 390584,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 394304,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402744,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402748,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402757,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402758,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402799,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402847,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402848,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402849,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402850,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402851,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402852,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402853,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402854,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402855,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402856,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402857,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402858,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402859,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402860,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402861,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402862,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402863,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402864,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402865,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402866,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402867,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402868,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402869,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402870,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402871,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402872,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402873,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402874,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402875,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402876,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402877,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402878,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402879,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402880,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402881,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402882,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402883,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402884,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402885,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402886,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402887,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402888,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402889,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402890,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402891,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402892,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402893,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402894,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402895,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402930,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402931,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402932,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402933,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402934,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402935,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402936,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402937,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402938,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402939,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402942,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402943,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402944,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402945,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402946,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402947,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402948,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402949,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402951,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 402954,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 405045,
+          "from": 0,
+          "proficiency_rating": 5
+        },
+        {
+          "id": 418052,
+          "from": 0,
+          "proficiency_rating": 5
+        }
+      ],
+      "unavailabilities": [],
+      "hourly_rate": 0,
+      "payperiod_length_days": 7,
+      "employee_type_id": 34803,
+      "payperiod_minutes_min": 0,
+      "payperiod_minutes_max": 2400,
+      "employmentRate": 0
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": 1,
+      "parameter_1": 0,
+      "parameter_2": 0,
+      "penalty": 1000,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 5,
+      "parameter_1": 660,
+      "parameter_2": 0,
+      "penalty": 500,
+      "is_mandatory": false
+    },
+    {
+      "rule_id": 40,
+      "parameter_1": 3,
+      "parameter_2": 28,
+      "penalty": 10000,
+      "is_mandatory": false
+    }
+  ],
+  "shift_type_definitions": [],
+  "settings": {
+    "start": 1613343600,
+    "finish": 1615762800,
+    "runtime": 5,
+    "add_output_kpis": true,
+    "time_zone": "Europe/Amsterdam"
+  }
+}
