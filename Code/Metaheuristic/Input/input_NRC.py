@@ -27,7 +27,10 @@ class Instance:
         self.load_instance()
 
         # simplify notation
+        pprint.pprint(self.weeks_data)
         self.simplify_week_data()
+        self.simplify_scenario_data()
+
 
     #def get_instance_dict(self): return self.instance_dict
 
@@ -120,10 +123,7 @@ class Instance:
         path_to_json = self.instance_to_path()
 
         all_json_files = self.get_json_files(path_to_json)
-        # selection of files based on instances
-        files_to_keep = self.get_history_file(all_json_files) +\
-                        self.get_scenario_file(all_json_files) +\
-                        self.get_week_files(all_json_files)
+
         for file in self.get_history_file(all_json_files):
             # create path for each json file
             file_path = path_to_json + "/{}".format(file + ".json")
@@ -149,11 +149,17 @@ class Instance:
 
     def abbreviate_skills(self, skill_string):
         """
-        Save first letter and
+        Save first letter as lower case
         """
         return skill_string[0].lower()
 
-    def weekday_to_index(self, string):
+    def abbreviate_shift_type(self, shiftype_string):
+        """
+        Save first letter as upper case
+        """
+        return shiftype_string[0]
+
+    def weekday_to_index(self, weekday_string):
         """
         Function to change weekday string to index
         Monday --> 0
@@ -161,21 +167,22 @@ class Instance:
         etc.
 
         """
-        if string == "Monday":
+        if weekday_string == "Monday":
             return 0
-        if string == "Tuesday":
+        if weekday_string == "Tuesday":
             return 1
-        if string == "Wednesday":
+        if weekday_string == "Wednesday":
             return 2
-        if string == "Thursday":
+        if weekday_string == "Thursday":
             return 3
-        if string == "Friday":
+        if weekday_string == "Friday":
             return 4
-        if string == "Saturday":
+        if weekday_string == "Saturday":
             return 5
-        if string == "Sunday":
+        if weekday_string == "Sunday":
             return 6
         else:
+            print(weekday_string)
             raise Exception("This is not a weekday")
 
     def simplify_week_key(self, week_key):
@@ -186,6 +193,47 @@ class Instance:
             return int(week_key.removeprefix("WD-"+self.instance_name+"-"))
         else:
             return week_key
+
+    def requirement_key_to_index(self):
+        """
+        Function to change all requirement keys to index
+        example: requirementOnMonday to 0
+        """
+        # change key of requirements to integers
+        # Monday --> 0
+        # Tuesday --> 1
+        # etc.
+        for value in self.weeks_data.values():
+            for requirements in value['requirements']:
+                translate_req = {}
+                for key in requirements.keys():
+                    if key.startswith("requirementOn"):
+                        translate_req[key] = self.weekday_to_index(
+                            key.removeprefix("requirementOn"))
+
+                for old, new in translate_req.items():
+                    requirements[new] = requirements.pop(old)
+
+    def abbreviate_shifts_skills_week_data(self):
+        """
+        Abbreviate shift type and skills in week data dicts
+        """
+        for value in self.weeks_data.values():
+            for requirements in value['requirements']:
+                for key, value in requirements.items():
+                    if key == 'shiftType':
+                        requirements[key] = self.abbreviate_shift_type(value)
+
+                    if key == 'skill':
+                        requirements[key] = self.abbreviate_skills(value)
+
+    def abbreviate_shifts_skills_scenario_data(self):
+        """
+        Abbreviate shift type and skills in scenario data dicts
+        """
+        for s_type in self.scenario_data['shiftTypes']:
+            s_type['id'] = self.abbreviate_shift_type(s_type['id'])
+
 
     def simplify_week_data(self):
         """
@@ -202,14 +250,30 @@ class Instance:
         for old, new in translate.items():
             self.weeks_data[new] = self.weeks_data.pop(old)
 
+        # changes keys of weekly requirements
+        self.requirement_key_to_index()
+
+        # abbreviate shift type and skills
+        self.abbreviate_shifts_skills_week_data()
+
+
+
+
+    def simplify_scenario_data(self):
+        """
+        Function to simplify scenario data
+        """
         # save first letter of shift type as capital
+        self.abbreviate_shifts_skills_scenario_data()
 
         # save first letter of skill as lower case
         # change in list of skills
+        save_skills = self.scenario_data["skills"]
         self.scenario_data["skills"] = [self.abbreviate_skills(skill)
                                         for skill in self.scenario_data["skills"]]
 
         # change skills for each nurse
+        # for key, value in self.scenario_data:
 
 settings = Settings()
 instance = Instance(settings)
@@ -218,25 +282,6 @@ scenario = Scenario(settings, instance)
 #instance.load_instances()
 # pprint.pprint(instance.history_data)
 # pprint.pprint(instance.scenario_data)
-pprint.pprint(instance.weeks_data)
-pprint.pprint(scenario.scenario_data)
+# pprint.pprint(instance.weeks_data)
+# pprint.pprint(scenario.scenario_data)
 
-"""
-def getListOfFiles(dirName):
-    # create a list of file and sub directories
-    # names in the given directory
-    listOfFile = [pos_json for pos_json in os.listdir(dirName) if pos_json.endswith('.json')]
-    allFiles = list()
-    # Iterate over all the entries
-    for entry in listOfFile:
-        # Create full path
-        fullPath = os.path.join(dirName, entry)
-
-        # If entry is a directory then get the list of files in this directory
-        if os.path.isdir(fullPath):
-            allFiles = allFiles + getListOfFiles(fullPath)
-        else:
-            allFiles.append(fullPath)
-
-    return allFiles
-"""

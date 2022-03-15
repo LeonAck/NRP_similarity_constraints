@@ -16,6 +16,7 @@ class Scenario:
         self.source = settings.source
         # initialize instance data
         self.weeks_data = instance.weeks_data
+        self.weeks = settings.weeks
         self.history_data = instance.history_data
         self.scenario_data = instance.scenario_data
         self.problem_horizon = instance.problem_horizon
@@ -48,7 +49,6 @@ class Scenario:
         """
         return None
 
-
     def initialize_shift_types(self):
         """
         Class to get shift types in the solution
@@ -70,17 +70,42 @@ class Scenario:
         :return:
         array with dimensions num_days x num_shift_types x num_skill types
         """
-        request_array = np.zeros((self.problem_horizon * 7,
+        request_array = np.zeros((len(self.weeks) * 7,
                                   self.num_shift_types,
                                   self.num_skills))
 
-        # for value in self.scenario_data.values():
-        #     for day, requirement in value.items():
-        #         day_index = self.weekday_to_index(
-        #             day.removeprefix("requirementOn"))
+        # create objects with indices
+        s_type_indices = self.list_to_index(self.shift_types)
+        skill_indices = self.list_to_index(self.skills)
 
+        for key, value in self.weeks_data.items():
+            for req_dict in value['requirements']:
+                for k, v in req_dict.items():
+                    if k == "shiftType":
+                        s_type_index = s_type_indices[v]
+                    elif k == "skill":
+                        skill_index = skill_indices[v]
+
+                for k, v in req_dict.items():
+                    print(k)
+                    if isinstance(k, int):
+                        request_array[(key - 1) * 7 + k, s_type_index,
+                        skill_index] = v['minimum']
 
         return request_array
+
+    def list_to_index(self, list_obj):
+        """
+        Give index to each skill based on number of skills
+        """
+        # create object to store list_items and their index
+        index_dict = {}
+        index = 0
+        for item in list_obj:
+            index_dict[item] = index
+            index += 1
+
+        return index_dict
 
 
 class Contract:
