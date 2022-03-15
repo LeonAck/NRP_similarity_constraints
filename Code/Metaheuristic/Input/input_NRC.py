@@ -96,13 +96,12 @@ class Instance:
         else:
             return scenario_file
 
-
     def get_week_files(self, list_of_files):
         """
         Function to get selection of week files chosen in settings
         """
         # TODO must still add way to keep the order of the week files
-        weeks_strings = [str(i) for i in self.weeks]
+        weeks_strings = ["-"+str(i) for i in self.weeks]
         return [file for file in list_of_files if file.startswith("WD")
                 and file.endswith(tuple(weeks_strings))]
 
@@ -285,3 +284,5 @@ scenario = Scenario(settings, instance)
 # pprint.pprint(instance.weeks_data)
 # pprint.pprint(scenario.scenario_data)
 
+pprint.pprint(scenario.weeks_data)
+pprint.pprint(scenario.skill_requests)
