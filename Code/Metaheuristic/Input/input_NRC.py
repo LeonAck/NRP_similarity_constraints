@@ -4,6 +4,7 @@ import os
 from settings import Settings
 from scenario import Scenario
 
+
 class Instance:
     """
     Class to store the instance data
@@ -46,7 +47,7 @@ class Instance:
         :return:
         number of weeks (int)
         """
-        return int(self.instance_name[5:])
+        return len(self.weeks)
 
     def instance_to_path(self):
         """
@@ -255,9 +256,6 @@ class Instance:
         # abbreviate shift type and skills
         self.abbreviate_shifts_skills_week_data()
 
-
-
-
     def simplify_scenario_data(self):
         """
         Function to simplify scenario data
@@ -286,3 +284,4 @@ scenario = Scenario(settings, instance)
 
 pprint.pprint(scenario.weeks_data)
 pprint.pprint(scenario.skill_requests)
+print(scenario.num_days_in_horizon)
