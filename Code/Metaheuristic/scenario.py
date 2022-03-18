@@ -1,5 +1,7 @@
 import numpy as np
-from Employee import EmployeeCollection
+from employee import EmployeeCollection
+from skills import SkillCollection
+from skill_set import SkillSetCollection
 
 class Scenario:
     """
@@ -25,18 +27,17 @@ class Scenario:
         # extract problem data
         self.num_days_in_horizon = self.problem_horizon * 7
 
-        # extract employee data
-        employees_spec = self.scenario_data["nurses"]
-        self.employees = EmployeeCollection().initialize_employees(self, employees_spec)
-
         # extract shift type data
         self.shift_types = self.initialize_shift_types()
         self.num_shift_types = len(self.shift_types)
 
-        # extract skill data
-        self.skills = self.scenario_data['skills']
-        self.num_skills = len(self.skills)
-        self.skill_sets = self.initialize_skill_sets()
+        # initialize skills and skill_sets collection
+        self.skill_collection = SkillCollection(self.scenario_data)
+        self.skill_set_collection = SkillSetCollection(self.scenario_data).initialize_skill_sets()
+
+        # extract employee data
+        employees_spec = self.scenario_data["nurses"]
+        self.employees = EmployeeCollection().initialize_employees(self, employees_spec)
 
         # extract skill requets
         self.skill_requests = self.initialize_skill_requests()
@@ -63,15 +64,6 @@ class Scenario:
         """
         return [s_type['id'] for s_type in self.scenario_data['shiftTypes']]
 
-    def initialize_skill_sets(self):
-        """
-        Function to get present skill sets in scenario
-        """
-        skills_array = np.array([set['skills'] for set in
-                                 self.scenario_data['nurses']], dtype=object)
-        skills_array = np.unique(skills_array)
-        return sorted(np.unique(skills_array), key=lambda x: len(x))
-
     def initialize_skill_requests(self):
         """
         Create array of skill requests
@@ -79,12 +71,12 @@ class Scenario:
         array with dimensions num_days x num_shift_types x num_skill types
         """
         request_array = np.zeros((len(self.weeks) * 7,
-                                  self.num_skills,
+                                  self.skill_collection.num_skills,
                                   self.num_shift_types,))
 
         # create objects with indices
         s_type_indices = self.list_to_index(self.shift_types)
-        skill_indices = self.list_to_index(self.skills)
+        skill_indices = self.list_to_index(self.skill_collection.skills)
 
         for key, value in self.weeks_data.items():
             for req_dict in value['requirements']:
@@ -95,7 +87,6 @@ class Scenario:
                         skill_index = skill_indices[v]
 
                 for k, v in req_dict.items():
-                    print(k)
                     if isinstance(k, int):
                         request_array[(key - 1) * 7 + k,
                         skill_index, s_type_index] = v['minimum']

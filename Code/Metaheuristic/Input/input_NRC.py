@@ -3,7 +3,7 @@ import pprint # to pretty print
 import os
 from settings import Settings
 from scenario import Scenario
-
+from solution import Solution
 
 class Instance:
     """
@@ -28,12 +28,8 @@ class Instance:
         self.load_instance()
 
         # simplify notation
-        pprint.pprint(self.weeks_data)
         self.simplify_week_data()
         self.simplify_scenario_data()
-
-
-    #def get_instance_dict(self): return self.instance_dict
 
     def set_problem_size(self):
         """
@@ -182,7 +178,6 @@ class Instance:
         if weekday_string == "Sunday":
             return 6
         else:
-            print(weekday_string)
             raise Exception("This is not a weekday")
 
     def simplify_week_key(self, week_key):
@@ -271,10 +266,15 @@ class Instance:
 
         # change skills for each nurse
         # for key, value in self.scenario_data:
+        for n_index, nurse in enumerate(self.scenario_data['nurses']):
+            for s_index, skill in enumerate(nurse['skills']):
+                self.scenario_data['nurses'][
+                    n_index]['skills'][s_index] = self.abbreviate_skills(skill)
 
 settings = Settings()
 instance = Instance(settings)
 scenario = Scenario(settings, instance)
+solution = Solution(scenario)
 
 #instance.load_instances()
 # pprint.pprint(instance.history_data)
@@ -282,6 +282,7 @@ scenario = Scenario(settings, instance)
 # pprint.pprint(instance.weeks_data)
 # pprint.pprint(scenario.scenario_data)
 
-pprint.pprint(scenario.weeks_data)
-pprint.pprint(scenario.skill_requests)
-print(scenario.num_days_in_horizon)
+# pprint.pprint(scenario.weeks_data)
+# pprint.pprint(scenario.skill_requests)
+# print(scenario.num_days_in_horizon)
+# print(scenario.employees._collection['Patrick'].has_skill("h"))

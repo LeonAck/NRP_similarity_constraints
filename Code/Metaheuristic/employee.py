@@ -6,7 +6,7 @@ class EmployeeCollection:
     Class to collect all employees
     """
 
-    def __init__(self, input_data=None, employees=None):
+    def __init__(self, employees=None):
         if employees is None:
             employees = {}
         self._collection = employees
@@ -15,7 +15,7 @@ class EmployeeCollection:
         """
         Collect employees with specific skill
         """
-        return EmployeeCollection([employee for employee in self._collection if employee.has_skill(skill)])
+        return EmployeeCollection([employee for employee in self._collection.values() if employee.has_skill(skill)])
 
     def initialize_employees(self, scenario, employees_spec):
         """
@@ -43,7 +43,7 @@ class EmployeeCollection:
         :return:
         employee_index
         """
-        return random.choice(self._collection)
+        return random.choice(list(self._collection))
 
 
 class Employee:
@@ -57,8 +57,9 @@ class Employee:
         # information from scenario
         self.id = employee_spec['id']
         self.contract_type = employee_spec['contract']
-        self.skill_set = employee_spec['skills']
+        self.skills = employee_spec['skills']
         self.scenario = scenario
+        self.skill_set_id = self.set_skill_set()
 
         # information from history
         self.history_lastAssignedShiftType = None
@@ -78,15 +79,35 @@ class Employee:
         # of per shift type opslaan als object
         self.day_off_stretches = None
 
+    def set_skill_set(self):
+        """
+        Function to attach object of skill_set collection to employee
+        """
+        # find corresponding skill_set object
+        for index, skill_set in self.scenario.skill_set_collection._collection.items():
+            if self.skills == skill_set.skills_in_set:
+                index_to_set = index
+                break
+        return index_to_set
+
     def update_shift_assignment(self, day_index, s_type_index):
         """
         Update shift assignment of employee
         """
         self.shift_assignments[day_index] = s_type_index
 
-
     def has_skill(self, skill):
-        return skill in self.skill_set
+        return skill in self.skills
+
+    def is_eligible(self):
+        """
+        Get employees that can work a certain skill request
+        Have the right skill
+        Are available on that day
+        :return:
+        True or False
+        """
+        return None
 
     def create_assignments_array(self, scenario):
         """
@@ -100,5 +121,3 @@ class Employee:
         array of zeros
         """
         return np.zeros(scenario.num_days_in_horizon)
-
-
