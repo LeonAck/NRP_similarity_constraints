@@ -7,15 +7,36 @@ class EmployeeCollection:
     """
 
     def __init__(self, employees=None):
-        if employees is None:
+
+        if employees is not None:
+            employees = self.create_dict_from_list(employees)
+        else:
             employees = {}
+
         self._collection = employees
+
+    def __len__(self):
+        return len(self._collection)
 
     def get_employee_w_skill(self, skill):
         """
         Collect employees with specific skill
         """
         return EmployeeCollection([employee for employee in self._collection.values() if employee.has_skill(skill)])
+
+    def create_dict_from_list(self, list):
+        """
+        Create dict from employee list
+        """
+        employee_dict = {
+        }
+        for employee in list:
+            employee_dict[employee.id] = employee
+
+        return employee_dict
+
+    def exclude_employee(self, employee_id_to_exclude):
+        return EmployeeCollection([employee for employee in self._collection.values() if employee.id is not employee_id_to_exclude])
 
     def initialize_employees(self, scenario, employees_spec):
         """
@@ -29,6 +50,7 @@ class EmployeeCollection:
             # for each employee_spec create an instance of the Employee class
             for employee_spec in employees_spec:
                 self._collection[employee_spec['id']] = Employee(scenario, employee_spec)
+
         except Exception as e:
             raise type(e)(str(e) +
                           ' seems to trip up the import of user with ID = ' + employees_spec.get("id",
@@ -37,13 +59,19 @@ class EmployeeCollection:
         #self._collection.sort(key=lambda employee: employee.id)
         return self
 
-    def randomly_pick(self):
+    def random_pick(self):
         """
         Randomly pick one employee from the collection
         :return:
         employee_index
         """
         return random.choice(list(self._collection))
+
+    def get_ids(self):
+        """
+        Function to get list of ideas
+        """
+        return [employee.id for employee in self._collection.values()]
 
 
 class Employee:
@@ -94,7 +122,7 @@ class Employee:
         """
         Update shift assignment of employee
         """
-        self.shift_assignments[day_index] = s_type_index
+        self.shift_assignments[day_index] = s_type_index + 1
 
     def has_skill(self, skill):
         return skill in self.skills

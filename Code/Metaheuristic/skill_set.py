@@ -14,6 +14,13 @@ class SkillSetCollection:
         # how do I want to initialize?
         self.unique_skill_sets = self.get_unique_skill_sets()
 
+    def get_skill_start_indices(self):
+        return [value.start_index for value in self._collection.values()]
+
+    def get_skill_start_index_of_set(self, skill_set_index):
+        start_indices = self.get_skill_start_indices()
+        return start_indices[skill_set_index]
+
     def get_unique_skill_sets(self):
         """
         Function to get present skill sets in scenario
@@ -78,7 +85,7 @@ class SkillSet:
         Collect all skill ids in set
         """
 
-    def set_start_index(self):
+    def get_start_index(self):
         """
         Set start index in skill counter
         """

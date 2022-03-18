@@ -34,10 +34,12 @@ class Scenario:
         # initialize skills and skill_sets collection
         self.skill_collection = SkillCollection(self.scenario_data)
         self.skill_set_collection = SkillSetCollection(self.scenario_data).initialize_skill_sets()
+        self.skills = self.scenario_data['skills']
+        self.skill_sets = self.get_unique_skill_sets()
 
         # extract employee data
-        employees_spec = self.scenario_data["nurses"]
-        self.employees = EmployeeCollection().initialize_employees(self, employees_spec)
+        self.employees_spec = self.scenario_data["nurses"]
+        self.employees = EmployeeCollection().initialize_employees(self, self.employees_spec)
 
         # extract skill requets
         self.skill_requests = self.initialize_skill_requests()
@@ -49,6 +51,17 @@ class Scenario:
         self.forbidden_shift_type_successions = None
 
        # do I want to add skill sets as well?
+
+    # TODO remove function
+    def get_unique_skill_sets(self):
+        """
+        Function to get present skill sets in scenario
+        """
+        skills_array = np.array([set['skills'] for set in
+                                 self.scenario_data['nurses']], dtype=object)
+        skills_array = np.unique(skills_array)
+        return sorted(np.unique(skills_array), key=lambda x: len(x))
+
 
     def collect_contracts(self):
         """

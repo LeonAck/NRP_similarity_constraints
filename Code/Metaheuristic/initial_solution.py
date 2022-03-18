@@ -2,7 +2,7 @@
 Set to create initial solution
 """
 from solution import Solution
-
+from employee import EmployeeCollection
 
 class InitialSolution(Solution):
     """
@@ -15,8 +15,9 @@ class InitialSolution(Solution):
 
         self.shift_requirement = None
         #self.solution = Solution
+        self.skill_counter = self.assign_skill_requests()
 
-    def assign_skill_requests(self, scenario):
+    def assign_skill_requests(self):
         """
         Function to assign skill request to employees
         """
@@ -24,25 +25,31 @@ class InitialSolution(Solution):
         # need employees grouped based on skill
         # creation of employee classes
         # skill counter object and way to fill object
-        for day_index, request_per_day in enumerate(scenario.skill_requests):
+        for day_index, request_per_day in enumerate(self.scenario.skill_requests):
             # create collection of nurses available on day
+            employees_available_on_day = EmployeeCollection().initialize_employees(self.scenario, self.scenario.employees_spec)
+
             for skill_index, request_per_day_per_skill in enumerate(request_per_day):
-                # update to remove employees that are assigned on that day
-                employees_with_skill = scenario.employees.get_employee_w_skill(scenario.skills[skill_index])
+                # create set of employees with skill that are available on that day
+                employees_with_skill = employees_available_on_day.get_employee_w_skill(self.scenario.skills[skill_index])
                 for s_type_index, request_per_day_per_skill_per_s_type in enumerate(request_per_day_per_skill):
-                    print(request_per_day_per_skill_per_s_type)
                     n = request_per_day_per_skill_per_s_type
                     while n > 0:
                         # pick one of available nurses
                         employee_id = employees_with_skill.random_pick()
                         # add shift type to nurse
-                        scenario.employees._collection[employee_id].update_shift_assignment(
+                        self.scenario.employees._collection[employee_id].update_shift_assignment(
                             day_index, s_type_index)
                         # TODO update other nurses information #########
                         # update skill counter
-
-                        # remove nurse from available nurses for skills
+                        self.update_skill_counter(day_index, s_type_index,
+                                                  skill_index,
+                                                  self.scenario.employees._collection[employee_id].skill_set_id)
                         # remove nurse from available nurses for day
+
+                        employees_available_on_day = employees_available_on_day.exclude_employee(employee_id)
+                        # remove nurse from available nurses for skills
+                        employees_with_skill = employees_with_skill.exclude_employee(employee_id)
 
                         # remove skill request
                         n -= 1

@@ -4,6 +4,8 @@ import os
 from settings import Settings
 from scenario import Scenario
 from solution import Solution
+from initial_solution import InitialSolution
+
 
 class Instance:
     """
@@ -274,7 +276,7 @@ class Instance:
 settings = Settings()
 instance = Instance(settings)
 scenario = Scenario(settings, instance)
-solution = Solution(scenario)
+init_solution = InitialSolution(scenario)
 
 #instance.load_instances()
 # pprint.pprint(instance.history_data)
