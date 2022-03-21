@@ -21,6 +21,13 @@ class Settings:
         # problem settings
         self.soft_constraints = None
         self.hard_constraints = None
+        self.rule_settings = {
+            "H1": {
+                "is_mandatory": True,
+                "is_active": True,
+                "penalty": 0
+            }
+        }
 
         # weights per soft constraint
 

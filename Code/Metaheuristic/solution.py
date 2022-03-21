@@ -77,12 +77,12 @@ class Solution:
         else:
             self.skill_counter[day_index, s_type_index, skill_index_to_change] -= increment
 
-    def sum_skill_counter_per_skill(self, skill_index):
+    def check_if_working_day(self, employee_id, d_index):
         """
-        Function to add the skill counter for a given skill
+        Check if nurse works on specific day
         :return:
-        sum (int)
+        True or False
         """
-
+        return self.shift_assignments[employee_id][d_index] > 0
 
 
