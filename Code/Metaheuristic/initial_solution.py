@@ -15,7 +15,7 @@ class InitialSolution(Solution):
 
         self.shift_requirement = None
         #self.solution = Solution
-        self.skill_counter = self.assign_skill_requests()
+        self.assign_skill_requests()
 
     def assign_skill_requests(self):
         """
@@ -46,7 +46,6 @@ class InitialSolution(Solution):
                                                   skill_index,
                                                   self.scenario.employees._collection[employee_id].skill_set_id)
                         # remove nurse from available nurses for day
-
                         employees_available_on_day = employees_available_on_day.exclude_employee(employee_id)
                         # remove nurse from available nurses for skills
                         employees_with_skill = employees_with_skill.exclude_employee(employee_id)

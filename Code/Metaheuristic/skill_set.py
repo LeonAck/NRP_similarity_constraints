@@ -39,7 +39,18 @@ class SkillSetCollection:
 
         return self._collection
 
-    def initialize_skill_sets(self):
+    def get_indices_in_skill_counter(self, skill):
+        """
+        For a given skill, get the indices in the skill_counter object
+        """
+        indices = []
+        for skill_set in self._collection:
+            if skill_set.check_if_skill_in_set(skill):
+                # index of skill is start_index + index of skill in set
+                indices.append(skill_set.start_index+skill_set.skills_in_set.index(skill))
+        return indices
+
+    def initialize_skill_sets(self, skill_collection):
         """
         Function to create dictionary out of skill_sets
         """
@@ -48,7 +59,7 @@ class SkillSetCollection:
             # create start_index for skill_set within skill_Counter object
             start_index = 0
             for index, skill_set in enumerate(self.unique_skill_sets):
-                self._collection[index] = SkillSet(index, skill_set, start_index)
+                self._collection[index] = SkillSet(index, skill_set, start_index, skill_collection)
                 start_index += len(skill_set)
         except Exception as e:
             raise type(e)(str(e) +
@@ -64,28 +75,35 @@ class SkillSet:
     Class to store skillset information
     """
 
-    def __init__(self, index, set_object, start_index):
+    def __init__(self, index, set_object, start_index, skill_collection):
         self.id = index
         self.skills_in_set = set_object
-
+        self.skill_collection = skill_collection
         # information to find in skill counter
         self.start_index = start_index
-        self.skill_index_in_set = {}
+        self.skill_indices_in_set = self.get_indices_in_set()
 
     def __len__(self):
         return len(self.skills_in_set)
 
-    def get_index_in_set(self, skill):
+    def get_indices_in_set(self):
         """
-        For a skill, find the index in a skill set
+        Save all indices in the set
         """
+        indices = []
+        for skill in self.skills_in_set:
+            indices.append(self.skill_collection.skills.index(skill))
+        return indices
 
-    def get_skills_in_set(self):
+    def check_if_skill_in_set(self, skill):
         """
         Collect all skill ids in set
         """
+        return skill in self.skills_in_set
 
     def get_start_index(self):
         """
         Set start index in skill counter
         """
+        pass
+

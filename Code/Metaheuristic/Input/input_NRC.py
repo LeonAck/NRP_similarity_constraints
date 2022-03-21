@@ -5,7 +5,7 @@ from settings import Settings
 from scenario import Scenario
 from solution import Solution
 from initial_solution import InitialSolution
-
+from Check.check_function_feasibility import FeasibilityCheck
 
 class Instance:
     """
@@ -277,7 +277,7 @@ settings = Settings()
 instance = Instance(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-
+FeasibilityCheck().h2_check_function(init_solution, scenario)
 #instance.load_instances()
 # pprint.pprint(instance.history_data)
 # pprint.pprint(instance.scenario_data)

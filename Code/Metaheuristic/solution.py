@@ -24,7 +24,7 @@ class Solution:
         dim_skills = sum([len(skill_set) for skill_set in self.scenario.skill_set_collection._collection.values()])
         return np.zeros((self.scenario.num_days_in_horizon, self.scenario.num_shift_types, dim_skills))
 
-    def update_skill_counter(self, day_index, s_type_index, skill_index, skill_set_index, add = True, increment = 1):
+    def update_skill_counter(self, day_index, s_type_index, skill_index, skill_set_index, add=True, increment=1):
         """
         Function to change skill counter upon assignment
         :return:
@@ -36,6 +36,13 @@ class Solution:
             self.skill_counter[day_index, s_type_index, skill_index_to_change] += increment
         else:
             self.skill_counter[day_index, s_type_index, skill_index_to_change] -= increment
+
+    def sum_skill_counter_per_skill(self, skill_index):
+        """
+        Function to add the skill counter for a given skill
+        :return:
+        sum (int)
+        """
 
 
 

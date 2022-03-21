@@ -33,7 +33,11 @@ class Scenario:
 
         # initialize skills and skill_sets collection
         self.skill_collection = SkillCollection(self.scenario_data)
-        self.skill_set_collection = SkillSetCollection(self.scenario_data).initialize_skill_sets()
+        self.skill_set_collection = SkillSetCollection(self.scenario_data
+                                                       ).initialize_skill_sets(self.skill_collection)
+        # create skill object for each skill
+        self.skill_collection.initialize_skills(self.skill_set_collection)
+
         self.skills = self.scenario_data['skills']
         self.skill_sets = self.get_unique_skill_sets()
 
@@ -41,7 +45,7 @@ class Scenario:
         self.employees_spec = self.scenario_data["nurses"]
         self.employees = EmployeeCollection().initialize_employees(self, self.employees_spec)
 
-        # extract skill requets
+        # extract skill requests
         self.skill_requests = self.initialize_skill_requests()
 
         # extract contract information
