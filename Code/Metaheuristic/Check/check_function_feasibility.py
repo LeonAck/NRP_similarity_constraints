@@ -42,6 +42,18 @@ class FeasibilityCheck:
         return flag
 
     def assignments_equals_skill_counter(self, solution, scenario):
-        return None
-
+        """
+        Function to check whether number of assignments to a shift
+        equals the number of assigned in the skill_counter
+        """
+        flag = True
+        for d_index, day_counts in enumerate(solution.skill_counter):
+            tot_day = np.sum(day_counts)
+            tot_assigned = 0
+            for employee in scenario.employees._collection.values():
+                if employee.shift_assignments[d_index] > 0:
+                    tot_assigned += 1
+            if tot_day != tot_assigned:
+                flag = False
+        return flag
 
