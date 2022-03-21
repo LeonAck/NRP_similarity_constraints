@@ -31,7 +31,8 @@ class Solution:
         skill_counter object
         """
         # calc where to change the skill counter
-        skill_index_to_change = self.scenario.skill_set_collection._collection[skill_set_index].start_index + skill_index
+        skill_index_to_change = self.scenario.skill_set_collection._collection[skill_set_index].start_index +\
+                    self.scenario.skill_set_collection._collection[skill_set_index].get_index_in_set(skill_index)
         if add:
             self.skill_counter[day_index, s_type_index, skill_index_to_change] += increment
         else:

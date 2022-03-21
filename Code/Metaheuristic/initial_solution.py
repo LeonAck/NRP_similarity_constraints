@@ -3,7 +3,8 @@ Set to create initial solution
 """
 from solution import Solution
 from employee import EmployeeCollection
-
+from Check.check_function_feasibility import FeasibilityCheck
+import numpy as np
 class InitialSolution(Solution):
     """
     Class to create initial solution
@@ -30,6 +31,7 @@ class InitialSolution(Solution):
             employees_available_on_day = EmployeeCollection().initialize_employees(self.scenario, self.scenario.employees_spec)
 
             for skill_index, request_per_day_per_skill in enumerate(request_per_day):
+
                 # create set of employees with skill that are available on that day
                 employees_with_skill = employees_available_on_day.get_employee_w_skill(self.scenario.skills[skill_index])
                 for s_type_index, request_per_day_per_skill_per_s_type in enumerate(request_per_day_per_skill):
@@ -52,6 +54,11 @@ class InitialSolution(Solution):
 
                         # remove skill request
                         n -= 1
-
+                    FeasibilityCheck().check_understaffing(solution=self,
+                                                           scenario=self.scenario,
+                                                           day_index=day_index,
+                                                           s_type_index=s_type_index,
+                                                           skill_index=skill_index,
+                                                           skill_request=request_per_day_per_skill_per_s_type)
         # wil ik hier iets returnen?
         return None

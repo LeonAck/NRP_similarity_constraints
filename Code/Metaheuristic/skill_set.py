@@ -44,7 +44,7 @@ class SkillSetCollection:
         For a given skill, get the indices in the skill_counter object
         """
         indices = []
-        for skill_set in self._collection:
+        for skill_set in self._collection.values():
             if skill_set.check_if_skill_in_set(skill):
                 # index of skill is start_index + index of skill in set
                 indices.append(skill_set.start_index+skill_set.skills_in_set.index(skill))
@@ -101,9 +101,9 @@ class SkillSet:
         """
         return skill in self.skills_in_set
 
-    def get_start_index(self):
+    def get_index_in_set(self, skill_index):
         """
-        Set start index in skill counter
+        Get index of skill in set based on global skill_index
         """
-        pass
+        return self.skill_indices_in_set.index(skill_index)
 

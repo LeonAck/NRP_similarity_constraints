@@ -1,6 +1,7 @@
 import json
 import pprint # to pretty print
 import os
+import numpy as np
 from settings import Settings
 from scenario import Scenario
 from solution import Solution
