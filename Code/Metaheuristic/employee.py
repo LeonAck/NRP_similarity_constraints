@@ -74,7 +74,6 @@ class EmployeeCollection:
         """
         return [employee.id for employee in self._collection.values()]
 
-
 class Employee:
     """
     Class to store employee information
@@ -99,7 +98,6 @@ class Employee:
 
         # information to keep track of solution
         self.total_assignments = None
-        self.shift_assignments = self.create_assignments_array(self.scenario)
         self.working_days = None
         self.work_stretches = None
         self.working_weekends_set = None
@@ -119,12 +117,6 @@ class Employee:
                 break
         return index_to_set
 
-    def update_shift_assignment(self, day_index, s_type_index):
-        """
-        Update shift assignment of employee
-        """
-        self.shift_assignments[day_index] = s_type_index + 1
-
     def has_skill(self, skill):
         return skill in self.skills
 
@@ -138,15 +130,4 @@ class Employee:
         """
         return None
 
-    def create_assignments_array(self, scenario):
-        """
-        Create an array with length of the number of days
-        Each element in the array store the assignment of the nurse on that day
-        0 --> off
-        1 --> s_type_1
-        2 --> s_type_2
-        etc.
-        :return:
-        array of zeros
-        """
-        return np.zeros(scenario.num_days_in_horizon)
+

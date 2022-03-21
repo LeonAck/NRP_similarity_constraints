@@ -50,10 +50,13 @@ class FeasibilityCheck:
         for d_index, day_counts in enumerate(solution.skill_counter):
             tot_day = np.sum(day_counts)
             tot_assigned = 0
-            for employee in scenario.employees._collection.values():
-                if employee.shift_assignments[d_index] > 0:
+            for shift_assignments in solution.shift_assignments.values():
+                if shift_assignments[d_index] > 0:
                     tot_assigned += 1
             if tot_day != tot_assigned:
                 flag = False
+                raise ValueError('tot daily counter {} is not equal to assigned to nurses{}'.format(
+                    tot_day, tot_assigned))
+
         return flag
 

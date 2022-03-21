@@ -40,8 +40,7 @@ class InitialSolution(Solution):
                         # pick one of available nurses
                         employee_id = employees_with_skill.random_pick()
                         # add shift type to nurse
-                        self.scenario.employees._collection[employee_id].update_shift_assignment(
-                            day_index, s_type_index)
+                        self.replace_shift_assignment(employee_id, day_index, s_type_index)
                         # TODO update other nurses information #########
                         # update skill counter
                         self.update_skill_counter(day_index, s_type_index,
