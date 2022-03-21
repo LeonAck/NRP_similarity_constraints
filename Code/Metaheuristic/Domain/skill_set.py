@@ -7,7 +7,7 @@ class SkillSetCollection:
     def __init__(self, scenario_data, skill_sets=None):
         if skill_sets is None:
             skill_sets = {}
-        self._collection = skill_sets
+        self.collection = skill_sets
 
         self.scenario_data = scenario_data
 
@@ -15,7 +15,7 @@ class SkillSetCollection:
         self.unique_skill_sets = self.get_unique_skill_sets()
 
     def get_skill_start_indices(self):
-        return [value.start_index for value in self._collection.values()]
+        return [value.start_index for value in self.collection.values()]
 
     def get_skill_start_index_of_set(self, skill_set_index):
         start_indices = self.get_skill_start_indices()
@@ -34,17 +34,17 @@ class SkillSetCollection:
         """
         Starting index of each skill set in array counter
         """
-        for index, skill_set in enumerate(self._collection):
+        for index, skill_set in enumerate(self.collection):
             pass
 
-        return self._collection
+        return self.collection
 
     def get_indices_in_skill_counter(self, skill):
         """
         For a given skill, get the indices in the skill_counter object
         """
         indices = []
-        for skill_set in self._collection.values():
+        for skill_set in self.collection.values():
             if skill_set.check_if_skill_in_set(skill):
                 # index of skill is start_index + index of skill in set
                 indices.append(skill_set.start_index+skill_set.skills_in_set.index(skill))
@@ -59,7 +59,7 @@ class SkillSetCollection:
             # create start_index for skill_set within skill_Counter object
             start_index = 0
             for index, skill_set in enumerate(self.unique_skill_sets):
-                self._collection[index] = SkillSet(index, skill_set, start_index, skill_collection)
+                self.collection[index] = SkillSet(index, skill_set, start_index, skill_collection)
                 start_index += len(skill_set)
         except Exception as e:
             raise type(e)(str(e) +
@@ -106,4 +106,6 @@ class SkillSet:
         Get index of skill in set based on global skill_index
         """
         return self.skill_indices_in_set.index(skill_index)
+
+
 

@@ -14,6 +14,16 @@ class Solution:
         # employee shift assignments
         self.shift_assignments = self.create_shift_assignments()
 
+        # information to keep track of solution per nurse
+        self.total_assignments = None
+        self.working_days = None
+        self.work_stretches = None
+        self.working_weekends_set = None
+        self.number_working_weekends = None
+        self.shift_stretches = None  # nog bedenken of dit samenkomt in een enkel object
+        # of per shift type opslaan als object
+        self.day_off_stretches = None
+
     def create_shift_assignments(self):
         """
         Create dict to store employee shift assignments
@@ -38,7 +48,7 @@ class Solution:
         Array with dimensions num_days x num_shift_types x (sum of skill sets x skills per skill set)
         """
 
-        dim_skills = sum([len(skill_set) for skill_set in self.scenario.skill_set_collection._collection.values()])
+        dim_skills = sum([len(skill_set) for skill_set in self.scenario.skill_set_collection.collection.values()])
         return np.zeros((self.scenario.num_days_in_horizon, self.scenario.num_shift_types, dim_skills))
 
     def replace_shift_assignment(self, employee_id, day_index, s_type_index):
@@ -60,8 +70,8 @@ class Solution:
         skill_counter object
         """
         # calc where to change the skill counter
-        skill_index_to_change = self.scenario.skill_set_collection._collection[skill_set_index].start_index +\
-                    self.scenario.skill_set_collection._collection[skill_set_index].get_index_in_set(skill_index)
+        skill_index_to_change = self.scenario.skill_set_collection.collection[skill_set_index].start_index +\
+                    self.scenario.skill_set_collection.collection[skill_set_index].get_index_in_set(skill_index)
         if add:
             self.skill_counter[day_index, s_type_index, skill_index_to_change] += increment
         else:

@@ -2,9 +2,10 @@
 Set to create initial solution
 """
 from solution import Solution
-from employee import EmployeeCollection
+from Domain.employee import EmployeeCollection
 from Check.check_function_feasibility import FeasibilityCheck
-import numpy as np
+
+
 class InitialSolution(Solution):
     """
     Class to create initial solution

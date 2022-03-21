@@ -1,12 +1,11 @@
 import json
-import pprint # to pretty print
 import os
-import numpy as np
-from settings import Settings
-from scenario import Scenario
-from solution import Solution
-from initial_solution import InitialSolution
+from Domain.settings import Settings
+from Domain.scenario import Scenario
+from Invoke.Initial_solution.initial_solution import InitialSolution
 from Check.check_function_feasibility import FeasibilityCheck
+from operators import sk_request_to_day_off
+
 
 class Instance:
     """
@@ -280,6 +279,10 @@ scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
 FeasibilityCheck().assignments_equals_skill_counter(init_solution, scenario)
 FeasibilityCheck().h2_check_function(init_solution, scenario)
+employee_id = "Stefaan"
+d_index = 5
+s_type_index = 2
+sk_request_to_day_off(init_solution, scenario.skill_set_collection, scenario.employees, employee_id, d_index, s_type_index)
 #instance.load_instances()
 # pprint.pprint(instance.history_data)
 # pprint.pprint(instance.scenario_data)

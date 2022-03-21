@@ -5,6 +5,6 @@ def run(settings, rules=None):
     Function to execute heuristic
     """
     if settings.source == "NRC":
-        Instance(settings)
+        instance = Instance(settings)
 
     return None

@@ -96,22 +96,12 @@ class Employee:
         self.history_numberOfConsecutiveWorkingDays = None
         self.history_numberOfWorkingWeekends = None
 
-        # information to keep track of solution
-        self.total_assignments = None
-        self.working_days = None
-        self.work_stretches = None
-        self.working_weekends_set = None
-        self.number_working_weekends = None
-        self.shift_stretches = None # nog bedenken of dit samenkomt in een enkel object
-        # of per shift type opslaan als object
-        self.day_off_stretches = None
-
     def set_skill_set(self):
         """
         Function to attach object of skill_set collection to employee
         """
         # find corresponding skill_set object
-        for index, skill_set in self.scenario.skill_set_collection._collection.items():
+        for index, skill_set in self.scenario.skill_set_collection.collection.items():
             if self.skills == skill_set.skills_in_set:
                 index_to_set = index
                 break
