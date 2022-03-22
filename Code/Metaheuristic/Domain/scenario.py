@@ -1,7 +1,8 @@
 import numpy as np
-from employee import EmployeeCollection
-from skills import SkillCollection
-from skill_set import SkillSetCollection
+from Domain.employee import EmployeeCollection
+from Domain.skills import SkillCollection
+from Domain.skill_set import SkillSetCollection
+
 
 class Scenario:
     """

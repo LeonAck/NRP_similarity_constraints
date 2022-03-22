@@ -1,5 +1,3 @@
-
-
 class RuleCollection:
     """
     A collection of rules. Behaves as a dictionary
@@ -33,8 +31,9 @@ class Rule:
         self.is_mandatory = None
         self.penalty = None
 
-    def add_violation_to_output(self, solution):
+    def check_if_violation(self, number_of_violations):
         """
         Function to put number of rule violations in output
         """
-        return None
+
+        return number_of_violations > 0

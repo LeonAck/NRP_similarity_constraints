@@ -13,7 +13,8 @@ class InitialSolution(Solution):
 
     def __init__(self, scenario):
         # inherit from parent class
-        Solution.__init__(self, scenario)
+        super().__init__(scenario)
+        self.scenario = scenario
 
         self.shift_requirement = None
         #self.solution = Solution

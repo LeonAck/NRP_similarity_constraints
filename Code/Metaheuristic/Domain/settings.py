@@ -14,7 +14,7 @@ class Settings:
         # settings for NRC-II data
         if self.source == "NRC":
             self.instance_name = "n005w4"
-            self.path = "/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
+            self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
             self.weeks = [1]
 
