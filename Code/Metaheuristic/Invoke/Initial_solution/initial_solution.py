@@ -42,12 +42,12 @@ class InitialSolution(Solution):
                         # pick one of available nurses
                         employee_id = employees_with_skill.random_pick()
                         # add shift type to nurse
-                        self.replace_shift_assignment(employee_id, day_index, s_type_index)
+                        self.replace_shift_assignment(employee_id, day_index, s_type_index, skill_index)
                         # TODO update other nurses information #########
                         # update skill counter
-                        self.update_skill_counter(day_index, s_type_index,
-                                                  skill_index,
-                                                  self.scenario.employees._collection[employee_id].skill_set_id)
+                        # self.update_skill_counter(day_index, s_type_index,
+                        #                           skill_index,
+                        #                           self.scenario.employees._collection[employee_id].skill_set_id)
                         # remove nurse from available nurses for day
                         employees_available_on_day = employees_available_on_day.exclude_employee(employee_id)
                         # remove nurse from available nurses for skills
@@ -55,11 +55,11 @@ class InitialSolution(Solution):
 
                         # remove skill request
                         n -= 1
-                    FeasibilityCheck().check_understaffing(solution=self,
-                                                           scenario=self.scenario,
-                                                           day_index=day_index,
-                                                           s_type_index=s_type_index,
-                                                           skill_index=skill_index,
-                                                           skill_request=request_per_day_per_skill_per_s_type)
+                    # FeasibilityCheck().check_understaffing(solution=self,
+                    #                                        scenario=self.scenario,
+                    #                                        day_index=day_index,
+                    #                                        s_type_index=s_type_index,
+                    #                                        skill_index=skill_index,
+                    #                                        skill_request=request_per_day_per_skill_per_s_type)
         # wil ik hier iets returnen?
         return None

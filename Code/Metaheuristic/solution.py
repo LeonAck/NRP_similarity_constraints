@@ -38,7 +38,9 @@ class Solution:
         """
         shift_assignments = {}
         for id in self.scenario.employees._collection.keys():
-            shift_assignments[id] = np.zeros(self.scenario.num_days_in_horizon)
+            # shift_assignments[id] = np.array([{'s_type': 0, 'sk_type': 0}] * self.scenario.num_days_in_horizon)
+            shift_assignments[id] = np.zeros((self.scenario.num_days_in_horizon,2))
+        # two dimensioal array
         return shift_assignments
 
     def create_skill_counter(self):
@@ -51,17 +53,18 @@ class Solution:
         dim_skills = sum([len(skill_set) for skill_set in self.scenario.skill_set_collection.collection.values()])
         return np.zeros((self.scenario.num_days_in_horizon, self.scenario.num_shift_types, dim_skills))
 
-    def replace_shift_assignment(self, employee_id, day_index, s_type_index):
+    def replace_shift_assignment(self, employee_id, day_index, s_type_index, sk_index):
         """
         Replace shift assignment of employee by new shift assignment
         """
-        self.shift_assignments[employee_id][day_index] = s_type_index + 1
+        self.shift_assignments[employee_id][day_index] = np.array([s_type_index + 1, sk_index])
+        #self.shift_assignments[employee_id][day_index] = {'s_type': s_type_index + 1, 'sk_type': sk_index}
 
     def remove_shift_assignment(self, employee_id, d_index):
         """
         Change shift assignment of employee to day off
         """
-        self.shift_assignments[employee_id][d_index] = 0
+        self.shift_assignments[employee_id][d_index, 0] = 0
 
     def update_skill_counter(self, day_index, s_type_index, skill_index, skill_set_index, add=True, increment=1):
         """
@@ -83,6 +86,6 @@ class Solution:
         :return:
         True or False
         """
-        return self.shift_assignments[employee_id][d_index] > 0
+        return self.shift_assignments[employee_id][d_index][0] > 0
 
 

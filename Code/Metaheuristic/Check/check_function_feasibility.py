@@ -27,17 +27,19 @@ class FeasibilityCheck:
         True or False
         """
         flag = 0
-        skill_id = scenario.skill_collection.index_to_id(skill_index)
+        #skill_id = scenario.skill_collection.index_to_id(skill_index)
         # sum assigned number of assigned nurse for day, skill and shift_type
-        total_skill_counter = np.sum(solution.skill_counter[day_index,
-                                                            s_type_index,
-                                                            scenario.skill_collection.collection[
-                                                                skill_id].indices_in_skill_counter])
+        # total_skill_counter = np.sum(solution.skill_counter[day_index,
+        #                                                     s_type_index,
+        #                                                     scenario.skill_collection.collection[
+        #                                                         skill_id].indices_in_skill_counter])
+
+        total_assigned = sum([np.array_equal(shift_assignment[day_index], np.array([s_type_index + 1, skill_index])) for shift_assignment in solution.shift_assignments.values()])
         # compare if equal to skill request
-        if skill_request != total_skill_counter:
-            flag += 1
+        if skill_request != total_assigned:
+            flag = False
             raise ValueError('request {} is not equal to assigned {}'.format(
-               skill_request, total_skill_counter))
+               skill_request, total_assigned))
 
         return flag
 

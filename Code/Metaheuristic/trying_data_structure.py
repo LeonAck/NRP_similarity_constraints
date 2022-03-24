@@ -52,7 +52,8 @@ def swap_assignments_operator(solution, nurse_1, nurse_2, shift_1, shift_2):
 
       return solution
 
-def assign_employee_operator(solution)
+
+
 
 def check_employee_shift_skill_assignment(solution, employee, day, shift, skill):
       """

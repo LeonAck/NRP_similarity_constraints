@@ -5,7 +5,7 @@ from Domain.scenario import Scenario
 from Invoke.Initial_solution.initial_solution import InitialSolution
 from Check.check_function_feasibility import FeasibilityCheck
 from operators import sk_request_to_day_off
-
+from Invoke.Constraints.Rules.RuleH3 import RuleH3
 
 class Instance:
     """
@@ -62,7 +62,8 @@ class Instance:
         list of json files
         """
 
-        return [pos_json.removesuffix(".json") for pos_json in os.listdir(path_to_json) if pos_json.endswith('.json')]
+        return [pos_json.removesuffix(".json") for pos_json
+                in os.listdir(path_to_json) if pos_json.endswith('.json')]
 
     def load_json_file(self, file_path):
         """
@@ -211,6 +212,14 @@ class Instance:
                 for old, new in translate_req.items():
                     requirements[new] = requirements.pop(old)
 
+    def get_index_of_shift_type(self, shift_type_id):
+        """
+        Function to get index when given a skill type
+        """
+        for index, s_type in enumerate(self.scenario_data['shiftTypes']):
+            if s_type['id'] == self.abbreviate_shift_type(shift_type_id):
+                return index
+
     def abbreviate_shifts_skills_week_data(self):
         """
         Abbreviate shift type and skills in week data dicts
@@ -273,16 +282,33 @@ class Instance:
                 self.scenario_data['nurses'][
                     n_index]['skills'][s_index] = self.abbreviate_skills(skill)
 
+        # abbreviate shift types in succesion
+        for i, succession in enumerate(self.scenario_data['forbiddenShiftTypeSuccessions']):
+            self.scenario_data['forbiddenShiftTypeSuccessions'][i]['precedingShiftType'] \
+                = self.get_index_of_shift_type(self.scenario_data['forbiddenShiftTypeSuccessions'][i]['precedingShiftType'])
+            self.scenario_data['forbiddenShiftTypeSuccessions'][i]['succeedingShiftTypes'] \
+                = [self.get_index_of_shift_type(succession_second) for succession_second in succession['succeedingShiftTypes']]
+
+        # create list of tuples for only the shifts that have a forbidden succeeding shift type
+        self.scenario_data['forbiddenShiftTypeSuccessions'] \
+            = [(successions['precedingShiftType'],
+                successions['succeedingShiftTypes'])
+               for successions
+               in self.scenario_data['forbiddenShiftTypeSuccessions']
+               ]
+
+
+
+
 settings = Settings()
 instance = Instance(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-FeasibilityCheck().assignments_equals_skill_counter(init_solution, scenario)
-FeasibilityCheck().h2_check_function(init_solution, scenario)
-employee_id = "Stefaan"
-d_index = 5
-s_type_index = 2
-sk_request_to_day_off(init_solution, scenario.skill_set_collection, scenario.employees, employee_id, d_index, s_type_index)
+RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
+# employee_id = "Stefaan"
+# d_index = 5
+# s_type_index = 2
+# sk_request_to_day_off(init_solution, scenario.skill_set_collection, scenario.employees, employee_id, d_index, s_type_index)
 #instance.load_instances()
 # pprint.pprint(instance.history_data)
 # pprint.pprint(instance.scenario_data)

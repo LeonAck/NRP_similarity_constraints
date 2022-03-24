@@ -26,9 +26,9 @@ class RuleCollection:
 
 class Rule:
 
-    def __init__(self, rules_spec):
-        self.is_active = None
-        self.is_mandatory = None
+    def __init__(self, rules_spec=None):
+        self.is_active = True
+        self.is_mandatory = True
         self.penalty = None
 
     def check_if_violation(self, number_of_violations):

@@ -53,7 +53,7 @@ class Scenario:
         self.contract_collection = None
 
         self.contract_collection = self.collect_contracts()
-        self.forbidden_shift_type_successions = None
+        self.forbidden_shift_type_successions = self.scenario_data['forbiddenShiftTypeSuccessions']
 
        # do I want to add skill sets as well?
 
@@ -66,7 +66,6 @@ class Scenario:
                                  self.scenario_data['nurses']], dtype=object)
         skills_array = np.unique(skills_array)
         return sorted(np.unique(skills_array), key=lambda x: len(x))
-
 
     def collect_contracts(self):
         """
