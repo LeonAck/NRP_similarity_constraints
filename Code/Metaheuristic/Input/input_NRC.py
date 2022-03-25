@@ -6,6 +6,8 @@ from Invoke.Initial_solution.initial_solution import InitialSolution
 from Check.check_function_feasibility import FeasibilityCheck
 from operators import sk_request_to_day_off
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
+import Invoke.Constraints.Rules
+from Invoke.Constraints.initialize_rules import RuleCollection
 
 class Instance:
     """
@@ -305,6 +307,7 @@ instance = Instance(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
 RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
+rulecollection = RuleCollection().initialize_rules(rules_specs=settings.rules_specs)
 # employee_id = "Stefaan"
 # d_index = 5
 # s_type_index = 2

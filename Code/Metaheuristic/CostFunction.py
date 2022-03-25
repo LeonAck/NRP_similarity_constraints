@@ -30,7 +30,10 @@ class ObjectiveValue:
         New value cost function
         """
         # use matrix multiplication of violations increments x weights + old_value
+        # need object with increments per violation
         return None
+
+
 
 
 

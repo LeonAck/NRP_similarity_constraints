@@ -1,6 +1,8 @@
 """
 Set to create initial solution
 """
+import numpy as np
+
 from solution import Solution
 from Domain.employee import EmployeeCollection
 from Check.check_function_feasibility import FeasibilityCheck
@@ -17,25 +19,30 @@ class InitialSolution(Solution):
         self.scenario = scenario
 
         self.shift_requirement = None
-        #self.solution = Solution
+
+        # assign skill requests based on H1, H2 and H4
         self.assign_skill_requests()
+
+        # create array to keep track of difference between optimal skill_requests and actual skill assignment
+        self.diff_min_request = self.initialize_diff_min_request(self.scenario)
+        # create array to keep track of difference between optimal skill_requests and actual skill assignment
+        self.diff_opt_request = self.initialize_diff_opt_request(self.scenario)
 
     def assign_skill_requests(self):
         """
         Function to assign skill request to employees
         """
-
-        # need employees grouped based on skill
-        # creation of employee classes
-        # skill counter object and way to fill object
+        # get requests per day
         for day_index, request_per_day in enumerate(self.scenario.skill_requests):
             # create collection of nurses available on day
             employees_available_on_day = EmployeeCollection().initialize_employees(self.scenario, self.scenario.employees_spec)
 
+            #  loop through requests per day and per skill
             for skill_index, request_per_day_per_skill in enumerate(request_per_day):
 
                 # create set of employees with skill that are available on that day
                 employees_with_skill = employees_available_on_day.get_employee_w_skill(self.scenario.skills[skill_index])
+
                 for s_type_index, request_per_day_per_skill_per_s_type in enumerate(request_per_day_per_skill):
                     n = request_per_day_per_skill_per_s_type
                     while n > 0:
@@ -44,10 +51,6 @@ class InitialSolution(Solution):
                         # add shift type to nurse
                         self.replace_shift_assignment(employee_id, day_index, s_type_index, skill_index)
                         # TODO update other nurses information #########
-                        # update skill counter
-                        # self.update_skill_counter(day_index, s_type_index,
-                        #                           skill_index,
-                        #                           self.scenario.employees._collection[employee_id].skill_set_id)
                         # remove nurse from available nurses for day
                         employees_available_on_day = employees_available_on_day.exclude_employee(employee_id)
                         # remove nurse from available nurses for skills
@@ -55,11 +58,33 @@ class InitialSolution(Solution):
 
                         # remove skill request
                         n -= 1
-                    # FeasibilityCheck().check_understaffing(solution=self,
-                    #                                        scenario=self.scenario,
-                    #                                        day_index=day_index,
-                    #                                        s_type_index=s_type_index,
-                    #                                        skill_index=skill_index,
-                    #                                        skill_request=request_per_day_per_skill_per_s_type)
-        # wil ik hier iets returnen?
-        return None
+                    FeasibilityCheck().check_understaffing(solution=self,
+                                                           scenario=self.scenario,
+                                                           day_index=day_index,
+                                                           s_type_index=s_type_index,
+                                                           skill_index=skill_index,
+                                                           skill_request=request_per_day_per_skill_per_s_type)
+
+    def initialize_diff_opt_request(self, scenario):
+        """
+        Initialize object that calculates shortage/surplus between optimal skill requests
+        and number of assignments to that request
+        :return:
+        array
+        """
+        # subtract minimal level from optimal level
+        return scenario.skill_requests - scenario.optimal_coverage
+
+    def initialize_diff_min_request(self, scenario):
+        """
+        Initialize object that calculates shortage/surplus between minimum skill requests
+        and number of assignments to that request
+        :return:
+        array
+        """
+        # subtract minimal level from optimal level
+        return np.zeros((scenario.num_days_in_horizon,
+                                  scenario.skill_collection.num_skills,
+                                  scenario.num_shift_types))
+
+

@@ -1,6 +1,6 @@
 from Invoke.Constraints.initialize_rules import Rule
 
-class RuleH3(Rule):
+class RuleH2(Rule):
     """
     Rule that checks for understaffing.
     Compares skill request to number of nurses with that skill assigned to shift

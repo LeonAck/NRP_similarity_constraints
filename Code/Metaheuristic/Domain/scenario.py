@@ -46,8 +46,9 @@ class Scenario:
         self.employees_spec = self.scenario_data["nurses"]
         self.employees = EmployeeCollection().initialize_employees(self, self.employees_spec)
 
-        # extract skill requests
+        # extract minimal and optimal skill requests
         self.skill_requests = self.initialize_skill_requests()
+        self.optimal_coverage = self.initialize_optimal_coverage()
 
         # extract contract information
         self.contract_collection = None
@@ -107,6 +108,35 @@ class Scenario:
                     if isinstance(k, int):
                         request_array[(key - 1) * 7 + k,
                         skill_index, s_type_index] = v['minimum']
+
+        return request_array
+
+    def initialize_optimal_coverage(self):
+        """
+               Create array of skill requests
+               :return:
+               array with dimensions num_days x num_shift_types x num_skill types
+        """
+        request_array = np.zeros((len(self.weeks) * 7,
+                                  self.skill_collection.num_skills,
+                                  self.num_shift_types,))
+
+        # create objects with indices
+        s_type_indices = self.list_to_index(self.shift_types)
+        skill_indices = self.list_to_index(self.skill_collection.skills)
+
+        for key, value in self.weeks_data.items():
+            for req_dict in value['requirements']:
+                for k, v in req_dict.items():
+                    if k == "shiftType":
+                        s_type_index = s_type_indices[v]
+                    elif k == "skill":
+                        skill_index = skill_indices[v]
+
+                for k, v in req_dict.items():
+                    if isinstance(k, int):
+                        request_array[(key - 1) * 7 + k,
+                                      skill_index, s_type_index] = v['optimal']
 
         return request_array
 

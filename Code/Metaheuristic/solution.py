@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Solution:
     """
     Class to store solutions of the problem
@@ -37,9 +38,9 @@ class Solution:
         dict with key: employee_id, value: array of zeros
         """
         shift_assignments = {}
-        for id in self.scenario.employees._collection.keys():
+        for employee_id in self.scenario.employees._collection.keys():
             # shift_assignments[id] = np.array([{'s_type': 0, 'sk_type': 0}] * self.scenario.num_days_in_horizon)
-            shift_assignments[id] = np.zeros((self.scenario.num_days_in_horizon,2))
+            shift_assignments[employee_id] = np.zeros((self.scenario.num_days_in_horizon, 2))
         # two dimensioal array
         return shift_assignments
 
@@ -58,7 +59,7 @@ class Solution:
         Replace shift assignment of employee by new shift assignment
         """
         self.shift_assignments[employee_id][day_index] = np.array([s_type_index + 1, sk_index])
-        #self.shift_assignments[employee_id][day_index] = {'s_type': s_type_index + 1, 'sk_type': sk_index}
+        # self.shift_assignments[employee_id][day_index] = {'s_type': s_type_index + 1, 'sk_type': sk_index}
 
     def remove_shift_assignment(self, employee_id, d_index):
         """
@@ -73,8 +74,9 @@ class Solution:
         skill_counter object
         """
         # calc where to change the skill counter
-        skill_index_to_change = self.scenario.skill_set_collection.collection[skill_set_index].start_index +\
-                    self.scenario.skill_set_collection.collection[skill_set_index].get_index_in_set(skill_index)
+        skill_index_to_change = self.scenario.skill_set_collection.collection[skill_set_index].start_index + \
+                                self.scenario.skill_set_collection.collection[skill_set_index].get_index_in_set(
+                                    skill_index)
         if add:
             self.skill_counter[day_index, s_type_index, skill_index_to_change] += increment
         else:
@@ -87,5 +89,7 @@ class Solution:
         True or False
         """
         return self.shift_assignments[employee_id][d_index][0] > 0
+
+
 
 
