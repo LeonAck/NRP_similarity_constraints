@@ -38,7 +38,7 @@ class RuleS1(Rule):
         # check if there is a shortage compared to optimal level
         # TODO adjust for higher increments if necessary
         if insertion:
-            return -1 if solution.optimal_coverage(d_index, s_index, sk_index) < 0 else 0
+            return -1 if solution.diff_opt_request[(d_index, s_index, sk_index)] < 0 else 0
         else:
-            return 1 if solution.optimal_coverage(d_index, s_index, sk_index) <= 0 else 0
+            return 1 if solution.diff_opt_request[(d_index, s_index, sk_index)] <= 0 else 0
 

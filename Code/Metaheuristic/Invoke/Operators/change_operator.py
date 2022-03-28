@@ -12,7 +12,7 @@ def change_operator(solution, scenario, rule_collection):
     :return:
     new_solutions
     """
-
+    incremental_penalty = 0
     employee_id, d_index, curr_assignment = get_feasible_removal(solution, scenario)
 
     allowed_shift_types = get_allowed_s_type(solution, scenario, rule_collection, employee_id, d_index)
@@ -22,26 +22,49 @@ def change_operator(solution, scenario, rule_collection):
     # if off remove shift assignments
     if new_s_type == "off":
         solution.remove_shift_assignment(employee_id, d_index)
+
+        # calculate change in penalty
+        rule_collection.collection["S1"].increment_violations_day_shift_skill(solution, d_index, curr_assignment[1],
+                                                                              curr_assignment[2], insertion=False)
+
+        # remove assignment information
+        solution.update_information_removal(solution, employee_id,
+                                            assignment_info=curr_assignment)
+
     # check if same shift as before
     else:
+        new_s_type = int(new_s_type)
         allowed_skills = scenario.employees._collection[employee_id].skill_indices
         if curr_assignment:
             if new_s_type == curr_assignment[1]:
-                allowed_skills = np.delete(allowed_skills, curr_assignment[2])
+                allowed_skills = np.delete(allowed_skills, np.in1d(allowed_skills, curr_assignment[2]))
 
         new_sk_type = random.choice(allowed_skills)
 
         # update solution
         solution.replace_shift_assignment(employee_id, d_index, new_s_type, new_sk_type)
 
+        # update penalty insertion
+        incremental_penalty += rule_collection.collection["S1"].increment_violations_day_shift_skill(solution, d_index, new_s_type,
+                                                                       new_sk_type, insertion=True)
         # update solution information
         solution.update_information_insertion(solution, employee_id,
                                               d_index=d_index,
                                               s_index=int(new_s_type),
                                               sk_index=new_sk_type)
         if curr_assignment:
+            # calculate change in penalty
+            rule_collection.collection["S1"].increment_violations_day_shift_skill(solution, d_index, curr_assignment[1],
+                                                                       curr_assignment[2], insertion=False)
+
+            # remove assignment information
             solution.update_information_removal(solution, employee_id,
                                               assignment_info=curr_assignment)
+
+
+
+
+        # update penalty information
 
     return None
 

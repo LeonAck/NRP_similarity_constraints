@@ -21,7 +21,7 @@ class ObjectiveValue:
         """
         # use matrix multiplication of violations x weights
 
-    def calc_objective_incremental(self, increment, constraint):
+    def calc_objective_incremental(self, rule_collection, constraint):
         """
         Function to recalculate value based on change in constraints
         and old value
