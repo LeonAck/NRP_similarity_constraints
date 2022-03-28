@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class ObjectiveValue:
     """Class for the cost function
     Containing constraint violations and functions to recalculate the cost function"""

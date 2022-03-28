@@ -3,11 +3,9 @@ import os
 from Domain.settings import Settings
 from Domain.scenario import Scenario
 from Invoke.Initial_solution.initial_solution import InitialSolution
-from Check.check_function_feasibility import FeasibilityCheck
-from operators import sk_request_to_day_off
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
-import Invoke.Constraints.Rules
 from Invoke.Constraints.initialize_rules import RuleCollection
+from Invoke.Operators.change_operator import change_operator
 
 class Instance:
     """
@@ -273,7 +271,6 @@ class Instance:
 
         # save first letter of skill as lower case
         # change in list of skills
-        save_skills = self.scenario_data["skills"]
         self.scenario_data["skills"] = [self.abbreviate_skills(skill)
                                         for skill in self.scenario_data["skills"]]
 
@@ -308,17 +305,5 @@ scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
 RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
 rulecollection = RuleCollection().initialize_rules(rules_specs=settings.rules_specs)
-# employee_id = "Stefaan"
-# d_index = 5
-# s_type_index = 2
-# sk_request_to_day_off(init_solution, scenario.skill_set_collection, scenario.employees, employee_id, d_index, s_type_index)
-#instance.load_instances()
-# pprint.pprint(instance.history_data)
-# pprint.pprint(instance.scenario_data)
-# pprint.pprint(instance.weeks_data)
-# pprint.pprint(scenario.scenario_data)
-
-# pprint.pprint(scenario.weeks_data)
-# pprint.pprint(scenario.skill_requests)
-# print(scenario.num_days_in_horizon)
-# print(scenario.employees._collection['Patrick'].has_skill("h"))
+for i in range(100):
+    change_operator(init_solution, scenario, rulecollection)

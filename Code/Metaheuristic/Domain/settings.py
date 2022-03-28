@@ -32,6 +32,12 @@ class Settings:
             "is_horizontal": True,
             "penalty": 0
             },
+            {"id": "H3",
+             "is_mandatory": True,
+             "is_active": True,
+             "is_horizontal": True,
+             "penalty": 0
+             },
             {"id": "S1",
             "is_mandatory": True,
             "is_active": True,

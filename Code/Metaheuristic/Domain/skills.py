@@ -11,6 +11,7 @@ class SkillCollection:
         # extract skill data
         self.skills = self.scenario_data['skills']
         self.num_skills = len(self.skills)
+        self.skill_indices = np.arange(0, len(self.skills))
 
         # create object to save skills
         self.collection = {}
@@ -26,6 +27,13 @@ class SkillCollection:
             return skill_id
         else:
             raise ValueError("This skill_index does not exist")
+
+    def get_id_from_index(self, sk_index):
+        try:
+            return self.skills[sk_index]
+        except KeyError:
+            print("{} is not a skill index in this collection".format(sk_index))
+
 
     def initialize_skills(self, skill_set_collection):
         """

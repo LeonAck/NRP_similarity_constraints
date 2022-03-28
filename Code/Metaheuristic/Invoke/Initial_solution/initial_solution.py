@@ -35,7 +35,7 @@ class InitialSolution(Solution):
         # get requests per day
         for day_index, request_per_day in enumerate(self.scenario.skill_requests):
             # create collection of nurses available on day
-            employees_available_on_day = EmployeeCollection().initialize_employees(self.scenario, self.scenario.employees_spec)
+            employees_available_on_day = EmployeeCollection().initialize_employees(self.scenario, self.scenario.employees_specs)
 
             #  loop through requests per day and per skill
             for skill_index, request_per_day_per_skill in enumerate(request_per_day):
@@ -50,7 +50,7 @@ class InitialSolution(Solution):
                         employee_id = employees_with_skill.random_pick()
                         # add shift type to nurse
                         self.replace_shift_assignment(employee_id, day_index, s_type_index, skill_index)
-                        # TODO update other nurses information #########
+                        # TODO update other nurses information
                         # remove nurse from available nurses for day
                         employees_available_on_day = employees_available_on_day.exclude_employee(employee_id)
                         # remove nurse from available nurses for skills

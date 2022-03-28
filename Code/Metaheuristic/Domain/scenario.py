@@ -2,7 +2,7 @@ import numpy as np
 from Domain.employee import EmployeeCollection
 from Domain.skills import SkillCollection
 from Domain.skill_set import SkillSetCollection
-
+from Domain.shifts import ShiftTypeCollection
 
 class Scenario:
     """
@@ -29,8 +29,8 @@ class Scenario:
         self.num_days_in_horizon = self.problem_horizon * 7
 
         # extract shift type data
-        self.shift_types = self.initialize_shift_types()
-        self.num_shift_types = len(self.shift_types)
+        self.shift_collection = ShiftTypeCollection(self.scenario_data)
+        self.num_shift_types = len(self.shift_collection)
 
         # initialize skills and skill_sets collection
         self.skill_collection = SkillCollection(self.scenario_data)
@@ -43,8 +43,8 @@ class Scenario:
         self.skill_sets = self.get_unique_skill_sets()
 
         # extract employee data
-        self.employees_spec = self.scenario_data["nurses"]
-        self.employees = EmployeeCollection().initialize_employees(self, self.employees_spec)
+        self.employees_specs = self.scenario_data["nurses"]
+        self.employees = EmployeeCollection().initialize_employees(self, self.employees_specs)
 
         # extract minimal and optimal skill requests
         self.skill_requests = self.initialize_skill_requests()
@@ -55,6 +55,9 @@ class Scenario:
 
         self.contract_collection = self.collect_contracts()
         self.forbidden_shift_type_successions = self.scenario_data['forbiddenShiftTypeSuccessions']
+
+        # collect rules
+
 
        # do I want to add skill sets as well?
 
@@ -76,12 +79,6 @@ class Scenario:
         """
         return None
 
-    def initialize_shift_types(self):
-        """
-        Class to get shift types in the solution
-        """
-        return [s_type['id'] for s_type in self.scenario_data['shiftTypes']]
-
     def initialize_skill_requests(self):
         """
         Create array of skill requests
@@ -93,7 +90,7 @@ class Scenario:
                                   self.num_shift_types,))
 
         # create objects with indices
-        s_type_indices = self.list_to_index(self.shift_types)
+        s_type_indices = self.list_to_index(self.shift_collection.shift_types)
         skill_indices = self.list_to_index(self.skill_collection.skills)
 
         for key, value in self.weeks_data.items():
@@ -122,7 +119,7 @@ class Scenario:
                                   self.num_shift_types,))
 
         # create objects with indices
-        s_type_indices = self.list_to_index(self.shift_types)
+        s_type_indices = self.list_to_index(self.shift_collection.shift_types)
         skill_indices = self.list_to_index(self.skill_collection.skills)
 
         for key, value in self.weeks_data.items():

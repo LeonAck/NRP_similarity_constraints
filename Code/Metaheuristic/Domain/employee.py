@@ -25,6 +25,11 @@ class EmployeeCollection:
         """
         return EmployeeCollection([employee for employee in self._collection.values() if employee.has_skill(skill)])
 
+    def get_nurse_w_s_sk_assignment(self, assignment_tuple):
+        """
+        Collect employees that work a specific shift skill combination for certain day
+        """
+
     def create_dict_from_list(self, list):
         """
         Create dict from employee list
@@ -39,7 +44,7 @@ class EmployeeCollection:
     def exclude_employee(self, employee_id_to_exclude):
         return EmployeeCollection([employee for employee in self._collection.values() if employee.id is not employee_id_to_exclude])
 
-    def initialize_employees(self, scenario, employees_spec):
+    def initialize_employees(self, scenario, employees_specs):
         """
         Function to create class for all employees
 
@@ -49,12 +54,12 @@ class EmployeeCollection:
         import sys
         try:
             # for each employee_spec create an instance of the Employee class
-            for employee_spec in employees_spec:
+            for employee_spec in employees_specs:
                 self._collection[employee_spec['id']] = Employee(scenario, employee_spec)
 
         except Exception as e:
             raise type(e)(str(e) +
-                          ' seems to trip up the import of user with ID = ' + employees_spec.get("id",
+                          ' seems to trip up the import of user with ID = ' + employees_specs.get("id",
                                                                                                 "'missing id'")).with_traceback(
                 sys.exc_info()[2])
         #self._collection.sort(key=lambda employee: employee.id)
@@ -86,8 +91,11 @@ class Employee:
         self.id = employee_spec['id']
         self.contract_type = employee_spec['contract']
         self.skills = employee_spec['skills']
+
         self.scenario = scenario
         self.skill_set_id = self.set_skill_set()
+
+        self.skill_indices = self.set_skill_indices()
 
         # information from history
         self.history_lastAssignedShiftType = None
@@ -106,6 +114,13 @@ class Employee:
                 index_to_set = index
                 break
         return index_to_set
+
+    def set_skill_indices(self):
+        """
+        Function to set skill indicies of employee
+        """
+        return [self.scenario.skills.index(skill) for skill in self.skills]
+
 
     def has_skill(self, skill):
         return skill in self.skills

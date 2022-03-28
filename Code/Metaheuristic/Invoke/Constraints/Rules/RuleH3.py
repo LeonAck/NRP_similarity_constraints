@@ -1,14 +1,15 @@
 from Invoke.Constraints.initialize_rules import Rule
+import numpy as np
 
 
 class RuleH3(Rule):
     """
-    Rule that checks for understaffing.
-    Compares skill request to number of nurses with that skill assigned to shift
+    Rule that checks for forbidden shift types according to the scenario
     """
 
-    def __init__(self, rules_spec=None):
-        super().__init__(rules_spec)
+    # TODO incorporate history
+    def __init__(self, rule_spec=None):
+        super().__init__(rule_spec)
 
     def check_violations_mandatory(self, solution, scenario, employees):
         """
@@ -52,7 +53,7 @@ class RuleH3(Rule):
                 #         in scenario.forbidden_shift_type_successions[solution.shift_assignments[employee.id][d_index-1]['s_type']-1][1]:
                 if solution.shift_assignments[employee.id][d_index][0] - 1 \
                         in scenario.forbidden_shift_type_successions[
-                    int(solution.shift_assignments[employee.id][d_index - 1][0] - 1)][1]:
+                    solution.shift_assignments[employee.id][d_index - 1][0] - 1][1]:
                     flag = False
 
             # check if not the last day, no violation before and working the day after day d_index
@@ -63,7 +64,7 @@ class RuleH3(Rule):
                 #         int(solution.shift_assignments[employee.id][d_index + 1]['s_type'] - 1)][1]:
                 if solution.shift_assignments[employee.id][d_index + 1][0] - 1 \
                         in scenario.forbidden_shift_type_successions[
-                    int(solution.shift_assignments[employee.id][d_index][0] - 1)][1]:
+                    solution.shift_assignments[employee.id][d_index][0] - 1][1]:
                     flag = False
 
         return flag
@@ -85,7 +86,39 @@ class RuleH3(Rule):
         if d_index < scenario.num_days_in_horizon - 1:
             if solution.shift_assignments[employee.id][d_index] \
                     in scenario.forbidden_shift_type_successions[
-                solution.shift_assignments[employee.id][d_index + 1] - 1][1]:
+                solution.shift_assignments[employee.id][d_index + 1][0]][1]:
                 number_of_violations += 1
 
         return number_of_violations
+
+    def get_allowed_shift_types(self, solution, scenario, employee_id, d_index):
+        """
+        For a given day get the shift types that are not allowed given
+        the assignment the day before and the day after
+        """
+        allowed_shift_types = scenario.shift_collection.shift_types_indices
+
+        if d_index > 0:
+            # check if working the day before
+            if solution.check_if_working_day(employee_id, d_index - 1):
+                # get shift type of the day before
+                shift_type_day_before = solution.shift_assignments[employee_id][d_index - 1][0]
+
+                for s_type in scenario.forbidden_shift_type_successions[shift_type_day_before][1]:
+                    # delete forbidden shifts
+                    allowed_shift_types = np.delete(allowed_shift_types, np.in1d(allowed_shift_types, s_type))
+
+        # check if there is a day after
+        if d_index < scenario.num_days_in_horizon - 1:
+            # check if working the day after
+            if solution.check_if_working_day(employee_id, d_index + 1):
+                # get shift type of day after
+                shift_type_day_after = solution.shift_assignments[employee_id][d_index + 1][0]
+
+                for succession in scenario.forbidden_shift_type_successions:
+                    if shift_type_day_after in succession[1]:
+                        # delete forbidden shifts
+                        allowed_shift_types = np.delete(allowed_shift_types,
+                                                        np.in1d(allowed_shift_types, succession[0]))
+
+        return allowed_shift_types

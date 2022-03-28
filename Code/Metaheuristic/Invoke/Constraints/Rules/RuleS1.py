@@ -36,8 +36,9 @@ class RuleS1(Rule):
         Function to count violations for a given day, shift type and skill
         """
         # check if there is a shortage compared to optimal level
+        # TODO adjust for higher increments if necessary
         if insertion:
-            return -increment if solution.optimal_coverage(d_index, s_index, sk_index) < 0 else 0
+            return -1 if solution.optimal_coverage(d_index, s_index, sk_index) < 0 else 0
         else:
-            return increment if solution.optimal_coverage(d_index, s_index, sk_index) <= 0 else 0
+            return 1 if solution.optimal_coverage(d_index, s_index, sk_index) <= 0 else 0
 

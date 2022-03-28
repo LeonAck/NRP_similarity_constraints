@@ -40,7 +40,7 @@ class Solution:
         shift_assignments = {}
         for employee_id in self.scenario.employees._collection.keys():
             # shift_assignments[id] = np.array([{'s_type': 0, 'sk_type': 0}] * self.scenario.num_days_in_horizon)
-            shift_assignments[employee_id] = np.zeros((self.scenario.num_days_in_horizon, 2))
+            shift_assignments[employee_id] = np.full((self.scenario.num_days_in_horizon, 2), -1, dtype=int)
         # two dimensioal array
         return shift_assignments
 
@@ -58,14 +58,14 @@ class Solution:
         """
         Replace shift assignment of employee by new shift assignment
         """
-        self.shift_assignments[employee_id][day_index] = np.array([s_type_index + 1, sk_index])
+        self.shift_assignments[employee_id][day_index] = np.array([s_type_index, sk_index])
         # self.shift_assignments[employee_id][day_index] = {'s_type': s_type_index + 1, 'sk_type': sk_index}
 
     def remove_shift_assignment(self, employee_id, d_index):
         """
         Change shift assignment of employee to day off
         """
-        self.shift_assignments[employee_id][d_index, 0] = 0
+        self.shift_assignments[employee_id][d_index] = np.array([-1, -1])
 
     def update_skill_counter(self, day_index, s_type_index, skill_index, skill_set_index, add=True, increment=1):
         """
@@ -88,7 +88,26 @@ class Solution:
         :return:
         True or False
         """
-        return self.shift_assignments[employee_id][d_index][0] > 0
+        return self.shift_assignments[employee_id][d_index][0] > -1
+
+    def update_information_removal(self, solution, employee_id, assignment_info):
+        """
+        Function to update relevant information after removal from shift skill combination
+        """
+        # update assignment objects
+        solution.diff_min_request[assignment_info] -= 1
+        solution.diff_opt_request[assignment_info] -= 1
+
+    def update_information_insertion(self, solution, employee_id, d_index, s_index, sk_index):
+        """
+        Function to update relevant information after insertion into new shift skill combination
+        """
+        # update assignment objects
+        solution.diff_min_request[(d_index, s_index, sk_index)] += 1
+        solution.diff_opt_request[(d_index, s_index, sk_index)] += 1
+
+        # all other constraints
+
 
 
 

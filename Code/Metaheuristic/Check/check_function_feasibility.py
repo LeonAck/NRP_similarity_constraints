@@ -34,7 +34,7 @@ class FeasibilityCheck:
         #                                                     scenario.skill_collection.collection[
         #                                                         skill_id].indices_in_skill_counter])
 
-        total_assigned = sum([np.array_equal(shift_assignment[day_index], np.array([s_type_index + 1, skill_index])) for shift_assignment in solution.shift_assignments.values()])
+        total_assigned = sum([np.array_equal(shift_assignment[day_index], np.array([s_type_index, skill_index])) for shift_assignment in solution.shift_assignments.values()])
         # compare if equal to skill request
         if skill_request != total_assigned:
             flag = False
