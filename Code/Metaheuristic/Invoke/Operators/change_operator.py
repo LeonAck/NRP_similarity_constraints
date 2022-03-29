@@ -16,6 +16,12 @@ def change_operator(solution, scenario, rule_collection):
     change_info = get_feasible_change(solution, scenario, rule_collection)
 
     # calculate incremental penalties
+    violations = 0
+    relevant_rules = rule_collection.collection["S1"]
+    for rule in relevant_rules:
+        violations += rule.incremental_violation_change(solution, change_info)
+    # add penalty to objective
+
     # change additional information
     # change solution
 
@@ -72,6 +78,7 @@ def get_feasible_change(solution, scenario, rule_collection):
                                                                 change_info["new_s_type"]))
                     else:
                         change_info["new_sk_type"] = random.choice(allowed_skills)
+                        change_info["new_working"] = True
                         feasible = True
 
             # if no allowed shift type for day, remove day and find new day
@@ -158,25 +165,6 @@ def get_allowed_skills(scenario, change_info):
 
     return allowed_skills
 
-
-def sk_request_to_day_off(solution, sk_set_collection, employees, employee_id, d_index, s_type_index):
-    """
-    Move nurse from skill request to day off
-    """
-    # TODO check function that checks what removal keeps optimality
-    # choose random index from set of nurses
-    skill_set_id = employees._collection[employee_id].skill_set_id
-    skill_to_remove = random.choice(sk_set_collection.collection[skill_set_id].skill_indices_in_set)
-    # change skill counter randomly
-    solution.update_skill_counter(d_index, s_type_index, skill_to_remove,
-                                  skill_set_index=employees._collection[employee_id].skill_set_id,
-                                  add=False)
-    # change nurse assignment to zero
-    solution.remove_shift_assignment(employee_id, d_index)
-
-    # update solution information
-    return None
-
 def fill_change_info_curr_ass(solution, change_info):
     """
     Create object to store information about the change
@@ -198,6 +186,8 @@ def fill_change_info_curr_ass(solution, change_info):
                                          change_info["d_index"]][
                                          1]]) \
         if change_info["current_working"] else None
+
+    change_info["new_working"] = None
 
     return change_info
 

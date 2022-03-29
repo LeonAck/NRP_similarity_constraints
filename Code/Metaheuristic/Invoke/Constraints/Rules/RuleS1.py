@@ -30,6 +30,31 @@ class RuleS1(Rule):
 
         return violation_counter
 
+    def incremental_violations_change(self, solution, change_info):
+        """
+        Calculate the difference in violations after using the change opeator
+        :return:
+        \delta number_of_violations
+        """
+        violation = 0
+        if change_info["current_working"]:
+            violation += self.increment_violations_day_shift_skill(solution,
+                                                                   d_index=change_info["d_index"],
+                                                                   s_index=change_info["new_s_type"],
+                                                                   sk_index=change_info["new_sk_type"],
+                                                                   insertion=False)
+        if change_info["new_working"]:
+            violation += self.increment_violations_day_shift_skill(solution,
+                                                                   d_index=change_info["curr_ass"][0],
+                                                                   s_index=change_info["curr_ass"][1],
+                                                                   sk_index=change_info["curr_ass"][2],
+                                                                   insertion=False)
+
+        return violation
+
+
+
+
     def increment_violations_day_shift_skill(self, solution, d_index, s_index,
                                              sk_index, insertion=True, increment=1):
         """
