@@ -87,7 +87,7 @@ class Scenario:
         """
         request_array = np.zeros((len(self.weeks) * 7,
                                   self.skill_collection.num_skills,
-                                  self.num_shift_types,))
+                                  self.num_shift_types))
 
         # create objects with indices
         s_type_indices = self.list_to_index(self.shift_collection.shift_types)
