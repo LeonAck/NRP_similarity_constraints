@@ -26,30 +26,35 @@ def get_feasible_change(solution, scenario, rule_collection):
     :return:
     object with information about the change
     """
-
+    # flag is set to true if feasible change operation is found
     feasible = False
+
+    # get list of employees that are feasible for the change
     feasible_employees = list((scenario.employees._collection.keys()))
     change_info = dict()
-    while len(feasible_employees) > 0 or not feasible:
+
+    while len(feasible_employees) > 0 and not feasible:
         # pick random nurse
         change_info["employee_id"] = random.choice(feasible_employees)  # remove nurse if picked before
+
+        # get feasible days for given employee
         feasible_days = list(range(0, scenario.num_days_in_horizon))
         feasible_days = remove_infeasible_days_understaffing(
             solution, change_info["employee_id"], feasible_days)
-        while len(feasible_days) > 0 or not feasible:
+        while len(feasible_days) > 0 and not feasible:
             # choose day
-            change_info["employee_id"] = random.choice(feasible_days)
+            change_info["d_index"] = random.choice(feasible_days)
             change_info = fill_change_info_curr_ass(solution, change_info)
 
-            # get allowed shifts for insertion
+            # get allowed shifts for insertion for given day
             allowed_shift_types = get_allowed_s_type(solution, scenario, rule_collection, change_info["employee_id"],
                                                      change_info["d_index"])
 
-            # add off day to options if currently not working
+            # add off day to options if employee currently not working
             if change_info["current_working"]:
                 allowed_shift_types = np.append(allowed_shift_types, "off")
 
-            while len(allowed_shift_types) > 0 or not feasible:
+            while len(allowed_shift_types) > 0 and not feasible:
                 # pick random shift type
                 change_info["new_s_type"] = random.choice(allowed_shift_types)
 
@@ -57,7 +62,10 @@ def get_feasible_change(solution, scenario, rule_collection):
                     feasible = True
                     change_info["new_working"] = False
                 else:
+                    # get allowed shifts for this shift type
                     allowed_skills = get_allowed_skills(scenario, change_info)
+
+                    # check if there are allowed shift types
                     if len(allowed_skills) == 0:
                         allowed_shift_types = np.delete(allowed_shift_types,
                                                         np.in1d(allowed_shift_types,
@@ -66,8 +74,10 @@ def get_feasible_change(solution, scenario, rule_collection):
                         change_info["new_sk_type"] = random.choice(allowed_skills)
                         feasible = True
 
+            # if no allowed shift type for day, remove day and find new day
             feasible_days.remove(change_info["d_index"])
 
+        # if no feasible day for change for employee, remove employee and find new employee
         feasible_employees.remove(change_info["employee_id"])
 
     return change_info
@@ -118,51 +128,6 @@ def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
             feasible_days.remove(d_index)
 
     return feasible_days
-
-def get_feasible_insertion(solution, scenario, rule_collection, change_info, feasible_employees):
-    """
-    For a given removal, get feasible insertion
-    :return:
-    If there is a feasible insertion: change_info with assignment information of insertion
-    If there is none, return change object containing that information
-    """
-    allowed_shift_types = get_allowed_s_type(solution, scenario, rule_collection, change_info["employee_id"], change_info["d_index"])
-
-    if change_info["current_working"]:
-        allowed_shift_types = np.append(allowed_shift_types, "off")
-
-    if len(allowed_shift_types) > 0:
-        # pick random shift type
-        new_s_type = random.choice(allowed_shift_types)
-    else:
-        # remove day from list of days
-        change_info["feasible_insertion"] = False
-
-    return change_info, feasible_employees
-
-
-    # if off remove shift assignments
-    # if new_s_type == "off":
-    #     solution.remove_shift_assignment(change_info["employee_id"], change_info["d_index"])
-
-    #     # calculate change in penalty
-    #     rule_collection.collection["S1"].increment_violations_day_shift_skill(solution, d_index, curr_assignment[1],
-    #                                                                           curr_assignment[2], insertion=False)
-    #
-    #     # remove assignment information
-    #     solution.update_information_removal(solution, employee_id,
-    #                                         assignment_info=curr_assignment)
-    #
-    # # check if same shift as before
-    # else:
-    #     new_s_type = int(new_s_type)
-    #     allowed_skills = scenario.employees._collection[employee_id].skill_indices
-    #     if curr_assignment:
-    #         if new_s_type == curr_assignment[1]:
-    #             allowed_skills = np.delete(allowed_skills, np.in1d(allowed_skills, curr_assignment[2]))
-    #
-    #     new_sk_type = random.choice(allowed_skills)
-
 
 def get_allowed_s_type(solution, scenario, rule_collection, employee_id, d_index):
     """
