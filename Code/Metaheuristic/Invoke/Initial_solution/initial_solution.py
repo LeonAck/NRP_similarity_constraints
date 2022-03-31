@@ -15,10 +15,12 @@ class InitialSolution(Solution):
 
     def __init__(self, scenario):
         # inherit from parent class
-        super().__init__(scenario)
+        super().__init__()
+
         self.scenario = scenario
 
-        self.shift_requirement = None
+        # initialize shift assignment objects
+        self.shift_assignments = self.create_shift_assignments()
 
         # assign skill requests based on H1, H2 and H4
         self.assign_skill_requests()
@@ -27,6 +29,9 @@ class InitialSolution(Solution):
         self.diff_min_request = self.initialize_diff_min_request(self.scenario)
         # create array to keep track of difference between optimal skill_requests and actual skill assignment
         self.diff_opt_request = self.initialize_diff_opt_request(self.scenario)
+
+        # calc objective value
+        self.obj_value = self.calc_objective_value(solution=self, rule_collection=self.scenario.rule_collection)
 
     def assign_skill_requests(self):
         """
@@ -86,5 +91,36 @@ class InitialSolution(Solution):
         return np.zeros((scenario.num_days_in_horizon,
                                   scenario.skill_collection.num_skills,
                                   scenario.num_shift_types))
+
+    def create_shift_assignments(self):
+        """
+        Create dict to store employee shift assignments
+        Each array has as length the number of days
+        Each element in the array store the assignment of the nurse on that day
+        0 --> off
+        1 --> s_type_1
+        2 --> s_type_2
+        etc.
+        :return:
+        dict with key: employee_id, value: array of zeros
+        """
+        shift_assignments = {}
+        for employee_id in self.scenario.employees._collection.keys():
+            # shift_assignments[id] = np.array([{'s_type': 0, 'sk_type': 0}] * self.scenario.num_days_in_horizon)
+            shift_assignments[employee_id] = np.full((self.scenario.num_days_in_horizon, 2), -1, dtype=int)
+        # two dimensioal array
+        return shift_assignments
+
+    def calc_objective_value(self, solution, rule_collection):
+        """
+        Function to calculate the objective value of a solution based on the
+        applied soft constraints
+        """
+        objective_value = 0
+        violation_array = np.zeros(len(rule_collection.soft_rule_collection.collection))
+        for i, rule in enumerate(rule_collection.soft_rule_collection.collection.values()):
+            violation_array[i] = rule.count_violations(solution, self.scenario)
+
+        return  np.matmul(violation_array, rule_collection.penalty_array)
 
 

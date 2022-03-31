@@ -3,6 +3,8 @@ from Domain.employee import EmployeeCollection
 from Domain.skills import SkillCollection
 from Domain.skill_set import SkillSetCollection
 from Domain.shifts import ShiftTypeCollection
+from Invoke.Constraints.initialize_rules import RuleCollection
+
 
 class Scenario:
     """
@@ -57,9 +59,7 @@ class Scenario:
         self.forbidden_shift_type_successions = self.scenario_data['forbiddenShiftTypeSuccessions']
 
         # collect rules
-
-
-       # do I want to add skill sets as well?
+        self.rule_collection = RuleCollection().initialize_rules(settings.rules_specs)
 
     # TODO remove function
     def get_unique_skill_sets(self):

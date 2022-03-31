@@ -6,53 +6,28 @@ class Solution:
     Class to store solutions of the problem
     """
 
-    def __init__(self, scenario):
-        self.scenario = scenario
+    def __init__(self, other_solution=None):
 
-        # skill counter. Object with dimensions
-        self.skill_counter = self.create_skill_counter()
+        if other_solution:
+            # employee shift assignments
+            self.shift_assignments = other_solution.shift_assignments
 
-        # employee shift assignments
-        self.shift_assignments = self.create_shift_assignments()
+            # transfer skill request info
+            self.diff_opt_request = other_solution.diff_opt_request
+            self.diff_min_request = other_solution.diff_min_request
 
-        # information to keep track of solution per nurse
-        self.total_assignments = None
-        self.working_days = None
-        self.work_stretches = None
-        self.working_weekends_set = None
-        self.number_working_weekends = None
-        self.shift_stretches = None  # nog bedenken of dit samenkomt in een enkel object
-        # of per shift type opslaan als object
-        self.day_off_stretches = None
+            # objective value
+            self.obj_value = other_solution.obj_value
 
-    def create_shift_assignments(self):
-        """
-        Create dict to store employee shift assignments
-        Each array has as length the number of days
-        Each element in the array store the assignment of the nurse on that day
-        0 --> off
-        1 --> s_type_1
-        2 --> s_type_2
-        etc.
-        :return:
-        dict with key: employee_id, value: array of zeros
-        """
-        shift_assignments = {}
-        for employee_id in self.scenario.employees._collection.keys():
-            # shift_assignments[id] = np.array([{'s_type': 0, 'sk_type': 0}] * self.scenario.num_days_in_horizon)
-            shift_assignments[employee_id] = np.full((self.scenario.num_days_in_horizon, 2), -1, dtype=int)
-        # two dimensioal array
-        return shift_assignments
-
-    def create_skill_counter(self):
-        """
-        Function to create skill counter
-        :return:
-        Array with dimensions num_days x num_shift_types x (sum of skill sets x skills per skill set)
-        """
-
-        dim_skills = sum([len(skill_set) for skill_set in self.scenario.skill_set_collection.collection.values()])
-        return np.zeros((self.scenario.num_days_in_horizon, self.scenario.num_shift_types, dim_skills))
+            # information to keep track of solution per nurse
+            self.total_assignments = None
+            self.working_days = None
+            self.work_stretches = None
+            self.working_weekends_set = None
+            self.number_working_weekends = None
+            self.shift_stretches = None  # nog bedenken of dit samenkomt in een enkel object
+            # of per shift type opslaan als object
+            self.day_off_stretches = None
 
     def replace_shift_assignment(self, employee_id, d_index, s_index, sk_index):
         """
@@ -66,21 +41,6 @@ class Solution:
         Change shift assignment of employee to day off
         """
         self.shift_assignments[employee_id][d_index] = np.array([-1, -1])
-
-    def update_skill_counter(self, day_index, s_type_index, skill_index, skill_set_index, add=True, increment=1):
-        """
-        Function to change skill counter upon assignment
-        :return:
-        skill_counter object
-        """
-        # calc where to change the skill counter
-        skill_index_to_change = self.scenario.skill_set_collection.collection[skill_set_index].start_index + \
-                                self.scenario.skill_set_collection.collection[skill_set_index].get_index_in_set(
-                                    skill_index)
-        if add:
-            self.skill_counter[day_index, s_type_index, skill_index_to_change] += increment
-        else:
-            self.skill_counter[day_index, s_type_index, skill_index_to_change] -= increment
 
     def check_if_working_day(self, employee_id, d_index):
         """
@@ -114,7 +74,7 @@ class Solution:
 
         # all other constraints
 
-    def update_solution_change(self, solution, change_info):
+    def update_solution_change(self, change_info):
         """
         Function to implement all changes caused by the new solution
         after it has been accepted
@@ -122,14 +82,14 @@ class Solution:
         employee_id = change_info['employee_id']
         # check if employee is working in current solution
         if change_info["current_working"]:
-            self.update_information_removal(solution=solution,
+            self.update_information_removal(solution=self,
                                             employee_id=change_info['employee_id'],
                                             d_index=change_info['curr_ass'][0],
                                             s_index=change_info['curr_ass'][1],
                                             sk_index=change_info['curr_ass'][2])
         # check if new assignment is working
         if change_info["new_working"]:
-            self.update_information_insertion(solution=solution,
+            self.update_information_insertion(solution=self,
                                             employee_id=change_info['employee_id'],
                                             d_index=change_info['d_index'],
                                             s_index=change_info['new_s_type'],
@@ -145,6 +105,33 @@ class Solution:
             self.shift_assignment_to_off(employee_id=change_info['employee_id'],
                                          d_index=change_info['d_index'])
 
+        # change objective value
+        self.obj_value += change_info['cost_increment']
+
+    # def create_skill_counter(self):
+    #     """
+    #     Function to create skill counter
+    #     :return:
+    #     Array with dimensions num_days x num_shift_types x (sum of skill sets x skills per skill set)
+    #     """
+    #
+    #     dim_skills = sum([len(skill_set) for skill_set in self.scenario.skill_set_collection.collection.values()])
+    #     return np.zeros((self.scenario.num_days_in_horizon, self.scenario.num_shift_types, dim_skills))
+
+    # def update_skill_counter(self, day_index, s_type_index, skill_index, skill_set_index, add=True, increment=1):
+    #     """
+    #     Function to change skill counter upon assignment
+    #     :return:
+    #     skill_counter object
+    #     """
+    #     # calc where to change the skill counter
+    #     skill_index_to_change = self.scenario.skill_set_collection.collection[skill_set_index].start_index + \
+    #                             self.scenario.skill_set_collection.collection[skill_set_index].get_index_in_set(
+    #                                 skill_index)
+    #     if add:
+    #         self.skill_counter[day_index, s_type_index, skill_index_to_change] += increment
+    #     else:
+    #         self.skill_counter[day_index, s_type_index, skill_index_to_change] -= increment
 
 
 
