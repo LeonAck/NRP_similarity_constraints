@@ -17,7 +17,7 @@
   } ],
   "forbiddenShiftTypeSuccessions" : [ {
     "precedingShiftType" : "Early",
-    "succeedingShiftTypes" : [ ]
+    "succeedingShiftTypes" : [  ]
   }, {
     "precedingShiftType" : "Late",
     "succeedingShiftTypes" : [ "Early" ]

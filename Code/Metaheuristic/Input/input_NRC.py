@@ -1,12 +1,14 @@
 import json
-import pprint # to pretty print
 import os
-import numpy as np
-from settings import Settings
-from scenario import Scenario
-from solution import Solution
-from initial_solution import InitialSolution
+from Domain.settings import Settings
+from Domain.scenario import Scenario
+from Invoke.Initial_solution.initial_solution import InitialSolution
+from Invoke.Constraints.Rules.RuleH3 import RuleH3
+from Invoke.Constraints.initialize_rules import RuleCollection
+from Invoke.Operators.change_operator import change_operator
 from Check.check_function_feasibility import FeasibilityCheck
+from Heuristic import Heuristic
+
 
 class Instance:
     """
@@ -63,7 +65,8 @@ class Instance:
         list of json files
         """
 
-        return [pos_json.removesuffix(".json") for pos_json in os.listdir(path_to_json) if pos_json.endswith('.json')]
+        return [pos_json.removesuffix(".json") for pos_json
+                in os.listdir(path_to_json) if pos_json.endswith('.json')]
 
     def load_json_file(self, file_path):
         """
@@ -212,6 +215,14 @@ class Instance:
                 for old, new in translate_req.items():
                     requirements[new] = requirements.pop(old)
 
+    def get_index_of_shift_type(self, shift_type_id):
+        """
+        Function to get index when given a skill type
+        """
+        for index, s_type in enumerate(self.scenario_data['shiftTypes']):
+            if s_type['id'] == self.abbreviate_shift_type(shift_type_id):
+                return index
+
     def abbreviate_shifts_skills_week_data(self):
         """
         Abbreviate shift type and skills in week data dicts
@@ -263,7 +274,6 @@ class Instance:
 
         # save first letter of skill as lower case
         # change in list of skills
-        save_skills = self.scenario_data["skills"]
         self.scenario_data["skills"] = [self.abbreviate_skills(skill)
                                         for skill in self.scenario_data["skills"]]
 
@@ -274,18 +284,30 @@ class Instance:
                 self.scenario_data['nurses'][
                     n_index]['skills'][s_index] = self.abbreviate_skills(skill)
 
+        # abbreviate shift types in succesion
+        for i, succession in enumerate(self.scenario_data['forbiddenShiftTypeSuccessions']):
+            self.scenario_data['forbiddenShiftTypeSuccessions'][i]['precedingShiftType'] \
+                = self.get_index_of_shift_type(self.scenario_data['forbiddenShiftTypeSuccessions'][i]['precedingShiftType'])
+            self.scenario_data['forbiddenShiftTypeSuccessions'][i]['succeedingShiftTypes'] \
+                = [self.get_index_of_shift_type(succession_second) for succession_second in succession['succeedingShiftTypes']]
+
+        # create list of tuples for only the shifts that have a forbidden succeeding shift type
+        self.scenario_data['forbiddenShiftTypeSuccessions'] \
+            = [(successions['precedingShiftType'],
+                successions['succeedingShiftTypes'])
+               for successions
+               in self.scenario_data['forbiddenShiftTypeSuccessions']
+               ]
+
+
 settings = Settings()
 instance = Instance(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-FeasibilityCheck().assignments_equals_skill_counter(init_solution, scenario)
-#instance.load_instances()
-# pprint.pprint(instance.history_data)
-# pprint.pprint(instance.scenario_data)
-# pprint.pprint(instance.weeks_data)
-# pprint.pprint(scenario.scenario_data)
+#RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
 
-# pprint.pprint(scenario.weeks_data)
-# pprint.pprint(scenario.skill_requests)
-# print(scenario.num_days_in_horizon)
-# print(scenario.employees._collection['Patrick'].has_skill("h"))
+
+best_solution = Heuristic(scenario).run_heuristic(starting_solution=init_solution)
+
+FeasibilityCheck().h2_check_function(best_solution, scenario)
+FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)

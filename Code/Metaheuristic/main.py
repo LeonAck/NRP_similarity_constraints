@@ -1,4 +1,4 @@
-from settings import Settings
+from Domain.settings import Settings
 from run import run
 """
 File to execute heuristic

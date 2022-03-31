@@ -1,7 +1,10 @@
 import numpy as np
-from employee import EmployeeCollection
-from skills import SkillCollection
-from skill_set import SkillSetCollection
+from Domain.employee import EmployeeCollection
+from Domain.skills import SkillCollection
+from Domain.skill_set import SkillSetCollection
+from Domain.shifts import ShiftTypeCollection
+from Invoke.Constraints.initialize_rules import RuleCollection
+
 
 class Scenario:
     """
@@ -28,8 +31,8 @@ class Scenario:
         self.num_days_in_horizon = self.problem_horizon * 7
 
         # extract shift type data
-        self.shift_types = self.initialize_shift_types()
-        self.num_shift_types = len(self.shift_types)
+        self.shift_collection = ShiftTypeCollection(self.scenario_data)
+        self.num_shift_types = len(self.shift_collection)
 
         # initialize skills and skill_sets collection
         self.skill_collection = SkillCollection(self.scenario_data)
@@ -42,19 +45,21 @@ class Scenario:
         self.skill_sets = self.get_unique_skill_sets()
 
         # extract employee data
-        self.employees_spec = self.scenario_data["nurses"]
-        self.employees = EmployeeCollection().initialize_employees(self, self.employees_spec)
+        self.employees_specs = self.scenario_data["nurses"]
+        self.employees = EmployeeCollection().initialize_employees(self, self.employees_specs)
 
-        # extract skill requests
+        # extract minimal and optimal skill requests
         self.skill_requests = self.initialize_skill_requests()
+        self.optimal_coverage = self.initialize_optimal_coverage()
 
         # extract contract information
         self.contract_collection = None
 
         self.contract_collection = self.collect_contracts()
-        self.forbidden_shift_type_successions = None
+        self.forbidden_shift_type_successions = self.scenario_data['forbiddenShiftTypeSuccessions']
 
-       # do I want to add skill sets as well?
+        # collect rules
+        self.rule_collection = RuleCollection().initialize_rules(settings.rules_specs)
 
     # TODO remove function
     def get_unique_skill_sets(self):
@@ -66,7 +71,6 @@ class Scenario:
         skills_array = np.unique(skills_array)
         return sorted(np.unique(skills_array), key=lambda x: len(x))
 
-
     def collect_contracts(self):
         """
         Class to store all contracts
@@ -75,24 +79,18 @@ class Scenario:
         """
         return None
 
-    def initialize_shift_types(self):
-        """
-        Class to get shift types in the solution
-        """
-        return [s_type['id'] for s_type in self.scenario_data['shiftTypes']]
-
     def initialize_skill_requests(self):
         """
         Create array of skill requests
         :return:
-        array with dimensions num_days x num_shift_types x num_skill types
+        array with dimensions num_days x skills x num shift types
         """
         request_array = np.zeros((len(self.weeks) * 7,
                                   self.skill_collection.num_skills,
-                                  self.num_shift_types,))
+                                  self.num_shift_types))
 
         # create objects with indices
-        s_type_indices = self.list_to_index(self.shift_types)
+        s_type_indices = self.list_to_index(self.shift_collection.shift_types)
         skill_indices = self.list_to_index(self.skill_collection.skills)
 
         for key, value in self.weeks_data.items():
@@ -107,6 +105,35 @@ class Scenario:
                     if isinstance(k, int):
                         request_array[(key - 1) * 7 + k,
                         skill_index, s_type_index] = v['minimum']
+
+        return request_array
+
+    def initialize_optimal_coverage(self):
+        """
+               Create array of skill requests
+               :return:
+               array with dimensions num_days x num_shift_types x num_skill types
+        """
+        request_array = np.zeros((len(self.weeks) * 7,
+                                  self.skill_collection.num_skills,
+                                  self.num_shift_types,))
+
+        # create objects with indices
+        s_type_indices = self.list_to_index(self.shift_collection.shift_types)
+        skill_indices = self.list_to_index(self.skill_collection.skills)
+
+        for key, value in self.weeks_data.items():
+            for req_dict in value['requirements']:
+                for k, v in req_dict.items():
+                    if k == "shiftType":
+                        s_type_index = s_type_indices[v]
+                    elif k == "skill":
+                        skill_index = skill_indices[v]
+
+                for k, v in req_dict.items():
+                    if isinstance(k, int):
+                        request_array[(key - 1) * 7 + k,
+                                      skill_index, s_type_index] = v['optimal']
 
         return request_array
 
