@@ -79,6 +79,7 @@ class EmployeeCollection:
         """
         return [employee.id for employee in self._collection.values()]
 
+
 class Employee:
     """
     Class to store employee information

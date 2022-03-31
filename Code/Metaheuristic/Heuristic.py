@@ -8,15 +8,18 @@ class Heuristic:
     """
     Class to create the heuristic
     """
-    def __init__(self, scenario, init_solution, rule_collection):
+    def __init__(self, scenario):
         self.scenario = scenario
-        self.rule_collection = rule_collection
+        self.rule_collection = scenario.rule_collection
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 10
+        self.max_time = 5
         self.initial_temp = 22
         self.cooling_rate = 0.99
+
+        # introduce objects necessary for algorithm
+        self.operators = {"change": change_operator}
 
         # Weight parameters
         self.reaction_factor = 0.9
@@ -25,9 +28,6 @@ class Heuristic:
         self.score_event_3 = 13
         self.score_event_4 = 0
         self.operator_weights = self.calc_initial_weights()
-
-        # introduce objects necessary for algorithm
-        self.operators = {"change": change_operator}
 
         # updating functions
         self.updating_functions = {"change": Solution().update_solution_change}
@@ -64,15 +64,16 @@ class Heuristic:
         # Set the temperature for the first iteration
         self.temperature = self.initial_temp
 
+        n_iter = 0
         while time.time() < self.start_time + self.max_time:
 
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
 
-            change_info = self.operators[operator_name](current_solution, self.scenario, self.rule_collection)
+            change_info = self.operators[operator_name](current_solution, self.scenario)
 
-            if change_info['calc_increment'] <= 0:
+            if change_info['cost_increment'] <= 0:
                 # update solutions accordingly
                 current_solution.update_solution_change(change_info)
                 # check if best. Then current solution, becomes the best solution
@@ -89,6 +90,8 @@ class Heuristic:
             #self.update_operator_weights(operator_name)
 
             self.update_temperature()
+            n_iter += 1
+            print(n_iter)
 
         # best solution
         return best_solution

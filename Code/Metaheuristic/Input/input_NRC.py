@@ -7,7 +7,8 @@ from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.initialize_rules import RuleCollection
 from Invoke.Operators.change_operator import change_operator
 from Check.check_function_feasibility import FeasibilityCheck
-from solution import Solution
+from Heuristic import Heuristic
+
 
 class Instance:
     """
@@ -304,13 +305,9 @@ instance = Instance(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
 #RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
-rulecollection = RuleCollection().initialize_rules(rules_specs=settings.rules_specs)
-for i in range(1000):
-    print(i)
-    change_info = change_operator(init_solution, scenario)
-    init_solution.update_solution_change(change_info)
 
 
-FeasibilityCheck().h2_check_function(init_solution, scenario)
-FeasibilityCheck().assignment_equals_tracked_info(init_solution, scenario)
-Solution(init_solution)
+best_solution = Heuristic(scenario).run_heuristic(starting_solution=init_solution)
+
+FeasibilityCheck().h2_check_function(best_solution, scenario)
+FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)
