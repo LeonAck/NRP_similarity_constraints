@@ -43,5 +43,11 @@ class Settings:
             "is_active": True,
             "is_horizontal": False,
             "penalty": 10
-                }
+                },
+            {"id": "S5",
+             "is_mandatory": False,
+             "is_active": True,
+             "is_horizontal": True,
+             "penalty": 12
+             }
         ]
