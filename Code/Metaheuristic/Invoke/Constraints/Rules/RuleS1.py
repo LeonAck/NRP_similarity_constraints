@@ -1,5 +1,6 @@
 from Invoke.Constraints.initialize_rules import Rule
 
+
 class RuleS1(Rule):
     """
         Rule that checks for optimal coverage per skill request
@@ -39,20 +40,18 @@ class RuleS1(Rule):
         violation = 0
         if change_info["current_working"]:
             violation += self.increment_violations_day_shift_skill(solution,
-                                                                   d_index=change_info["d_index"],
-                                                                   s_index=change_info["new_s_type"],
-                                                                   sk_index=change_info["new_sk_type"],
-                                                                   insertion=False)
-        if change_info["new_working"]:
-            violation += self.increment_violations_day_shift_skill(solution,
                                                                    d_index=change_info["curr_ass"][0],
                                                                    s_index=change_info["curr_ass"][1],
                                                                    sk_index=change_info["curr_ass"][2],
                                                                    insertion=False)
+        if change_info["new_working"]:
+            violation += self.increment_violations_day_shift_skill(solution,
+                                                                   d_index=change_info["d_index"],
+                                                                   s_index=change_info["new_s_type"],
+                                                                   sk_index=change_info["new_sk_type"],
+                                                                   insertion=True)
 
         return violation
-
-
 
 
     def increment_violations_day_shift_skill(self, solution, d_index, s_index,
@@ -63,7 +62,7 @@ class RuleS1(Rule):
         # check if there is a shortage compared to optimal level
         # TODO adjust for higher increments if necessary
         if insertion:
-            return -1 if solution.diff_opt_request[(d_index, s_index, sk_index)] < 0 else 0
+            return -1 if solution.diff_opt_request[(d_index, sk_index, s_index)] < 0 else 0
         else:
-            return 1 if solution.diff_opt_request[(d_index, s_index, sk_index)] <= 0 else 0
+            return 1 if solution.diff_opt_request[(d_index, sk_index, s_index)] <= 0 else 0
 

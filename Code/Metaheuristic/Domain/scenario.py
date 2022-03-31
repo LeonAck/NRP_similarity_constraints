@@ -83,7 +83,7 @@ class Scenario:
         """
         Create array of skill requests
         :return:
-        array with dimensions num_days x num_shift_types x num_skill types
+        array with dimensions num_days x skills x num shift types
         """
         request_array = np.zeros((len(self.weeks) * 7,
                                   self.skill_collection.num_skills,

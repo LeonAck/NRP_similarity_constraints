@@ -5,7 +5,7 @@ from Domain.scenario import Scenario
 from Invoke.Initial_solution.initial_solution import InitialSolution
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.initialize_rules import RuleCollection
-# from Invoke.Operators.change_operator import change_operator, get_feasible_removal2
+from Invoke.Operators.change_operator import change_operator, get_feasible_change
 
 class Instance:
     """
@@ -297,11 +297,11 @@ class Instance:
                ]
 
 
-
-
 settings = Settings()
 instance = Instance(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
+#RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
 rulecollection = RuleCollection().initialize_rules(rules_specs=settings.rules_specs)
+for i in range(100):
+   change_operator(init_solution, scenario, rulecollection)

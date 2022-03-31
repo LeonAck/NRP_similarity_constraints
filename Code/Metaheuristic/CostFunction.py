@@ -13,8 +13,6 @@ class ObjectiveValue:
         self.current_solution_obj = None
         self.best_solution_obj = None
 
-
-
     def calc_objective(self):
         """
         Function to calculate cost function

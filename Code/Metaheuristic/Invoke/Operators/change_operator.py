@@ -2,6 +2,7 @@ import random
 from Invoke.Constraints.Rules import RuleH3
 import numpy as np
 
+
 def change_operator(solution, scenario, rule_collection):
     """
         Function to change activity of one nurse
@@ -15,15 +16,25 @@ def change_operator(solution, scenario, rule_collection):
     # get a change that is allowed by hard constraints
     change_info = get_feasible_change(solution, scenario, rule_collection)
 
-    # calculate incremental penalties
-    violations = 0
-    relevant_rules = rule_collection.collection["S1"]
-    for rule in relevant_rules:
-        violations += rule.incremental_violation_change(solution, change_info)
     # add penalty to objective
+    change_info["cost_increment"] = calc_new_costs_after_change(solution, scenario, rule_collection, change_info)
 
-    # change additional information
-    # change solution
+    return change_info
+
+
+def calc_new_costs_after_change(solution, scenario, rule_collection, change_info):
+    """
+    Function to calculate the number of violations given a change operations
+    :return:
+    array with violations per rule
+    """
+    # calculate incremental penalties
+    violation_array = np.zeros(len(rule_collection.soft_rule_collection))
+    relevant_rules = rule_collection.soft_rule_collection.collection
+    for i, rule in enumerate(relevant_rules.values()):
+        violation_array[i] = rule.incremental_violations_change(solution, change_info)
+    # TODO what if no penalty array
+    return np.matmul(violation_array, rule_collection.penalty_array)
 
 def get_feasible_change(solution, scenario, rule_collection):
     """
@@ -47,6 +58,7 @@ def get_feasible_change(solution, scenario, rule_collection):
         feasible_days = list(range(0, scenario.num_days_in_horizon))
         feasible_days = remove_infeasible_days_understaffing(
             solution, change_info["employee_id"], feasible_days)
+
         while len(feasible_days) > 0 and not feasible:
             # choose day
             change_info["d_index"] = random.choice(feasible_days)
@@ -89,6 +101,7 @@ def get_feasible_change(solution, scenario, rule_collection):
 
     return change_info
 
+
 def get_feasible_removal2(solution, scenario, feasible_employees):
     """
     Get employee that can be savely removed from current assignment without
@@ -118,6 +131,7 @@ def get_feasible_removal2(solution, scenario, feasible_employees):
     else:
         return change_info, feasible_employees
 
+
 def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
     """
     Remove days where a employee cannot be removed since this might cause understaffing
@@ -136,6 +150,7 @@ def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
 
     return feasible_days
 
+
 def get_allowed_s_type(solution, scenario, rule_collection, employee_id, d_index):
     """
     Get s_types that are allowed according to hard constraints and different than current assignment
@@ -152,6 +167,7 @@ def get_allowed_s_type(solution, scenario, rule_collection, employee_id, d_index
 
     return allowed_shift_types
 
+
 def get_allowed_skills(scenario, change_info):
     """
     Get skills that the employee has
@@ -164,6 +180,7 @@ def get_allowed_skills(scenario, change_info):
             allowed_skills = np.delete(allowed_skills, np.in1d(allowed_skills, change_info["curr_ass"][2]))
 
     return allowed_skills
+
 
 def fill_change_info_curr_ass(solution, change_info):
     """

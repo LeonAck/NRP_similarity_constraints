@@ -1,5 +1,7 @@
 from Domain.employee import EmployeeCollection
 from Invoke.Constraints import Rules
+import numpy as np
+
 
 class RuleCollection:
     """
@@ -19,6 +21,9 @@ class RuleCollection:
 
         self.collection = rules
 
+    def __len__(self):
+        return len(self.collection)
+
     def initialize_rules(self, rules_specs):
         """
         Initializes the rule objects that are to be stored in the RuleCollection.
@@ -29,18 +34,32 @@ class RuleCollection:
                 class_ = getattr(Rules, 'Rule'+rule_spec['id'])
                 # split later
                 self.collection[rule_spec['id']] = class_(rule_spec=rule_spec)
-                print("hi")
+
             except Exception as e:
                 raise type(e)(str(e) +
                               ' seems to trip up the import of rule with ID = ' + rule_spec.get("rule_id", "'missing id'")).with_traceback(
                     sys.exc_info()[2])
+
+        self.soft_rule_collection = self.collect_soft_rules()
+
+        if self.soft_rule_collection.collection:
+            self.penalty_array = self.create_penalty_array()
+
+        # self.collection["S1"].incremental_violation_change(self, change_info=None)
+
         return self
 
     def collect_soft_rules(self):
         """
         Function to collect soft rules
         """
-        # look at AA
+        return RuleCollection([rule for rule in self.collection.values() if not rule.is_mandatory])
+
+    def create_penalty_array(self):
+        """
+        Function to create an array of penalties
+        """
+        return np.array([rule.penalty for rule in self.soft_rule_collection.collection.values()])
 
     def collect_incremental_violations(self, current_assignment, new_assignment):
         """
@@ -52,10 +71,12 @@ class RuleCollection:
 class Rule:
 
     def __init__(self, rule_spec=None):
-        self.is_active = True
-        self.is_mandatory = True
-        self.penalty = None
-        self.is_horizontal = True
+        if rule_spec:
+            self.id = rule_spec["id"]
+            self.is_active = rule_spec["is_active"]
+            self.is_mandatory = rule_spec["is_mandatory"]
+            self.penalty = rule_spec["penalty"]
+            self.is_horizontal = rule_spec["is_horizontal"]
 
     def check_if_violation(self, number_of_violations):
         """

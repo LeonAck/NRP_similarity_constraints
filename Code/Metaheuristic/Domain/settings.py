@@ -39,7 +39,7 @@ class Settings:
              "penalty": 0
              },
             {"id": "S1",
-            "is_mandatory": True,
+            "is_mandatory": False,
             "is_active": True,
             "is_horizontal": False,
             "penalty": 10
