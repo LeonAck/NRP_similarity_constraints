@@ -60,9 +60,9 @@ class InitialSolution(Solution):
                         n -= 1
                     FeasibilityCheck().check_understaffing(solution=self,
                                                            scenario=self.scenario,
-                                                           day_index=day_index,
-                                                           s_type_index=s_type_index,
-                                                           skill_index=skill_index,
+                                                           d_index=day_index,
+                                                           s_index=s_type_index,
+                                                           sk_index=skill_index,
                                                            skill_request=request_per_day_per_skill_per_s_type)
 
     def initialize_diff_opt_request(self, scenario):

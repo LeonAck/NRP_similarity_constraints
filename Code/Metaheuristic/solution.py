@@ -54,14 +54,14 @@ class Solution:
         dim_skills = sum([len(skill_set) for skill_set in self.scenario.skill_set_collection.collection.values()])
         return np.zeros((self.scenario.num_days_in_horizon, self.scenario.num_shift_types, dim_skills))
 
-    def replace_shift_assignment(self, employee_id, day_index, s_type_index, sk_index):
+    def replace_shift_assignment(self, employee_id, d_index, s_index, sk_index):
         """
         Replace shift assignment of employee by new shift assignment
         """
-        self.shift_assignments[employee_id][day_index] = np.array([s_type_index, sk_index])
+        self.shift_assignments[employee_id][d_index] = np.array([s_index, sk_index])
         # self.shift_assignments[employee_id][day_index] = {'s_type': s_type_index + 1, 'sk_type': sk_index}
 
-    def remove_shift_assignment(self, employee_id, d_index):
+    def shift_assignment_to_off(self, employee_id, d_index):
         """
         Change shift assignment of employee to day off
         """
@@ -90,23 +90,61 @@ class Solution:
         """
         return self.shift_assignments[employee_id][d_index][0] > -1
 
-    def update_information_removal(self, solution, employee_id, assignment_info):
+    def update_information_removal(self, solution, employee_id, d_index, s_index, sk_index):
         """
         Function to update relevant information after removal from shift skill combination
         """
-        # update assignment objects
-        solution.diff_min_request[assignment_info] -= 1
-        solution.diff_opt_request[assignment_info] -= 1
+        # hard constraints
+        solution.diff_min_request[(d_index, sk_index, s_index)] -= 1
+
+        # soft constraints
+        # S1
+        solution.diff_opt_request[(d_index, sk_index, s_index)] -= 1
 
     def update_information_insertion(self, solution, employee_id, d_index, s_index, sk_index):
         """
         Function to update relevant information after insertion into new shift skill combination
         """
-        # update assignment objects
-        solution.diff_min_request[(d_index, s_index, sk_index)] += 1
-        solution.diff_opt_request[(d_index, s_index, sk_index)] += 1
+        # hard constraints
+        solution.diff_min_request[(d_index, sk_index, s_index)] += 1
+
+        # soft constraints
+        # S1
+        solution.diff_opt_request[(d_index, sk_index, s_index)] += 1
 
         # all other constraints
+
+    def update_solution_change(self, solution, change_info):
+        """
+        Function to implement all changes caused by the new solution
+        after it has been accepted
+        """
+        employee_id = change_info['employee_id']
+        # check if employee is working in current solution
+        if change_info["current_working"]:
+            self.update_information_removal(solution=solution,
+                                            employee_id=change_info['employee_id'],
+                                            d_index=change_info['curr_ass'][0],
+                                            s_index=change_info['curr_ass'][1],
+                                            sk_index=change_info['curr_ass'][2])
+        # check if new assignment is working
+        if change_info["new_working"]:
+            self.update_information_insertion(solution=solution,
+                                            employee_id=change_info['employee_id'],
+                                            d_index=change_info['d_index'],
+                                            s_index=change_info['new_s_type'],
+                                            sk_index=change_info['new_sk_type'])
+
+            # add new shift assignment
+            self.replace_shift_assignment(employee_id=change_info['employee_id'],
+                                          d_index=change_info['d_index'],
+                                          s_index=change_info['new_s_type'],
+                                          sk_index=change_info['new_sk_type'])
+        else:
+            # remove shift assignment if not moving to shift assignment
+            self.shift_assignment_to_off(employee_id=change_info['employee_id'],
+                                         d_index=change_info['d_index'])
+
 
 
 
