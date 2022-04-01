@@ -16,6 +16,9 @@ class Solution:
             self.diff_opt_request = other_solution.diff_opt_request
             self.diff_min_request = other_solution.diff_min_request
 
+            # S5 number of assignments
+            self.num_assignments_per_nurse = other_solution.num_assignments_per_nurse
+
             # objective value
             self.obj_value = other_solution.obj_value
 
@@ -50,51 +53,68 @@ class Solution:
         """
         return self.shift_assignments[employee_id][d_index][0] > -1
 
-    def update_information_removal(self, solution, employee_id, d_index, s_index, sk_index):
+    def update_information_assigned_to_off(self, solution, change_info):
         """
         Function to update relevant information after removal from shift skill combination
         """
         # hard constraints
-        solution.diff_min_request[(d_index, sk_index, s_index)] -= 1
+        solution.diff_min_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
 
         # soft constraints
         # S1
-        solution.diff_opt_request[(d_index, sk_index, s_index)] -= 1
+        solution.diff_opt_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
 
-    def update_information_insertion(self, solution, employee_id, d_index, s_index, sk_index):
+        # S5
+        solution.num_assignments_per_nurse[change_info['employee_id']] -= 1
+
+    def update_information_off_to_assigned(self, solution, change_info):
         """
         Function to update relevant information after insertion into new shift skill combination
         """
         # hard constraints
-        solution.diff_min_request[(d_index, sk_index, s_index)] += 1
+        solution.diff_min_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
 
         # soft constraints
         # S1
-        solution.diff_opt_request[(d_index, sk_index, s_index)] += 1
+        solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+
+        # S5
+        solution.num_assignments_per_nurse[change_info['employee_id']] += 1
 
         # all other constraints
+
+    def update_information_assigned_to_assigned(self, solution, change_info):
+        """
+        Update information after moving from one assignment to the other
+        """
+
+        # hard constraints
+        solution.diff_min_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+        solution.diff_min_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
+
+        # soft constraints
+        # S1
+        solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+        solution.diff_opt_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
 
     def update_solution_change(self, change_info):
         """
         Function to implement all changes caused by the new solution
         after it has been accepted
         """
-        employee_id = change_info['employee_id']
-        # check if employee is working in current solution
-        if change_info["current_working"]:
-            self.update_information_removal(solution=self,
-                                            employee_id=change_info['employee_id'],
-                                            d_index=change_info['curr_ass'][0],
-                                            s_index=change_info['curr_ass'][1],
-                                            sk_index=change_info['curr_ass'][2])
+        # check what change has been made
+        if change_info["current_working"] and change_info['new_working']:
+            self.update_information_assigned_to_assigned(solution=self,
+                                                        change_info=change_info)
+        elif change_info['current_working']:
+            self.update_information_assigned_to_off(solution=self,
+                                                    change_info=change_info)
+        else:
+            self.update_information_off_to_assigned(solution=self,
+                                                    change_info=change_info)
+
         # check if new assignment is working
         if change_info["new_working"]:
-            self.update_information_insertion(solution=self,
-                                            employee_id=change_info['employee_id'],
-                                            d_index=change_info['d_index'],
-                                            s_index=change_info['new_s_type'],
-                                            sk_index=change_info['new_sk_type'])
-
             # add new shift assignment
             self.replace_shift_assignment(employee_id=change_info['employee_id'],
                                           d_index=change_info['d_index'],

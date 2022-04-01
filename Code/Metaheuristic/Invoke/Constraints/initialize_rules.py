@@ -77,6 +77,7 @@ class Rule:
             self.is_mandatory = rule_spec["is_mandatory"]
             self.penalty = rule_spec["penalty"]
             self.is_horizontal = rule_spec["is_horizontal"]
+            self.parameter_1 = rule_spec["parameter_1"]
 
     def check_if_violation(self, number_of_violations):
         """

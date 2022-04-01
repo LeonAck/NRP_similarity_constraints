@@ -4,6 +4,7 @@ import numpy as np
 from Invoke.Operators import change_operator
 from solution import Solution
 
+
 class Heuristic:
     """
     Class to create the heuristic
@@ -14,7 +15,7 @@ class Heuristic:
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 5
+        self.max_time = 2
         self.initial_temp = 22
         self.cooling_rate = 0.99
 
@@ -80,7 +81,7 @@ class Heuristic:
                 if current_solution.obj_value < best_solution.obj_value:
                     best_solution = Solution(current_solution)
             else:
-                # check if solution is accpeted
+                # check if solution is accepted
                 accepted = self.acceptance_simulated_annealing(change_info)
                 if accepted:
                     # update solutions accordingly

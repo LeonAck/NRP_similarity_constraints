@@ -308,6 +308,5 @@ init_solution = InitialSolution(scenario)
 
 
 best_solution = Heuristic(scenario).run_heuristic(starting_solution=init_solution)
-
 FeasibilityCheck().h2_check_function(best_solution, scenario)
 FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)

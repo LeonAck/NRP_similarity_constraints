@@ -30,6 +30,9 @@ class InitialSolution(Solution):
         # create array to keep track of difference between optimal skill_requests and actual skill assignment
         self.diff_opt_request = self.initialize_diff_opt_request(self.scenario)
 
+        # collect number of assignments per nurse
+        self.num_assignments_per_nurse = self.get_num_assignments_per_nurse()
+
         # calc objective value
         self.obj_value = self.calc_objective_value(solution=self, rule_collection=self.scenario.rule_collection)
 
@@ -111,16 +114,30 @@ class InitialSolution(Solution):
         # two dimensioal array
         return shift_assignments
 
+    def get_num_assignments_per_nurse(self):
+        """
+        Function to calculate for each nurse the number of assignments
+        """
+        num_assignments = {}
+        # for each employee sum the number of assignments
+        for employee_id in self.scenario.employees._collection.keys():
+            # employee is unassigned if shift type is -1
+            num_assignments[employee_id] = sum([assignment[0] != -1 for assignment in
+                                                self.shift_assignments[employee_id]])
+
+        return num_assignments
+
+
+
     def calc_objective_value(self, solution, rule_collection):
         """
         Function to calculate the objective value of a solution based on the
         applied soft constraints
         """
-        objective_value = 0
         violation_array = np.zeros(len(rule_collection.soft_rule_collection.collection))
         for i, rule in enumerate(rule_collection.soft_rule_collection.collection.values()):
             violation_array[i] = rule.count_violations(solution, self.scenario)
 
-        return  np.matmul(violation_array, rule_collection.penalty_array)
+        return np.matmul(violation_array, rule_collection.penalty_array)
 
 
