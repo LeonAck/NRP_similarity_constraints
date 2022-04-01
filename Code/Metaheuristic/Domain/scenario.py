@@ -4,7 +4,7 @@ from Domain.skills import SkillCollection
 from Domain.skill_set import SkillSetCollection
 from Domain.shifts import ShiftTypeCollection
 from Invoke.Constraints.initialize_rules import RuleCollection
-
+from Domain.days import DayCollection
 
 class Scenario:
     """
@@ -29,6 +29,7 @@ class Scenario:
 
         # extract problem data
         self.num_days_in_horizon = self.problem_horizon * 7
+        self.day_collection = DayCollection(self.num_days_in_horizon)
 
         # extract shift type data
         self.shift_collection = ShiftTypeCollection(self.scenario_data)

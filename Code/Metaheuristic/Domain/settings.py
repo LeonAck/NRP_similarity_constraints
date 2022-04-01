@@ -47,6 +47,13 @@ class Settings:
             "penalty": 10,
              "parameter_1": 0
                 },
+            {"id": "S4",
+             "is_mandatory": False,
+             "is_active": True,
+             "is_horizontal": True,
+             "penalty": 10,
+             "parameter_1": 0
+             },
             {"id": "S5",
              "is_mandatory": False,
              "is_active": True,
