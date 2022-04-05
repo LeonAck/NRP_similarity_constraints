@@ -67,5 +67,12 @@ class Settings:
              "is_horizontal": True,
              "penalty": 12,
              "parameter_1": 2
+             },
+            {"id": "S6",
+             "is_mandatory": False,
+             "is_active": True,
+             "is_horizontal": True,
+             "penalty": 10,
+             "parameter_1": 2
              }
         ]

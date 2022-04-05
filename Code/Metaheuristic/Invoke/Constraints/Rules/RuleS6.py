@@ -2,11 +2,9 @@ from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
 
 
-class RuleS5(Rule):
+class RuleS6(Rule):
     """
-        Rule that compares the max number of assignments of an employee to the
-        to the actual assignments
-        Parameter1: max. number of assignments in the scheduling period
+        Rule that checks the number of working weekends
     """
 
     def __init__(self, rule_spec=None):
@@ -16,15 +14,21 @@ class RuleS5(Rule):
         """
         Function to count violations in the entire solution
         """
-        return sum([self.count_violations_employee(solution, employee_id)
+        return sum([self.count_violations_employee(solution, scenario.day_collection, employee_id)
                     for employee_id in scenario.employees._collection.keys()])
 
-    def count_violations_employee(self, solution, employee_id):
+    def count_violations_employee(self, solution, day_collection, employee_id):
         """
         Function to count violations for a given day, shift type and skill
         """
-        return solution.num_assignments_per_nurse[employee_id] > self.parameter_1 if \
-            solution.num_assignments_per_nurse[employee_id] > self.parameter_1 else 0
+        working_weekends = 0
+        for weekend in day_collection.weekends.values():
+            if solution.shift_assignments[employee_id][weekend[0]][0] >= 0 or \
+                solution.shift_assignments[employee_id][weekend[1]][0] >= 0:
+                    working_weekends += 1
+
+        return working_weekends > self.parameter_1 if \
+            working_weekends > self.parameter_1 else 0
 
     def incremental_violations_change(self, solution, change_info):
         """
