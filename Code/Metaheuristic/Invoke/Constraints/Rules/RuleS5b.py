@@ -28,7 +28,7 @@ class RuleS5b(Rule):
 
 
 
-    def incremental_violations_change(self, solution, change_info):
+    def incremental_violations_change(self, solution, change_info, scenario=None):
         """
         Calculate the difference in violations after using the change operator
         :return:

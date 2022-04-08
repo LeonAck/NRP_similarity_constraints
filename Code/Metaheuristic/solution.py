@@ -19,15 +19,16 @@ class Solution:
             # S5 number of assignments
             self.num_assignments_per_nurse = other_solution.num_assignments_per_nurse
 
+            # S6 number of working weekends
+            self.num_working_weekends = other_solution.num_working_weekends
+
             # objective value
             self.obj_value = other_solution.obj_value
 
             # information to keep track of solution per nurse
-            self.total_assignments = None
             self.working_days = None
             self.work_stretches = None
             self.working_weekends_set = None
-            self.number_working_weekends = None
             self.shift_stretches = None  # nog bedenken of dit samenkomt in een enkel object
             # of per shift type opslaan als object
             self.day_off_stretches = None

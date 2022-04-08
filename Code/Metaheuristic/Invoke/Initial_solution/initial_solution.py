@@ -6,6 +6,7 @@ import numpy as np
 from solution import Solution
 from Domain.employee import EmployeeCollection
 from Check.check_function_feasibility import FeasibilityCheck
+from Invoke.Constraints.Rules.RuleS6 import RuleS6
 
 
 class InitialSolution(Solution):
@@ -32,6 +33,9 @@ class InitialSolution(Solution):
 
         # collect number of assignments per nurse
         self.num_assignments_per_nurse = self.get_num_assignments_per_nurse()
+
+        # collect number of working weekends per nurse
+        self.num_working_weekends = RuleS6().count_working_weekends_employee(solution=self, scenario=self.scenario)
 
         # calc objective value
         self.obj_value = self.calc_objective_value(solution=self, rule_collection=self.scenario.rule_collection)
@@ -126,6 +130,14 @@ class InitialSolution(Solution):
                                                 self.shift_assignments[employee_id]])
 
         return num_assignments
+
+    def get_num_working_weekends(self):
+        """
+        Function to calculate the working weekends for each employee
+        """
+
+
+
 
 
 

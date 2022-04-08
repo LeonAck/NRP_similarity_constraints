@@ -41,7 +41,7 @@ class DayCollection:
         """
         weekend_day_indices = {}
         for d_index in list_of_weekend_days:
-            weekend_day_indices[d_index] = 0 if d_index % 6 == 5 \
+            weekend_day_indices[d_index] = 0 if d_index % 7 == 5 \
                                         else 1
         return weekend_day_indices
 
@@ -55,6 +55,16 @@ class DayCollection:
             weekends[int(i/2)] = (self.list_weekend_days[i:i+2])
             i += 2
         return weekends
+
+    def get_index_other_weekend_day(self, index_in_weekend):
+        """
+        If d_index 0, we need to check +1
+        If d_index 1, we need to check -1
+        """
+        if index_in_weekend==0:
+            return 1
+        if index_in_weekend==1:
+            return -1
 
 
 

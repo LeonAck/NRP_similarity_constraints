@@ -32,7 +32,7 @@ def calc_new_costs_after_change(solution, scenario, change_info):
     violation_array = np.zeros(len(scenario.rule_collection.soft_rule_collection))
     relevant_rules = scenario.rule_collection.soft_rule_collection.collection
     for i, rule in enumerate(relevant_rules.values()):
-        violation_array[i] = rule.incremental_violations_change(solution, change_info)
+        violation_array[i] = rule.incremental_violations_change(solution, change_info, scenario)
     # TODO what if no penalty array
     return np.matmul(violation_array, scenario.rule_collection.penalty_array)
 

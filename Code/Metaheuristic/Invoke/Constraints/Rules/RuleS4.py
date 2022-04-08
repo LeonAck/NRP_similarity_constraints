@@ -23,7 +23,7 @@ class RuleS4(Rule):
         """
         return solution.num_assignments_per_nurse[employee_id] > self.parameter_1
 
-    def incremental_violations_change(self, solution, change_info):
+    def incremental_violations_change(self, solution, change_info, scenario=None):
         """
         Calculate the difference in violations after using the change opeator
         :return:
