@@ -23,7 +23,7 @@ class RuleS5(Rule):
         """
         Function to count violations for a given day, shift type and skill
         """
-        return solution.num_assignments_per_nurse[employee_id] > self.parameter_1 if \
+        return solution.num_assignments_per_nurse[employee_id] - self.parameter_1 if \
             solution.num_assignments_per_nurse[employee_id] > self.parameter_1 else 0
 
     def incremental_violations_change(self, solution, change_info):
