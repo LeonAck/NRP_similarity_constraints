@@ -3,6 +3,7 @@ import random
 import numpy as np
 from Invoke.Operators import change_operator
 from solution import Solution
+from Check.check_function_feasibility import FeasibilityCheck
 
 
 class Heuristic:
@@ -52,7 +53,8 @@ class Heuristic:
         current_solution = Solution(starting_solution)
         # take initial solution as best solution
         best_solution = Solution(starting_solution)
-
+        FeasibilityCheck().check_objective_value(current_solution, self.scenario)
+        FeasibilityCheck().check_violation_array(current_solution, self.scenario)
         # Initialize tracking
         # number of iterations
         # number of iterations without improvement
@@ -91,8 +93,12 @@ class Heuristic:
             #self.update_operator_weights(operator_name)
 
             self.update_temperature()
-            n_iter += 1
+            FeasibilityCheck().check_objective_value(current_solution, self.scenario)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario)
+
             print(n_iter)
+            n_iter += 1
+
 
         # best solution
         return best_solution

@@ -304,8 +304,6 @@ settings = Settings()
 instance = Instance(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-#RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
-
 
 best_solution = Heuristic(scenario).run_heuristic(starting_solution=init_solution)
 FeasibilityCheck().h2_check_function(best_solution, scenario)

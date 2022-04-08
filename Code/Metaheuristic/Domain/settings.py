@@ -12,10 +12,10 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n030w4"
+            self.instance_name = "n005w4"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
-            self.weeks = [1, 2, 3, 4]
+            self.weeks = [1]
 
         # weights per soft constraint
 
@@ -49,7 +49,7 @@ class Settings:
                 },
             {"id": "S4",
              "is_mandatory": False,
-             "is_active": True,
+             "is_active": False,
              "is_horizontal": True,
              "penalty": 10,
              "parameter_1": 0

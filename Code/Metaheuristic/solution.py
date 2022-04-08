@@ -28,6 +28,7 @@ class Solution:
             # objective value
             self.obj_value = other_solution.obj_value
 
+            self.violation_array = other_solution.violation_array
             # information to keep track of solution per nurse
             self.working_days = None
             self.work_stretches = None
@@ -143,6 +144,29 @@ class Solution:
 
         # change objective value
         self.obj_value += change_info['cost_increment']
+        self.violation_array += change_info['violation_increment']
+
+
+
+
+    def calc_objective_value(self, scenario, rule_collection):
+        """
+        Function to calculate the objective value of a solution based on the
+        applied soft constraints
+        """
+        return np.matmul(self.get_violations(scenario, rule_collection), rule_collection.penalty_array)
+
+    def get_violations(self,scenario, rule_collection):
+        violation_array = np.zeros(len(rule_collection.soft_rule_collection.collection))
+        for i, rule in enumerate(rule_collection.soft_rule_collection.collection.values()):
+            violation_array[i] = rule.count_violations(solution=self, scenario=scenario)
+        return violation_array
+
+    def get_violations_per_employee(self, scenario, rule_collection):
+        pass
+
+
+
 
     # def create_skill_counter(self):
     #     """

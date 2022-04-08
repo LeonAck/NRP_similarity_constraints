@@ -5,7 +5,6 @@ import numpy as np
 
 from solution import Solution
 from Domain.employee import EmployeeCollection
-from Check.check_function_feasibility import FeasibilityCheck
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 
 
@@ -39,7 +38,9 @@ class InitialSolution(Solution):
         self.num_working_weekends = RuleS6().count_working_weekends_employee(solution=self, scenario=self.scenario)
 
         # calc objective value
-        self.obj_value = self.calc_objective_value(solution=self, rule_collection=self.scenario.rule_collection)
+        self.obj_value = self.calc_objective_value(scenario=self.scenario, rule_collection=self.scenario.rule_collection)
+
+        self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
 
     def assign_skill_requests(self):
         """
@@ -71,12 +72,6 @@ class InitialSolution(Solution):
 
                         # remove skill request
                         n -= 1
-                    FeasibilityCheck().check_understaffing(solution=self,
-                                                           scenario=self.scenario,
-                                                           d_index=day_index,
-                                                           s_index=s_type_index,
-                                                           sk_index=skill_index,
-                                                           skill_request=request_per_day_per_skill_per_s_type)
 
     def initialize_diff_opt_request(self, scenario):
         """
@@ -137,20 +132,5 @@ class InitialSolution(Solution):
         Function to calculate the working weekends for each employee
         """
 
-
-
-
-
-
-    def calc_objective_value(self, solution, rule_collection):
-        """
-        Function to calculate the objective value of a solution based on the
-        applied soft constraints
-        """
-        violation_array = np.zeros(len(rule_collection.soft_rule_collection.collection))
-        for i, rule in enumerate(rule_collection.soft_rule_collection.collection.values()):
-            violation_array[i] = rule.count_violations(solution, self.scenario)
-
-        return np.matmul(violation_array, rule_collection.penalty_array)
 
 

@@ -1,4 +1,5 @@
 import numpy as np
+
 class FeasibilityCheck:
     """
     Class to store feasiblity function of the solution
@@ -88,4 +89,31 @@ class FeasibilityCheck:
                         print("info is incorrect")
                         break
 
+    def check_objective_value(self, solution, scenario):
+        """
+        Check whether calculated objective value equals actual objective value
+        """
+        flag = True
+        equal = solution.obj_value == solution.calc_objective_value(scenario, rule_collection=scenario.rule_collection)
+
+        if not equal:
+            print("tracked obj value is {} while calculated is {}".format(solution.obj_value, solution.calc_objective_value(scenario, rule_collection=scenario.rule_collection)))
+            flag = False
+
+        return flag
+
+    def check_violation_array(self, solution, scenario):
+        """
+        Check whether tracked violations are different from calculated
+        """
+        flag = True
+        calc_violations = solution.get_violations(scenario, scenario.rule_collection)
+        for i, violation in enumerate(solution.violation_array):
+            if calc_violations[i] != violation:
+                print("number of violation for soft constraint {} is tracked {} and calc {}".format(
+                    i, violation, calc_violations[i]
+                ))
+                flag = False
+
+        return flag
 

@@ -17,7 +17,7 @@ def change_operator(solution, scenario):
     change_info = get_feasible_change(solution, scenario)
 
     # add penalty to objective
-    change_info["cost_increment"] = calc_new_costs_after_change(solution, scenario, change_info)
+    change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution, scenario, change_info)
 
     return change_info
 
@@ -34,7 +34,8 @@ def calc_new_costs_after_change(solution, scenario, change_info):
     for i, rule in enumerate(relevant_rules.values()):
         violation_array[i] = rule.incremental_violations_change(solution, change_info, scenario)
     # TODO what if no penalty array
-    return np.matmul(violation_array, scenario.rule_collection.penalty_array)
+
+    return np.matmul(violation_array, scenario.rule_collection.penalty_array), violation_array
 
 def get_feasible_change(solution, scenario):
     """

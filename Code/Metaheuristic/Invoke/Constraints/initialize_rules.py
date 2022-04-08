@@ -30,22 +30,22 @@ class RuleCollection:
         """
         import sys
         for rule_spec in rules_specs:
-            try:
-                class_ = getattr(Rules, 'Rule'+rule_spec['id'])
-                # split later
-                self.collection[rule_spec['id']] = class_(rule_spec=rule_spec)
+            if rule_spec['is_active']:
+                try:
 
-            except Exception as e:
-                raise type(e)(str(e) +
-                              ' seems to trip up the import of rule with ID = ' + rule_spec.get("rule_id", "'missing id'")).with_traceback(
-                    sys.exc_info()[2])
+                    class_ = getattr(Rules, 'Rule'+rule_spec['id'])
+                    # split later
+                    self.collection[rule_spec['id']] = class_(rule_spec=rule_spec)
+
+                except Exception as e:
+                    raise type(e)(str(e) +
+                                  ' seems to trip up the import of rule with ID = ' + rule_spec.get("rule_id", "'missing id'")).with_traceback(
+                        sys.exc_info()[2])
 
         self.soft_rule_collection = self.collect_soft_rules()
 
         if self.soft_rule_collection.collection:
             self.penalty_array = self.create_penalty_array()
-
-        # self.collection["S1"].incremental_violation_change(self, change_info=None)
 
         return self
 
