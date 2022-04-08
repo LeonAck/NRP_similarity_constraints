@@ -9,6 +9,9 @@ class Solution:
     def __init__(self, other_solution=None):
 
         if other_solution:
+            # get day_collection
+            self.day_collection = other_solution.day_collection
+
             # employee shift assignments
             self.shift_assignments = other_solution.shift_assignments
 
@@ -68,6 +71,13 @@ class Solution:
         # S5
         solution.num_assignments_per_nurse[change_info['employee_id']] -= 1
 
+        # S6
+        if change_info['d_index'] in solution.day_collection.list_weekend_days:
+            if not solution.check_if_working_day(employee_id=change_info['employee_id'],
+                                                            d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
+                                                          solution.day_collection.weekend_day_indices[change_info['d_index']])):
+                solution.num_working_weekends[change_info['employee_id']] -= 1
+
     def update_information_off_to_assigned(self, solution, change_info):
         """
         Function to update relevant information after insertion into new shift skill combination
@@ -82,7 +92,12 @@ class Solution:
         # S5
         solution.num_assignments_per_nurse[change_info['employee_id']] += 1
 
-        # all other constraints
+        # S6
+        if change_info['d_index'] in solution.day_collection.list_weekend_days:
+           if not solution.check_if_working_day(employee_id=change_info['employee_id'],
+                                                    d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
+                                                  solution.day_collection.weekend_day_indices[change_info['d_index']])):
+            solution.num_working_weekends[change_info['employee_id']] += 1
 
     def update_information_assigned_to_assigned(self, solution, change_info):
         """

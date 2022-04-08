@@ -19,6 +19,7 @@ class InitialSolution(Solution):
         super().__init__()
 
         self.scenario = scenario
+        self.day_collection = scenario.day_collection
 
         # initialize shift assignment objects
         self.shift_assignments = self.create_shift_assignments()

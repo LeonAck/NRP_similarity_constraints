@@ -66,9 +66,6 @@ class DayCollection:
         if index_in_weekend==1:
             return -1
 
-
-
-
 class Day:
     """
     Class to define a day
