@@ -24,55 +24,120 @@ class Settings:
         # problem settings
         self.soft_constraints = ["S1"]
         self.hard_constraints = None
-        self.rules_specs = [
-        {
-            "id": "H1",
+        self.rules_specs = {
+        "H1":{
+
             "is_mandatory": True,
             "is_active": True,
             "is_horizontal": True,
+            "parameter_per_contract": False,
             "penalty": 0,
             "parameter_1": 0
             },
-            {"id": "H3",
+            "H3":{
              "is_mandatory": True,
              "is_active": True,
              "is_horizontal": True,
+             "parameter_per_contract": False,
              "penalty": 0,
              "parameter_1": 0
              },
-            {"id": "S1",
+             "S1":{
             "is_mandatory": False,
             "is_active": True,
             "is_horizontal": False,
+             "parameter_per_contract": False,
             "penalty": 10,
              "parameter_1": 0
                 },
-            {"id": "S4",
+            "S2_max": {
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
+             "parameter_per_contract": True,
+             "penalty": 15,
+             "parameter_1": 0
+             },
+             "S2_min":{
+             "is_mandatory": False,
+             "is_active": False,
+             "is_horizontal": True,
+             "parameter_per_contract": True,
+             "penalty": 15,
+             "parameter_1": 0
+             },
+            "S2_s_max":{
+             "is_mandatory": False,
+             "is_active": False,
+             "is_horizontal": True,
+             "penalty": 15,
+             "parameter_1": 0
+             },
+            "S2_s_min":{
+             "is_mandatory": False,
+             "is_active": False,
+             "is_horizontal": True,
+             "penalty": 15,
+             "parameter_1": 0
+             },
+            "S3_max":{
+             "is_mandatory": False,
+             "is_active": False,
+             "is_horizontal": True,
+             "parameter_per_contract": True,
+             "penalty": 15,
+             "parameter_1": 0
+             },
+            "S3_min":{
+             "is_mandatory": False,
+             "is_active": False,
+             "is_horizontal": True,
+             "parameter_per_contract": True,
+             "penalty": 15,
+             "parameter_1": 0
+             },
+            "S4":{
+             "is_mandatory": False,
+             "is_active": False,
+             "is_horizontal": True,
+             "parameter_per_contract": True,
              "penalty": 10,
              "parameter_1": 0
              },
-            {"id": "S5",
+            "S5_max": {
              "is_mandatory": False,
              "is_active": True,
              "is_horizontal": True,
+             "parameter_per_contract": True,
              "penalty": 12,
              "parameter_1": 3
              },
-            {"id": "S5b",
+            "S5_min": {
              "is_mandatory": False,
              "is_active": True,
              "is_horizontal": True,
+             "parameter_per_contract": True,
              "penalty": 12,
              "parameter_1": 2
              },
-            {"id": "S6",
+            "S6": {
              "is_mandatory": False,
              "is_active": True,
              "is_horizontal": True,
+             "parameter_per_contract": True,
              "penalty": 10,
              "parameter_1": 2
              }
-        ]
+        }
+
+        self.parameter_to_rule_mapping = {
+            "S2_max": "maximumNumberOfConsecutiveWorkingDays",
+            "S2_min": "minimumNumberOfConsecutiveWorkingDays",
+            "S3_max": "maximumNumberOfConsecutiveDaysOff",
+            "S3_min": "minimumNumberOfConsecutiveDaysOff",
+            "S4": "completeWeekends",
+            "S5_max": "minimumNumberOfAssignments",
+            "S5_min": "minimumNumberOfAssignments",
+            "S6": "maximumNumberOfWorkingWeekends",
+        }
+

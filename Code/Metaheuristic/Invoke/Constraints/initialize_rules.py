@@ -29,17 +29,17 @@ class RuleCollection:
         Initializes the rule objects that are to be stored in the RuleCollection.
         """
         import sys
-        for rule_spec in rules_specs:
+        for rule_id, rule_spec in rules_specs.items():
             if rule_spec['is_active']:
                 try:
 
-                    class_ = getattr(Rules, 'Rule'+rule_spec['id'])
+                    class_ = getattr(Rules, 'Rule' + rule_id)
                     # split later
-                    self.collection[rule_spec['id']] = class_(rule_spec=rule_spec)
+                    self.collection[rule_id] = class_(rule_spec=rule_spec)
 
                 except Exception as e:
                     raise type(e)(str(e) +
-                                  ' seems to trip up the import of rule with ID = ' + rule_spec.get("rule_id", "'missing id'")).with_traceback(
+                                  ' seems to trip up the import of rule with ID = ' + rule_id).with_traceback(
                         sys.exc_info()[2])
 
         self.soft_rule_collection = self.collect_soft_rules()
