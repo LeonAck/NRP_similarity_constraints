@@ -92,8 +92,6 @@ def get_feasible_change(solution, scenario):
                     else:
                         change_info["new_sk_type"] = random.choice(allowed_skills)
                         change_info["new_working"] = True
-                        if change_info["new_working"] and change_info["current_working"]:
-                            print("yes")
                         feasible = True
 
             # if no allowed shift type for day, remove day and find new day

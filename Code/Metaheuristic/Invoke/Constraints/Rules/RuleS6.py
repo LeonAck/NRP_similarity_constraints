@@ -62,8 +62,8 @@ class RuleS6(Rule):
                 return 1
             elif not change_info['new_working'] \
                 and not solution.check_if_working_day(employee_id=change_info['employee_id'],
-                                                        d_index=scenario.day_collection.get_index_other_weekend_day(
-                                                      scenario.day_collection.weekend_day_indices[d_index])) \
+                                                        d_index=change_info['d_index'] + scenario.day_collection.get_index_other_weekend_day(
+                                                      scenario.day_collection.weekend_day_indices[change_info['d_index']])) \
                 and solution.num_working_weekends[change_info['employee_id']] \
                     > self.parameter_1:
                 return -1

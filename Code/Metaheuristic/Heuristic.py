@@ -16,9 +16,10 @@ class Heuristic:
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 200
+        self.max_time = 20
         self.initial_temp = 22
         self.cooling_rate = 0.99
+        self.no_improve_max = 50
 
         # introduce objects necessary for algorithm
         self.operators = {"change": change_operator}
@@ -68,6 +69,7 @@ class Heuristic:
         self.temperature = self.initial_temp
 
         n_iter = 0
+        no_improve_iter = 0
         while time.time() < self.start_time + self.max_time:
 
             # choose operator
@@ -75,13 +77,15 @@ class Heuristic:
             self.update_frequency_operator(operator_name)
 
             change_info = self.operators[operator_name](current_solution, self.scenario)
-
+            no_improve_iter += 1
             if change_info['cost_increment'] <= 0:
                 # update solutions accordingly
                 current_solution.update_solution_change(change_info)
                 # check if best. Then current solution, becomes the best solution
                 if current_solution.obj_value < best_solution.obj_value:
                     best_solution = Solution(current_solution)
+                    no_improve_iter = 0
+
             else:
                 # check if solution is accepted
                 accepted = self.acceptance_simulated_annealing(change_info)
@@ -89,14 +93,21 @@ class Heuristic:
                     # update solutions accordingly
                     current_solution.update_solution_change(change_info)
 
+            if no_improve_iter > self.no_improve_max:
+                current_solution = Solution(best_solution)
+                no_improve_iter = 0
+
             # adjust weights
+            # TODO operator weights
             #self.update_operator_weights(operator_name)
 
             self.update_temperature()
-            FeasibilityCheck().check_objective_value(current_solution, self.scenario)
-            FeasibilityCheck().check_violation_array(current_solution, self.scenario)
+            #FeasibilityCheck().check_objective_value(current_solution, self.scenario)
+            #FeasibilityCheck().check_violation_array(current_solution, self.scenario)
 
             print(n_iter)
+            print(current_solution.obj_value)
+            print(best_solution.obj_value)
             n_iter += 1
 
 
@@ -204,7 +215,6 @@ class Heuristic:
         operator_score = 0
         # Check for both insertion and destroy operator in what event the
         # performance in the iteration is categorized.
-
 
         # Event 1
         # Check if best
