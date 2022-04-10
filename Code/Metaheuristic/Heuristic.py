@@ -16,7 +16,7 @@ class Heuristic:
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 20
+        self.max_time = 15
         self.initial_temp = 22
         self.cooling_rate = 0.99
         self.no_improve_max = 50
@@ -84,6 +84,7 @@ class Heuristic:
                 # check if best. Then current solution, becomes the best solution
                 if current_solution.obj_value < best_solution.obj_value:
                     best_solution = Solution(current_solution)
+                    print("new best_solution: {}".format(best_solution.obj_value))
                     no_improve_iter = 0
 
             else:
@@ -106,8 +107,8 @@ class Heuristic:
             #FeasibilityCheck().check_violation_array(current_solution, self.scenario)
 
             print(n_iter)
-            print(current_solution.obj_value)
-            print(best_solution.obj_value)
+            #print(current_solution.obj_value)
+
             n_iter += 1
 
 

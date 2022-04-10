@@ -12,7 +12,7 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n030w4"
+            self.instance_name = "n030w8"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
             self.weeks = [1, 2, 3, 4, 5, 6,  7, 8]
@@ -98,7 +98,7 @@ class Settings:
              },
             "S4":{"id":  "S4",
              "is_mandatory": False,
-             "is_active": False,
+             "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
              "penalty": 10,
@@ -136,7 +136,7 @@ class Settings:
             "S3_max": "maximumNumberOfConsecutiveDaysOff",
             "S3_min": "minimumNumberOfConsecutiveDaysOff",
             "S4": "completeWeekends",
-            "S5_max": "minimumNumberOfAssignments",
+            "S5_max": "maximumNumberOfAssignments",
             "S5_min": "minimumNumberOfAssignments",
             "S6": "maximumNumberOfWorkingWeekends",
         }

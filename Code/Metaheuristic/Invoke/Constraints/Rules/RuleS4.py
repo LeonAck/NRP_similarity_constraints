@@ -29,13 +29,29 @@ class RuleS4(Rule):
         :return:
         \delta number_of_violations
         """
-        if not change_info['current_working'] and\
-                solution.num_assignments_per_nurse[change_info['employee_id']] \
-                >= self.parameter_1:
-            return 1
-        elif not change_info['new_working'] and\
-                solution.num_assignments_per_nurse[change_info['employee_id']]\
-                > self.parameter_1:
-            return -1
+        if self.parameter_per_employee[change_info["employee_id"]] == 1:
+            if not change_info['current_working']:
+                if solution.check_if_working_day(
+                        employee_id=change_info['employee_id'],
+                        d_index=change_info['d_index'] +
+                        scenario.day_collection.get_index_other_weekend_day(
+                        scenario.day_collection.weekend_day_indices[
+                        change_info['d_index']])):
+                    return 1
+                else:
+                    return -1
+            elif not change_info['new_working']:
+                if solution.check_if_working_day(
+                        employee_id=change_info['employee_id'],
+                        d_index=change_info['d_index'] +
+                                scenario.day_collection.get_index_other_weekend_day(
+                        scenario.day_collection.weekend_day_indices[
+                        change_info['d_index']])):
+                    return 1
+                else:
+                    return -1
+            else:
+                return 0
         else:
             return 0
+
