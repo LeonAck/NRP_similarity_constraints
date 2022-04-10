@@ -60,7 +60,7 @@ class Scenario:
         self.forbidden_shift_type_successions = self.scenario_data['forbiddenShiftTypeSuccessions']
 
         # collect rules
-        self.rule_collection = RuleCollection().initialize_rules(settings.rules_specs)
+        self.rule_collection = RuleCollection().initialize_rules(settings.rules_specs, self.employees)
 
     # TODO remove function
     def get_unique_skill_sets(self):

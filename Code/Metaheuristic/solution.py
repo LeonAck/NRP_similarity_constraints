@@ -146,9 +146,6 @@ class Solution:
         self.obj_value += change_info['cost_increment']
         self.violation_array += change_info['violation_increment']
 
-
-
-
     def calc_objective_value(self, scenario, rule_collection):
         """
         Function to calculate the objective value of a solution based on the

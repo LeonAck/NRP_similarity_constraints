@@ -5,8 +5,8 @@ class RuleS6(Rule):
         Rule that checks the number of working weekends
     """
 
-    def __init__(self, rule_spec=None):
-        super().__init__(rule_spec)
+    def __init__(self, employees=None, rule_spec=None):
+        super().__init__(employees, rule_spec)
 
     def count_violations(self, solution, scenario):
         """
@@ -20,8 +20,8 @@ class RuleS6(Rule):
         """
         Function to count violations for a given day, shift type and skill
         """
-        return num_working_weekends[employee_id] - self.parameter_1 if \
-            num_working_weekends[employee_id] > self.parameter_1 else 0
+        return num_working_weekends[employee_id] - self.parameter_per_employee[employee_id] if \
+            num_working_weekends[employee_id] > self.parameter_per_employee[employee_id] else 0
 
     def count_working_weekends_employee(self, solution, scenario):
         """
@@ -58,14 +58,14 @@ class RuleS6(Rule):
                                                         d_index=change_info['d_index'] + scenario.day_collection.get_index_other_weekend_day(
                                                       scenario.day_collection.weekend_day_indices[change_info['d_index']])) \
                     and solution.num_working_weekends[change_info['employee_id']] \
-                    >= self.parameter_1:
+                    >= self.parameter_per_employee[change_info['employee_id']]:
                 return 1
             elif not change_info['new_working'] \
                 and not solution.check_if_working_day(employee_id=change_info['employee_id'],
                                                         d_index=change_info['d_index'] + scenario.day_collection.get_index_other_weekend_day(
                                                       scenario.day_collection.weekend_day_indices[change_info['d_index']])) \
                 and solution.num_working_weekends[change_info['employee_id']] \
-                    > self.parameter_1:
+                    > self.parameter_per_employee[change_info['employee_id']]:
                 return -1
             else:
                 return 0

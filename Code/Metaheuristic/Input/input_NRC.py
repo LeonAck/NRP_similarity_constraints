@@ -328,7 +328,7 @@ class Instance:
 
 settings = Settings()
 instance = Instance(settings)
-settings.rules_specs = instance.add_rules_specs_settings(settings)
+settings = instance.add_rules_specs_settings(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
 

@@ -7,8 +7,8 @@ class RuleS4(Rule):
         Rule that checks whether a nurse works complete weekends
     """
 
-    def __init__(self, rule_spec=None):
-        super().__init__(rule_spec)
+    def __init__(self, employees, rule_spec=None):
+        super().__init__(employees, rule_spec)
 
     def count_violations(self, solution, scenario):
         """
@@ -21,7 +21,7 @@ class RuleS4(Rule):
         """
         Function to count violations for a given day, shift type and skill
         """
-        return solution.num_assignments_per_nurse[employee_id] > self.parameter_1
+        return solution.num_assignments_per_nurse[employee_id] > self.parameter_per_employee[employee_id]
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """

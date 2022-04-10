@@ -25,7 +25,7 @@ class Settings:
         self.soft_constraints = ["S1"]
         self.hard_constraints = None
         self.rules_specs = {
-        "H1":{
+        "H1":{"id": "H1",
 
             "is_mandatory": True,
             "is_active": True,
@@ -34,7 +34,7 @@ class Settings:
             "penalty": 0,
             "parameter_1": 0
             },
-            "H3":{
+            "H3":{"id": "H3",
              "is_mandatory": True,
              "is_active": True,
              "is_horizontal": True,
@@ -42,7 +42,7 @@ class Settings:
              "penalty": 0,
              "parameter_1": 0
              },
-             "S1":{
+             "S1":{"id": "S1",
             "is_mandatory": False,
             "is_active": True,
             "is_horizontal": False,
@@ -50,7 +50,7 @@ class Settings:
             "penalty": 10,
              "parameter_1": 0
                 },
-            "S2_max": {
+            "S2_max": {"id":  "S2_max",
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
@@ -58,7 +58,7 @@ class Settings:
              "penalty": 15,
              "parameter_1": 0
              },
-             "S2_min":{
+             "S2_min":{"id": "S2_min",
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
@@ -66,29 +66,21 @@ class Settings:
              "penalty": 15,
              "parameter_1": 0
              },
-            "S2_s_max":{
+            "S2_s_max":{"id": "S2_s_max",
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
              "penalty": 15,
              "parameter_1": 0
              },
-            "S2_s_min":{
+            "S2_s_min":{"id": "S2_s_min",
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
              "penalty": 15,
              "parameter_1": 0
              },
-            "S3_max":{
-             "is_mandatory": False,
-             "is_active": False,
-             "is_horizontal": True,
-             "parameter_per_contract": True,
-             "penalty": 15,
-             "parameter_1": 0
-             },
-            "S3_min":{
+            "S3_max":{"id": "S3_max",
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
@@ -96,7 +88,15 @@ class Settings:
              "penalty": 15,
              "parameter_1": 0
              },
-            "S4":{
+            "S3_min":{"id": "S3_min",
+             "is_mandatory": False,
+             "is_active": False,
+             "is_horizontal": True,
+             "parameter_per_contract": True,
+             "penalty": 15,
+             "parameter_1": 0
+             },
+            "S4":{"id":  "S4",
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
@@ -104,7 +104,7 @@ class Settings:
              "penalty": 10,
              "parameter_1": 0
              },
-            "S5_max": {
+            "S5_max": {"id": "S5_max",
              "is_mandatory": False,
              "is_active": True,
              "is_horizontal": True,
@@ -112,7 +112,7 @@ class Settings:
              "penalty": 12,
              "parameter_1": 3
              },
-            "S5_min": {
+            "S5_min": {"id": "S5_min",
              "is_mandatory": False,
              "is_active": True,
              "is_horizontal": True,
@@ -120,7 +120,7 @@ class Settings:
              "penalty": 12,
              "parameter_1": 2
              },
-            "S6": {
+            "S6": {"id": "S6",
              "is_mandatory": False,
              "is_active": True,
              "is_horizontal": True,

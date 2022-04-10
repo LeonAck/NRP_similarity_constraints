@@ -24,7 +24,7 @@ class RuleCollection:
     def __len__(self):
         return len(self.collection)
 
-    def initialize_rules(self, rules_specs):
+    def initialize_rules(self, rules_specs, employees):
         """
         Initializes the rule objects that are to be stored in the RuleCollection.
         """
@@ -32,10 +32,9 @@ class RuleCollection:
         for rule_id, rule_spec in rules_specs.items():
             if rule_spec['is_active']:
                 try:
-
                     class_ = getattr(Rules, 'Rule' + rule_id)
                     # split later
-                    self.collection[rule_id] = class_(rule_spec=rule_spec)
+                    self.collection[rule_id] = class_(employees=employees, rule_spec=rule_spec)
 
                 except Exception as e:
                     raise type(e)(str(e) +
@@ -70,14 +69,16 @@ class RuleCollection:
 
 class Rule:
 
-    def __init__(self, rule_spec=None):
+    def __init__(self, employees, rule_spec=None):
         if rule_spec:
             self.id = rule_spec["id"]
             self.is_active = rule_spec["is_active"]
             self.is_mandatory = rule_spec["is_mandatory"]
             self.penalty = rule_spec["penalty"]
             self.is_horizontal = rule_spec["is_horizontal"]
-            self.parameter_1 = rule_spec["parameter_1"]
+            if rule_spec["parameter_per_contract"]:
+                self.parameter_per_employee = self.get_parameter_per_employee(employees,
+                                                                              rule_spec['parameter_1'])
 
     def check_if_violation(self, number_of_violations):
         """
@@ -85,3 +86,20 @@ class Rule:
         """
 
         return number_of_violations > 0
+
+    def get_parameter_per_employee(self, employees, contract_parameter_dict):
+        """
+        Function to create dictionary where employee id is linked ot parameter
+        :return:
+        dictionary
+        """
+        parameter_dict = {}
+        for employee in employees._collection.values():
+            parameter_dict[employee.id] = contract_parameter_dict[employee.contract_type]
+
+        return parameter_dict
+
+
+
+
+

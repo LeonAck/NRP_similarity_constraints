@@ -7,8 +7,8 @@ class RuleS1(Rule):
         Compares optimal skill request to number of nurses with that skill assigned to shift
     """
 
-    def __init__(self, rule_spec=None):
-        super().__init__(rule_spec)
+    def __init__(self, employees, rule_spec=None):
+        super().__init__(employees, rule_spec)
 
     def count_violations(self, solution, scenario):
         """
