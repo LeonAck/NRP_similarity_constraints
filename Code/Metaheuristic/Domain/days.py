@@ -61,10 +61,11 @@ class DayCollection:
         If d_index 0, we need to check +1
         If d_index 1, we need to check -1
         """
-        if index_in_weekend==0:
+        if index_in_weekend == 0:
             return 1
-        if index_in_weekend==1:
+        if index_in_weekend == 1:
             return -1
+
 
 class Day:
     """

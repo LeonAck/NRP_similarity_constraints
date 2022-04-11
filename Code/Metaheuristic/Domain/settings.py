@@ -47,7 +47,7 @@ class Settings:
             "is_active": True,
             "is_horizontal": False,
              "parameter_per_contract": False,
-            "penalty": 10,
+            "penalty": 30,
              "parameter_1": 0
                 },
             "S2_max": {"id":  "S2_max",
@@ -55,7 +55,7 @@ class Settings:
              "is_active": False,
              "is_horizontal": True,
              "parameter_per_contract": True,
-             "penalty": 15,
+             "penalty": 30,
              "parameter_1": 0
              },
              "S2_min":{"id": "S2_min",
@@ -63,7 +63,7 @@ class Settings:
              "is_active": False,
              "is_horizontal": True,
              "parameter_per_contract": True,
-             "penalty": 15,
+             "penalty": 30,
              "parameter_1": 0
              },
             "S2_s_max":{"id": "S2_s_max",
@@ -85,7 +85,7 @@ class Settings:
              "is_active": False,
              "is_horizontal": True,
              "parameter_per_contract": True,
-             "penalty": 15,
+             "penalty": 30,
              "parameter_1": 0
              },
             "S3_min":{"id": "S3_min",
@@ -93,7 +93,7 @@ class Settings:
              "is_active": False,
              "is_horizontal": True,
              "parameter_per_contract": True,
-             "penalty": 15,
+             "penalty": 30,
              "parameter_1": 0
              },
             "S4":{"id":  "S4",
@@ -101,7 +101,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
-             "penalty": 10,
+             "penalty": 30,
              "parameter_1": 0
              },
             "S5_max": {"id": "S5_max",
@@ -109,7 +109,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
-             "penalty": 12,
+             "penalty": 20,
              "parameter_1": 3
              },
             "S5_min": {"id": "S5_min",
@@ -117,7 +117,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
-             "penalty": 12,
+             "penalty": 20,
              "parameter_1": 2
              },
             "S6": {"id": "S6",
@@ -125,7 +125,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
-             "penalty": 10,
+             "penalty": 30,
              "parameter_1": 2
              }
         }

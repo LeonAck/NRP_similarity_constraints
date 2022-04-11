@@ -16,7 +16,7 @@ class Heuristic:
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 15
+        self.max_time = 200
         self.initial_temp = 22
         self.cooling_rate = 0.99
         self.no_improve_max = 50

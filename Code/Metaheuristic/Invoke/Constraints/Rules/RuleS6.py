@@ -47,8 +47,8 @@ class RuleS6(Rule):
         :return:
         \delta number_of_violations
         """
-        d_index = change_info['d_index']
-        if d_index in scenario.day_collection.list_weekend_days:
+
+        if change_info['d_index'] in scenario.day_collection.list_weekend_days:
             # we have an additional total working weekend violation the following all hold:
             # a) we go from an off day to a working day
             # b) the other day in the weekend is not a working day --> extra working weekend
