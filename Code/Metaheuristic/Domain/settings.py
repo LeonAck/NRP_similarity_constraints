@@ -12,10 +12,10 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n030w8"
+            self.instance_name = "n005w4"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
-            self.weeks = [1, 2, 3, 4, 5, 6,  7, 8]
+            self.weeks = [1, 2, 3, 4]
 
         # weights per soft constraint
 
@@ -49,16 +49,16 @@ class Settings:
              "parameter_per_contract": False,
             "penalty": 30,
              "parameter_1": 0
-                },
-            "S2_max": {"id":  "S2_max",
+            },
+            "S2Max": {"id":  "S2Max",
              "is_mandatory": False,
-             "is_active": False,
+             "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
              "penalty": 30,
              "parameter_1": 0
              },
-             "S2_min":{"id": "S2_min",
+             "S2Min": {"id": "S2Min",
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
@@ -131,8 +131,8 @@ class Settings:
         }
 
         self.parameter_to_rule_mapping = {
-            "S2_max": "maximumNumberOfConsecutiveWorkingDays",
-            "S2_min": "minimumNumberOfConsecutiveWorkingDays",
+            "S2Max": "maximumNumberOfConsecutiveWorkingDays",
+            "S2Min": "minimumNumberOfConsecutiveWorkingDays",
             "S3_max": "maximumNumberOfConsecutiveDaysOff",
             "S3_min": "minimumNumberOfConsecutiveDaysOff",
             "S4": "completeWeekends",

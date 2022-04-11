@@ -1,7 +1,8 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
 
-class RuleS2(Rule):
+
+class RuleS2Max(Rule):
     """
         Rule that checks for optimal coverage per skill request
         Compares optimal skill request to number of nurses with that skill assigned to shift
@@ -43,21 +44,36 @@ class RuleS2(Rule):
         """
         Calculate the difference in violations after using the change opeator
         :return:
-        \delta number_of_violations
+        delta number_of_violations
         """
         violation = 0
-        if change_info["current_working"]:
-            violation += self.increment_violations_day_shift_skill(solution,
-                                                                   d_index=change_info["curr_ass"][0],
-                                                                   s_index=change_info["curr_ass"][1],
-                                                                   sk_index=change_info["curr_ass"][2],
-                                                                   insertion=False)
-        if change_info["new_working"]:
-            violation += self.increment_violations_day_shift_skill(solution,
-                                                                   d_index=change_info["d_index"],
-                                                                   s_index=change_info["new_s_type"],
-                                                                   sk_index=change_info["new_sk_type"],
-                                                                   insertion=True)
+        employee_parameter = self.parameter_per_employee[change_info['employee_id']]
+
+        if not change_info['current_working']:
+            pass
+        elif not change_info['new_working']:
+            # find in what work stretch the d_index is
+            for start_index, work_stretch in solution.work_stretches[change_info['employee_id']].items():
+                if change_info['d_index'] in range(start_index, work_stretch["end_index"]):
+                    if work_stretch['length'] > employee_parameter:
+
+                        split_1 = change_info['d_index'] - start_index
+                        split_2 = work_stretch['end_index'] - change_info['d_index']
+                        if split_1 > employee_parameter and \
+                                split_2 > employee_parameter:
+                            return - ((work_stretch['length'] - employee_parameter)
+                                      - (split_1 - employee_parameter)
+                                      - (split_2 - employee_parameter))
+                        elif split_1 > employee_parameter:
+                            return - ((work_stretch['length'] - employee_parameter)
+                                      - (split_1 - employee_parameter))
+                        elif split_2 > employee_parameter:
+                            return - ((work_stretch['length'] - employee_parameter)
+                                      - (split_2 - employee_parameter))
+                        else:
+                            return - (work_stretch['length'] - employee_parameter)
+                    else:
+                        return 0
 
         return violation
 

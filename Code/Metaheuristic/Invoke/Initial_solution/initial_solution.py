@@ -2,7 +2,7 @@
 Set to create initial solution
 """
 import numpy as np
-
+import itertools
 from solution import Solution
 from Domain.employee import EmployeeCollection
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
@@ -37,9 +37,13 @@ class InitialSolution(Solution):
         # collect number of working weekends per nurse
         self.num_working_weekends = RuleS6().count_working_weekends_employee(solution=self, scenario=self.scenario)
 
+        # collect work stretches
+        self.work_stretches = self.collect_work_stretches()
+
         # calc objective value
         self.obj_value = self.calc_objective_value(scenario=self.scenario, rule_collection=self.scenario.rule_collection)
 
+        # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
 
     def assign_skill_requests(self):
@@ -127,10 +131,38 @@ class InitialSolution(Solution):
 
         return num_assignments
 
-    def get_num_working_weekends(self):
+    def collect_work_stretches(self):
         """
-        Function to calculate the working weekends for each employee
+        Function to collect for each nurse the stretches of consecutive
+        working days
         """
+        work_stretches = {}
+        for employee_id in self.scenario.employees._collection.keys():
+            work_stretch_employee = {}
+            # for each working day, get check if employee is working
+            working_check = [1 if self.check_if_working_day(employee_id, d_index) else 0
+                            for d_index in range(self.scenario.num_days_in_horizon)]
+            start_index = 0
+            # get lists of consecutive working days
+            for k, v in itertools.groupby(working_check):
+                len_stretch = sum(1 for _ in v)
+                if k:
+                    # save in dict under start index with end index
+                    work_stretch = {}
+                    work_stretch["end_index"] = start_index + len_stretch - 1
+                    work_stretch["length"] = len_stretch
+                    work_stretch_employee[start_index] = work_stretch
+                    start_index += len_stretch
+                else:
+                    start_index += len_stretch
+
+            work_stretches[employee_id] = work_stretch_employee
+
+        return work_stretches
+
+
+
+
 
 
 
