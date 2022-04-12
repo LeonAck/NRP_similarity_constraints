@@ -105,7 +105,8 @@ class Heuristic:
             self.update_temperature()
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario)
 
-            FeasibilityCheck().check_violation_array(current_solution, self.scenario)
+            FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
+            #FeasibilityCheck().check_violation_array(current_solution, self.scenario)
 
             print(n_iter)
             #print(current_solution.obj_value)

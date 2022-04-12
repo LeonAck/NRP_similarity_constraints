@@ -1,5 +1,5 @@
 import numpy as np
-
+from Invoke.Initial_solution.initial_solution import InitialSolution
 class FeasibilityCheck:
     """
     Class to store feasiblity function of the solution
@@ -88,6 +88,22 @@ class FeasibilityCheck:
                         print(real_assignments[(d_index, sk_index, s_index)])
                         print("info is incorrect")
                         break
+
+    def work_stretches_info(self, solution, scenario):
+        """
+        Function to find differences in the work stretch information
+        """
+        collected_work_stretches = InitialSolution(scenario).collect_work_stretches()
+        for employee_id, employee_work_stretches in solution.work_stretches.items():
+            for start_index, work_stretch in employee_work_stretches.items():
+                if collected_work_stretches[employee_id][start_index] \
+                    != work_stretch:
+                    print("collected work stretch {} differs from tracked work stretch {} with start id {} for employee {}".format(
+                        collected_work_stretches[employee_id][start_index], work_stretch,
+                              start_index, employee_id
+                    ))
+                    print(collected_work_stretches[employee_id])
+                    print(employee_work_stretches)
 
     def check_objective_value(self, solution, scenario):
         """
