@@ -16,7 +16,7 @@ class Heuristic:
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 200
+        self.max_time = 2000
         self.initial_temp = 22
         self.cooling_rate = 0.99
         self.no_improve_max = 50
@@ -70,7 +70,7 @@ class Heuristic:
 
         n_iter = 0
         no_improve_iter = 0
-        while time.time() < self.start_time + self.max_time:
+        while time.time() < self.start_time + self.max_time and n_iter < 20000:
 
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
@@ -104,7 +104,8 @@ class Heuristic:
 
             self.update_temperature()
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario)
-            #FeasibilityCheck().check_violation_array(current_solution, self.scenario)
+
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario)
 
             print(n_iter)
             #print(current_solution.obj_value)

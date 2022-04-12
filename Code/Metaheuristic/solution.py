@@ -169,7 +169,14 @@ class Solution:
         """
         return np.matmul(self.get_violations(scenario, rule_collection), rule_collection.penalty_array)
 
-    def get_violations(self,scenario, rule_collection):
+    def calc_objective_value_violations(self, violation_array, rule_collection):
+        """
+        Function to calculate the objective value of a solution based on the
+        applied soft constraints
+        """
+        return np.matmul(violation_array, rule_collection.penalty_array)
+
+    def get_violations(self, scenario, rule_collection):
         violation_array = np.zeros(len(rule_collection.soft_rule_collection.collection))
         for i, rule in enumerate(rule_collection.soft_rule_collection.collection.values()):
             violation_array[i] = rule.count_violations(solution=self, scenario=scenario)

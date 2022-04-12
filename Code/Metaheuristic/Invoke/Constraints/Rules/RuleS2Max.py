@@ -15,30 +15,16 @@ class RuleS2Max(Rule):
         """
         Function to count violations in the entire solution
         """
-        violation_counter = 0
+        return sum([self.count_violations_employee(solution, employee_id)
+                    for employee_id in scenario.employees._collection.keys()])
 
-        for d_index in range(scenario.num_days_in_horizon):
-            for s_index in range(scenario.num_shift_types):
-                for sk_index in range(scenario.skill_collection.num_skills):
-                    violation_counter += self.count_violations_day_shift_skill(
-                        solution, scenario,
-                        d_index, s_index,
-                        sk_index)
-        return 0
-
-    def count_violations_day_shift_skill(self, solution, scenario, d_index, s_index, sk_index):
+    def count_violations_employee(self, solution, employee_id):
         """
-        Function to count violations for a given day, shift type and skill
+        Function to count violations for an employee
         """
-        assignment_count = 0
-
-        for employee in solution.shift_assignments.values():
-            if np.array_equal(employee[d_index], np.array([s_index, sk_index])):
-                assignment_count += 1
-        if assignment_count < scenario.optimal_coverage[(d_index, sk_index, s_index)]:
-            return scenario.optimal_coverage[(d_index, sk_index, s_index)] - assignment_count
-        else:
-            return 0
+        return sum([work_stretch['length'] - self.parameter_per_employee[employee_id]
+                    for work_stretch in solution.work_stretches[employee_id].values()
+                    if work_stretch['length'] > self.parameter_per_employee[employee_id]])
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """
@@ -50,6 +36,7 @@ class RuleS2Max(Rule):
 
         # check if moving from off to assigned
         if not change_info['current_working']:
+
             work_stretch_before = None
             # find the word stretch of which day d_index - 1 is the last day
             for start_index, work_stretch in solution.work_stretches[
@@ -61,25 +48,35 @@ class RuleS2Max(Rule):
             # check if both adjacent day are in a work stretch
             if change_info['d_index'] + 1 in solution.work_stretches[
                 change_info['employee_id']].keys() and work_stretch_before:
+
                 # check if the length of the new work stretch is too long
                 if employee_parameter <= solution.work_stretches[change_info['employee_id']][
                     change_info['d_index'] + 1]['length'] \
                         + work_stretch_before['length']:
+
                     # calc previous violations of the separate work stretches
-                    previous_violations = np.max([solution.work_stretches[change_info['employee_id']][
-                    change_info['d_index']+1]['length'], 0]) - np.max([work_stretch_before['length'], 0])
+                    previous_violations = np.max(
+                        [solution.work_stretches[change_info['employee_id']][
+                        change_info['d_index']+1]['length'] - employee_parameter,
+                         0]) \
+                          + np.max(
+                        [work_stretch_before['length'] - employee_parameter,
+                         0])
 
                     return (solution.work_stretches[change_info['employee_id']][
                     change_info['d_index'] + 1]['length']
-                        + work_stretch_before['length'] + 1) \
-                           - previous_violations
-                    # check if only the day after is in a work stretch
+                        + work_stretch_before['length'] + 1) - employee_parameter \
+                        - previous_violations
+
+            # check if only the day after is in a work stretch
             elif change_info['d_index'] + 1 in solution.work_stretches[
                 change_info['employee_id']].keys():
+
                 # check whether the length of the new work stretch is longer than allowed
                 if solution.work_stretches[change_info['employee_id']][
-                    change_info['d_index'] + 1]['length'] >= employee_parameter:
+                   change_info['d_index'] + 1]['length'] >= employee_parameter:
                     return 1
+
             # check whether only the day before is in a work stretch
             elif work_stretch_before:
                 # check if the length of the new work stretch is too long
@@ -94,25 +91,16 @@ class RuleS2Max(Rule):
             # find in what work stretch the d_index is
             for start_index, work_stretch in solution.work_stretches[change_info['employee_id']].items():
                 if change_info['d_index'] in range(start_index, work_stretch["end_index"]):
-                    if work_stretch['length'] > employee_parameter:
 
-                        split_1 = change_info['d_index'] - start_index
-                        split_2 = work_stretch['end_index'] - change_info['d_index']
-                        if split_1 > employee_parameter and \
-                                split_2 > employee_parameter:
-                            return - ((work_stretch['length'] - employee_parameter)
-                                      - (split_1 - employee_parameter)
-                                      - (split_2 - employee_parameter))
-                        elif split_1 > employee_parameter:
-                            return - ((work_stretch['length'] - employee_parameter)
-                                      - (split_1 - employee_parameter))
-                        elif split_2 > employee_parameter:
-                            return - ((work_stretch['length'] - employee_parameter)
-                                      - (split_2 - employee_parameter))
-                        else:
-                            return - (work_stretch['length'] - employee_parameter)
-                    else:
-                        return 0
+                    # check if work stretch is longer than max
+
+                    split_1 = change_info['d_index'] - start_index
+                    split_2 = work_stretch['end_index'] - change_info['d_index']
+
+                    return - (np.max([work_stretch['length'] - employee_parameter, 0])
+                              - np.max([split_1 - employee_parameter, 0])
+                              - np.max([split_2 - employee_parameter, 0]))
+
         else:
             return 0
 
@@ -230,10 +218,9 @@ class RuleS2Max(Rule):
                     'end_index': solution.work_stretches[
                         change_info['employee_id']][
                         start_index_d]['end_index'],
-                    'length': change_info['d_index'] - 1
-                              - solution.work_stretches[
+                    'length': solution.work_stretches[
                         change_info['employee_id']][
-                        start_index_d]['end_index']
+                        start_index_d]['end_index'] - change_info['d_index']
                 }
 
                 # change end index and length of first new work stretch

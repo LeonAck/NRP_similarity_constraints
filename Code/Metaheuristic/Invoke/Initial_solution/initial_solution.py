@@ -35,16 +35,20 @@ class InitialSolution(Solution):
         self.num_assignments_per_nurse = self.get_num_assignments_per_nurse()
 
         # collect number of working weekends per nurse
-        self.num_working_weekends = RuleS6().count_working_weekends_employee(solution=self, scenario=self.scenario)
+        self.num_working_weekends = RuleS6().count_working_weekends_employee(
+            solution=self,
+            scenario=self.scenario)
 
         # collect work stretches
         self.work_stretches = self.collect_work_stretches()
 
-        # calc objective value
-        self.obj_value = self.calc_objective_value(scenario=self.scenario, rule_collection=self.scenario.rule_collection)
-
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
+
+        # calc objective value
+        self.obj_value = self.calc_objective_value_violations(
+            violation_array=self.violation_array,
+            rule_collection=self.scenario.rule_collection)
 
     def assign_skill_requests(self):
         """
@@ -53,24 +57,29 @@ class InitialSolution(Solution):
         # get requests per day
         for day_index, request_per_day in enumerate(self.scenario.skill_requests):
             # create collection of nurses available on day
-            employees_available_on_day = EmployeeCollection().initialize_employees(self.scenario, self.scenario.employees_specs)
+            employees_available_on_day = EmployeeCollection().initialize_employees(
+                self.scenario, self.scenario.employees_specs)
 
             #  loop through requests per day and per skill
             for skill_index, request_per_day_per_skill in enumerate(request_per_day):
 
                 # create set of employees with skill that are available on that day
-                employees_with_skill = employees_available_on_day.get_employee_w_skill(self.scenario.skills[skill_index])
+                employees_with_skill = employees_available_on_day.get_employee_w_skill(
+                    self.scenario.skills[skill_index])
 
                 for s_type_index, request_per_day_per_skill_per_s_type in enumerate(request_per_day_per_skill):
                     n = request_per_day_per_skill_per_s_type
                     while n > 0:
                         # pick one of available nurses
                         employee_id = employees_with_skill.random_pick()
+
                         # add shift type to nurse
                         self.replace_shift_assignment(employee_id, day_index, s_type_index, skill_index)
                         # TODO update other nurses information
+
                         # remove nurse from available nurses for day
                         employees_available_on_day = employees_available_on_day.exclude_employee(employee_id)
+
                         # remove nurse from available nurses for skills
                         employees_with_skill = employees_with_skill.exclude_employee(employee_id)
 
