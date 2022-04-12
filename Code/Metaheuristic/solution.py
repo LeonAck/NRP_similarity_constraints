@@ -1,5 +1,5 @@
 import numpy as np
-
+from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 
 class Solution:
     """
@@ -70,6 +70,12 @@ class Solution:
         # S1
         solution.diff_opt_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
 
+        # S2Max
+        solution = RuleS2Max().update_information_assigned_to_off(solution, change_info)
+
+        # S4
+        # nothing
+
         # S5
         solution.num_assignments_per_nurse[change_info['employee_id']] -= 1
 
@@ -90,6 +96,12 @@ class Solution:
         # soft constraints
         # S1
         solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+
+        # S2Max and S2Min
+        solution = RuleS2Max().update_information_off_to_assigned(solution, change_info)
+
+        # S4
+        # no changes necessary
 
         # S5
         solution.num_assignments_per_nurse[change_info['employee_id']] += 1
@@ -114,6 +126,9 @@ class Solution:
         # S1
         solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
         solution.diff_opt_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
+
+        # S2-S6
+        # no changes necessary
 
     def update_solution_change(self, change_info):
         """
