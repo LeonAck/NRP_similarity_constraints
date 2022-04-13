@@ -56,6 +56,8 @@ class Heuristic:
         best_solution = Solution(starting_solution)
         FeasibilityCheck().check_objective_value(current_solution, self.scenario)
         FeasibilityCheck().check_violation_array(current_solution, self.scenario)
+        FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
+        FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
         # Initialize tracking
         # number of iterations
         # number of iterations without improvement
@@ -71,13 +73,17 @@ class Heuristic:
         n_iter = 0
         no_improve_iter = 0
         while time.time() < self.start_time + self.max_time and n_iter < 20000:
-
+            print(n_iter)
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
+            FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
+            FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
 
             change_info = self.operators[operator_name](current_solution, self.scenario)
             no_improve_iter += 1
+            FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
+            FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
             if change_info['cost_increment'] <= 0:
                 # update solutions accordingly
                 current_solution.update_solution_change(change_info)
@@ -97,18 +103,21 @@ class Heuristic:
             if no_improve_iter > self.no_improve_max:
                 current_solution = Solution(best_solution)
                 no_improve_iter = 0
-
+            # for watch
+            solution = current_solution
             # adjust weights
             # TODO operator weights
             #self.update_operator_weights(operator_name)
 
             self.update_temperature()
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario)
-
+            print(current_solution.violation_array)
+            FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
             FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
-            #FeasibilityCheck().check_violation_array(current_solution, self.scenario)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario)
 
-            print(n_iter)
+
+
             #print(current_solution.obj_value)
 
             n_iter += 1

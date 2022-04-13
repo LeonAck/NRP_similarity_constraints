@@ -93,17 +93,22 @@ class FeasibilityCheck:
         """
         Function to find differences in the work stretch information
         """
-        collected_work_stretches = InitialSolution(scenario).collect_work_stretches()
+        flag = True
+        collected_work_stretches = InitialSolution(scenario).collect_work_stretches(solution)
+        if collected_work_stretches != solution.work_stretches:
+            print("stretches is false")
+            flag = False
+        return flag
+
+    def check_number_of_work_stretches(self, solution, scenario):
+        flag = True
+        collected_work_stretches = InitialSolution(scenario).collect_work_stretches(solution)
         for employee_id, employee_work_stretches in solution.work_stretches.items():
-            for start_index, work_stretch in employee_work_stretches.items():
-                if collected_work_stretches[employee_id][start_index] \
-                    != work_stretch:
-                    print("collected work stretch {} differs from tracked work stretch {} with start id {} for employee {}".format(
-                        collected_work_stretches[employee_id][start_index], work_stretch,
-                              start_index, employee_id
-                    ))
-                    print(collected_work_stretches[employee_id])
-                    print(employee_work_stretches)
+            if len(employee_work_stretches) != len(collected_work_stretches[employee_id]):
+                print("different number of work stretches")
+                flag = False
+
+        return flag
 
     def check_objective_value(self, solution, scenario):
         """
@@ -132,4 +137,7 @@ class FeasibilityCheck:
                 flag = False
 
         return flag
+
+    def calc_violation_employee(self, solution, scenario):
+        pass
 

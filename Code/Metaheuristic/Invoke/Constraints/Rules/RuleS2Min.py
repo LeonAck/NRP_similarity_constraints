@@ -1,6 +1,6 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
-
+from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 
 class RuleS2Min(Rule):
     """
@@ -31,24 +31,52 @@ class RuleS2Min(Rule):
         :return:
         delta number_of_violations
         """
-        employee_parameter = self.parameter_per_employee[change_info['employee_id']]
 
         # check if moving from off to assigned
         if not change_info['current_working']:
+            return self.incremental_violation_off_to_assigned(solution, change_info)
 
-            work_stretch_before = None
-            # find the word stretch of which day d_index - 1 is the last day
-            for start_index, work_stretch in solution.work_stretches[
-                change_info['employee_id']].items():
-                if change_info['d_index'] - 1 == work_stretch["end_index"]:
-                    work_stretch_before = work_stretch
-                    break
+        # check if moving from assigned to off
+        elif not change_info['new_working']:
+            return self.incremental_violation_assigned_to_off(solution, change_info)
+        else:
+            return 0
 
+    def incremental_violation_off_to_assigned(self, solution, change_info):
+        """
+        Incremental violations off to assigned
+        """
+        employee_parameter = self.parameter_per_employee[change_info['employee_id']]
+        work_stretch_before = None
+        # find the word stretch of which day d_index - 1 is the last day
+        for start_index, work_stretch in solution.work_stretches[
+            change_info['employee_id']].items():
+            if change_info['d_index'] - 1 == work_stretch["end_index"]:
+                work_stretch_before = work_stretch
+                break
+
+        # if day is the first day
+        if change_info['d_index'] == 0:
+            if solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1):
+                # check whether the length of the new work stretch is longer than allowed
+                return -1 if solution.work_stretches[change_info['employee_id']][
+                                 change_info['d_index'] + 1]['length'] < employee_parameter \
+                    else 0
+         # check if last day
+        elif change_info['d_index'] == len(solution.shift_assignments[change_info['employee_id']])-1:
+            if solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] - 1):
+                print("shift assignments", solution.shift_assignments[change_info['employee_id']])
+
+                # check if the length of the new work stretch is too long
+                return -1 if work_stretch_before['length'] < employee_parameter \
+                    else 0
+        else:
             # check if both adjacent day are in a work stretch
-            if change_info['d_index'] + 1 in solution.work_stretches[
-                change_info['employee_id']].keys() and work_stretch_before:
-
+            if solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1) \
+                    and solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] - 1):
                 # return difference between new violations and previous violations
+
+                print("shift assignments", solution.shift_assignments[change_info['employee_id']])
                 return - (
                         np.maximum(
                             employee_parameter
@@ -56,49 +84,49 @@ class RuleS2Min(Rule):
                                 change_info['d_index'] + 1]['length'], 0
                         )
                         + np.maximum(
-                        employee_parameter
-                        - work_stretch_before['length'], 0
-                        )
+                    employee_parameter
+                    - work_stretch_before['length'], 0
+                )
                         - np.maximum(
-                        employee_parameter
-                        - (solution.work_stretches[change_info['employee_id']][
+                    employee_parameter
+                    - (solution.work_stretches[change_info['employee_id']][
                            change_info['d_index'] + 1]['length']
-                        + work_stretch_before['length'] + 1), 0
-                        )
-                        )
+                       + work_stretch_before['length'] + 1), 0
+                )
+                )
 
             # check if only the day after is in a work stretch
-            elif change_info['d_index'] + 1 in solution.work_stretches[
-                change_info['employee_id']].keys():
+            elif solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1):
 
                 # check whether the length of the new work stretch is longer than allowed
                 return -1 if solution.work_stretches[change_info['employee_id']][
-                                 change_info['d_index'] + 1]['length'] <= employee_parameter \
+                                 change_info['d_index'] + 1]['length'] < employee_parameter \
                     else 0
 
             # check whether only the day before is in a work stretch
-            elif work_stretch_before:
+            elif solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] - 1):
+                print("shift assignments", solution.shift_assignments[change_info['employee_id']])
+
                 # check if the length of the new work stretch is too long
-                return -1 if work_stretch_before['length'] <= employee_parameter \
+                return -1 if work_stretch_before['length'] < employee_parameter \
                     else 0
             # if neither of the adjacent days are in a work stretch
             else:
-                return 0
+                return np.maximum(employee_parameter-1, 0)
 
-        # check if moving from assigned to off
-        elif not change_info['new_working']:
-            # find in what work stretch the d_index is
-            for start_index, work_stretch in solution.work_stretches[change_info['employee_id']].items():
-                if change_info['d_index'] in range(start_index, work_stretch["end_index"]):
-                    # calc length of remaining stretches
-                    length_1 = change_info['d_index'] - start_index
-                    length_2 = work_stretch['end_index'] - change_info['d_index']
+    def incremental_violation_assigned_to_off(self, solution, change_info):
+        employee_parameter = self.parameter_per_employee[change_info['employee_id']]
+        # find in what work stretch the d_index is
+        for start_index, work_stretch in solution.work_stretches[change_info['employee_id']].items():
+            if change_info['d_index'] in range(start_index, work_stretch["end_index"]):
+                # calc length of remaining stretches
+                length_1 = change_info['d_index'] - start_index
+                length_2 = work_stretch['end_index'] - change_info['d_index']
 
-                    # add extra violations
-                    # the new violations - the old violations
-                    return np.maximum(employee_parameter - length_1, 0) \
-                           + np.maximum(employee_parameter - length_2, 0) \
-                           - np.maximum(employee_parameter - work_stretch['length'], 0)
+                # add extra violations
+                # the new violations - the old violations
+                return np.maximum(employee_parameter - length_1, 0) \
+                       + np.maximum(employee_parameter - length_2, 0) \
+                       - np.maximum(employee_parameter - work_stretch['length'], 0)
 
-        else:
-            return 0
+

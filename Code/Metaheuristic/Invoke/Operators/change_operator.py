@@ -1,6 +1,7 @@
 import random
 from Invoke.Constraints.Rules import RuleH3
 import numpy as np
+from Check.check_function_feasibility import FeasibilityCheck
 
 
 def change_operator(solution, scenario):
@@ -13,11 +14,19 @@ def change_operator(solution, scenario):
         :return:
         new_solutions
     """
+    FeasibilityCheck().work_stretches_info(solution, scenario)
+
     # get a change that is allowed by hard constraints
     change_info = get_feasible_change(solution, scenario)
 
+    FeasibilityCheck().work_stretches_info(solution, scenario)
+    print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+    print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                        change_info['new_working']))
+
     # add penalty to objective
     change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution, scenario, change_info)
+    FeasibilityCheck().work_stretches_info(solution, scenario)
 
     return change_info
 
@@ -49,8 +58,10 @@ def get_feasible_change(solution, scenario):
 
     # get list of employees that are feasible for the change
     feasible_employees = list((scenario.employees._collection.keys()))
+    FeasibilityCheck().work_stretches_info(solution, scenario)
+    work_stretches_1 =solution.work_stretches
+    shift_ass_1 = solution.shift_assignments
     change_info = dict()
-
     while len(feasible_employees) > 0 and not feasible:
         # pick random nurse
         change_info["employee_id"] = random.choice(feasible_employees)  # remove nurse if picked before
@@ -59,12 +70,14 @@ def get_feasible_change(solution, scenario):
         feasible_days = list(range(0, scenario.num_days_in_horizon))
         feasible_days = remove_infeasible_days_understaffing(
             solution, change_info["employee_id"], feasible_days)
-
+        i = 0
         while len(feasible_days) > 0 and not feasible:
+            work_stretches_2 = solution.work_stretches
             # choose day
             change_info["d_index"] = random.choice(feasible_days)
+            shift_ass_2 = solution.shift_assignments
             change_info = fill_change_info_curr_ass(solution, change_info)
-
+            FeasibilityCheck().work_stretches_info(solution, scenario)
             # get allowed shifts for insertion for given day
             allowed_shift_types = get_allowed_s_type(solution, scenario, change_info["employee_id"],
                                                      change_info["d_index"])
@@ -83,7 +96,7 @@ def get_feasible_change(solution, scenario):
                 else:
                     # get allowed shifts for this shift type
                     allowed_skills = get_allowed_skills(scenario, change_info)
-
+                    FeasibilityCheck().work_stretches_info(solution, scenario)
                     # check if there are allowed shift types
                     if len(allowed_skills) == 0:
                         allowed_shift_types = np.delete(allowed_shift_types,
@@ -97,8 +110,11 @@ def get_feasible_change(solution, scenario):
             # if no allowed shift type for day, remove day and find new day
             feasible_days.remove(change_info["d_index"])
 
+            i += 1
+
         # if no feasible day for change for employee, remove employee and find new employee
         feasible_employees.remove(change_info["employee_id"])
+    FeasibilityCheck().work_stretches_info(solution, scenario)
 
     return change_info
 
@@ -208,6 +224,9 @@ def fill_change_info_curr_ass(solution, change_info):
     change_info["new_working"] = None
 
     return change_info
+
+def find_difference_dict(first_dict, second_dict):
+    return { k : second_dict[k] for k in set(second_dict) - set(first_dict) }
 
 
 

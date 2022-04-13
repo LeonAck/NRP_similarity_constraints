@@ -60,7 +60,7 @@ class Settings:
              },
              "S2Min": {"id": "S2Min",
              "is_mandatory": False,
-             "is_active": True,
+             "is_active": False,
              "is_horizontal": True,
              "parameter_per_contract": True,
              "penalty": 30,
