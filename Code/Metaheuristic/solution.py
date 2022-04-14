@@ -185,7 +185,14 @@ class Solution:
     def get_violations_per_employee(self, scenario, rule_collection):
         pass
 
+    def check_if_first_day(self, d_index):
+        return d_index == 0
 
+    def check_if_last_day(self, d_index):
+        return d_index == self.day_collection.num_days_in_horizon - 1
+
+    def check_if_middle_day(self, d_index):
+        return not self.check_if_last_day(d_index) and not self.check_if_first_day(d_index)
 
 
     # def create_skill_counter(self):
