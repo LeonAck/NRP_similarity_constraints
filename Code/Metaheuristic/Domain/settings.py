@@ -90,7 +90,7 @@ class Settings:
              },
             "S3Min":{"id": "S3Min",
              "is_mandatory": False,
-             "is_active": False,
+             "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
              "penalty": 30,

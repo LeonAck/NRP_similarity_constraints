@@ -125,7 +125,7 @@ class FeasibilityCheck:
 
         return flag
 
-    def day_off_stretches_info(self, solution, scenario):
+    def day_off_stretches_info(self, solution, scenario, change_info):
         """
         Function to find differences in the day off stretch information
         """
@@ -144,6 +144,10 @@ class FeasibilityCheck:
                     employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
                 except KeyError:
                     employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+            print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                change_info['new_working']))
+
             pprint.pprint(deepdiff)
             print("true", collected_day_off_stretches[employee_id])
             print("saved", solution.day_off_stretches[employee_id])
@@ -154,7 +158,7 @@ class FeasibilityCheck:
         return flag
 
 
-    def check_objective_value(self, solution, scenario):
+    def check_objective_value(self, solution, scenario, change_info):
         """
         Check whether calculated objective value equals actual objective value
         """
@@ -162,12 +166,17 @@ class FeasibilityCheck:
         equal = solution.obj_value == solution.calc_objective_value(scenario, rule_collection=scenario.rule_collection)
 
         if not equal:
+            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+            print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                change_info['new_working']))
+            print("tracked_violations", solution.violation_array)
+            print("true_violations", solution.get_violations(scenario, scenario.rule_collection))
             print("tracked obj value is {} while calculated is {}".format(solution.obj_value, solution.calc_objective_value(scenario, rule_collection=scenario.rule_collection)))
             flag = False
 
         return flag
 
-    def check_violation_array(self, solution, scenario):
+    def check_violation_array(self, solution, scenario, change_info):
         """
         Check whether tracked violations are different from calculated
         """
@@ -175,6 +184,10 @@ class FeasibilityCheck:
         calc_violations = solution.get_violations(scenario, scenario.rule_collection)
         for i, violation in enumerate(solution.violation_array):
             if calc_violations[i] != violation:
+                print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+                print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                    change_info['new_working']))
+
                 print("number of violation for soft constraint {} is tracked {} and calc {}".format(
                     i, violation, calc_violations[i]
                 ))

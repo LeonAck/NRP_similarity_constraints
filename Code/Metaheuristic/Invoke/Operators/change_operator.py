@@ -17,9 +17,6 @@ def change_operator(solution, scenario):
     # get a change that is allowed by hard constraints
     change_info = get_feasible_change(solution, scenario)
 
-    print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-    print("current working: {}, new working: {}".format(change_info['current_working'],
-                                                        change_info['new_working']))
 
     # add penalty to objective
     change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution, scenario, change_info)

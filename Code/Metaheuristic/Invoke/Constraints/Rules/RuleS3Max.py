@@ -109,7 +109,6 @@ class RuleS3Max(Rule):
                 and not solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] - 1):
             start_index = self.find_day_off_stretch_end(solution, change_info['employee_id'], change_info['d_index'] - 1)
 
-            print("combine shift")
             # replace end_index of new work stretch with last
             solution.day_off_stretches[
                 change_info['employee_id']][

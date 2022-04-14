@@ -82,8 +82,8 @@ class RuleS2Min(Rule):
         for start_index, work_stretch in solution.work_stretches[change_info['employee_id']].items():
             if change_info['d_index'] in range(start_index, work_stretch["end_index"]):
                 # calc length of remaining stretches
-                length_1 = change_info['d_index'] - start_index
-                length_2 = work_stretch['end_index'] - change_info['d_index']
+                length_1 = change_info['d_index'] - start_index if change_info['d_index'] - start_index > 0 else employee_parameter
+                length_2 = work_stretch['end_index'] - change_info['d_index'] if work_stretch['end_index'] - change_info['d_index']  > 0 else employee_parameter
 
                 # add extra violations
                 # the new violations - the old violations

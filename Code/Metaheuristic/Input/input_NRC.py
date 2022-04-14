@@ -331,7 +331,7 @@ instance = Instance(settings)
 settings = instance.add_rules_specs_settings(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-
-best_solution = Heuristic(scenario).run_heuristic(starting_solution=init_solution)
+for i in range(10):
+    best_solution = Heuristic(scenario).run_heuristic(starting_solution=init_solution)
 FeasibilityCheck().h2_check_function(best_solution, scenario)
 FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)
