@@ -57,7 +57,6 @@ class Heuristic:
         FeasibilityCheck().check_objective_value(current_solution, self.scenario)
         FeasibilityCheck().check_violation_array(current_solution, self.scenario)
         FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
-        FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
         # Initialize tracking
         # number of iterations
         # number of iterations without improvement
@@ -77,13 +76,9 @@ class Heuristic:
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
-            FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
-            FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
 
             change_info = self.operators[operator_name](current_solution, self.scenario)
             no_improve_iter += 1
-            FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
-            FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
             if change_info['cost_increment'] <= 0:
                 # update solutions accordingly
                 current_solution.update_solution_change(change_info)
@@ -111,12 +106,10 @@ class Heuristic:
 
             self.update_temperature()
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario)
-            print(current_solution.violation_array)
-            FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
-            FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
-            FeasibilityCheck().check_violation_array(current_solution, self.scenario)
-
-
+            #print(current_solution.violation_array)
+            #FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
+            #FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
+            #FeasibilityCheck().check_violation_array(current_solution, self.scenario)
 
             #print(current_solution.obj_value)
 

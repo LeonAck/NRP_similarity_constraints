@@ -1,4 +1,6 @@
 import numpy as np
+from deepdiff import DeepDiff
+import pprint
 from Invoke.Initial_solution.initial_solution import InitialSolution
 class FeasibilityCheck:
     """
@@ -98,6 +100,18 @@ class FeasibilityCheck:
         if collected_work_stretches != solution.work_stretches:
             print("stretches is false")
             flag = False
+
+        if not flag:
+            deepdiff = DeepDiff(collected_work_stretches, solution.work_stretches)
+            employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            pprint.pprint(deepdiff)
+            print("true", collected_work_stretches[employee_id])
+            print("saved", solution.work_stretches[employee_id])
+            print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
+
+            print("hi")
+
+
         return flag
 
     def check_number_of_work_stretches(self, solution, scenario):
@@ -107,6 +121,7 @@ class FeasibilityCheck:
             if len(employee_work_stretches) != len(collected_work_stretches[employee_id]):
                 print("different number of work stretches")
                 flag = False
+                break
 
         return flag
 
