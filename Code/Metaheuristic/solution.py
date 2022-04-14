@@ -1,5 +1,6 @@
 import numpy as np
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
+from Invoke.Constraints.Rules.RuleS3Max import RuleS3Max
 
 class Solution:
     """
@@ -21,8 +22,11 @@ class Solution:
             # S1
             self.diff_opt_request = other_solution.diff_opt_request
 
-            # S2_max
+            # S2
             self.work_stretches = other_solution.work_stretches
+
+            # S3
+            self.day_off_stretches = other_solution.day_off_stretches
 
             # S5 number of assignments
             self.num_assignments_per_nurse = other_solution.num_assignments_per_nurse
@@ -73,6 +77,9 @@ class Solution:
         # S2Max
         solution = RuleS2Max().update_information_assigned_to_off(solution, change_info)
 
+        # S3Max
+        solution = RuleS3Max().update_information_assigned_to_off(solution, change_info)
+
         # S4
         # nothing
 
@@ -99,6 +106,9 @@ class Solution:
 
         # S2Max and S2Min
         solution = RuleS2Max().update_information_off_to_assigned(solution, change_info)
+
+        #S3Max
+        solution = RuleS3Max().update_information_off_to_assigned(solution, change_info)
 
         # S4
         # no changes necessary

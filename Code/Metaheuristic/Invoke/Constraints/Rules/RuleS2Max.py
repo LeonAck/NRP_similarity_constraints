@@ -51,7 +51,6 @@ class RuleS2Max(Rule):
         and solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] - 1):
             start_index = self.find_work_stretch_end(solution, change_info['employee_id'], change_info['d_index']-1)
 
-            print("combine shift")
             # replace end_index of new work stretch with last
             solution.work_stretches[
                 change_info['employee_id']][
@@ -79,7 +78,6 @@ class RuleS2Max(Rule):
         elif not solution.check_if_last_day(change_info['d_index'])\
                 and solution.check_if_working_day(change_info['employee_id'], change_info['d_index']+1):
 
-            print("new key for stretch")
             # create change key of dictionary
             solution.work_stretches[
                 change_info['employee_id']][change_info['d_index']] = solution.work_stretches[
@@ -95,7 +93,6 @@ class RuleS2Max(Rule):
             and solution.check_if_working_day(change_info['employee_id'], change_info['d_index']-1):
             start_index = self.find_work_stretch_end(solution, change_info['employee_id'], change_info['d_index']-1)
             # change end index by one
-            print("stretch made longer")
             solution.work_stretches[
                 change_info['employee_id']][start_index ]['end_index'] += 1
 

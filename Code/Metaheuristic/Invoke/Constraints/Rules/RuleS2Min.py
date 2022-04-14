@@ -55,7 +55,7 @@ class RuleS2Min(Rule):
 
             previous_violations = np.maximum(employee_parameter - solution.work_stretches[change_info['employee_id']][d_index+1]['length'], 0) \
                                     + np.maximum(employee_parameter - solution.work_stretches[change_info['employee_id']][start_index]['length'], 0)
-            new_violations =  np.maximum(employee_parameter
+            new_violations = np.maximum(employee_parameter
                                          - (solution.work_stretches[change_info['employee_id']][d_index+1]['length']
                                             + solution.work_stretches[change_info['employee_id']][start_index]['length']
                                             + 1), 0)

@@ -125,6 +125,35 @@ class FeasibilityCheck:
 
         return flag
 
+    def day_off_stretches_info(self, solution, scenario):
+        """
+        Function to find differences in the day off stretch information
+        """
+        flag = True
+        collected_day_off_stretches = InitialSolution(scenario).collect_work_stretches(solution, working=False)
+        if collected_day_off_stretches != solution.day_off_stretches :
+            print("stretches is false")
+            flag = False
+
+        if not flag:
+            deepdiff = DeepDiff(collected_day_off_stretches, solution.day_off_stretches)
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            pprint.pprint(deepdiff)
+            print("true", collected_day_off_stretches[employee_id])
+            print("saved", solution.day_off_stretches[employee_id])
+            print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
+
+            print("hi")
+
+        return flag
+
+
     def check_objective_value(self, solution, scenario):
         """
         Check whether calculated objective value equals actual objective value

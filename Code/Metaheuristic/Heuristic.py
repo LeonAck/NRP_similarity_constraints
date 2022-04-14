@@ -16,7 +16,7 @@ class Heuristic:
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 20
+        self.max_time = 2000
         self.max_iter = 100
         self.initial_temp = 22
         self.cooling_rate = 0.99
@@ -109,7 +109,7 @@ class Heuristic:
             FeasibilityCheck().check_objective_value(current_solution, self.scenario)
             #print(current_solution.violation_array)
             FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
-            FeasibilityCheck().check_number_of_work_stretches(current_solution, self.scenario)
+            FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario)
             FeasibilityCheck().check_violation_array(current_solution, self.scenario)
 
             #print(current_solution.obj_value)

@@ -41,6 +41,7 @@ class InitialSolution(Solution):
 
         # collect work stretches
         self.work_stretches = self.collect_work_stretches(solution=self)
+        self.day_off_stretches = self.collect_work_stretches(solution=self, working=False)
 
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
@@ -140,17 +141,21 @@ class InitialSolution(Solution):
 
         return num_assignments
 
-    def collect_work_stretches(self, solution):
+    def collect_work_stretches(self, solution, working=True):
         """
         Function to collect for each nurse the stretches of consecutive
-        working days
+        working days or days off
         """
         work_stretches = {}
         for employee_id in self.scenario.employees._collection.keys():
             work_stretch_employee = {}
             # for each working day, get check if employee is working
-            working_check = [1 if solution.check_if_working_day(employee_id, d_index) else 0
-                            for d_index in range(self.scenario.num_days_in_horizon)]
+            if working:
+                working_check = [1 if solution.check_if_working_day(employee_id, d_index) else 0
+                                for d_index in range(self.scenario.num_days_in_horizon)]
+            else:
+                working_check = [1 if not solution.check_if_working_day(employee_id, d_index) else 0
+                                 for d_index in range(self.scenario.num_days_in_horizon)]
             start_index = 0
             # get lists of consecutive working days
             for k, v in itertools.groupby(working_check):
@@ -168,6 +173,8 @@ class InitialSolution(Solution):
             work_stretches[employee_id] = work_stretch_employee
 
         return work_stretches
+
+
 
 
 
