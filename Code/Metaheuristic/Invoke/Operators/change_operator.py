@@ -62,6 +62,7 @@ def get_feasible_change(solution, scenario):
         feasible_days = list(range(0, scenario.num_days_in_horizon))
         feasible_days = remove_infeasible_days_understaffing(
             solution, change_info["employee_id"], feasible_days)
+
         i = 0
         while len(feasible_days) > 0 and not feasible:
             work_stretches_2 = solution.work_stretches
@@ -140,25 +141,23 @@ def get_feasible_removal2(solution, scenario, feasible_employees):
     else:
         return change_info, feasible_employees
 
-
 def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
     """
     Remove days where a employee cannot be removed since this might cause understaffing
     :Return:
     list of feasible days
     """
+
     working_days = [d_index for d_index in feasible_days if solution.check_if_working_day(employee_id, d_index)]
 
     feasible_removals = solution.diff_min_request > 1
-    for d_index in working_days:
-        if solution.diff_min_request[
-            tuple([d_index,
-                   solution.shift_assignments[employee_id][d_index][1],
-                   solution.shift_assignments[employee_id][d_index][0]])
-        ] < 1:
-            feasible_days.remove(d_index)
 
-    return feasible_days
+    return [d_index for d_index in feasible_days if d_index not in working_days or (d_index in working_days
+                and feasible_removals[
+                    tuple([d_index,
+                   solution.shift_assignments[employee_id][d_index][1],
+                   solution.shift_assignments[employee_id][d_index][0]])] > 1)
+            ]
 
 
 def get_allowed_s_type(solution, scenario, employee_id, d_index):

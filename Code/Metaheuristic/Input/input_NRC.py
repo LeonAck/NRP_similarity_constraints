@@ -48,8 +48,6 @@ class Instance:
 
         return settings
 
-
-
     def rule_parameter_dict(self, parameter_str):
         """
         Function to create dict with parameters for every contract type
