@@ -136,7 +136,6 @@ class RuleS3Max(Rule):
         elif not solution.check_if_last_day(change_info['d_index']) \
                 and not solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1):
 
-            print("new key for stretch")
             # create change key of dictionary
             solution.day_off_stretches[
                 change_info['employee_id']][change_info['d_index']] = solution.day_off_stretches[
@@ -152,7 +151,6 @@ class RuleS3Max(Rule):
                 and not solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] - 1):
             start_index = self.find_day_off_stretch_end(solution, change_info['employee_id'], change_info['d_index'] - 1)
             # change end index by one
-            print("stretch made longer")
             solution.day_off_stretches[
                 change_info['employee_id']][start_index]['end_index'] += 1
 

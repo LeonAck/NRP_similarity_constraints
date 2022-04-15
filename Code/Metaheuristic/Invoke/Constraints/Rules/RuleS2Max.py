@@ -318,7 +318,7 @@ class RuleS2Max(Rule):
         # if day is the first day
         if change_info['d_index'] == 0:
             if solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1):
-                print("new key for stretch")
+
                 # create change key of dictionary
                 solution.work_stretches[
                     change_info['employee_id']][change_info['d_index']] = solution.work_stretches[
@@ -348,7 +348,6 @@ class RuleS2Max(Rule):
                         break
                 # change end index by one
 
-                print("stretch made longer")
                 solution.work_stretches[
                     change_info['employee_id']][start_index_before]['end_index'] += 1
 
@@ -373,7 +372,7 @@ class RuleS2Max(Rule):
                         work_stretch_before = work_stretch
                         start_index_before = start_index
                         break
-                print("cobine shift")
+
                 # replace end_index of new work stretch with last
                 solution.work_stretches[
                     change_info['employee_id']][
@@ -399,14 +398,10 @@ class RuleS2Max(Rule):
                 solution.work_stretches[
                     change_info['employee_id']].pop(change_info['d_index'] + 1)
 
-                print("combined stretch {}".format(solution.work_stretches[
-                    change_info['employee_id']][
-                    start_index_before]))
 
             # check if only the day after is in a work stretch
             elif solution.check_if_working_day(change_info['employee_id'], change_info['d_index']+1):
 
-                print("new key for stretch")
                 # create change key of dictionary
                 solution.work_stretches[
                     change_info['employee_id']][change_info['d_index']] = solution.work_stretches[
@@ -432,7 +427,6 @@ class RuleS2Max(Rule):
                         break
                 # change end index by one
 
-                print("stretch made longer")
                 solution.work_stretches[
                     change_info['employee_id']][start_index_before]['end_index'] += 1
 

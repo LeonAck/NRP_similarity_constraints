@@ -78,18 +78,23 @@ class RuleS2Min(Rule):
 
     def incremental_violation_assigned_to_off(self, solution, change_info):
         employee_parameter = self.parameter_per_employee[change_info['employee_id']]
+        length_1, length_2, the_work_stretch = None, None, None
         # find in what work stretch the d_index is
         for start_index, work_stretch in solution.work_stretches[change_info['employee_id']].items():
-            if change_info['d_index'] in range(start_index, work_stretch["end_index"]):
+            if change_info['d_index'] in range(start_index, work_stretch["end_index"]+1):
                 # calc length of remaining stretches
                 length_1 = change_info['d_index'] - start_index if change_info['d_index'] - start_index > 0 else employee_parameter
                 length_2 = work_stretch['end_index'] - change_info['d_index'] if work_stretch['end_index'] - change_info['d_index']  > 0 else employee_parameter
+                the_work_stretch = work_stretch
+                break
 
-                # add extra violations
-                # the new violations - the old violations
-                return np.maximum(employee_parameter - length_1, 0) \
-                       + np.maximum(employee_parameter - length_2, 0) \
-                       - np.maximum(employee_parameter - work_stretch['length'], 0)
+        if not the_work_stretch:
+            print("unassigned")
+        # add extra violations
+        # the new violations - the old violations
+        return np.maximum(employee_parameter - length_1, 0) \
+               + np.maximum(employee_parameter - length_2, 0) \
+               - np.maximum(employee_parameter - the_work_stretch['length'], 0)
 
     def find_work_stretch_end(self, solution, employee_id, d_index):
         """

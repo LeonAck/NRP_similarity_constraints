@@ -32,14 +32,10 @@ class RuleS3Min(Rule):
 
         # check if moving from off to assigned
         if not change_info['current_working']:
-            # if math.isnan(self.incremental_violation_off_to_assigned(solution, change_info)):
-            #     print("nan")
             return self.incremental_violation_off_to_assigned(solution, change_info)
 
         # check if moving from assigned to off
         elif not change_info['new_working']:
-            if math.isnan(self.incremental_violation_assigned_to_off(solution, change_info)):
-                print("nan")
             return self.incremental_violation_assigned_to_off(solution, change_info)
         else:
             return 0
@@ -49,29 +45,30 @@ class RuleS3Min(Rule):
         Incremental violations off to assigned
         """
         employee_parameter = self.parameter_per_employee[change_info['employee_id']]
+        length_1, length_2, the_day_off_stretch = None, None, None
         # find in what work stretch the d_index is
         for start_index, day_off_stretch in solution.day_off_stretches[change_info['employee_id']].items():
-            if change_info['d_index'] in range(start_index, day_off_stretch["end_index"]):
+            if change_info['d_index'] in range(start_index, day_off_stretch["end_index"]+1):
                 # calc length of remaining stretches
                 length_1 = change_info['d_index'] - start_index
                 length_2 = day_off_stretch['end_index'] - change_info['d_index']
+                the_day_off_stretch = day_off_stretch
+                break
 
-                # add extra violations
-                # the new violations - the old violations
-                if length_1 > 0 and length_2 > 0:
-                    return np.maximum(employee_parameter - length_1, 0) \
-                           + np.maximum(employee_parameter - length_2, 0) \
-                           - np.maximum(employee_parameter - day_off_stretch['length'], 0)
-                elif length_1 > 0:
-                    return np.maximum(employee_parameter - length_1, 0) \
-                    - np.maximum(employee_parameter - day_off_stretch['length'], 0)
-                elif length_2 > 0:
-                    return np.maximum(employee_parameter - length_2, 0) \
-                    - np.maximum(employee_parameter - day_off_stretch['length'], 0)
-                else:
-                    return - np.maximum(employee_parameter - day_off_stretch['length'], 0)
-
-
+        # add extra violations
+        # the new violations - the old violations
+        if length_1 > 0 and length_2 > 0:
+            return np.maximum(employee_parameter - length_1, 0) \
+                   + np.maximum(employee_parameter - length_2, 0) \
+                   - np.maximum(employee_parameter - the_day_off_stretch['length'], 0)
+        elif length_1 > 0:
+            return np.maximum(employee_parameter - length_1, 0) \
+            - np.maximum(employee_parameter - the_day_off_stretch['length'], 0)
+        elif length_2 > 0:
+            return np.maximum(employee_parameter - length_2, 0) \
+            - np.maximum(employee_parameter - the_day_off_stretch['length'], 0)
+        else:
+            return - np.maximum(employee_parameter - the_day_off_stretch['length'], 0)
 
     def incremental_violation_assigned_to_off(self, solution, change_info):
         employee_parameter = self.parameter_per_employee[change_info['employee_id']]

@@ -1,11 +1,12 @@
 import json
 import os
+from copy import deepcopy
+import cProfile
 from Domain.settings import Settings
 from Domain.scenario import Scenario
 from Invoke.Initial_solution.initial_solution import InitialSolution
 from Check.check_function_feasibility import FeasibilityCheck
 from Heuristic import Heuristic
-
 
 class Instance:
     """
@@ -331,7 +332,9 @@ instance = Instance(settings)
 settings = instance.add_rules_specs_settings(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-for i in range(10):
-    best_solution = Heuristic(scenario).run_heuristic(starting_solution=init_solution)
-FeasibilityCheck().h2_check_function(best_solution, scenario)
-FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)
+cProfile.run("Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))", sort=1)
+
+# best_solution = Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))
+#
+# FeasibilityCheck().h2_check_function(best_solution, scenario)
+# FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)

@@ -16,8 +16,8 @@ class Heuristic:
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 20
-        self.max_iter = 1000
+        self.max_time = 500
+        self.max_iter = 100000
         self.initial_temp = 22
         self.cooling_rate = 0.99
         self.no_improve_max = 50
@@ -98,18 +98,18 @@ class Heuristic:
                 current_solution = Solution(best_solution)
                 no_improve_iter = 0
             # for watch
-            solution = current_solution
+
             # adjust weights
             # TODO operator weights
             #self.update_operator_weights(operator_name)
 
             self.update_temperature()
-            FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
+            #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
             #print(current_solution.violation_array)
             #FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
             #FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
             #FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
-
+            #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #print(current_solution.obj_value)
 
             n_iter += 1

@@ -17,7 +17,6 @@ def change_operator(solution, scenario):
     # get a change that is allowed by hard constraints
     change_info = get_feasible_change(solution, scenario)
 
-
     # add penalty to objective
     change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution, scenario, change_info)
 
@@ -51,8 +50,8 @@ def get_feasible_change(solution, scenario):
 
     # get list of employees that are feasible for the change
     feasible_employees = list((scenario.employees._collection.keys()))
-    FeasibilityCheck().work_stretches_info(solution, scenario)
-    work_stretches_1 =solution.work_stretches
+
+    work_stretches_1 = solution.work_stretches
     shift_ass_1 = solution.shift_assignments
     change_info = dict()
     while len(feasible_employees) > 0 and not feasible:
@@ -70,7 +69,7 @@ def get_feasible_change(solution, scenario):
             change_info["d_index"] = random.choice(feasible_days)
             shift_ass_2 = solution.shift_assignments
             change_info = fill_change_info_curr_ass(solution, change_info)
-            FeasibilityCheck().work_stretches_info(solution, scenario)
+
             # get allowed shifts for insertion for given day
             allowed_shift_types = get_allowed_s_type(solution, scenario, change_info["employee_id"],
                                                      change_info["d_index"])
@@ -89,9 +88,10 @@ def get_feasible_change(solution, scenario):
                 else:
                     # get allowed shifts for this shift type
                     allowed_skills = get_allowed_skills(scenario, change_info)
-                    FeasibilityCheck().work_stretches_info(solution, scenario)
+
                     # check if there are allowed shift types
                     if len(allowed_skills) == 0:
+                        # TODO try to rewrite to speed up
                         allowed_shift_types = np.delete(allowed_shift_types,
                                                         np.in1d(allowed_shift_types,
                                                                 change_info["new_s_type"]))
@@ -107,7 +107,6 @@ def get_feasible_change(solution, scenario):
 
         # if no feasible day for change for employee, remove employee and find new employee
         feasible_employees.remove(change_info["employee_id"])
-    FeasibilityCheck().work_stretches_info(solution, scenario)
 
     return change_info
 
@@ -150,6 +149,7 @@ def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
     """
     working_days = [d_index for d_index in feasible_days if solution.check_if_working_day(employee_id, d_index)]
 
+    feasible_removals = solution.diff_min_request > 1
     for d_index in working_days:
         if solution.diff_min_request[
             tuple([d_index,
