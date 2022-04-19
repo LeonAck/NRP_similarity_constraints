@@ -1,6 +1,5 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
-from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 
 class RuleS2Min(Rule):
     """

@@ -2,7 +2,7 @@ import numpy as np
 from deepdiff import DeepDiff
 import pprint
 from Invoke.Initial_solution.initial_solution import InitialSolution
-from Invoke.Constraints.Rules.RuleH3 import RuleH3
+
 class FeasibilityCheck:
     """
     Class to store feasiblity function of the solution

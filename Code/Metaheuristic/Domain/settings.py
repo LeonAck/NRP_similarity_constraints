@@ -12,7 +12,7 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n030w4"
+            self.instance_name = "n100w4"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
             self.weeks = [1, 2, 3, 4]
@@ -82,9 +82,9 @@ class Settings:
              },
             "S2ShiftMin":{"id": "S2ShiftMin",
              "is_mandatory": False,
-             "is_active": False,
+             "is_active": True,
              "is_horizontal": True,
-                          "parameter_per_contract": False,
+              "parameter_per_contract": False,
             "parameter_per_s_type": True,
              "penalty": 15,
              "parameter_1": 0
