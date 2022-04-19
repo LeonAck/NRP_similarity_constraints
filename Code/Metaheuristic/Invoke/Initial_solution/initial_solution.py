@@ -43,6 +43,9 @@ class InitialSolution(Solution):
         self.work_stretches = self.collect_work_stretches(solution=self)
         self.day_off_stretches = self.collect_work_stretches(solution=self, working=False)
 
+        # collect shift stretches
+        self.shift_stretches = self.collect_shift_stretches(solution=self)
+
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
 
@@ -173,6 +176,46 @@ class InitialSolution(Solution):
             work_stretches[employee_id] = work_stretch_employee
 
         return work_stretches
+
+    def collect_shift_stretches(self, solution):
+        """
+        Function to collect for each employee and each shift type
+        the work stretches of that particular shift type
+        """
+        shift_stretches = {}
+        for employee_id in self.scenario.employees._collection.keys():
+            shift_stretch_employee = {}
+            for s_index in self.scenario.shift_collection.shift_types_indices:
+                shift_stretches_employee_per_shift = {}
+                # for each working day, check if employee works that shift type
+
+                working_shift_check = [1 if solution.check_if_working_s_type_on_day(employee_id, d_index, s_index)
+                                 else 0
+                                 for d_index in range(self.scenario.num_days_in_horizon)]
+
+                start_index = 0
+                # get lists of consecutive days working specific shift type
+                for k, v in itertools.groupby(working_shift_check):
+                    len_stretch = sum(1 for _ in v)
+                    if k:
+                        # save in dict under start index with end index
+                        shift_stretch = {}
+                        shift_stretch["end_index"] = start_index + len_stretch - 1
+                        shift_stretch["length"] = len_stretch
+                        shift_stretches_employee_per_shift[start_index] = shift_stretch
+                        start_index += len_stretch
+                    else:
+                        start_index += len_stretch
+
+                # assign for each s_type the stretches to the employee
+                shift_stretch_employee[s_index] = shift_stretches_employee_per_shift
+            # add for each employee the stretches to the general dict
+            shift_stretches[employee_id] = shift_stretch_employee
+
+        return shift_stretches
+
+
+
 
 
 

@@ -111,6 +111,7 @@ class Heuristic:
             #FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #print(current_solution.obj_value)
+            #FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
 
             n_iter += 1
 

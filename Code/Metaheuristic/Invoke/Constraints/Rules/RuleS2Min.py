@@ -88,8 +88,6 @@ class RuleS2Min(Rule):
                 the_work_stretch = work_stretch
                 break
 
-        if not the_work_stretch:
-            print("unassigned")
         # add extra violations
         # the new violations - the old violations
         return np.maximum(employee_parameter - length_1, 0) \

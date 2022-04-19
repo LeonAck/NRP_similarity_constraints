@@ -1,6 +1,7 @@
 import numpy as np
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS3Max import RuleS3Max
+from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
 
 class Solution:
     """
@@ -24,6 +25,9 @@ class Solution:
 
             # S2
             self.work_stretches = other_solution.work_stretches
+
+            # S2Shift
+            self.shift_stretches = other_solution.shift_stretches
 
             # S3
             self.day_off_stretches = other_solution.day_off_stretches
@@ -63,6 +67,12 @@ class Solution:
         """
         return self.shift_assignments[employee_id][d_index][0] > -1
 
+    def check_if_working_s_type_on_day(self, employee_id, d_index, s_index):
+        """
+        Check if nurse works specific shift type on specific day
+        """
+        return self.shift_assignments[employee_id][d_index][0] == s_index
+
     def update_information_assigned_to_off(self, solution, change_info):
         """
         Function to update relevant information after removal from shift skill combination
@@ -74,10 +84,13 @@ class Solution:
         # S1
         solution.diff_opt_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
 
-        # S2Max
+        # S2Max and S2Min
         solution = RuleS2Max().update_information_assigned_to_off(solution, change_info)
 
-        # S3Max
+        # S2ShiftMax and S2ShiftMin
+        solution = RuleS2ShiftMax().update_information_assigned_to_off(solution, change_info)
+
+        # S3Max and S3Min
         solution = RuleS3Max().update_information_assigned_to_off(solution, change_info)
 
         # S4
@@ -106,6 +119,9 @@ class Solution:
 
         # S2Max and S2Min
         solution = RuleS2Max().update_information_off_to_assigned(solution, change_info)
+
+        # S2ShiftMax and S2ShiftMin
+        solution = RuleS2ShiftMax().update_information_off_to_assigned(solution, change_info)
 
         #S3Max
         solution = RuleS3Max().update_information_off_to_assigned(solution, change_info)
@@ -137,6 +153,7 @@ class Solution:
         solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
         solution.diff_opt_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
 
+        # S2ShiftMax
         # S2-S6
         # no changes necessary
 

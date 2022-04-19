@@ -44,11 +44,16 @@ class Instance:
         """
         for rule_id, rule_spec in settings.rules_specs.items():
             if rule_id in settings.parameter_to_rule_mapping:
-                settings.rules_specs[rule_id]["parameter_1"] = self.rule_parameter_dict(settings.parameter_to_rule_mapping[rule_id])
+                if rule_spec['parameter_per_contract']:
+                    settings.rules_specs[rule_id]["parameter_1"] \
+                        = self.rule_parameter_contract_dict(settings.parameter_to_rule_mapping[rule_id])
+                if rule_spec['parameter_per_s_type']:
+                    settings.rules_specs[rule_id]["parameter_2"] \
+                        = self.get_s_type_specific_par(settings.parameter_to_rule_mapping[rule_id])
 
         return settings
 
-    def rule_parameter_dict(self, parameter_str):
+    def rule_parameter_contract_dict(self, parameter_str):
         """
         Function to create dict with parameters for every contract type
         for a specific rule
@@ -58,6 +63,18 @@ class Instance:
         parameter_dict = {}
         for contract in self.scenario_data['contracts']:
             parameter_dict[contract['id']] = contract[parameter_str]
+
+        return parameter_dict
+
+    def get_s_type_specific_par(self, parameter_str):
+        """
+        Function to create dict of s_type specific parameters
+        """
+        parameter_dict = {}
+        for s_type in self.scenario_data['shiftTypes']:
+            parameter_dict[
+                self.get_index_of_shift_type(
+                    self.abbreviate_shift_type(s_type['id']))] = s_type[parameter_str]
 
         return parameter_dict
 
@@ -330,9 +347,9 @@ instance = Instance(settings)
 settings = instance.add_rules_specs_settings(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-cProfile.run("Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))", sort=1)
+#cProfile.run("Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))", sort=1)
 
-# best_solution = Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))
+best_solution = Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))
 #
 # FeasibilityCheck().h2_check_function(best_solution, scenario)
 # FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)

@@ -2,12 +2,15 @@ import numpy as np
 from deepdiff import DeepDiff
 import pprint
 from Invoke.Initial_solution.initial_solution import InitialSolution
+from Invoke.Constraints.Rules.RuleH3 import RuleH3
 class FeasibilityCheck:
     """
     Class to store feasiblity function of the solution
     """
     def __init__(self):
         pass
+
+
 
     def h2_check_function(self, solution, scenario):
         """
@@ -154,6 +157,45 @@ class FeasibilityCheck:
             print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
 
             print("hi")
+
+        return flag
+
+    def shift_stretches_info(self, solution, scenario, change_info):
+        """
+        Function to find differences in the day off stretch information
+        """
+        flag = True
+        collected_shift_stretches = InitialSolution(scenario).collect_shift_stretches(solution)
+        if collected_shift_stretches != solution.shift_stretches:
+            print("stretches is false")
+            flag = False
+
+        if not flag:
+            deepdiff = DeepDiff(collected_shift_stretches, solution.shift_stretches)
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+            print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                change_info['new_working']))
+
+            pprint.pprint(deepdiff)
+            if change_info['current_working']:
+                print('\ncurrent s_type', change_info['curr_s_type'])
+                print("true current", collected_shift_stretches[employee_id][change_info['curr_s_type']])
+                print("saved current", solution.shift_stretches[employee_id][change_info['curr_s_type']])
+            if change_info['new_working']:
+                print('\nnew s_type', change_info['new_s_type'])
+                print("true new", collected_shift_stretches[employee_id][change_info['new_s_type']])
+                print("saved new", solution.shift_stretches[employee_id][change_info['new_s_type']])
+
+            print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
+
+            print("hi", flag)
 
         return flag
 

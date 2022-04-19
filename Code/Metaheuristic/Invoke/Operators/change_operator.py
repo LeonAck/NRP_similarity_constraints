@@ -65,10 +65,8 @@ def get_feasible_change(solution, scenario):
 
         i = 0
         while len(feasible_days) > 0 and not feasible:
-            work_stretches_2 = solution.work_stretches
             # choose day
             change_info["d_index"] = random.choice(feasible_days)
-            shift_ass_2 = solution.shift_assignments
             change_info = fill_change_info_curr_ass(solution, change_info)
 
             # get allowed shifts for insertion for given day
@@ -185,8 +183,8 @@ def get_allowed_skills(scenario, change_info):
 
     allowed_skills = scenario.employees._collection[change_info["employee_id"]].skill_indices
     if change_info["current_working"]:
-        if change_info["new_s_type"] == change_info["curr_ass"][1]:
-            allowed_skills = np.delete(allowed_skills, np.in1d(allowed_skills, change_info["curr_ass"][2]))
+        if change_info["new_s_type"] == change_info["curr_s_type"]:
+            allowed_skills = np.delete(allowed_skills, np.in1d(allowed_skills, change_info["curr_sk_type"]))
 
     return allowed_skills
 
@@ -202,15 +200,17 @@ def fill_change_info_curr_ass(solution, change_info):
         change_info["employee_id"],
         change_info["d_index"])
 
-    change_info["curr_ass"] = tuple([change_info["d_index"],
-                solution.shift_assignments[
+    # add new s type
+    change_info["curr_s_type"] = solution.shift_assignments[
                     change_info["employee_id"]][
                     change_info["d_index"]][
-                    0],
-                solution.shift_assignments[
+                    0] \
+        if change_info["current_working"] else None
+    # add new sk type
+    change_info["curr_sk_type"] = solution.shift_assignments[
                                          change_info["employee_id"]][
                                          change_info["d_index"]][
-                                         1]]) \
+                                         1] \
         if change_info["current_working"] else None
 
     change_info["new_working"] = None

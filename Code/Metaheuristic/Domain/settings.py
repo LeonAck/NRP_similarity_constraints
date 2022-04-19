@@ -31,6 +31,7 @@ class Settings:
             "is_active": True,
             "is_horizontal": True,
             "parameter_per_contract": False,
+              "parameter_per_s_type": False,
             "penalty": 0,
             "parameter_1": 0
             },
@@ -39,6 +40,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": False,
+                  "parameter_per_s_type": False,
              "penalty": 0,
              "parameter_1": 0
              },
@@ -47,6 +49,7 @@ class Settings:
             "is_active": True,
             "is_horizontal": False,
              "parameter_per_contract": False,
+                   "parameter_per_s_type": False,
             "penalty": 30,
              "parameter_1": 0
             },
@@ -55,6 +58,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
+              "parameter_per_s_type": False,
              "penalty": 30,
              "parameter_1": 0
              },
@@ -63,20 +67,25 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
+            "parameter_per_s_type": False,
              "penalty": 30,
              "parameter_1": 0
              },
-            "S2_s_max":{"id": "S2_s_max",
+            "S2ShiftMax":{"id": "S2Shiftmax",
              "is_mandatory": False,
-             "is_active": False,
+             "is_active": True,
              "is_horizontal": True,
+                          "parameter_per_contract": False,
+                          "parameter_per_s_type": True,
              "penalty": 15,
              "parameter_1": 0
              },
-            "S2_s_min":{"id": "S2_s_min",
+            "S2ShiftMin":{"id": "S2ShiftMin",
              "is_mandatory": False,
              "is_active": False,
              "is_horizontal": True,
+                          "parameter_per_contract": False,
+            "parameter_per_s_type": True,
              "penalty": 15,
              "parameter_1": 0
              },
@@ -85,6 +94,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
+                     "parameter_per_s_type": False,
              "penalty": 30,
              "parameter_1": 0
              },
@@ -93,6 +103,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
+                     "parameter_per_s_type": False,
              "penalty": 30,
              "parameter_1": 0
              },
@@ -101,6 +112,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
+                  "parameter_per_s_type": False,
              "penalty": 30,
              "parameter_1": 0
              },
@@ -109,6 +121,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
+                       "parameter_per_s_type": False,
              "penalty": 20,
              "parameter_1": 3
              },
@@ -117,6 +130,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
+                       "parameter_per_s_type": False,
              "penalty": 20,
              "parameter_1": 2
              },
@@ -125,6 +139,7 @@ class Settings:
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": True,
+                   "parameter_per_s_type": False,
              "penalty": 30,
              "parameter_1": 2
              }
@@ -139,5 +154,8 @@ class Settings:
             "S5_max": "maximumNumberOfAssignments",
             "S5_min": "minimumNumberOfAssignments",
             "S6": "maximumNumberOfWorkingWeekends",
+            "S2ShiftMax": "maximumNumberOfConsecutiveAssignments",
+            "S2ShiftMin": "minimumNumberOfConsecutiveAssignments"
         }
+
 
