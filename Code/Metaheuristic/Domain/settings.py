@@ -12,21 +12,20 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n100w4"
+            self.instance_name = "n120w32"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
-            self.weeks = [1, 2, 3, 4]
+            self.weeks = [range(1, 30)]
 
         # weights per soft constraint
 
         # heuristic settings
 
-        # problem settings
-        self.soft_constraints = ["S1"]
-        self.hard_constraints = None
+        # problem settings second stage
+        # if first_stage:
+        #     pass
         self.rules_specs = {
         "H1":{"id": "H1",
-
             "is_mandatory": True,
             "is_active": True,
             "is_horizontal": True,
@@ -142,7 +141,14 @@ class Settings:
                    "parameter_per_s_type": False,
              "penalty": 30,
              "parameter_1": 2
-             }
+             },
+            "S7Day": {"id": "S7Day",
+                        "is_mandatory": False,
+                      "is_active": False,
+                       "parameter_per_contract": True,
+                   "parameter_per_s_type": False,
+             "penalty": 10,
+             "parameter_1": 4}
         }
 
         self.parameter_to_rule_mapping = {

@@ -7,3 +7,4 @@ class RuleH2(Rule):
     """
     def __init__(self, rules_spec):
         super().__init__(rules_spec)
+

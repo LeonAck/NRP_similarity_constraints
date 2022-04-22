@@ -2,6 +2,7 @@ import numpy as np
 from deepdiff import DeepDiff
 import pprint
 from Invoke.Initial_solution.initial_solution import InitialSolution
+from Invoke.Constraints.Rules.RuleH3 import RuleH3
 
 class FeasibilityCheck:
     """
@@ -25,6 +26,20 @@ class FeasibilityCheck:
                                                     request_per_day_per_skill_per_s_type)
 
         return flag
+
+    def h3_check_function(self, solution, scenario):
+        """
+        Function to check the number of forbidden shift type successions
+        """
+        violation_counter = 0
+        for employee_id in scenario.employees._collection.keys():
+            for d_index in range(0, scenario.num_days_in_horizon):
+                allowed_shift_types = RuleH3().get_allowed_shift_types(solution, scenario, employee_id, d_index)
+                if solution.shift_assignments[employee_id][d_index][0] != - 1 \
+                        and solution.shift_assignments[employee_id][d_index][0] not in allowed_shift_types:
+                    violation_counter += 1
+
+        return violation_counter
 
     def check_understaffing(self, solution, scenario, d_index, s_index, sk_index, skill_request):
         """

@@ -20,7 +20,7 @@ class Heuristic:
         self.max_iter = 100000
         self.initial_temp = 22
         self.cooling_rate = 0.99
-        self.no_improve_max = 50
+        self.no_improve_max = 200
 
         # introduce objects necessary for algorithm
         self.operators = {"change": change_operator}
@@ -112,7 +112,8 @@ class Heuristic:
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #print(current_solution.obj_value)
             #FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
-
+            #if n_iter < 10 or n_iter > 2000:
+            #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
             n_iter += 1
 
 
