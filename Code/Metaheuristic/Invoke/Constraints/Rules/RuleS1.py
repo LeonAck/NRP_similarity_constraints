@@ -7,8 +7,8 @@ class RuleS1(Rule):
         Compares optimal skill request to number of nurses with that skill assigned to shift
     """
 
-    def __init__(self, rule_spec=None):
-        super().__init__(rule_spec)
+    def __init__(self, employees, rule_spec=None):
+        super().__init__(employees, rule_spec)
 
     def count_violations(self, solution, scenario):
         """
@@ -39,7 +39,7 @@ class RuleS1(Rule):
         else:
             return 0
 
-    def incremental_violations_change(self, solution, change_info):
+    def incremental_violations_change(self, solution, change_info, scenario=None):
         """
         Calculate the difference in violations after using the change opeator
         :return:
@@ -60,7 +60,6 @@ class RuleS1(Rule):
                                                                    insertion=True)
 
         return violation
-
 
     def increment_violations_day_shift_skill(self, solution, d_index, s_index,
                                              sk_index, insertion=True, increment=1):

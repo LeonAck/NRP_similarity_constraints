@@ -1,6 +1,7 @@
 import random
 from Invoke.Constraints.Rules import RuleH3
 import numpy as np
+from Check.check_function_feasibility import FeasibilityCheck
 
 
 def change_operator(solution, scenario):
@@ -17,7 +18,7 @@ def change_operator(solution, scenario):
     change_info = get_feasible_change(solution, scenario)
 
     # add penalty to objective
-    change_info["cost_increment"] = calc_new_costs_after_change(solution, scenario, change_info)
+    change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution, scenario, change_info)
 
     return change_info
 
@@ -32,9 +33,10 @@ def calc_new_costs_after_change(solution, scenario, change_info):
     violation_array = np.zeros(len(scenario.rule_collection.soft_rule_collection))
     relevant_rules = scenario.rule_collection.soft_rule_collection.collection
     for i, rule in enumerate(relevant_rules.values()):
-        violation_array[i] = rule.incremental_violations_change(solution, change_info)
+        violation_array[i] = rule.incremental_violations_change(solution, change_info, scenario)
     # TODO what if no penalty array
-    return np.matmul(violation_array, scenario.rule_collection.penalty_array)
+
+    return np.matmul(violation_array, scenario.rule_collection.penalty_array), violation_array
 
 def get_feasible_change(solution, scenario):
     """
@@ -48,8 +50,10 @@ def get_feasible_change(solution, scenario):
 
     # get list of employees that are feasible for the change
     feasible_employees = list((scenario.employees._collection.keys()))
-    change_info = dict()
 
+    work_stretches_1 = solution.work_stretches
+    shift_ass_1 = solution.shift_assignments
+    change_info = dict()
     while len(feasible_employees) > 0 and not feasible:
         # pick random nurse
         change_info["employee_id"] = random.choice(feasible_employees)  # remove nurse if picked before
@@ -59,6 +63,7 @@ def get_feasible_change(solution, scenario):
         feasible_days = remove_infeasible_days_understaffing(
             solution, change_info["employee_id"], feasible_days)
 
+        i = 0
         while len(feasible_days) > 0 and not feasible:
             # choose day
             change_info["d_index"] = random.choice(feasible_days)
@@ -85,6 +90,7 @@ def get_feasible_change(solution, scenario):
 
                     # check if there are allowed shift types
                     if len(allowed_skills) == 0:
+                        # TODO try to rewrite to speed up
                         allowed_shift_types = np.delete(allowed_shift_types,
                                                         np.in1d(allowed_shift_types,
                                                                 change_info["new_s_type"]))
@@ -95,6 +101,8 @@ def get_feasible_change(solution, scenario):
 
             # if no allowed shift type for day, remove day and find new day
             feasible_days.remove(change_info["d_index"])
+
+            i += 1
 
         # if no feasible day for change for employee, remove employee and find new employee
         feasible_employees.remove(change_info["employee_id"])
@@ -131,24 +139,23 @@ def get_feasible_removal2(solution, scenario, feasible_employees):
     else:
         return change_info, feasible_employees
 
-
 def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
     """
     Remove days where a employee cannot be removed since this might cause understaffing
     :Return:
     list of feasible days
     """
+
     working_days = [d_index for d_index in feasible_days if solution.check_if_working_day(employee_id, d_index)]
 
-    for d_index in working_days:
-        if solution.diff_min_request[
-            tuple([d_index,
-                   solution.shift_assignments[employee_id][d_index][1],
-                   solution.shift_assignments[employee_id][d_index][0]])
-        ] < 1:
-            feasible_days.remove(d_index)
+    feasible_removals = solution.diff_min_request > 1
 
-    return feasible_days
+    return [d_index for d_index in feasible_days if d_index not in working_days or (d_index in working_days
+                and feasible_removals[
+                    tuple([d_index,
+                   solution.shift_assignments[employee_id][d_index][1],
+                   solution.shift_assignments[employee_id][d_index][0]])] > 1)
+            ]
 
 
 def get_allowed_s_type(solution, scenario, employee_id, d_index):
@@ -176,8 +183,8 @@ def get_allowed_skills(scenario, change_info):
 
     allowed_skills = scenario.employees._collection[change_info["employee_id"]].skill_indices
     if change_info["current_working"]:
-        if change_info["new_s_type"] == change_info["curr_ass"][1]:
-            allowed_skills = np.delete(allowed_skills, np.in1d(allowed_skills, change_info["curr_ass"][2]))
+        if change_info["new_s_type"] == change_info["curr_s_type"]:
+            allowed_skills = np.delete(allowed_skills, np.in1d(allowed_skills, change_info["curr_sk_type"]))
 
     return allowed_skills
 
@@ -193,20 +200,25 @@ def fill_change_info_curr_ass(solution, change_info):
         change_info["employee_id"],
         change_info["d_index"])
 
-    change_info["curr_ass"] = tuple([change_info["d_index"],
-                solution.shift_assignments[
+    # add new s type
+    change_info["curr_s_type"] = solution.shift_assignments[
                     change_info["employee_id"]][
                     change_info["d_index"]][
-                    0],
-                solution.shift_assignments[
+                    0] \
+        if change_info["current_working"] else None
+    # add new sk type
+    change_info["curr_sk_type"] = solution.shift_assignments[
                                          change_info["employee_id"]][
                                          change_info["d_index"]][
-                                         1]]) \
+                                         1] \
         if change_info["current_working"] else None
 
     change_info["new_working"] = None
 
     return change_info
+
+def find_difference_dict(first_dict, second_dict):
+    return { k : second_dict[k] for k in set(second_dict) - set(first_dict) }
 
 
 

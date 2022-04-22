@@ -4,7 +4,7 @@ from Domain.skills import SkillCollection
 from Domain.skill_set import SkillSetCollection
 from Domain.shifts import ShiftTypeCollection
 from Invoke.Constraints.initialize_rules import RuleCollection
-
+from Domain.days import DayCollection
 
 class Scenario:
     """
@@ -29,6 +29,7 @@ class Scenario:
 
         # extract problem data
         self.num_days_in_horizon = self.problem_horizon * 7
+        self.day_collection = DayCollection(self.num_days_in_horizon)
 
         # extract shift type data
         self.shift_collection = ShiftTypeCollection(self.scenario_data)
@@ -59,7 +60,7 @@ class Scenario:
         self.forbidden_shift_type_successions = self.scenario_data['forbiddenShiftTypeSuccessions']
 
         # collect rules
-        self.rule_collection = RuleCollection().initialize_rules(settings.rules_specs)
+        self.rule_collection = RuleCollection().initialize_rules(settings.rules_specs, self.employees)
 
     # TODO remove function
     def get_unique_skill_sets(self):

@@ -3,6 +3,8 @@ import random
 import numpy as np
 from Invoke.Operators import change_operator
 from solution import Solution
+from Check.check_function_feasibility import FeasibilityCheck
+
 
 class Heuristic:
     """
@@ -14,9 +16,11 @@ class Heuristic:
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 5
+        self.max_time = 500
+        self.max_iter = 100000
         self.initial_temp = 22
         self.cooling_rate = 0.99
+        self.no_improve_max = 200
 
         # introduce objects necessary for algorithm
         self.operators = {"change": change_operator}
@@ -65,33 +69,53 @@ class Heuristic:
         self.temperature = self.initial_temp
 
         n_iter = 0
-        while time.time() < self.start_time + self.max_time:
-
+        no_improve_iter = 0
+        while time.time() < self.start_time + self.max_time and n_iter < self.max_iter:
+            print(n_iter)
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
 
             change_info = self.operators[operator_name](current_solution, self.scenario)
-
+            no_improve_iter += 1
             if change_info['cost_increment'] <= 0:
                 # update solutions accordingly
                 current_solution.update_solution_change(change_info)
                 # check if best. Then current solution, becomes the best solution
                 if current_solution.obj_value < best_solution.obj_value:
                     best_solution = Solution(current_solution)
+                    print("new best_solution: {}".format(best_solution.obj_value))
+                    no_improve_iter = 0
+
             else:
-                # check if solution is accpeted
+                # check if solution is accepted
                 accepted = self.acceptance_simulated_annealing(change_info)
                 if accepted:
                     # update solutions accordingly
                     current_solution.update_solution_change(change_info)
 
+            if no_improve_iter > self.no_improve_max:
+                current_solution = Solution(best_solution)
+                no_improve_iter = 0
+            # for watch
+
             # adjust weights
+            # TODO operator weights
             #self.update_operator_weights(operator_name)
 
             self.update_temperature()
+            #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
+            #print(current_solution.violation_array)
+            #FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
+            #FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
+            #FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+            #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
+            #print(current_solution.obj_value)
+            #FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
+            #if n_iter < 10 or n_iter > 2000:
+            #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
             n_iter += 1
-            print(n_iter)
+
 
         # best solution
         return best_solution
@@ -197,7 +221,6 @@ class Heuristic:
         operator_score = 0
         # Check for both insertion and destroy operator in what event the
         # performance in the iteration is categorized.
-
 
         # Event 1
         # Check if best

@@ -2,10 +2,10 @@
 Set to create initial solution
 """
 import numpy as np
-
+import itertools
 from solution import Solution
 from Domain.employee import EmployeeCollection
-from Check.check_function_feasibility import FeasibilityCheck
+from Invoke.Constraints.Rules.RuleS6 import RuleS6
 
 
 class InitialSolution(Solution):
@@ -18,6 +18,7 @@ class InitialSolution(Solution):
         super().__init__()
 
         self.scenario = scenario
+        self.day_collection = scenario.day_collection
 
         # initialize shift assignment objects
         self.shift_assignments = self.create_shift_assignments()
@@ -30,8 +31,28 @@ class InitialSolution(Solution):
         # create array to keep track of difference between optimal skill_requests and actual skill assignment
         self.diff_opt_request = self.initialize_diff_opt_request(self.scenario)
 
+        # collect number of assignments per nurse
+        self.num_assignments_per_nurse = self.get_num_assignments_per_nurse()
+
+        # collect number of working weekends per nurse
+        self.num_working_weekends = RuleS6().count_working_weekends_employee(
+            solution=self,
+            scenario=self.scenario)
+
+        # collect work stretches
+        self.work_stretches = self.collect_work_stretches(solution=self)
+        self.day_off_stretches = self.collect_work_stretches(solution=self, working=False)
+
+        # collect shift stretches
+        self.shift_stretches = self.collect_shift_stretches(solution=self)
+
+        # get violations
+        self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
+
         # calc objective value
-        self.obj_value = self.calc_objective_value(solution=self, rule_collection=self.scenario.rule_collection)
+        self.obj_value = self.calc_objective_value_violations(
+            violation_array=self.violation_array,
+            rule_collection=self.scenario.rule_collection)
 
     def assign_skill_requests(self):
         """
@@ -40,35 +61,34 @@ class InitialSolution(Solution):
         # get requests per day
         for day_index, request_per_day in enumerate(self.scenario.skill_requests):
             # create collection of nurses available on day
-            employees_available_on_day = EmployeeCollection().initialize_employees(self.scenario, self.scenario.employees_specs)
+            employees_available_on_day = EmployeeCollection().initialize_employees(
+                self.scenario, self.scenario.employees_specs)
 
             #  loop through requests per day and per skill
             for skill_index, request_per_day_per_skill in enumerate(request_per_day):
 
                 # create set of employees with skill that are available on that day
-                employees_with_skill = employees_available_on_day.get_employee_w_skill(self.scenario.skills[skill_index])
+                employees_with_skill = employees_available_on_day.get_employee_w_skill(
+                    self.scenario.skills[skill_index])
 
                 for s_type_index, request_per_day_per_skill_per_s_type in enumerate(request_per_day_per_skill):
                     n = request_per_day_per_skill_per_s_type
                     while n > 0:
                         # pick one of available nurses
                         employee_id = employees_with_skill.random_pick()
+
                         # add shift type to nurse
                         self.replace_shift_assignment(employee_id, day_index, s_type_index, skill_index)
                         # TODO update other nurses information
+
                         # remove nurse from available nurses for day
                         employees_available_on_day = employees_available_on_day.exclude_employee(employee_id)
+
                         # remove nurse from available nurses for skills
                         employees_with_skill = employees_with_skill.exclude_employee(employee_id)
 
                         # remove skill request
                         n -= 1
-                    FeasibilityCheck().check_understaffing(solution=self,
-                                                           scenario=self.scenario,
-                                                           d_index=day_index,
-                                                           s_index=s_type_index,
-                                                           sk_index=skill_index,
-                                                           skill_request=request_per_day_per_skill_per_s_type)
 
     def initialize_diff_opt_request(self, scenario):
         """
@@ -111,16 +131,97 @@ class InitialSolution(Solution):
         # two dimensioal array
         return shift_assignments
 
-    def calc_objective_value(self, solution, rule_collection):
+    def get_num_assignments_per_nurse(self):
         """
-        Function to calculate the objective value of a solution based on the
-        applied soft constraints
+        Function to calculate for each nurse the number of assignments
         """
-        objective_value = 0
-        violation_array = np.zeros(len(rule_collection.soft_rule_collection.collection))
-        for i, rule in enumerate(rule_collection.soft_rule_collection.collection.values()):
-            violation_array[i] = rule.count_violations(solution, self.scenario)
+        num_assignments = {}
+        # for each employee sum the number of assignments
+        for employee_id in self.scenario.employees._collection.keys():
+            # employee is unassigned if shift type is -1
+            num_assignments[employee_id] = sum([assignment[0] != -1 for assignment in
+                                                self.shift_assignments[employee_id]])
 
-        return  np.matmul(violation_array, rule_collection.penalty_array)
+        return num_assignments
+
+    def collect_work_stretches(self, solution, working=True):
+        """
+        Function to collect for each nurse the stretches of consecutive
+        working days or days off
+        """
+        work_stretches = {}
+        for employee_id in self.scenario.employees._collection.keys():
+            work_stretch_employee = {}
+            # for each working day, get check if employee is working
+            if working:
+                working_check = [1 if solution.check_if_working_day(employee_id, d_index) else 0
+                                for d_index in range(self.scenario.num_days_in_horizon)]
+            else:
+                working_check = [1 if not solution.check_if_working_day(employee_id, d_index) else 0
+                                 for d_index in range(self.scenario.num_days_in_horizon)]
+            start_index = 0
+            # get lists of consecutive working days
+            for k, v in itertools.groupby(working_check):
+                len_stretch = sum(1 for _ in v)
+                if k:
+                    # save in dict under start index with end index
+                    work_stretch = {}
+                    work_stretch["end_index"] = start_index + len_stretch - 1
+                    work_stretch["length"] = len_stretch
+                    work_stretch_employee[start_index] = work_stretch
+                    start_index += len_stretch
+                else:
+                    start_index += len_stretch
+
+            work_stretches[employee_id] = work_stretch_employee
+
+        return work_stretches
+
+    def collect_shift_stretches(self, solution):
+        """
+        Function to collect for each employee and each shift type
+        the work stretches of that particular shift type
+        """
+        shift_stretches = {}
+        for employee_id in self.scenario.employees._collection.keys():
+            shift_stretch_employee = {}
+            for s_index in self.scenario.shift_collection.shift_types_indices:
+                shift_stretches_employee_per_shift = {}
+                # for each working day, check if employee works that shift type
+
+                working_shift_check = [1 if solution.check_if_working_s_type_on_day(employee_id, d_index, s_index)
+                                 else 0
+                                 for d_index in range(self.scenario.num_days_in_horizon)]
+
+                start_index = 0
+                # get lists of consecutive days working specific shift type
+                for k, v in itertools.groupby(working_shift_check):
+                    len_stretch = sum(1 for _ in v)
+                    if k:
+                        # save in dict under start index with end index
+                        shift_stretch = {}
+                        shift_stretch["end_index"] = start_index + len_stretch - 1
+                        shift_stretch["length"] = len_stretch
+                        shift_stretches_employee_per_shift[start_index] = shift_stretch
+                        start_index += len_stretch
+                    else:
+                        start_index += len_stretch
+
+                # assign for each s_type the stretches to the employee
+                shift_stretch_employee[s_index] = shift_stretches_employee_per_shift
+            # add for each employee the stretches to the general dict
+            shift_stretches[employee_id] = shift_stretch_employee
+
+        return shift_stretches
+
+
+
+
+
+
+
+
+
+
 
 

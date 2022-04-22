@@ -1,14 +1,12 @@
 import json
 import os
+from copy import deepcopy
+import cProfile
 from Domain.settings import Settings
 from Domain.scenario import Scenario
 from Invoke.Initial_solution.initial_solution import InitialSolution
-from Invoke.Constraints.Rules.RuleH3 import RuleH3
-from Invoke.Constraints.initialize_rules import RuleCollection
-from Invoke.Operators.change_operator import change_operator
 from Check.check_function_feasibility import FeasibilityCheck
 from Heuristic import Heuristic
-
 
 class Instance:
     """
@@ -16,6 +14,7 @@ class Instance:
     """
     def __init__(self, settings):
         """initialize instnace parameters"""
+        self.settings = settings
         # information for loading instance
         self.instance_name = settings.instance_name
         self.path = settings.path
@@ -35,6 +34,49 @@ class Instance:
         # simplify notation
         self.simplify_week_data()
         self.simplify_scenario_data()
+
+    def add_rules_specs_settings(self, settings):
+        """
+        Function to add the rule parameters to the settings based on the instance
+        parameters
+        :return:
+        instance of settings class
+        """
+        for rule_id, rule_spec in settings.rules_specs.items():
+            if rule_id in settings.parameter_to_rule_mapping:
+                if rule_spec['parameter_per_contract']:
+                    settings.rules_specs[rule_id]["parameter_1"] \
+                        = self.rule_parameter_contract_dict(settings.parameter_to_rule_mapping[rule_id])
+                if rule_spec['parameter_per_s_type']:
+                    settings.rules_specs[rule_id]["parameter_2"] \
+                        = self.get_s_type_specific_par(settings.parameter_to_rule_mapping[rule_id])
+
+        return settings
+
+    def rule_parameter_contract_dict(self, parameter_str):
+        """
+        Function to create dict with parameters for every contract type
+        for a specific rule
+        :return:
+        dict
+        """
+        parameter_dict = {}
+        for contract in self.scenario_data['contracts']:
+            parameter_dict[contract['id']] = contract[parameter_str]
+
+        return parameter_dict
+
+    def get_s_type_specific_par(self, parameter_str):
+        """
+        Function to create dict of s_type specific parameters
+        """
+        parameter_dict = {}
+        for s_type in self.scenario_data['shiftTypes']:
+            parameter_dict[
+                self.get_index_of_shift_type(
+                    self.abbreviate_shift_type(s_type['id']))] = s_type[parameter_str]
+
+        return parameter_dict
 
     def set_problem_size(self):
         """
@@ -302,12 +344,12 @@ class Instance:
 
 settings = Settings()
 instance = Instance(settings)
+settings = instance.add_rules_specs_settings(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-#RuleH3().check_violations_mandatory(init_solution, scenario, scenario.employees)
+#cProfile.run("Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))", sort=1)
 
-
-best_solution = Heuristic(scenario).run_heuristic(starting_solution=init_solution)
-
-FeasibilityCheck().h2_check_function(best_solution, scenario)
-FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)
+best_solution = Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))
+#
+# FeasibilityCheck().h2_check_function(best_solution, scenario)
+# FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)
