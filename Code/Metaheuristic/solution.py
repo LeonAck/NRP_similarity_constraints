@@ -2,6 +2,7 @@ import numpy as np
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS3Max import RuleS3Max
 from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
+from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 
 class Solution:
     """
@@ -13,6 +14,7 @@ class Solution:
         if other_solution:
             # get day_collection
             self.day_collection = other_solution.day_collection
+            self.rule_collection = other_solution.rule_collection
 
             # employee shift assignments
             self.shift_assignments = other_solution.shift_assignments
@@ -37,6 +39,9 @@ class Solution:
 
             # S6 number of working weekends
             self.num_working_weekends = other_solution.num_working_weekends
+
+            # S7 similarity
+            self.day_comparison = other_solution.day_comparison
 
             # objective value
             self.obj_value = other_solution.obj_value
@@ -106,6 +111,10 @@ class Solution:
                                                           solution.day_collection.weekend_day_indices[change_info['d_index']])):
                 solution.num_working_weekends[change_info['employee_id']] -= 1
 
+        # S7
+        # can use the same function as off to assigned as the result is the same
+        solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
+
     def update_information_off_to_assigned(self, solution, change_info):
         """
         Function to update relevant information after insertion into new shift skill combination
@@ -138,6 +147,9 @@ class Solution:
                                                     d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
                                                   solution.day_collection.weekend_day_indices[change_info['d_index']])):
             solution.num_working_weekends[change_info['employee_id']] += 1
+
+        # S7
+        solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
 
     def update_information_assigned_to_assigned(self, solution, change_info):
         """

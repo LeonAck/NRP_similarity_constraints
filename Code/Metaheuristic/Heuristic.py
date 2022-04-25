@@ -56,6 +56,7 @@ class Heuristic:
         # take initial solution as best solution
         best_solution = Solution(starting_solution)
 
+        FeasibilityCheck().check_day_comparison_info(current_solution, self.scenario, change_info=None)
         # Initialize tracking
         # number of iterations
         # number of iterations without improvement
@@ -75,7 +76,7 @@ class Heuristic:
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
-
+            FeasibilityCheck().check_day_comparison_info(current_solution, self.scenario, change_info=None)
             change_info = self.operators[operator_name](current_solution, self.scenario)
             no_improve_iter += 1
             if change_info['cost_increment'] <= 0:
@@ -108,7 +109,8 @@ class Heuristic:
             #print(current_solution.violation_array)
             #FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
             #FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
-            #FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+            FeasibilityCheck().check_day_comparison_info(current_solution, self.scenario, change_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #print(current_solution.obj_value)
             #FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)

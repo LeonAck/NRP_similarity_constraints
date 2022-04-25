@@ -79,8 +79,11 @@ class Rule:
             if rule_spec["parameter_per_contract"]:
                 self.parameter_per_employee = self.get_parameter_per_employee(employees,
                                                                               rule_spec['parameter_1'])
-            if rule_spec['parameter_per_s_type']:
+            elif rule_spec['parameter_per_s_type']:
                 self.parameter_per_s_type = rule_spec['parameter_2']
+            else:
+                self.parameter_1 = rule_spec['parameter_1']
+
     def check_if_violation(self, number_of_violations):
         """
         Function to put number of rule violations in output

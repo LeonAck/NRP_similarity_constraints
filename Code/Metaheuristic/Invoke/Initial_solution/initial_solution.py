@@ -7,7 +7,6 @@ from solution import Solution
 from Domain.employee import EmployeeCollection
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 
-
 class InitialSolution(Solution):
     """
     Class to create initial solution
@@ -19,6 +18,7 @@ class InitialSolution(Solution):
 
         self.scenario = scenario
         self.day_collection = scenario.day_collection
+        self.rule_collection = scenario.rule_collection
 
         # initialize shift assignment objects
         self.shift_assignments = self.create_shift_assignments()
@@ -45,6 +45,9 @@ class InitialSolution(Solution):
 
         # collect shift stretches
         self.shift_stretches = self.collect_shift_stretches(solution=self)
+
+        # collect reference day comparison
+        self.day_comparison = self.collect_ref_day_comparison(solution=self)
 
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
@@ -213,6 +216,27 @@ class InitialSolution(Solution):
             shift_stretches[employee_id] = shift_stretch_employee
 
         return shift_stretches
+
+    def collect_ref_day_comparison(self, solution):
+        """
+        Create object with True and False that show whether assignment
+        of current day and reference day are the same
+        True if assigned on both days
+        False if assigned on one of the day
+        """
+
+        day_assignment_comparison = {}
+        rule_parameter = self.scenario.rule_collection.collection['S7Day'].parameter_1
+        #np.array(len(self.day_collection.num_days_in_horizon))
+        for employee_id in self.scenario.employees._collection.keys():
+            day_list = [1 if solution.check_if_working_day(employee_id, d_index-rule_parameter)
+                        == solution.check_if_working_day(employee_id, d_index) else 0
+                        for d_index in range(0, self.scenario.day_collection.num_days_in_horizon)
+                        if d_index - rule_parameter >= 0]
+            # combine into one list
+            day_assignment_comparison[employee_id] = np.concatenate((np.full(rule_parameter, fill_value=-1), np.array(day_list)))
+
+        return day_assignment_comparison
 
 
 
