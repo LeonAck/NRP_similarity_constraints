@@ -16,7 +16,7 @@ class Settings:
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
             # should be a list of numbers, no range
-            self.weeks = [1, 2]
+            self.weeks = [1, 2, 3, 4]
 
         # weights per soft constraint
 

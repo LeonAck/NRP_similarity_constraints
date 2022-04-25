@@ -18,7 +18,8 @@ def change_operator(solution, scenario):
     change_info = get_feasible_change(solution, scenario)
 
     # add penalty to objective
-    change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution, scenario, change_info)
+    if change_info['feasible']:
+        change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution, scenario, change_info)
 
     return change_info
 
@@ -51,8 +52,6 @@ def get_feasible_change(solution, scenario):
     # get list of employees that are feasible for the change
     feasible_employees = list((scenario.employees._collection.keys()))
 
-    work_stretches_1 = solution.work_stretches
-    shift_ass_1 = solution.shift_assignments
     change_info = dict()
     while len(feasible_employees) > 0 and not feasible:
         # pick random nurse
@@ -107,6 +106,11 @@ def get_feasible_change(solution, scenario):
         # if no feasible day for change for employee, remove employee and find new employee
         feasible_employees.remove(change_info["employee_id"])
 
+    # check whether a feasible change was possible
+    if not change_info['current_working'] and not change_info['new_working']:
+        change_info['feasible'] = False
+    else:
+        change_info['feasible'] = True
     return change_info
 
 

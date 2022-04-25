@@ -78,6 +78,9 @@ class Heuristic:
             self.update_frequency_operator(operator_name)
             FeasibilityCheck().check_day_comparison_info(current_solution, self.scenario, change_info=None)
             change_info = self.operators[operator_name](current_solution, self.scenario)
+            if not change_info['feasible']:
+                print("no feasible change")
+                break
             no_improve_iter += 1
             if change_info['cost_increment'] <= 0:
                 # update solutions accordingly

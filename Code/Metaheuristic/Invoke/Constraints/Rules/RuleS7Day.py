@@ -50,13 +50,9 @@ class RuleS7Day(Rule):
         if not change_info['current_working'] or not change_info['new_working']:
             # compare to ref day
             if solution.day_comparison[change_info['employee_id']][change_info['d_index']] == 1:
-                print("was the same")
                 solution.day_comparison[change_info['employee_id']][change_info['d_index']] = 0
-                print("after change", solution.day_comparison[change_info['employee_id']][change_info['d_index']])
             elif solution.day_comparison[change_info['employee_id']][change_info['d_index']] == 0:
-                print("was different")
                 solution.day_comparison[change_info['employee_id']][change_info['d_index']] = 1
-                print("after change", solution.day_comparison[change_info['employee_id']][change_info['d_index']])
             # compare to future day
             if self.check_future_day_in_horizon(solution.day_collection, change_info['d_index'], parameter_1):
                 if solution.day_comparison[change_info['employee_id']][change_info['d_index']+parameter_1] == 1:

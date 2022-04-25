@@ -198,7 +198,11 @@ class RuleS2ShiftMax(Rule):
             return self.incremental_violations_assigned_to_assigned(solution, change_info)
 
     def incremental_violations_off_to_assigned(self, solution, change_info):
-        shift_parameter = self.parameter_per_s_type[change_info['new_s_type']]
+        try:
+            shift_parameter = self.parameter_per_s_type[change_info['new_s_type']]
+        except KeyError:
+            print("hi")
+            a = 6
 
         if solution.check_if_middle_day(change_info['d_index']) \
                 and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] + 1, change_info['new_s_type']) \
