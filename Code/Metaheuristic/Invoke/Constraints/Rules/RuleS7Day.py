@@ -13,10 +13,10 @@ class RuleS7Day(Rule):
         """
         Function to count violations in the entire solution
         """
-        return sum([self.count_violations_employee(solution, scenario, employee_id)
+        return sum([self.count_violations_employee(solution, employee_id)
                     for employee_id in scenario.employees._collection.keys()])
 
-    def count_violations_employee(self, solution, scenario, employee_id):
+    def count_violations_employee(self, solution, employee_id):
         """
         Function to count violations for a given employee
         """
@@ -47,6 +47,7 @@ class RuleS7Day(Rule):
 
     def update_information_off_to_assigned(self, solution, change_info):
         parameter_1 = solution.rule_collection.collection["S7Day"].parameter_1
+        # TODO remove if-statement
         if not change_info['current_working'] or not change_info['new_working']:
             # compare to ref day
             if solution.day_comparison[change_info['employee_id']][change_info['d_index']] == 1:

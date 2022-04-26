@@ -3,6 +3,7 @@ Set to create initial solution
 """
 import numpy as np
 import itertools
+from pprint import pprint
 from solution import Solution
 from Domain.employee import EmployeeCollection
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
@@ -20,34 +21,44 @@ class InitialSolution(Solution):
         self.day_collection = scenario.day_collection
         self.rule_collection = scenario.rule_collection
 
+
         # initialize shift assignment objects
         self.shift_assignments = self.create_shift_assignments()
 
         # assign skill requests based on H1, H2 and H4
         self.assign_skill_requests()
 
-        # create array to keep track of difference between optimal skill_requests and actual skill assignment
+        #H2 create array to keep track of difference between optimal skill_requests and actual skill assignment
         self.diff_min_request = self.initialize_diff_min_request(self.scenario)
-        # create array to keep track of difference between optimal skill_requests and actual skill assignment
+
+        # H3 forbidden successions
+        self.forbidden_successions = scenario.forbidden_shift_type_successions
+
+        # S1 create array to keep track of difference between optimal skill_requests and actual skill assignment
         self.diff_opt_request = self.initialize_diff_opt_request(self.scenario)
 
-        # collect number of assignments per nurse
+        # S2 collect work stretches
+        self.work_stretches = self.collect_work_stretches(solution=self)
+
+        # S2Shift collect shift stretches
+        self.shift_stretches = self.collect_shift_stretches(solution=self)
+
+        # S3 collect day off stretches
+        self.day_off_stretches = self.collect_work_stretches(solution=self, working=False)
+
+        # S5 collect number of assignments per nurse
         self.num_assignments_per_nurse = self.get_num_assignments_per_nurse()
 
-        # collect number of working weekends per nurse
+        # S6 collect number of working weekends per nurse
         self.num_working_weekends = RuleS6().count_working_weekends_employee(
             solution=self,
             scenario=self.scenario)
 
-        # collect work stretches
-        self.work_stretches = self.collect_work_stretches(solution=self)
-        self.day_off_stretches = self.collect_work_stretches(solution=self, working=False)
-
-        # collect shift stretches
-        self.shift_stretches = self.collect_shift_stretches(solution=self)
-
-        # collect reference day comparison
+        # S7Day collect reference day comparison
         self.day_comparison = self.collect_ref_day_comparison(solution=self)
+
+        # S7Shift
+        self.shift_comparison = self.collect_ref_shift_comparison(solution=self)
 
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
@@ -237,6 +248,39 @@ class InitialSolution(Solution):
             day_assignment_comparison[employee_id] = np.concatenate((np.full(rule_parameter, fill_value=-1), np.array(day_list)))
 
         return day_assignment_comparison
+
+    def collect_ref_shift_comparison(self, solution):
+        """
+        Collect dict where for each employee we have an array
+        with:
+        1 if working both days and same shift
+        0 if working both days and different shift
+        -1 if outside of range of comparison or not working both days
+
+        """
+        shift_assignment_comparison = {}
+        rule_parameter = self.scenario.rule_collection.collection['S7Shift'].parameter_1
+
+        for employee_id in self.scenario.employees._collection.keys():
+            shift_comparison_empl = [
+                (
+                    1 if solution.check_if_same_shift_type(
+                employee_id, d_index, d_index - rule_parameter) else 0
+                )
+                if solution.check_if_working_day(
+                employee_id, d_index)
+                   and solution.check_if_working_day(employee_id, d_index-rule_parameter)
+                    else -1
+                 for d_index in range(0, self.scenario.day_collection.num_days_in_horizon)
+                 if d_index - rule_parameter >= 0
+            ]
+
+            # combine into one list
+            shift_assignment_comparison[employee_id] = np.concatenate(
+                (np.full(rule_parameter, fill_value=-1), np.array( shift_comparison_empl)))
+
+        return shift_assignment_comparison
+
 
 
 

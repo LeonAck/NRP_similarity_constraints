@@ -12,7 +12,7 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n005w4"
+            self.instance_name = "n120w4"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
             # should be a list of numbers, no range
@@ -150,7 +150,15 @@ class Settings:
                        "parameter_per_contract": False,
                    "parameter_per_s_type": False,
              "penalty": 10,
-             "parameter_1": 4}
+             "parameter_1": 4},
+            "S7Shift": {"id": "S7Shift",
+                      "is_mandatory": False,
+                      "is_active": True,
+                      "is_horizontal": True,
+                      "parameter_per_contract": False,
+                      "parameter_per_s_type": False,
+                      "penalty": 6,
+                      "parameter_1": 4}
         }
 
         self.parameter_to_rule_mapping = {

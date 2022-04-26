@@ -122,3 +122,35 @@ class RuleH3(Rule):
                                                         np.in1d(allowed_shift_types, succession[0]))
 
         return allowed_shift_types
+
+    def incremental_violation_change(self, solution, change_info, scenario=None):
+        """
+        Calculate the difference in violations after using the change operator
+        :return:
+        \delta number_of_violations
+        """
+        # off to assigned
+        if not change_info['current_working']:
+            return self.incremental_violation_change_off_to_assigned(solution,
+                                                                     change_info)
+        # assigned to off
+        elif not change_info['new_working']:
+            return self.incremental_violation_change_assigned_to_off(solution,
+                                                                     change_info)
+        # if assigned to assigned
+        elif change_info['new_working'] and change_info['current_working']:
+            if change_info['new_s_type'] != change_info['curr_s_type']:
+                return self.incremental_violation_change_off_to_assigned(solution,
+                                                                         change_info) \
+                       + self.incremental_violation_change_assigned_to_off(solution,
+                                                                           change_info)
+            else:
+                return 0
+        else:
+            return 0
+
+    def incremental_violation_change_off_to_assigned(self, solution, change_info):
+        pass
+
+    def incremental_violation_change_assigned_to_off(self, solution, change_info):
+        pass
