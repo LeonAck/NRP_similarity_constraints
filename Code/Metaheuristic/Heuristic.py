@@ -17,7 +17,7 @@ class Heuristic:
         # set initial temperature
         # heuristic settings
         self.max_time = 500
-        self.max_iter = 100000
+        self.max_iter = 20000
         self.initial_temp = 22
         self.cooling_rate = 0.99
         self.no_improve_max = 200
@@ -56,7 +56,6 @@ class Heuristic:
         # take initial solution as best solution
         best_solution = Solution(starting_solution)
 
-        FeasibilityCheck().check_day_comparison_info(current_solution, self.scenario, change_info=None)
         # Initialize tracking
         # number of iterations
         # number of iterations without improvement
@@ -72,11 +71,10 @@ class Heuristic:
         n_iter = 0
         no_improve_iter = 0
         while time.time() < self.start_time + self.max_time and n_iter < self.max_iter:
-            print(n_iter)
+            print("\nIteration: ", n_iter)
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
-            FeasibilityCheck().check_day_comparison_info(current_solution, self.scenario, change_info=None)
             change_info = self.operators[operator_name](current_solution, self.scenario)
             if not change_info['feasible']:
                 print("no feasible change")
@@ -101,7 +99,6 @@ class Heuristic:
             if no_improve_iter > self.no_improve_max:
                 current_solution = Solution(best_solution)
                 no_improve_iter = 0
-            # for watch
 
             # adjust weights
             # TODO operator weights
@@ -109,14 +106,9 @@ class Heuristic:
 
             self.update_temperature()
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            #print(current_solution.violation_array)
-            #FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
-            #FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
-            FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
-            FeasibilityCheck().check_day_comparison_info(current_solution, self.scenario, change_info)
+            #FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-            #print(current_solution.obj_value)
-            #FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
             n_iter += 1

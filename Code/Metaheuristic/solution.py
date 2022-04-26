@@ -3,6 +3,7 @@ from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS3Max import RuleS3Max
 from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
+from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
 
 class Solution:
     """
@@ -21,6 +22,9 @@ class Solution:
 
             # H2
             self.diff_min_request = other_solution.diff_min_request
+
+            # H3
+            self.forbidden_successions = other_solution.forbidden_successions
 
             # S1
             self.diff_opt_request = other_solution.diff_opt_request
@@ -42,6 +46,7 @@ class Solution:
 
             # S7 similarity
             self.day_comparison = other_solution.day_comparison
+            self.shift_comparison = other_solution.shift_comparison
 
             # objective value
             self.obj_value = other_solution.obj_value
@@ -114,6 +119,7 @@ class Solution:
         # S7
         # can use the same function as off to assigned as the result is the same
         solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
+        solution = RuleS7Shift().update_information_assigned_to_off(solution, change_info)
 
     def update_information_off_to_assigned(self, solution, change_info):
         """
@@ -150,6 +156,7 @@ class Solution:
 
         # S7
         solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
+        solution =RuleS7Shift().update_information_off_to_assigned(solution, change_info)
 
     def update_information_assigned_to_assigned(self, solution, change_info):
         """
@@ -168,6 +175,8 @@ class Solution:
         # S2ShiftMax
         # S2-S6
         # no changes necessary
+        # S7Shift
+        solution = RuleS7Shift().update_information_assigned_to_assigned(solution, change_info)
 
     def update_solution_change(self, change_info):
         """
@@ -232,6 +241,10 @@ class Solution:
 
     def check_if_middle_day(self, d_index):
         return not self.check_if_last_day(d_index) and not self.check_if_first_day(d_index)
+
+    def check_if_same_shift_type(self, employee_id, d_index_1, d_index_2):
+        return self.shift_assignments[employee_id][d_index_1][0] \
+               == self.shift_assignments[employee_id][d_index_2][0]
 
 
     # def create_skill_counter(self):
