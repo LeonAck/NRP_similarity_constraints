@@ -11,6 +11,17 @@ class RuleH3(Rule):
     def __init__(self, employees=None, rule_spec=None):
         super().__init__(employees, rule_spec)
 
+    def count_violations(self, solution, scenario):
+        """
+               Function to count violations in the entire solution
+        """
+        return sum([self.count_violations_employee(solution, scenario, employee_id)
+                    for employee_id in scenario.employees._collection.keys()])
+
+    def count_violations_employee(self, solution, scenario, employee_id):
+        return sum([self.violations_per_employee_day_soft(solution, scenario, employee_id, d_index)
+                    for d_index in range(0, scenario.day_collection.num_days_in_horizon-1)])
+
     def check_violations_mandatory(self, solution, scenario, employees):
         """
         Check violations for entire solution
@@ -69,7 +80,7 @@ class RuleH3(Rule):
 
         return flag
 
-    def violations_per_employee_day_soft(self, solution, scenario, employee, d_index):
+    def violations_per_employee_day_soft(self, solution, scenario, employee_id, d_index):
         """
         Check violations per nurse per day
         """
@@ -77,16 +88,17 @@ class RuleH3(Rule):
         number_of_violations = 0
         # compare with day before
         if d_index > 0:
-            if solution.shift_assignments[employee.id][d_index] \
+            if solution.shift_assignments[employee_id][d_index][0] \
                     in \
-                    scenario.forbidden_shift_type_successions[solution.shift_assignments[employee.id][d_index - 1] - 1][
+                    scenario.forbidden_shift_type_successions[
+                        solution.shift_assignments[employee_id][d_index - 1][0]][
                         1]:
                 number_of_violations += 1
 
         if d_index < scenario.num_days_in_horizon - 1:
-            if solution.shift_assignments[employee.id][d_index] \
+            if solution.shift_assignments[employee_id][d_index+1][0] \
                     in scenario.forbidden_shift_type_successions[
-                solution.shift_assignments[employee.id][d_index + 1][0]][1]:
+                    solution.shift_assignments[employee_id][d_index][0]][1]:
                 number_of_violations += 1
 
         return number_of_violations
@@ -123,7 +135,7 @@ class RuleH3(Rule):
 
         return allowed_shift_types
 
-    def incremental_violation_change(self, solution, change_info, scenario=None):
+    def incremental_violations_change(self, solution, change_info, scenario=None):
         """
         Calculate the difference in violations after using the change operator
         :return:
@@ -150,7 +162,46 @@ class RuleH3(Rule):
             return 0
 
     def incremental_violation_change_off_to_assigned(self, solution, change_info):
-        pass
+        violation_counter = 0
+
+        if change_info['d_index'] > 0:
+            if change_info['new_s_type'] \
+                    in \
+                    solution.forbidden_shift_type_successions[
+                        solution.shift_assignments[
+                            change_info['employee_id']][
+                            change_info['d_index'] - 1][0]][
+                        1]:
+                violation_counter += 1
+
+        if change_info['d_index'] < solution.day_collection.num_days_in_horizon - 1:
+            if solution.shift_assignments[
+                change_info['employee_id']][change_info['d_index']+1][0] \
+                    in solution.forbidden_shift_type_successions[
+                change_info['new_s_type']][1]:
+                violation_counter += 1
+
+        return violation_counter
+
 
     def incremental_violation_change_assigned_to_off(self, solution, change_info):
-        pass
+        violation_counter = 0
+
+        if change_info['d_index'] > 0:
+            if change_info['curr_s_type'] \
+                    in solution.forbidden_shift_type_successions[
+                        solution.shift_assignments[
+                            change_info['employee_id']][
+                            change_info['d_index'] - 1]][
+                        0][
+                        1]:
+                violation_counter -= 1
+
+        if change_info['d_index'] < solution.day_collection.num_days_in_horizon - 1:
+            if solution.shift_assignments[
+                    change_info['employee_id']][change_info['d_index']+1][0] \
+                    in solution.forbidden_shift_type_successions[
+                            change_info['curr_s_type']][1]:
+                violation_counter -= 1
+
+        return violation_counter

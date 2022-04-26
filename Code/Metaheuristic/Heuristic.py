@@ -72,6 +72,7 @@ class Heuristic:
         no_improve_iter = 0
         while time.time() < self.start_time + self.max_time and n_iter < self.max_iter:
             print("\nIteration: ", n_iter)
+            print("number of violations: ", current_solution.violation_array[0])
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
@@ -105,8 +106,9 @@ class Heuristic:
             #self.update_operator_weights(operator_name)
 
             self.update_temperature()
+
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            #FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
 
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:

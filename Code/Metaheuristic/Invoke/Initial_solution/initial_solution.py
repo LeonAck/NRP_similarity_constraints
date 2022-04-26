@@ -32,7 +32,7 @@ class InitialSolution(Solution):
         self.diff_min_request = self.initialize_diff_min_request(self.scenario)
 
         # H3 forbidden successions
-        self.forbidden_successions = scenario.forbidden_shift_type_successions
+        self.forbidden_shift_type_successions = scenario.forbidden_shift_type_successions
 
         # S1 create array to keep track of difference between optimal skill_requests and actual skill assignment
         self.diff_opt_request = self.initialize_diff_opt_request(self.scenario)

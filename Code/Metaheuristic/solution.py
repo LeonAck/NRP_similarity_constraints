@@ -24,7 +24,7 @@ class Solution:
             self.diff_min_request = other_solution.diff_min_request
 
             # H3
-            self.forbidden_successions = other_solution.forbidden_successions
+            self.forbidden_shift_type_successions = other_solution.forbidden_shift_type_successions
 
             # S1
             self.diff_opt_request = other_solution.diff_opt_request
