@@ -12,7 +12,7 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n120w4"
+            self.instance_name = "n030w4"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
             # should be a list of numbers, no range
