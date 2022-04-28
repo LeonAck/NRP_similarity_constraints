@@ -48,9 +48,9 @@ class RuleS1(Rule):
         violation = 0
         if change_info["current_working"]:
             violation += self.increment_violations_day_shift_skill(solution,
-                                                                   d_index=change_info["curr_ass"][0],
-                                                                   s_index=change_info["curr_ass"][1],
-                                                                   sk_index=change_info["curr_ass"][2],
+                                                                   d_index=change_info["d_index"],
+                                                                   s_index=change_info["curr_s_type"],
+                                                                   sk_index=change_info["curr_sk_type"],
                                                                    insertion=False)
         if change_info["new_working"]:
             violation += self.increment_violations_day_shift_skill(solution,

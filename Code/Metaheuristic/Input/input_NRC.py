@@ -347,10 +347,10 @@ instance = Instance(settings)
 settings = instance.add_rules_specs_settings(settings)
 scenario = Scenario(settings, instance)
 init_solution = InitialSolution(scenario)
-FeasibilityCheck().check_day_comparison_info(solution=init_solution, scenario=scenario, change_info=None)
 #cProfile.run("Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))", sort=1)
-for i in range(10):
-    best_solution = Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))
+
+
+best_solution = Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))
 #
 # FeasibilityCheck().h2_check_function(best_solution, scenario)
 # FeasibilityCheck().assignment_equals_tracked_info(best_solution, scenario)

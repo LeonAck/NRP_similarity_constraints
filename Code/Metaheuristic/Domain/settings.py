@@ -12,7 +12,7 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n030w4"
+            self.instance_name = "n005w4"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
             # should be a list of numbers, no range
@@ -41,7 +41,7 @@ class Settings:
              "is_horizontal": True,
              "parameter_per_contract": False,
                   "parameter_per_s_type": False,
-             "penalty": 0,
+             "penalty": 20,
              "parameter_1": 0
              },
              "S1":{"id": "S1",

@@ -43,7 +43,7 @@ class RuleS2ShiftMax(Rule):
        Find key of work stretch given that d_index is the last day
        """
         for start_index, shift_stretch in solution.shift_stretches[employee_id][s_index].items():
-            if d_index in range(s_index+1, shift_stretch['end_index']):
+            if d_index in range(start_index+1, shift_stretch['end_index']):
                 return start_index
 
     def update_information_off_to_assigned(self, solution, change_info):
@@ -198,11 +198,8 @@ class RuleS2ShiftMax(Rule):
             return self.incremental_violations_assigned_to_assigned(solution, change_info)
 
     def incremental_violations_off_to_assigned(self, solution, change_info):
-        try:
-            shift_parameter = self.parameter_per_s_type[change_info['new_s_type']]
-        except KeyError:
-            print("hi")
-            a = 6
+
+        shift_parameter = self.parameter_per_s_type[change_info['new_s_type']]
 
         if solution.check_if_middle_day(change_info['d_index']) \
                 and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] + 1, change_info['new_s_type']) \
@@ -229,7 +226,6 @@ class RuleS2ShiftMax(Rule):
                             change_info['d_index'] + 1]['length'] >= shift_parameter \
                 else 0
 
-
         # check if not the first day and the day before working
         elif not change_info['d_index'] == 0 \
                 and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] - 1, change_info['new_s_type']):
@@ -244,16 +240,20 @@ class RuleS2ShiftMax(Rule):
 
     def incremental_violations_assigned_to_off(self, solution, change_info):
         shift_parameter = self.parameter_per_s_type[change_info['curr_s_type']]
-
+        violation = False
         # find in what work stretch the d_index is
-        for start_index, shift_stretch in solution.shift_stretches[change_info['employee_id']][change_info['new_s_type']].items():
+        for start_index, shift_stretch in solution.shift_stretches[change_info['employee_id']][change_info['curr_s_type']].items():
             if change_info['d_index'] in range(start_index, shift_stretch["end_index"]+1):
                 split_1 = change_info['d_index'] - start_index
                 split_2 = shift_stretch['end_index'] - change_info['d_index']
-
+                violation = True
                 return -(np.maximum(shift_stretch['length'] - shift_parameter, 0)
                          - np.maximum(split_1 - shift_parameter, 0)
                          - np.maximum(split_2 - shift_parameter, 0))
+
+        if not violation:
+            return 0
+
 
 
     def incremental_violations_assigned_to_assigned(self, solution, change_info):

@@ -24,7 +24,7 @@ class Solution:
             self.diff_min_request = other_solution.diff_min_request
 
             # H3
-            self.forbidden_successions = other_solution.forbidden_successions
+            self.forbidden_shift_type_successions = other_solution.forbidden_shift_type_successions
 
             # S1
             self.diff_opt_request = other_solution.diff_opt_request
@@ -45,8 +45,10 @@ class Solution:
             self.num_working_weekends = other_solution.num_working_weekends
 
             # S7 similarity
-            self.day_comparison = other_solution.day_comparison
-            self.shift_comparison = other_solution.shift_comparison
+            if 'S7Day' in self.rule_collection.collection.keys():
+                self.day_comparison = other_solution.day_comparison
+            if 'S7Shift' in self.rule_collection.collection.keys():
+                self.shift_comparison = other_solution.shift_comparison
 
             # objective value
             self.obj_value = other_solution.obj_value
@@ -88,11 +90,11 @@ class Solution:
         Function to update relevant information after removal from shift skill combination
         """
         # hard constraints
-        solution.diff_min_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
+        solution.diff_min_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # soft constraints
         # S1
-        solution.diff_opt_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
+        solution.diff_opt_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # S2Max and S2Min
         solution = RuleS2Max().update_information_assigned_to_off(solution, change_info)
@@ -118,8 +120,10 @@ class Solution:
 
         # S7
         # can use the same function as off to assigned as the result is the same
-        solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
-        solution = RuleS7Shift().update_information_assigned_to_off(solution, change_info)
+        if 'S7Day' in solution.rule_collection.collection.keys():
+            solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
+        if 'S7Shift' in solution.rule_collection.collection.keys():
+            solution = RuleS7Shift().update_information_assigned_to_off(solution, change_info)
 
     def update_information_off_to_assigned(self, solution, change_info):
         """
@@ -155,8 +159,10 @@ class Solution:
             solution.num_working_weekends[change_info['employee_id']] += 1
 
         # S7
-        solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
-        solution =RuleS7Shift().update_information_off_to_assigned(solution, change_info)
+        if 'S7Day' in solution.rule_collection.collection.keys():
+            solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
+        if 'S7Shift' in solution.rule_collection.collection.keys():
+            solution =RuleS7Shift().update_information_off_to_assigned(solution, change_info)
 
     def update_information_assigned_to_assigned(self, solution, change_info):
         """
@@ -165,18 +171,22 @@ class Solution:
 
         # hard constraints
         solution.diff_min_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
-        solution.diff_min_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
+        solution.diff_min_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # soft constraints
         # S1
         solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
-        solution.diff_opt_request[(change_info['curr_ass'][0], change_info['curr_ass'][2], change_info['curr_ass'][1])] -= 1
+        solution.diff_opt_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # S2ShiftMax
+        RuleS2ShiftMax().update_information_assigned_to_assigned(solution, change_info)
         # S2-S6
         # no changes necessary
         # S7Shift
-        solution = RuleS7Shift().update_information_assigned_to_assigned(solution, change_info)
+
+
+        if 'S7Shift' in solution.rule_collection.collection.keys():
+            solution = RuleS7Shift().update_information_assigned_to_assigned(solution, change_info)
 
     def update_solution_change(self, change_info):
         """

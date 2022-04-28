@@ -4,7 +4,7 @@ import numpy as np
 from Invoke.Operators import change_operator
 from solution import Solution
 from Check.check_function_feasibility import FeasibilityCheck
-
+from Invoke.Constraints.Rules.RuleH3 import RuleH3
 
 class Heuristic:
     """
@@ -72,6 +72,9 @@ class Heuristic:
         no_improve_iter = 0
         while time.time() < self.start_time + self.max_time and n_iter < self.max_iter:
             print("\nIteration: ", n_iter)
+
+            # print("number of violations: ", current_solution.violation_array[0])
+
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
@@ -79,6 +82,8 @@ class Heuristic:
             if not change_info['feasible']:
                 print("no feasible change")
                 break
+            print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
+            print("assignmetns", current_solution.shift_assignments[change_info['employee_id']][:,0])
             no_improve_iter += 1
             if change_info['cost_increment'] <= 0:
                 # update solutions accordingly
@@ -105,9 +110,10 @@ class Heuristic:
             #self.update_operator_weights(operator_name)
 
             self.update_temperature()
+
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
             #FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
-
+            FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))

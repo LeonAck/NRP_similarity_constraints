@@ -158,7 +158,7 @@ def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
                 and feasible_removals[
                     tuple([d_index,
                    solution.shift_assignments[employee_id][d_index][1],
-                   solution.shift_assignments[employee_id][d_index][0]])] > 1)
+                   solution.shift_assignments[employee_id][d_index][0]])] > 0)
             ]
 
 
