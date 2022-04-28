@@ -246,7 +246,17 @@ class FeasibilityCheck:
                 print("number of violation for soft constraint {} is tracked {} and calc {}".format(
                     i, violation, calc_violations[i]
                 ))
+                if change_info['current_working']:
+                    print("current shift type", change_info['curr_s_type'])
+                print("past: {}, present: {}, future: {}".format(
+                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
+                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
+                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
 
+                print(solution.forbidden_shift_type_successions)
+
+                print(RuleH3().print_violations_per_employee(solution, scenario))
+                print(RuleH3().violations_per_employee_day_soft(solution, scenario, change_info['employee_id'], change_info['d_index']))
                 flag = False
 
         return flag

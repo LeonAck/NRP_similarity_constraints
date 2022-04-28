@@ -55,10 +55,12 @@ class InitialSolution(Solution):
             scenario=self.scenario)
 
         # S7Day collect reference day comparison
-        self.day_comparison = self.collect_ref_day_comparison(solution=self)
+        if 'S7Day' in self.rule_collection.collection.keys():
+            self.day_comparison = self.collect_ref_day_comparison(solution=self)
 
         # S7Shift
-        self.shift_comparison = self.collect_ref_shift_comparison(solution=self)
+        if 'S7Shift' in self.rule_collection.collection.keys():
+            self.shift_comparison = self.collect_ref_shift_comparison(solution=self)
 
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)

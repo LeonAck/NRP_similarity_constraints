@@ -36,7 +36,7 @@ class Settings:
             "parameter_1": 0
             },
             "H3":{"id": "H3",
-             "is_mandatory": False,
+             "is_mandatory": True,
              "is_active": True,
              "is_horizontal": True,
              "parameter_per_contract": False,
