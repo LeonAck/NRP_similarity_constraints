@@ -28,6 +28,31 @@ class Instance:
         # simplify notation
         self.simplify_week_data()
         self.simplify_scenario_data()
+        self.history_data = self.simplify_history_data()
+        self.last_assigned_shifts = self.collect_last_assigned_shifts()
+
+    def collect_last_assigned_shifts(self):
+        last_assigned_shifts = {}
+        for employee_id, employee_history in self.history_data.items():
+            last_assigned_shifts[employee_id] = employee_history['lastAssignedShiftType']
+
+        return last_assigned_shifts
+
+
+    def simplify_history_data(self):
+        history_data = {}
+
+        # assign values to employee_id
+        for employee_data in self.history_data['nurseHistory']:
+            history_data[employee_data['nurse']] = employee_data
+
+        # change shifts abbreviations
+        for employee_id, employee_history in history_data.items():
+            history_data[employee_id]['lastAssignedShiftType'] = -1 \
+            if employee_history['lastAssignedShiftType'] == 'None' \
+                else self.get_index_of_shift_type(employee_history['lastAssignedShiftType'])
+
+        return history_data
 
     def set_problem_size(self):
         """

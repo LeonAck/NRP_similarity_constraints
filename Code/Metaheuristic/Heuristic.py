@@ -72,13 +72,13 @@ class Heuristic:
                            "work_off": 0,
                            "work_work": 0}
 
-        n_iter = 0
+        n_iter = 1
         no_improve_iter = 0
         while time.time() < self.start_time + self.max_time and n_iter < self.max_iter:
-            print("\nIteration: ", n_iter)
+            # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
                 print(current_solution.violation_array)
-            print(current_solution.violation_array[0])
+            # print(current_solution.violation_array[0])
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
@@ -86,7 +86,7 @@ class Heuristic:
             if not change_info['feasible']:
                 print("no feasible change")
                 break
-            print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
+            # print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
             change_counters = self.update_change_counter(change_counters, change_info)
             no_improve_iter += 1
             if change_info['cost_increment'] <= 0:
@@ -117,7 +117,7 @@ class Heuristic:
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
             #FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
-            #FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))

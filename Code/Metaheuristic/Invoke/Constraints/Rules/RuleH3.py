@@ -22,6 +22,121 @@ class RuleH3(Rule):
         return sum([self.violations_per_employee_day_soft(solution, scenario, employee_id, d_index)
                     for d_index in range(0, scenario.day_collection.num_days_in_horizon)])
 
+    def violations_per_employee_day_soft(self, solution, scenario, employee_id, d_index):
+        """
+        Check violations per nurse per day
+        """
+        # get number of violations
+        number_of_violations = 0
+        # compare with day before
+        if d_index > 0 and solution.shift_assignments[employee_id][d_index - 1][0] != -1:
+            if solution.shift_assignments[employee_id][d_index][0] \
+                    in \
+                    scenario.forbidden_shift_type_successions[
+                        solution.shift_assignments[employee_id][d_index - 1][0]][
+                        1]:
+                number_of_violations += 1
+
+        # count violations through history
+        elif d_index == 0 and solution.last_assigned_shifts[employee_id] != -1:
+            if solution.shift_assignments[employee_id][d_index][0] \
+                    in \
+                    scenario.forbidden_shift_type_successions[
+                        solution.last_assigned_shifts[employee_id]][
+                        1]:
+                number_of_violations += 1
+
+        return number_of_violations
+
+    def incremental_violations_change(self, solution, change_info, scenario=None):
+        """
+        Calculate the difference in violations after using the change operator
+        :return:
+        \delta number_of_violations
+        """
+        # off to assigned
+        if not change_info['current_working']:
+            return self.incremental_violation_change_off_to_assigned(solution,
+                                                                     change_info)
+        # assigned to off
+        elif not change_info['new_working']:
+            return self.incremental_violation_change_assigned_to_off(solution,
+                                                                     change_info)
+        # if assigned to assigned
+        elif change_info['new_working'] and change_info['current_working']:
+            if change_info['new_s_type'] != change_info['curr_s_type']:
+                return self.incremental_violation_change_off_to_assigned(solution,
+                                                                         change_info) \
+                       + self.incremental_violation_change_assigned_to_off(solution,
+                                                                           change_info)
+            else:
+                return 0
+        else:
+            return 0
+
+    def incremental_violation_change_off_to_assigned(self, solution, change_info):
+        violation_counter = 0
+
+        if change_info['d_index'] > 0 and solution.shift_assignments[
+            change_info['employee_id']][
+            change_info['d_index'] - 1][0] != -1:
+            if change_info['new_s_type'] \
+                    in \
+                    solution.forbidden_shift_type_successions[
+                        solution.shift_assignments[
+                            change_info['employee_id']][
+                            change_info['d_index'] - 1][0]][
+                        1]:
+                violation_counter += 1
+        elif change_info['d_index'] == 0 and solution.last_assigned_shifts[change_info['employee_id']] != -1:
+            if change_info['new_s_type'] \
+                    in \
+                    solution.forbidden_shift_type_successions[
+                        solution.last_assigned_shifts[change_info['employee_id']]][
+                        1]:
+                violation_counter += 1
+
+        if change_info['d_index'] < solution.day_collection.num_days_in_horizon - 1:
+            if solution.shift_assignments[
+                change_info['employee_id']][change_info['d_index'] + 1][0] \
+                    in solution.forbidden_shift_type_successions[
+                change_info['new_s_type']][1]:
+                violation_counter += 1
+
+        return violation_counter
+
+    def incremental_violation_change_assigned_to_off(self, solution, change_info):
+        violation_counter = 0
+
+        if change_info['d_index'] > 0 and \
+                solution.shift_assignments[
+                    change_info['employee_id']][
+                    change_info['d_index'] - 1][0] != -1:
+            if change_info['curr_s_type'] \
+                    in solution.forbidden_shift_type_successions[
+                solution.shift_assignments[
+                    change_info['employee_id']][
+                    change_info['d_index'] - 1][0]][
+                1]:
+                violation_counter -= 1
+
+        elif change_info['d_index'] == 0 and solution.last_assigned_shifts[change_info['employee_id']] != -1:
+            if change_info['curr_s_type'] \
+                    in \
+                    solution.forbidden_shift_type_successions[
+                        solution.last_assigned_shifts[change_info['employee_id']]][
+                        1]:
+                violation_counter -= 1
+
+        if change_info['d_index'] < solution.day_collection.num_days_in_horizon - 1:
+            if solution.shift_assignments[
+                change_info['employee_id']][change_info['d_index'] + 1][0] \
+                    in solution.forbidden_shift_type_successions[
+                change_info['curr_s_type']][1]:
+                violation_counter -= 1
+
+        return violation_counter
+
     def print_violations_per_employee(self, solution, scenario):
         for employee_id in scenario.employees._collection.keys():
             print(employee_id, sum([self.violations_per_employee_day_soft(solution, scenario, employee_id, d_index)
@@ -85,30 +200,6 @@ class RuleH3(Rule):
 
         return flag
 
-    def violations_per_employee_day_soft(self, solution, scenario, employee_id, d_index):
-        """
-        Check violations per nurse per day
-        """
-        # get number of violations
-        number_of_violations = 0
-        # compare with day before
-        if d_index > 0 and solution.shift_assignments[employee_id][d_index - 1][0] != -1:
-            if solution.shift_assignments[employee_id][d_index][0] \
-                    in \
-                    scenario.forbidden_shift_type_successions[
-                        solution.shift_assignments[employee_id][d_index - 1][0]][
-                        1]:
-                number_of_violations += 1
-
-        # if d_index < scenario.num_days_in_horizon - 1 and \
-        #         solution.shift_assignments[employee_id][d_index][0] != -1:
-        #     if solution.shift_assignments[employee_id][d_index+1][0] \
-        #             in scenario.forbidden_shift_type_successions[
-        #             solution.shift_assignments[employee_id][d_index][0]][1]:
-        #         number_of_violations += 1
-
-        return number_of_violations
-
     def get_allowed_shift_types(self, solution, scenario, employee_id, d_index):
         """
         For a given day get the shift types that are not allowed given
@@ -125,6 +216,10 @@ class RuleH3(Rule):
                 for s_type in scenario.forbidden_shift_type_successions[shift_type_day_before][1]:
                     # delete forbidden shifts
                     allowed_shift_types = np.delete(allowed_shift_types, np.in1d(allowed_shift_types, s_type))
+        elif d_index == 0 and solution.last_assigned_shifts[employee_id] != -1:
+            for s_type in scenario.forbidden_shift_type_successions[solution.last_assigned_shifts[employee_id]][1]:
+                # delete forbidden shifts
+                allowed_shift_types = np.delete(allowed_shift_types, np.in1d(allowed_shift_types, s_type))
 
         # check if there is a day after
         if d_index < scenario.num_days_in_horizon - 1:
@@ -141,77 +236,3 @@ class RuleH3(Rule):
 
         return allowed_shift_types
 
-    def incremental_violations_change(self, solution, change_info, scenario=None):
-        """
-        Calculate the difference in violations after using the change operator
-        :return:
-        \delta number_of_violations
-        """
-        # off to assigned
-        if not change_info['current_working']:
-            return self.incremental_violation_change_off_to_assigned(solution,
-                                                                     change_info)
-        # assigned to off
-        elif not change_info['new_working']:
-            return self.incremental_violation_change_assigned_to_off(solution,
-                                                                     change_info)
-        # if assigned to assigned
-        elif change_info['new_working'] and change_info['current_working']:
-            if change_info['new_s_type'] != change_info['curr_s_type']:
-                return self.incremental_violation_change_off_to_assigned(solution,
-                                                                         change_info) \
-                       + self.incremental_violation_change_assigned_to_off(solution,
-                                                                           change_info)
-            else:
-                return 0
-        else:
-            return 0
-
-    def incremental_violation_change_off_to_assigned(self, solution, change_info):
-        violation_counter = 0
-
-        if change_info['d_index'] > 0 and solution.shift_assignments[
-                            change_info['employee_id']][
-                            change_info['d_index'] - 1][0] != -1:
-            if change_info['new_s_type'] \
-                    in \
-                    solution.forbidden_shift_type_successions[
-                        solution.shift_assignments[
-                            change_info['employee_id']][
-                            change_info['d_index'] - 1][0]][
-                        1]:
-                violation_counter += 1
-
-        if change_info['d_index'] < solution.day_collection.num_days_in_horizon - 1:
-            if solution.shift_assignments[
-                change_info['employee_id']][change_info['d_index']+1][0] \
-                    in solution.forbidden_shift_type_successions[
-                change_info['new_s_type']][1]:
-                violation_counter += 1
-
-        return violation_counter
-
-
-    def incremental_violation_change_assigned_to_off(self, solution, change_info):
-        violation_counter = 0
-
-        if change_info['d_index'] > 0 and \
-                solution.shift_assignments[
-                    change_info['employee_id']][
-                    change_info['d_index'] - 1][0] != -1:
-            if change_info['curr_s_type']\
-                    in solution.forbidden_shift_type_successions[
-                        solution.shift_assignments[
-                            change_info['employee_id']][
-                            change_info['d_index'] - 1][0]][
-                        1]:
-                violation_counter -= 1
-
-        if change_info['d_index'] < solution.day_collection.num_days_in_horizon - 1:
-            if solution.shift_assignments[
-                    change_info['employee_id']][change_info['d_index']+1][0] \
-                    in solution.forbidden_shift_type_successions[
-                            change_info['curr_s_type']][1]:
-                violation_counter -= 1
-
-        return violation_counter
