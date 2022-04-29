@@ -15,17 +15,23 @@ class Scenario:
     forbidden shift type successions
     """
 
-    def __init__(self, settings, instance):
+    def __init__(self, stage_settings, instance):
         """
         Initialize parameters
         """
-        self.source = settings.source
+
         # initialize instance data
+        self.instance = instance
         self.weeks_data = instance.weeks_data
-        self.weeks = settings.weeks
+        self.weeks = instance.weeks
         self.history_data = instance.history_data
         self.scenario_data = instance.scenario_data
         self.problem_horizon = instance.problem_horizon
+
+        # initialize two stage settings
+        self.stage_number = stage_settings['stage_number']
+        self.stage_settings = stage_settings
+        self.rules_specs = self.stage_settings['rules']
 
         # extract problem data
         self.num_days_in_horizon = self.problem_horizon * 7
@@ -54,13 +60,28 @@ class Scenario:
         self.optimal_coverage = self.initialize_optimal_coverage()
 
         # extract contract information
-        self.contract_collection = None
+        # self.contract_collection = None
 
-        self.contract_collection = self.collect_contracts()
+        #self.contract_collection = self.collect_contracts()
         self.forbidden_shift_type_successions = self.scenario_data['forbiddenShiftTypeSuccessions']
 
+        # save rule mappings
+        self.parameter_to_rule_mapping = {
+            "S2Max": "maximumNumberOfConsecutiveWorkingDays",
+            "S2Min": "minimumNumberOfConsecutiveWorkingDays",
+            "S3Max": "maximumNumberOfConsecutiveDaysOff",
+            "S3Min": "minimumNumberOfConsecutiveDaysOff",
+            "S4": "completeWeekends",
+            "S5Max": "maximumNumberOfAssignments",
+            "S5Min": "minimumNumberOfAssignments",
+            "S6": "maximumNumberOfWorkingWeekends",
+            "S2ShiftMax": "maximumNumberOfConsecutiveAssignments",
+            "S2ShiftMin": "minimumNumberOfConsecutiveAssignments"
+        }
+
         # collect rules
-        self.rule_collection = RuleCollection().initialize_rules(settings.rules_specs, self.employees)
+        self.rules_specs = self.add_differentiate_rule_parameters(self.rules_specs)
+        self.rule_collection = RuleCollection().initialize_rules(self.rules_specs, self.employees)
 
     # TODO remove function
     def get_unique_skill_sets(self):
@@ -71,6 +92,49 @@ class Scenario:
                                  self.scenario_data['nurses']], dtype=object)
         skills_array = np.unique(skills_array)
         return sorted(np.unique(skills_array), key=lambda x: len(x))
+
+    def add_differentiate_rule_parameters(self, rules_specs):
+        """
+        Function to add the rule parameters to the settings based on the instance
+        parameters
+        :return:
+        instance of settings class
+        """
+        for rule_id, rule_spec in rules_specs.items():
+            if rule_id in self.parameter_to_rule_mapping:
+                if rule_spec['parameter_per_contract']:
+                    rules_specs[rule_id]["parameter_1"] \
+                        = self.rule_parameter_contract_dict(self.parameter_to_rule_mapping[rule_id])
+                if rule_spec['parameter_per_s_type']:
+                    rules_specs[rule_id]["parameter_2"] \
+                        = self.get_s_type_specific_par(self.parameter_to_rule_mapping[rule_id])
+
+        return rules_specs
+
+    def get_s_type_specific_par(self, parameter_str):
+        """
+        Function to create dict of s_type specific parameters
+        """
+        parameter_dict = {}
+        for s_type in self.scenario_data['shiftTypes']:
+            parameter_dict[
+                self.instance.get_index_of_shift_type(
+                    self.instance.abbreviate_shift_type(s_type['id']))] = s_type[parameter_str]
+
+        return parameter_dict
+
+    def rule_parameter_contract_dict(self, parameter_str):
+        """
+        Function to create dict with parameters for every contract type
+        for a specific rule
+        :return:
+        dict
+        """
+        parameter_dict = {}
+        for contract in self.scenario_data['contracts']:
+            parameter_dict[contract['id']] = contract[parameter_str]
+
+        return parameter_dict
 
     def collect_contracts(self):
         """

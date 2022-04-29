@@ -8,26 +8,29 @@ from solution import Solution
 from Domain.employee import EmployeeCollection
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 
-class InitialSolution(Solution):
+class BuildSolution(Solution):
     """
     Class to create initial solution
     """
 
-    def __init__(self, scenario):
+    def __init__(self, scenario, previous_solution=None):
         # inherit from parent class
         super().__init__()
 
         self.scenario = scenario
         self.day_collection = scenario.day_collection
         self.rule_collection = scenario.rule_collection
+        self.rules = list(self.rule_collection.collection.keys())
 
+        if previous_solution:
+            self.shift_assignments = previous_solution.shift_assignments
+        else:
+            # initialize shift assignment objects
+            self.shift_assignments = self.create_shift_assignments()
 
-        # initialize shift assignment objects
-        self.shift_assignments = self.create_shift_assignments()
-
-        # assign skill requests based on H1, H2 and H4
-        self.assign_skill_requests()
-
+            # assign skill requests based on H1, H2 and H4
+            self.assign_skill_requests()
+        # ALWAYS
         #H2 create array to keep track of difference between optimal skill_requests and actual skill assignment
         self.diff_min_request = self.initialize_diff_min_request(self.scenario)
 
@@ -35,31 +38,37 @@ class InitialSolution(Solution):
         self.forbidden_shift_type_successions = scenario.forbidden_shift_type_successions
 
         # S1 create array to keep track of difference between optimal skill_requests and actual skill assignment
-        self.diff_opt_request = self.initialize_diff_opt_request(self.scenario)
+        if 'S1' in self.rules:
+            self.diff_opt_request = self.initialize_diff_opt_request(self.scenario)
 
         # S2 collect work stretches
-        self.work_stretches = self.collect_work_stretches(solution=self)
+        if 'S2Max' in self.rules:
+            self.work_stretches = self.collect_work_stretches(solution=self)
 
         # S2Shift collect shift stretches
-        self.shift_stretches = self.collect_shift_stretches(solution=self)
+        if 'S2ShiftMax' in self.rules:
+            self.shift_stretches = self.collect_shift_stretches(solution=self)
 
         # S3 collect day off stretches
-        self.day_off_stretches = self.collect_work_stretches(solution=self, working=False)
+        if 'S3Max' in self.rules:
+            self.day_off_stretches = self.collect_work_stretches(solution=self, working=False)
 
         # S5 collect number of assignments per nurse
-        self.num_assignments_per_nurse = self.get_num_assignments_per_nurse()
+        if 'S5Max' in self.rules:
+            self.num_assignments_per_nurse = self.get_num_assignments_per_nurse()
 
         # S6 collect number of working weekends per nurse
-        self.num_working_weekends = RuleS6().count_working_weekends_employee(
-            solution=self,
-            scenario=self.scenario)
+        if 'S6' in self.rules:
+            self.num_working_weekends = RuleS6().count_working_weekends_employee(
+                solution=self,
+                scenario=self.scenario)
 
         # S7Day collect reference day comparison
-        if 'S7Day' in self.rule_collection.collection.keys():
+        if 'S7Day' in self.rules:
             self.day_comparison = self.collect_ref_day_comparison(solution=self)
 
         # S7Shift
-        if 'S7Shift' in self.rule_collection.collection.keys():
+        if 'S7Shift' in self.rules:
             self.shift_comparison = self.collect_ref_shift_comparison(solution=self)
 
         # get violations
