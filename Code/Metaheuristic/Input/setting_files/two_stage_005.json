@@ -9,7 +9,7 @@
     "stage_number": 1,
     "heuristic_settings": {
         "max_time": 2,
-        "max_iter":1000,
+        "max_iter":10000,
         "initial_temp": 22,
         "cooling_rate": 0.99,
         "no_improve_max": 200,
@@ -48,8 +48,8 @@
   "stage_2_settings": {
     "stage_number": 2,
     "heuristic_settings": {
-        "max_time": 100,
-        "max_iter":200000,
+        "max_time": 10,
+        "max_iter":20000,
         "initial_temp": 22,
         "cooling_rate": 0.99,
         "no_improve_max": 200,
