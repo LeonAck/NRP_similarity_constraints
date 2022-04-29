@@ -249,11 +249,11 @@ class FeasibilityCheck:
                 ))
                 if change_info['current_working']:
                     print("current shift type", change_info['curr_s_type'])
-                # print("past: {}, present: {}, future: {}".format(
-                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
-                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
-                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
-
+                print("past: {}, present: {}, future: {}".format(
+                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
+                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
+                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
+                print("forbidden shift successions", solution.forbidden_shift_type_successions)
                 print(solution.shift_assignments[change_info['employee_id']][:,0])
 
                 flag = False

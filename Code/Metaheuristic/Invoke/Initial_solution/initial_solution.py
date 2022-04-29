@@ -36,6 +36,7 @@ class BuildSolution(Solution):
 
         # H3 forbidden successions
         self.forbidden_shift_type_successions = scenario.forbidden_shift_type_successions
+        self.last_assigned_shifts = scenario.last_assigned_shifts
 
         # S1 create array to keep track of difference between optimal skill_requests and actual skill assignment
         if 'S1' in self.rules:

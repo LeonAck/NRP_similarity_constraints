@@ -26,6 +26,7 @@ class Solution:
 
             # H3
             self.forbidden_shift_type_successions = other_solution.forbidden_shift_type_successions
+            self.last_assigned_shifts = other_solution.last_assigned_shifts
 
             # S1
             if 'S1' in self.rules:
