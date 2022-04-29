@@ -12,7 +12,7 @@ class Settings:
 
         # settings for NRC-II data
         if self.source == "NRC":
-            self.instance_name = "n005w4"
+            self.instance_name = "n100w4"
             self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
             self.history_file = 0
             # should be a list of numbers, no range
@@ -26,15 +26,24 @@ class Settings:
         # if first_stage:
         #     pass
         self.rules_specs = {
-        "H1":{"id": "H1",
-            "is_mandatory": True,
-            "is_active": True,
-            "is_horizontal": True,
-            "parameter_per_contract": False,
-              "parameter_per_s_type": False,
-            "penalty": 0,
-            "parameter_1": 0
-            },
+        # "H1":{"id": "H1",
+        #     "is_mandatory": True,
+        #     "is_active": True,
+        #     "is_horizontal": True,
+        #     "parameter_per_contract": False,
+        #       "parameter_per_s_type": False,
+        #     "penalty": 0,
+        #     "parameter_1": 0
+        #     },
+            "H2": {"id": "H2",
+                   "is_mandatory": False,
+                   "is_active": True,
+                   "is_horizontal": True,
+                   "parameter_per_contract": False,
+                   "parameter_per_s_type": False,
+                   "penalty": 20,
+                   "parameter_1": 0
+                   },
             "H3":{"id": "H3",
              "is_mandatory": True,
              "is_active": True,

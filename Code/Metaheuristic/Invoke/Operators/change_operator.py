@@ -59,8 +59,11 @@ def get_feasible_change(solution, scenario):
 
         # get feasible days for given employee
         feasible_days = list(range(0, scenario.num_days_in_horizon))
-        feasible_days = remove_infeasible_days_understaffing(
-            solution, change_info["employee_id"], feasible_days)
+
+        # check if we allow for understaffing compared to minimum requirement
+        if scenario.rule_collection.collection['H2'].is_mandatory:
+            feasible_days = remove_infeasible_days_understaffing(
+                solution, change_info["employee_id"], feasible_days)
 
         i = 0
         while len(feasible_days) > 0 and not feasible:
