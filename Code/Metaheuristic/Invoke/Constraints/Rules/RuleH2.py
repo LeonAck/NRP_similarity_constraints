@@ -67,7 +67,6 @@ class RuleH2(Rule):
         Function to count violations for a given day, shift type and skill
         """
         # check if there is a shortage compared to optimal level
-        # TODO adjust for higher increments if necessary
         if insertion:
             return -1 if solution.diff_min_request[(d_index, sk_index, s_index)] < 0 else 0
         else:
