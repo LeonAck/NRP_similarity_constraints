@@ -3,8 +3,7 @@ import numpy as np
 
 class RuleS2Min(Rule):
     """
-        Rule that checks for optimal coverage per skill request
-        Compares optimal skill request to number of nurses with that skill assigned to shift
+        Rule that checks for violations of minimal shif tlength
     """
 
     def __init__(self, employees=None, rule_spec=None):
@@ -23,6 +22,11 @@ class RuleS2Min(Rule):
         """
         return sum([np.maximum(self.parameter_per_employee[employee_id] - work_stretch['length'], 0)
                     for work_stretch in solution.work_stretches[employee_id].values()])
+
+    def print_violations_per_employee(self, solution, scenario):
+        for employee_id in scenario.employees._collection.keys():
+            print(employee_id, sum([np.maximum(solution.rule_collection.collection['S2Min'].parameter_per_employee[employee_id] - work_stretch['length'], 0)
+                    for work_stretch in solution.work_stretches[employee_id].values()]))
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """
@@ -83,7 +87,7 @@ class RuleS2Min(Rule):
             if change_info['d_index'] in range(start_index, work_stretch["end_index"]+1):
                 # calc length of remaining stretches
                 length_1 = change_info['d_index'] - start_index if change_info['d_index'] - start_index > 0 else employee_parameter
-                length_2 = work_stretch['end_index'] - change_info['d_index'] if work_stretch['end_index'] - change_info['d_index']  > 0 else employee_parameter
+                length_2 = work_stretch['end_index'] - change_info['d_index'] if work_stretch['end_index'] - change_info['d_index'] > 0 else employee_parameter
                 the_work_stretch = work_stretch
                 break
 

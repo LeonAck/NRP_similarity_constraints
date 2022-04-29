@@ -44,7 +44,7 @@ class RuleS2ShiftMin(Rule):
         elif not change_info['new_working']:
             return self.incremental_violations_assigned_to_off(solution, change_info)
         else:
-            return 0
+            return self.incremental_violations_assigned_to_assigned(solution, change_info)
 
     def incremental_violations_off_to_assigned(self, solution, change_info):
         """

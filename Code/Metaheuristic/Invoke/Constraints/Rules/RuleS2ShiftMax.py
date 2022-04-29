@@ -254,8 +254,6 @@ class RuleS2ShiftMax(Rule):
         if not violation:
             return 0
 
-
-
     def incremental_violations_assigned_to_assigned(self, solution, change_info):
         """
         Count incremental violations assigned --> assigned

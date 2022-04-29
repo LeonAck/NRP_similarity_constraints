@@ -3,6 +3,7 @@ from deepdiff import DeepDiff
 import pprint
 from Invoke.Initial_solution.initial_solution import InitialSolution
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
+from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
 
 class FeasibilityCheck:
     """
@@ -253,10 +254,10 @@ class FeasibilityCheck:
                     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
                     solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
 
-                print(solution.forbidden_shift_type_successions)
+                print(solution.shift_assignments[change_info['employee_id']][:,0])
 
-                print(RuleH3().print_violations_per_employee(solution, scenario))
-                print(RuleH3().violations_per_employee_day_soft(solution, scenario, change_info['employee_id'], change_info['d_index']))
+                RuleS2Min().print_violations_per_employee(solution, scenario)
+
                 flag = False
 
         return flag

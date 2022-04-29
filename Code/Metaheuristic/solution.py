@@ -168,7 +168,6 @@ class Solution:
         """
         Update information after moving from one assignment to the other
         """
-
         # hard constraints
         solution.diff_min_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
         solution.diff_min_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
@@ -183,8 +182,6 @@ class Solution:
         # S2-S6
         # no changes necessary
         # S7Shift
-
-
         if 'S7Shift' in solution.rule_collection.collection.keys():
             solution = RuleS7Shift().update_information_assigned_to_assigned(solution, change_info)
 

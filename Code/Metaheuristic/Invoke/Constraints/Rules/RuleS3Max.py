@@ -4,7 +4,7 @@ import numpy as np
 
 class RuleS3Max(Rule):
     """
-        Rule that check for the maximum number of days off
+        Rule that check for the maximum number of consecutive days off
     """
 
     def __init__(self, employees=None, rule_spec=None):
