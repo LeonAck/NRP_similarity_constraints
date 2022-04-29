@@ -1,1 +1,1 @@
-from Invoke.Initial_solution.initial_solution import InitialSolution
+from Invoke.Initial_solution.initial_solution import BuildSolution

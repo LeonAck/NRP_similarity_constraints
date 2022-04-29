@@ -5,32 +5,32 @@ from Invoke.Operators import change_operator
 from solution import Solution
 from Check.check_function_feasibility import FeasibilityCheck
 from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
-
+from copy import deepcopy
 class Heuristic:
     """
     Class to create the heuristic
     """
-    def __init__(self, scenario):
+    def __init__(self, scenario, heuristic_settings=None):
         self.scenario = scenario
         self.rule_collection = scenario.rule_collection
 
         # set initial temperature
         # heuristic settings
-        self.max_time = 500
-        self.max_iter = 20000
-        self.initial_temp = 22
-        self.cooling_rate = 0.99
-        self.no_improve_max = 200
+        self.max_time = heuristic_settings['max_time']
+        self.max_iter = heuristic_settings['max_iter']
+        self.initial_temp = heuristic_settings['initial_temp']
+        self.cooling_rate = heuristic_settings['cooling_rate']
+        self.no_improve_max = heuristic_settings['no_improve_max']
 
         # introduce objects necessary for algorithm
         self.operators = {"change": change_operator}
 
         # Weight parameters
-        self.reaction_factor = 0.9
-        self.score_event_1 = 33
-        self.score_event_2 = 9
-        self.score_event_3 = 13
-        self.score_event_4 = 0
+        self.reaction_factor = heuristic_settings['reaction_factor']
+        self.score_event_1 = heuristic_settings['score_event_1']
+        self.score_event_2 = heuristic_settings['score_event_2']
+        self.score_event_3 = heuristic_settings['score_event_3']
+        self.score_event_4 = heuristic_settings['score_event_4']
         self.operator_weights = self.calc_initial_weights()
 
         # updating functions
@@ -52,7 +52,7 @@ class Heuristic:
         """
 
         # take initial solution as current solution
-        current_solution = Solution(starting_solution)
+        current_solution = Solution(deepcopy(starting_solution))
         # take initial solution as best solution
         best_solution = Solution(starting_solution)
 
@@ -68,11 +68,17 @@ class Heuristic:
         # Set the temperature for the first iteration
         self.temperature = self.initial_temp
 
+        change_counters = {"off_work": 0,
+                           "work_off": 0,
+                           "work_work": 0}
+
         n_iter = 0
         no_improve_iter = 0
         while time.time() < self.start_time + self.max_time and n_iter < self.max_iter:
             print("\nIteration: ", n_iter)
-
+            if n_iter % 100 == 0:
+                print(current_solution.violation_array)
+            print(current_solution.violation_array[0])
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
@@ -80,7 +86,8 @@ class Heuristic:
             if not change_info['feasible']:
                 print("no feasible change")
                 break
-            #print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
+            print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
+            change_counters = self.update_change_counter(change_counters, change_info)
             no_improve_iter += 1
             if change_info['cost_increment'] <= 0:
                 # update solutions accordingly
@@ -118,7 +125,17 @@ class Heuristic:
 
 
         # best solution
+        best_solution.change_counters = change_counters
         return best_solution
+
+    def update_change_counter(self, change_counters, change_info):
+        if change_info["current_working"] and change_info['new_working']:
+            change_counters["work_work"] += 1
+        elif change_info['current_working']:
+            change_counters["work_off"] += 1
+        else:
+            change_counters["off_work"] += 1
+        return change_counters
 
     def acceptance_simulated_annealing(self, change_info):
         """

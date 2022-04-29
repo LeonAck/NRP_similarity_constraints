@@ -9,8 +9,8 @@ from Invoke.Constraints.Rules.RuleS2ShiftMin import RuleS2ShiftMin
 from Invoke.Constraints.Rules.RuleS3Max import RuleS3Max
 from Invoke.Constraints.Rules.RuleS3Min import RuleS3Min
 from Invoke.Constraints.Rules.RuleS4 import RuleS4
-from Invoke.Constraints.Rules.RuleS5_max import RuleS5_max
-from Invoke.Constraints.Rules.RuleS5_min import RuleS5_min
+from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
+from Invoke.Constraints.Rules.RuleS5Min import RuleS5Min
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift

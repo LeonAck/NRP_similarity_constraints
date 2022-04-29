@@ -16,6 +16,7 @@ class Solution:
             # get day_collection
             self.day_collection = other_solution.day_collection
             self.rule_collection = other_solution.rule_collection
+            self.rules = other_solution.rules
 
             # employee shift assignments
             self.shift_assignments = other_solution.shift_assignments
@@ -27,27 +28,33 @@ class Solution:
             self.forbidden_shift_type_successions = other_solution.forbidden_shift_type_successions
 
             # S1
-            self.diff_opt_request = other_solution.diff_opt_request
+            if 'S1' in self.rules:
+                self.diff_opt_request = other_solution.diff_opt_request
 
             # S2
-            self.work_stretches = other_solution.work_stretches
+            if 'S2Max' in self.rules:
+                self.work_stretches = other_solution.work_stretches
 
             # S2Shift
-            self.shift_stretches = other_solution.shift_stretches
+            if 'S2ShiftMax' in self.rules:
+                self.shift_stretches = other_solution.shift_stretches
 
             # S3
-            self.day_off_stretches = other_solution.day_off_stretches
+            if 'S3Max' in self.rules:
+                self.day_off_stretches = other_solution.day_off_stretches
 
             # S5 number of assignments
-            self.num_assignments_per_nurse = other_solution.num_assignments_per_nurse
+            if 'S5Max' in self.rules:
+                self.num_assignments_per_nurse = other_solution.num_assignments_per_nurse
 
             # S6 number of working weekends
-            self.num_working_weekends = other_solution.num_working_weekends
+            if 'S6' in self.rules:
+                self.num_working_weekends = other_solution.num_working_weekends
 
             # S7 similarity
-            if 'S7Day' in self.rule_collection.collection.keys():
+            if 'S7Day' in self.rules:
                 self.day_comparison = other_solution.day_comparison
-            if 'S7Shift' in self.rule_collection.collection.keys():
+            if 'S7Shift' in self.rules:
                 self.shift_comparison = other_solution.shift_comparison
 
             # objective value
@@ -56,7 +63,6 @@ class Solution:
             self.violation_array = other_solution.violation_array
             # information to keep track of solution per nurse
             self.working_days = None
-            self.working_weekends_set = None
 
     def replace_shift_assignment(self, employee_id, d_index, s_index, sk_index):
         """
@@ -94,35 +100,41 @@ class Solution:
 
         # soft constraints
         # S1
-        solution.diff_opt_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
+        if 'S1' in solution.rules:
+            solution.diff_opt_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # S2Max and S2Min
-        solution = RuleS2Max().update_information_assigned_to_off(solution, change_info)
+        if 'S2Max' in solution.rules:
+            solution = RuleS2Max().update_information_assigned_to_off(solution, change_info)
 
         # S2ShiftMax and S2ShiftMin
-        solution = RuleS2ShiftMax().update_information_assigned_to_off(solution, change_info)
+        if 'S2ShiftMax' in solution.rules:
+            solution = RuleS2ShiftMax().update_information_assigned_to_off(solution, change_info)
 
         # S3Max and S3Min
-        solution = RuleS3Max().update_information_assigned_to_off(solution, change_info)
+        if 'S3Max' in solution.rules:
+            solution = RuleS3Max().update_information_assigned_to_off(solution, change_info)
 
         # S4
         # nothing
 
         # S5
-        solution.num_assignments_per_nurse[change_info['employee_id']] -= 1
+        if 'S5Max' in solution.rules:
+            solution.num_assignments_per_nurse[change_info['employee_id']] -= 1
 
         # S6
-        if change_info['d_index'] in solution.day_collection.list_weekend_days:
-            if not solution.check_if_working_day(employee_id=change_info['employee_id'],
-                                                            d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
-                                                          solution.day_collection.weekend_day_indices[change_info['d_index']])):
-                solution.num_working_weekends[change_info['employee_id']] -= 1
+        if 'S6' in solution.rules:
+            if change_info['d_index'] in solution.day_collection.list_weekend_days:
+                if not solution.check_if_working_day(employee_id=change_info['employee_id'],
+                                                                d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
+                                                              solution.day_collection.weekend_day_indices[change_info['d_index']])):
+                    solution.num_working_weekends[change_info['employee_id']] -= 1
 
         # S7
         # can use the same function as off to assigned as the result is the same
-        if 'S7Day' in solution.rule_collection.collection.keys():
+        if 'S7Day' in solution.rules:
             solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
-        if 'S7Shift' in solution.rule_collection.collection.keys():
+        if 'S7Shift' in solution.rules:
             solution = RuleS7Shift().update_information_assigned_to_off(solution, change_info)
 
     def update_information_off_to_assigned(self, solution, change_info):
@@ -134,34 +146,40 @@ class Solution:
 
         # soft constraints
         # S1
-        solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+        if 'S1' in solution.rules:
+            solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
 
         # S2Max and S2Min
-        solution = RuleS2Max().update_information_off_to_assigned(solution, change_info)
+        if 'S2Max' in solution.rules:
+            solution = RuleS2Max().update_information_off_to_assigned(solution, change_info)
 
         # S2ShiftMax and S2ShiftMin
-        solution = RuleS2ShiftMax().update_information_off_to_assigned(solution, change_info)
+        if 'S2ShiftMax' in solution.rules:
+            solution = RuleS2ShiftMax().update_information_off_to_assigned(solution, change_info)
 
         #S3Max
-        solution = RuleS3Max().update_information_off_to_assigned(solution, change_info)
+        if 'S3Max' in solution.rules:
+            solution = RuleS3Max().update_information_off_to_assigned(solution, change_info)
 
         # S4
         # no changes necessary
 
         # S5
-        solution.num_assignments_per_nurse[change_info['employee_id']] += 1
+        if 'S5Max' in solution.rules:
+            solution.num_assignments_per_nurse[change_info['employee_id']] += 1
 
         # S6
-        if change_info['d_index'] in solution.day_collection.list_weekend_days:
-           if not solution.check_if_working_day(employee_id=change_info['employee_id'],
-                                                    d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
-                                                  solution.day_collection.weekend_day_indices[change_info['d_index']])):
-            solution.num_working_weekends[change_info['employee_id']] += 1
+        if 'S6' in solution.rules:
+            if change_info['d_index'] in solution.day_collection.list_weekend_days:
+               if not solution.check_if_working_day(employee_id=change_info['employee_id'],
+                                                        d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
+                                                      solution.day_collection.weekend_day_indices[change_info['d_index']])):
+                solution.num_working_weekends[change_info['employee_id']] += 1
 
         # S7
-        if 'S7Day' in solution.rule_collection.collection.keys():
+        if 'S7Day' in solution.rules:
             solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
-        if 'S7Shift' in solution.rule_collection.collection.keys():
+        if 'S7Shift' in solution.rules:
             solution =RuleS7Shift().update_information_off_to_assigned(solution, change_info)
 
     def update_information_assigned_to_assigned(self, solution, change_info):
@@ -174,15 +192,17 @@ class Solution:
 
         # soft constraints
         # S1
-        solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
-        solution.diff_opt_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
+        if 'S1' in solution.rules:
+            solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+            solution.diff_opt_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # S2ShiftMax
-        RuleS2ShiftMax().update_information_assigned_to_assigned(solution, change_info)
+        if 'S2ShiftMax' in solution.rules:
+            RuleS2ShiftMax().update_information_assigned_to_assigned(solution, change_info)
         # S2-S6
         # no changes necessary
         # S7Shift
-        if 'S7Shift' in solution.rule_collection.collection.keys():
+        if 'S7Shift' in solution.rules:
             solution = RuleS7Shift().update_information_assigned_to_assigned(solution, change_info)
 
     def update_solution_change(self, change_info):

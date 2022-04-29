@@ -1,7 +1,7 @@
 import numpy as np
 from deepdiff import DeepDiff
 import pprint
-from Invoke.Initial_solution.initial_solution import InitialSolution
+from Invoke.Initial_solution.initial_solution import BuildSolution
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
 
@@ -113,7 +113,7 @@ class FeasibilityCheck:
         Function to find differences in the work stretch information
         """
         flag = True
-        collected_work_stretches = InitialSolution(scenario).collect_work_stretches(solution)
+        collected_work_stretches = BuildSolution(scenario).collect_work_stretches(solution)
         if collected_work_stretches != solution.work_stretches:
             print("stretches is false")
             flag = False
@@ -133,7 +133,7 @@ class FeasibilityCheck:
 
     def check_number_of_work_stretches(self, solution, scenario):
         flag = True
-        collected_work_stretches = InitialSolution(scenario).collect_work_stretches(solution)
+        collected_work_stretches = BuildSolution(scenario).collect_work_stretches(solution)
         for employee_id, employee_work_stretches in solution.work_stretches.items():
             if len(employee_work_stretches) != len(collected_work_stretches[employee_id]):
                 print("different number of work stretches")
@@ -147,7 +147,7 @@ class FeasibilityCheck:
         Function to find differences in the day off stretch information
         """
         flag = True
-        collected_day_off_stretches = InitialSolution(scenario).collect_work_stretches(solution, working=False)
+        collected_day_off_stretches = BuildSolution(scenario).collect_work_stretches(solution, working=False)
         if collected_day_off_stretches != solution.day_off_stretches :
             print("stretches is false")
             flag = False
@@ -179,7 +179,7 @@ class FeasibilityCheck:
         Function to find differences in the day off stretch information
         """
         flag = True
-        collected_shift_stretches = InitialSolution(scenario).collect_shift_stretches(solution)
+        collected_shift_stretches = BuildSolution(scenario).collect_shift_stretches(solution)
         if collected_shift_stretches != solution.shift_stretches:
             print("stretches is false")
             flag = False
@@ -249,14 +249,12 @@ class FeasibilityCheck:
                 ))
                 if change_info['current_working']:
                     print("current shift type", change_info['curr_s_type'])
-                print("past: {}, present: {}, future: {}".format(
-                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
-                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
-                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
+                # print("past: {}, present: {}, future: {}".format(
+                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
+                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
+                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
 
                 print(solution.shift_assignments[change_info['employee_id']][:,0])
-
-                RuleS2Min().print_violations_per_employee(solution, scenario)
 
                 flag = False
 
@@ -264,7 +262,7 @@ class FeasibilityCheck:
 
     def check_day_comparison_info(self, solution, scenario, change_info):
         flag = True
-        collected_day_comparison = InitialSolution(scenario).collect_ref_day_comparison(solution)
+        collected_day_comparison = BuildSolution(scenario).collect_ref_day_comparison(solution)
 
         deepdiff = DeepDiff(collected_day_comparison, solution.day_comparison)
 
@@ -289,7 +287,7 @@ class FeasibilityCheck:
 
     def check_shift_comparison_info(self, solution, scenario, change_info):
         flag = True
-        collected_shift_comparison = InitialSolution(scenario).collect_ref_shift_comparison(solution)
+        collected_shift_comparison = BuildSolution(scenario).collect_ref_shift_comparison(solution)
 
         deepdiff = DeepDiff(collected_shift_comparison, solution.shift_comparison)
 
