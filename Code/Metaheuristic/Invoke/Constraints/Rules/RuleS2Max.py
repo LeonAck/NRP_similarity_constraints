@@ -24,7 +24,8 @@ class RuleS2Max(Rule):
         """
         return sum([work_stretch['length'] - self.parameter_per_employee[employee_id]
                     for work_stretch in solution.work_stretches[employee_id].values()
-                    if work_stretch['length'] > self.parameter_per_employee[employee_id]])
+                    if work_stretch['length'] > self.parameter_per_employee[employee_id]
+                    and work_stretch['end_index'] > -1])
 
     def find_work_stretch_end(self, solution, employee_id, d_index):
         """
@@ -77,17 +78,20 @@ class RuleS2Max(Rule):
         # check if not the last day and the day after working
         elif not solution.check_if_last_day(change_info['d_index'])\
                 and solution.check_if_working_day(change_info['employee_id'], change_info['d_index']+1):
-
-            # create change key of dictionary
-            solution.work_stretches[
-                change_info['employee_id']][change_info['d_index']] = solution.work_stretches[
-                change_info['employee_id']][change_info['d_index'] + 1]
-            # adjust length
-            solution.work_stretches[
-                change_info['employee_id']][change_info['d_index']]['length'] += 1
-
-            del solution.work_stretches[
-                change_info['employee_id']][change_info['d_index'] + 1]
+            solution.work_stretches[change_info['employee_id']] \
+                = self.extend_stretch_pre(stretch_object_employee=solution.work_stretches[change_info['employee_id']],
+                                          old_start=change_info['d_index']+1,
+                                          new_start=change_info['d_index'])
+            # # create change key of dictionary
+            # solution.work_stretches[
+            #     change_info['employee_id']][change_info['d_index']] = solution.work_stretches[
+            #     change_info['employee_id']][change_info['d_index'] + 1]
+            # # adjust length
+            # solution.work_stretches[
+            #     change_info['employee_id']][change_info['d_index']]['length'] += 1
+            #
+            # del solution.work_stretches[
+            #     change_info['employee_id']][change_info['d_index'] + 1]
 
         elif not solution.check_if_first_day(change_info['d_index']) \
             and solution.check_if_working_day(change_info['employee_id'], change_info['d_index']-1):
@@ -204,11 +208,23 @@ class RuleS2Max(Rule):
         # check if not the last day and the day after working
         elif not solution.check_if_last_day(change_info['d_index']) \
             and solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1):
-            # check whether the length of the new work stretch is longer than allowed
-            return 1 if solution.work_stretches[change_info['employee_id']][
-                            change_info['d_index'] + 1]['length'] >= employee_parameter \
-                else 0
-
+            if not change_info['d_index'] != 0:
+                # check whether the length of the new work stretch is longer than allowed
+                return 1 if solution.work_stretches[change_info['employee_id']][
+                                change_info['d_index'] + 1]['length'] >= employee_parameter \
+                    else 0
+            else:
+                # if first day we should check whether there is history before
+                if solution.historical_working_stretch > 0:
+                    previous_violations = np.maximum(
+                        solution.work_stretches[change_info['employee_id']][
+                            change_info['d_index'] + 1]['length'] - employee_parameter,
+                        0)
+                    # new violations are length of stretch after + length of historical stretch
+                    return np.maximum(solution.work_stretches[change_info['employee_id']][
+                                           change_info['d_index'] + 1]['length']
+                                       + solution.historical_working_stretch + 1 - employee_parameter, 0) \
+                                        - previous_violations
 
         # check if not the first day and the day before working
         elif not change_info['d_index'] == 0 \
@@ -231,9 +247,22 @@ class RuleS2Max(Rule):
                 split_1 = change_info['d_index'] - start_index
                 split_2 = work_stretch['end_index'] - change_info['d_index']
 
+                # calculate new violations based on history
+                new_violations_1 = 0 if change_info['d_index'] == 0 and split_1 > 0 else np.maximum(split_1 - employee_parameter, 0)
+
                 return -(np.maximum(work_stretch['length'] - employee_parameter, 0)
-                         - np.maximum(split_1 - employee_parameter, 0)
+                         - new_violations_1
                          - np.maximum(split_2 - employee_parameter, 0))
+
+    def extend_stretch_pre(self, stretch_object_employee, old_start, new_start):
+        # create change key of dictionary
+        stretch_object_employee[new_start] = stretch_object_employee[old_start]
+        # adjust length
+        stretch_object_employee[new_start]['length'] += old_start - new_start
+
+        del stretch_object_employee[old_start]
+
+        return stretch_object_employee
 
 
 

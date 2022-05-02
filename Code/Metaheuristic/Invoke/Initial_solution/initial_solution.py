@@ -7,6 +7,8 @@ from pprint import pprint
 from solution import Solution
 from Domain.employee import EmployeeCollection
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
+from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
+
 
 class BuildSolution(Solution):
     """
@@ -44,7 +46,9 @@ class BuildSolution(Solution):
 
         # S2 collect work stretches
         if 'S2Max' in self.rules:
+            self.historical_working_stretch = scenario.history_working_streak
             self.work_stretches = self.collect_work_stretches(solution=self)
+
 
         # S2Shift collect shift stretches
         if 'S2ShiftMax' in self.rules:
@@ -199,6 +203,20 @@ class BuildSolution(Solution):
                 else:
                     start_index += len_stretch
 
+            # implement history
+            if self.historical_working_stretch[employee_id] > 0:
+                if 0 in work_stretch_employee:
+                    # combine history stretch with first day stretch
+                    work_stretch_employee = RuleS2Max().extend_stretch_pre(
+                        stretch_object_employee=work_stretch_employee,
+                        new_start=-self.historical_working_stretch[employee_id],
+                        old_start=0)
+                else:
+                    # add new stretch to history
+                    work_stretch_employee = solution.create_work_stretch(
+                        stretch_object_employee=work_stretch_employee,
+                        start_index=-self.historical_working_stretch[employee_id],
+                        end_index=-1)
             work_stretches[employee_id] = work_stretch_employee
 
         return work_stretches
