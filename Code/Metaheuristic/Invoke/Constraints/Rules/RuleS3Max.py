@@ -94,8 +94,11 @@ class RuleS3Max(Rule):
 
         # if single day
         else:
-            del solution.day_off_stretches[
-                change_info['employee_id']][change_info['d_index']]
+            try:
+                del solution.day_off_stretches[
+                    change_info['employee_id']][change_info['d_index']]
+            except KeyError:
+                print("hi")
 
         return solution
 

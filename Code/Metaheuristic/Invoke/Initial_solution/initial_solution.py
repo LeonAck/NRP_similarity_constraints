@@ -56,7 +56,7 @@ class BuildSolution(Solution):
 
         # S3 collect day off stretches
         if 'S3Max' in self.rules:
-            self.day_off_stretches = self.collect_work_stretches(solution=self, working=False)
+            self.day_off_stretches = self.collect_day_off_stretches(solution=self)
 
         # S5 collect number of assignments per nurse
         if 'S5Max' in self.rules:
@@ -174,7 +174,7 @@ class BuildSolution(Solution):
 
         return num_assignments
 
-    def collect_work_stretches(self, solution, working=True):
+    def collect_work_stretches(self, solution):
         """
         Function to collect for each nurse the stretches of consecutive
         working days or days off
@@ -183,25 +183,10 @@ class BuildSolution(Solution):
         for employee_id in self.scenario.employees._collection.keys():
             work_stretch_employee = {}
             # for each working day, get check if employee is working
-            if working:
-                working_check = [1 if solution.check_if_working_day(employee_id, d_index) else 0
+            working_check = [1 if solution.check_if_working_day(employee_id, d_index) else 0
                                 for d_index in range(self.scenario.num_days_in_horizon)]
-            else:
-                working_check = [1 if not solution.check_if_working_day(employee_id, d_index) else 0
-                                 for d_index in range(self.scenario.num_days_in_horizon)]
-            start_index = 0
-            # get lists of consecutive working days
-            for k, v in itertools.groupby(working_check):
-                len_stretch = sum(1 for _ in v)
-                if k:
-                    # save in dict under start index with end index
-                    work_stretch = {}
-                    work_stretch["end_index"] = start_index + len_stretch - 1
-                    work_stretch["length"] = len_stretch
-                    work_stretch_employee[start_index] = work_stretch
-                    start_index += len_stretch
-                else:
-                    start_index += len_stretch
+
+            work_stretch_employee = self.collect_stretches(working_check)
 
             # implement history
             if self.historical_working_stretch[employee_id] > 0:
@@ -220,6 +205,40 @@ class BuildSolution(Solution):
             work_stretches[employee_id] = work_stretch_employee
 
         return work_stretches
+
+    def collect_day_off_stretches(self, solution):
+        """
+        Collect streaks of days off for all employees
+        """
+        day_off_stretches = {}
+        for employee_id in self.scenario.employees._collection.keys():
+
+            day_off_check = [1 if not solution.check_if_working_day(employee_id, d_index) else 0
+                             for d_index in range(self.scenario.num_days_in_horizon)]
+
+            day_off_stretch_employee = self.collect_stretches(day_off_check)
+
+            day_off_stretches[employee_id]= day_off_stretch_employee
+
+        return day_off_stretches
+
+    def collect_stretches(self, check_object):
+        stretch_object_employee = {}
+        start_index = 0
+        # get lists of consecutive working days
+        for k, v in itertools.groupby(check_object):
+            len_stretch = sum(1 for _ in v)
+            if k:
+                # save in dict under start index with end index
+                work_stretch = {}
+                work_stretch["end_index"] = start_index + len_stretch - 1
+                work_stretch["length"] = len_stretch
+                stretch_object_employee[start_index] = work_stretch
+                start_index += len_stretch
+            else:
+                start_index += len_stretch
+
+        return stretch_object_employee
 
     def collect_shift_stretches(self, solution):
         """
