@@ -116,7 +116,8 @@ class Heuristic:
             self.update_temperature()
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            #FeasibilityCheck().work_stretches_info(current_solution, self.scenario)
+            if "S2Max" in current_solution.rules:
+                FeasibilityCheck().work_stretches_info(current_solution, self.scenario, change_info)
             FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:

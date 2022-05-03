@@ -108,7 +108,7 @@ class FeasibilityCheck:
                         print("info is incorrect")
                         break
 
-    def work_stretches_info(self, solution, scenario):
+    def work_stretches_info(self, solution, scenario, change_info):
         """
         Function to find differences in the work stretch information
         """
@@ -122,6 +122,8 @@ class FeasibilityCheck:
             deepdiff = DeepDiff(collected_work_stretches, solution.work_stretches)
             employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
             pprint.pprint(deepdiff)
+            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+            print("previous: {}, current: {}".format(change_info['current_working'], change_info['new_working']))
             print("true", collected_work_stretches[employee_id])
             print("saved", solution.work_stretches[employee_id])
             print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
@@ -249,11 +251,10 @@ class FeasibilityCheck:
                 ))
                 if change_info['current_working']:
                     print("current shift type", change_info['curr_s_type'])
-                print("past: {}, present: {}, future: {}".format(
-                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
-                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
-                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
-                print("forbidden shift successions", solution.forbidden_shift_type_successions)
+                # print("past: {}, present: {}, future: {}".format(
+                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
+                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
+                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
                 print(solution.shift_assignments[change_info['employee_id']][:,0])
 
                 flag = False
