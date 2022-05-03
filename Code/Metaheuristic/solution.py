@@ -35,6 +35,7 @@ class Solution:
             # S2
             if 'S2Max' in self.rules:
                 self.work_stretches = other_solution.work_stretches
+                self.historical_working_stretch = other_solution.historical_working_stretch
 
             # S2Shift
             if 'S2ShiftMax' in self.rules:
@@ -273,6 +274,11 @@ class Solution:
     def check_if_same_shift_type(self, employee_id, d_index_1, d_index_2):
         return self.shift_assignments[employee_id][d_index_1][0] \
                == self.shift_assignments[employee_id][d_index_2][0]
+
+    def create_work_stretch(self, stretch_object_employee, start_index, end_index):
+        stretch_object_employee[start_index] = {"end_index": end_index,
+                                                "length": end_index-start_index}
+        return stretch_object_employee
 
 
     # def create_skill_counter(self):

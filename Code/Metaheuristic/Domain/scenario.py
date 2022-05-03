@@ -64,7 +64,12 @@ class Scenario:
 
         #self.contract_collection = self.collect_contracts()
         self.forbidden_shift_type_successions = self.scenario_data['forbiddenShiftTypeSuccessions']
+
+        # get history data
         self.last_assigned_shifts = instance.last_assigned_shifts
+        self.history_working_streak = instance.history_working_streak
+        self.history_off_streak = instance.history_off_streak
+        self.history_shift_streak =instance.history_shift_streak
 
         # save rule mappings
         self.parameter_to_rule_mapping = {

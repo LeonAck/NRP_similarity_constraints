@@ -1,6 +1,7 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
 
+
 class RuleS1(Rule):
     """
         Rule that checks for optimal coverage per skill request
