@@ -48,7 +48,7 @@ class BuildSolution(Solution):
 
         # S2 collect work stretches
         if 'S2Max' in self.rules:
-            self.historical_working_stretch = scenario.history_working_streak
+            self.historical_work_stretch = scenario.history_working_streak
             self.work_stretches = self.collect_work_stretches(solution=self)
 
 
@@ -58,6 +58,7 @@ class BuildSolution(Solution):
 
         # S3 collect day off stretches
         if 'S3Max' in self.rules:
+            self.historical_off_stretch = scenario.history_off_streak
             self.day_off_stretches = self.collect_day_off_stretches(solution=self)
 
         # S5 collect number of assignments per nurse
@@ -205,18 +206,18 @@ class BuildSolution(Solution):
             work_stretch_employee = self.collect_stretches(working_check)
 
             # implement history
-            if self.historical_working_stretch[employee_id] > 0:
+            if self.historical_work_stretch[employee_id] > 0:
                 if 0 in work_stretch_employee:
                     # combine history stretch with first day stretch
                     work_stretch_employee = RuleS2Max().extend_stretch_pre(
                         stretch_object_employee=work_stretch_employee,
-                        new_start=-self.historical_working_stretch[employee_id],
+                        new_start=-self.historical_work_stretch[employee_id],
                         old_start=0)
                 else:
                     # add new stretch to history
                     work_stretch_employee = solution.create_work_stretch(
                         stretch_object_employee=work_stretch_employee,
-                        start_index=-self.historical_working_stretch[employee_id],
+                        start_index=-self.historical_work_stretch[employee_id],
                         end_index=-1)
             work_stretches[employee_id] = work_stretch_employee
 
@@ -234,7 +235,23 @@ class BuildSolution(Solution):
 
             day_off_stretch_employee = self.collect_stretches(day_off_check)
 
-            day_off_stretches[employee_id]= day_off_stretch_employee
+            day_off_stretches[employee_id] = day_off_stretch_employee
+
+            # implement history
+            if self.historical_off_stretch[employee_id] > 0:
+                if 0 in day_off_stretch_employee:
+                    # combine history stretch with first day stretch
+                    day_off_stretch_employee = RuleS2Max().extend_stretch_pre(
+                        stretch_object_employee=day_off_stretch_employee,
+                        new_start=-self.historical_off_stretch[employee_id],
+                        old_start=0)
+                else:
+                    # add new stretch to history
+                    day_off_stretch_employee = solution.create_work_stretch(
+                        stretch_object_employee=day_off_stretch_employee,
+                        start_index=-self.historical_off_stretch[employee_id],
+                        end_index=-1)
+            day_off_stretches[employee_id] = day_off_stretch_employee
 
         return day_off_stretches
 

@@ -30,6 +30,7 @@ def run_two_stage(settings_file_path):
     # run stage 2
     stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
     print(stage_1_solution.violation_array)
+    print(stage_1_solution.change_counters)
     print(stage_2_solution.obj_value)
     print(stage_2_solution.violation_array)
     print(stage_2_solution.change_counters)

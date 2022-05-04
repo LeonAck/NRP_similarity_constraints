@@ -35,10 +35,11 @@ class Solution:
             # S2
             if 'S2Max' in self.rules:
                 self.work_stretches = other_solution.work_stretches
-                self.historical_working_stretch = other_solution.historical_working_stretch
+                self.historical_work_stretch = other_solution.historical_work_stretch
 
             # S2Shift
             if 'S2ShiftMax' in self.rules:
+                self.historical_off_stretch = other_solution.historical_off_stretch
                 self.shift_stretches = other_solution.shift_stretches
 
             # S3
@@ -277,7 +278,7 @@ class Solution:
 
     def create_work_stretch(self, stretch_object_employee, start_index, end_index):
         stretch_object_employee[start_index] = {"end_index": end_index,
-                                                "length": end_index-start_index}
+                                                "length": end_index-start_index+1}
         return stretch_object_employee
 
 
