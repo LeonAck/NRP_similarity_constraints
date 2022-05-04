@@ -78,12 +78,12 @@ class RuleS2Max(Rule):
         # check if not the last day and the day after working
         elif not solution.check_if_last_day(change_info['d_index'])\
                 and solution.check_if_working_day(change_info['employee_id'], change_info['d_index']+1):
-            if change_info['d_index'] == 0 and solution.historical_working_stretch[change_info['employee_id']] > 0:
+            if change_info['d_index'] == 0 and solution.historical_work_stretch[change_info['employee_id']] > 0:
                 solution.work_stretches[change_info['employee_id']] \
                     = self.extend_stretch_pre(
                     stretch_object_employee=solution.work_stretches[change_info['employee_id']],
                     old_start=change_info['d_index'] + 1,
-                    new_start=-solution.historical_working_stretch[change_info['employee_id']])
+                    new_start=-solution.historical_work_stretch[change_info['employee_id']])
             else:
                 solution.work_stretches[change_info['employee_id']] \
                     = self.extend_stretch_pre(stretch_object_employee=solution.work_stretches[change_info['employee_id']],
@@ -103,10 +103,21 @@ class RuleS2Max(Rule):
 
         # if single day
         else:
-            # create index of single length
-            solution.work_stretches[change_info['employee_id']][change_info['d_index']] \
-                = {'end_index': change_info['d_index'],
-                   'length': 1}
+            # check if d_index is the end of the stretch starting in the history
+            if change_info['d_index'] == 0 and solution.historical_work_stretch[change_info['employee_id']] > 0:
+                start_index = -solution.historical_work_stretch[change_info['employee_id']]
+
+                # change end index by one
+                solution.work_stretches[
+                    change_info['employee_id']][start_index]['end_index'] += 1
+
+                solution.work_stretches[
+                    change_info['employee_id']][start_index]['length'] += 1
+            else:
+                # create index of single length
+                solution.work_stretches[change_info['employee_id']][change_info['d_index']] \
+                    = {'end_index': change_info['d_index'],
+                       'length': 1}
 
         return solution
 
@@ -141,17 +152,17 @@ class RuleS2Max(Rule):
         # check if not the last day and the day after working
         elif not solution.check_if_last_day(change_info['d_index']) \
                 and solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1):
-            if change_info['d_index'] == 0 and solution.historical_working_stretch[change_info['employee_id']] > 0:
+            if change_info['d_index'] == 0 and solution.historical_work_stretch[change_info['employee_id']] > 0:
                 # shorten existing stretch
                 solution.work_stretches[change_info['employee_id']] = self.shorten_stretch_pre(
                     stretch_object_employee=solution.work_stretches[change_info['employee_id']],
-                    old_start=-solution.historical_working_stretch[change_info['employee_id']],
+                    old_start=-solution.historical_work_stretch[change_info['employee_id']],
                     new_start=change_info['d_index'] + 1)
 
                 # create new stretch for historical stretch
                 solution.work_stretches[change_info['employee_id']] = solution.create_work_stretch(
                     stretch_object_employee=solution.work_stretches[change_info['employee_id']],
-                    start_index=-solution.historical_working_stretch[change_info['employee_id']],
+                    start_index=-solution.historical_work_stretch[change_info['employee_id']],
                     end_index=-1)
             else:
                 solution.work_stretches[change_info['employee_id']] = self.shorten_stretch_pre(
@@ -170,8 +181,16 @@ class RuleS2Max(Rule):
 
         # if single day
         else:
-            del solution.work_stretches[
-                change_info['employee_id']][change_info['d_index']]
+            # check if d_index is the end of the stretch starting in the history
+            if change_info['d_index'] == 0 and solution.historical_off_stretch[change_info['employee_id']] > 0:
+                start_index = -solution.historical_off_stretch[change_info['employee_id']]
+                solution.day_off_stretches[change_info['employee_id']][start_index]['end_index'] \
+                    -= 1
+                solution.day_off_stretches[change_info['employee_id']][start_index]['length'] \
+                    -= 1
+            else:
+                del solution.work_stretches[
+                     change_info['employee_id']][change_info['d_index']]
 
         return solution
 
@@ -213,7 +232,7 @@ class RuleS2Max(Rule):
         # check if not the last day and the day after working
         elif not solution.check_if_last_day(change_info['d_index']) \
                 and solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1):
-            if change_info['d_index'] == 0 and solution.historical_working_stretch[change_info['employee_id']] > 0:
+            if change_info['d_index'] == 0 and solution.historical_work_stretch[change_info['employee_id']] > 0:
                 previous_violations = np.maximum(
                     solution.work_stretches[change_info['employee_id']][
                         change_info['d_index'] + 1]['length'] - employee_parameter,
@@ -221,12 +240,10 @@ class RuleS2Max(Rule):
                 # adapt violations compared to whether there is history before
                 new_violations = np.maximum(solution.work_stretches[change_info['employee_id']][
                                                 change_info['d_index'] + 1]['length']
-                                            + solution.historical_working_stretch[
+                                            + solution.historical_work_stretch[
                                                 change_info['employee_id']] + 1 - employee_parameter, 0)
 
                 return new_violations - previous_violations
-                # check whether the length of the new work stretch is longer than allowed
-
             else:
                 return 1 if solution.work_stretches[change_info['employee_id']][
                                 change_info['d_index'] + 1]['length'] >= employee_parameter \
@@ -242,6 +259,13 @@ class RuleS2Max(Rule):
 
         # if single day
         else:
+            # check if d_index is the end of the stretch starting in the history
+            if change_info['d_index'] == 0 and solution.historical_work_stretch[change_info['employee_id']] > 0:
+                start_index = -solution.historical_work_stretch[change_info['employee_id']]
+                # check if the length of the new work stretch is too long
+                return 1 if solution.work_stretches[change_info['employee_id']][start_index][
+                                'length'] >= employee_parameter \
+                    else 0
             return 0
 
     def incremental_violations_assigned_to_off(self, solution, change_info):

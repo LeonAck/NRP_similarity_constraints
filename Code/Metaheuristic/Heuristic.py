@@ -78,7 +78,7 @@ class Heuristic:
             # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
                 print(current_solution.violation_array)
-            # print(current_solution.violation_array[0])
+            print(current_solution.violation_array)
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
@@ -116,14 +116,15 @@ class Heuristic:
             self.update_temperature()
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            # if "S2Max" in current_solution.rules:
-            #     FeasibilityCheck().work_stretches_info(current_solution, self.scenario, change_info)
-            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+            if "S2Max" in current_solution.rules:
+                FeasibilityCheck().work_stretches_info(current_solution, self.scenario, change_info)
+            if "S3Max" in current_solution.rules:
+                FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
             n_iter += 1
-
 
         # best solution
         best_solution.change_counters = change_counters

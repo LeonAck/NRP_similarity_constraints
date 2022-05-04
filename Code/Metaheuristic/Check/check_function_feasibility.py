@@ -4,6 +4,7 @@ import pprint
 from Invoke.Initial_solution.initial_solution import BuildSolution
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
+from Invoke.Constraints.Rules.RuleS1 import RuleS1
 
 class FeasibilityCheck:
     """
@@ -120,7 +121,13 @@ class FeasibilityCheck:
 
         if not flag:
             deepdiff = DeepDiff(collected_work_stretches, solution.work_stretches)
-            employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
             pprint.pprint(deepdiff)
             print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
             print("previous: {}, current: {}".format(change_info['current_working'], change_info['new_working']))
@@ -149,7 +156,7 @@ class FeasibilityCheck:
         Function to find differences in the day off stretch information
         """
         flag = True
-        collected_day_off_stretches = BuildSolution(scenario).collect_work_stretches(solution, working=False)
+        collected_day_off_stretches = BuildSolution(scenario).collect_day_off_stretches(solution)
         if collected_day_off_stretches != solution.day_off_stretches :
             print("stretches is false")
             flag = False
@@ -255,6 +262,9 @@ class FeasibilityCheck:
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
+                print("violation per d, s, sk after change", RuleS1().count_violations_day_shift_skill(solution, scenario, change_info["d_index"], change_info["new_s_type"],  change_info["new_sk_type"]))
+                print("optimal request", solution.diff_opt_request[(change_info["d_index"],  change_info["new_sk_type"], change_info["new_s_type"],)])
+                print("actual assignments: ",  RuleS1().count_assignments_day_shift_skill(solution, change_info["d_index"], change_info["new_s_type"],  change_info["new_sk_type"]))
                 print(solution.shift_assignments[change_info['employee_id']][:,0])
 
                 flag = False
