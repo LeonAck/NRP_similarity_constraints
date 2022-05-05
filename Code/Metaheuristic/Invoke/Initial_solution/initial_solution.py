@@ -26,15 +26,17 @@ class BuildSolution(Solution):
 
         if previous_solution:
             self.shift_assignments = previous_solution.shift_assignments
+            self.diff_min_request = previous_solution.diff_min_request
+
         else:
             # initialize shift assignment objects
             self.shift_assignments = self.create_shift_assignments()
 
             # assign skill requests based on H1, H2 and H4
             self.assign_skill_requests()
-        # ALWAYS
-        #H2 create array to keep track of difference between optimal skill_requests and actual skill assignment
-        self.diff_min_request = self.initialize_diff_min_request(self.scenario)
+            # ALWAYS
+            #H2 create array to keep track of difference between optimal skill_requests and actual skill assignment
+            self.diff_min_request = self.initialize_diff_min_request(self.scenario)
 
         # H3 forbidden successions
         self.forbidden_shift_type_successions = scenario.forbidden_shift_type_successions
@@ -128,7 +130,21 @@ class BuildSolution(Solution):
         array
         """
         # subtract minimal level from optimal level
-        return scenario.skill_requests - scenario.optimal_coverage
+        return self.collect_assignments(scenario) - scenario.optimal_coverage
+
+    def collect_assignments(self, scenario):
+        skill_assignments = np.zeros((scenario.num_days_in_horizon,
+                                  scenario.skill_collection.num_skills,
+                                  scenario.num_shift_types))
+        for employee_id in scenario.employees._collection.keys():
+            for d_index in range(scenario.num_days_in_horizon):
+                skill_assignments[
+                    d_index,
+                    self.shift_assignments[employee_id][d_index][1],
+                    self.shift_assignments[employee_id][d_index][0]
+                ] += 1 if self.shift_assignments[employee_id][d_index][0] >= 0 else 0
+
+        return skill_assignments
 
     def initialize_diff_min_request(self, scenario):
         """

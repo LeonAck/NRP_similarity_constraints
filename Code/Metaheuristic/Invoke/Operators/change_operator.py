@@ -2,7 +2,7 @@ import random
 from Invoke.Constraints.Rules import RuleH3
 import numpy as np
 from Check.check_function_feasibility import FeasibilityCheck
-
+from Invoke.Constraints.Rules.RuleS1 import RuleS1
 
 def change_operator(solution, scenario):
     """
@@ -35,6 +35,12 @@ def calc_new_costs_after_change(solution, scenario, change_info):
     relevant_rules = scenario.rule_collection.soft_rule_collection.collection
     for i, rule in enumerate(relevant_rules.values()):
         violation_array[i] = rule.incremental_violations_change(solution, change_info, scenario)
+        if i == 0 and len(violation_array) > 3:
+            print("change in S1:", violation_array[i])
+            try:
+                print("violations: ", RuleS1().count_violations_day_shift_skill(solution, scenario, change_info["d_index"], change_info["new_s_type"],  change_info["new_sk_type"]))
+            except KeyError:
+                pass
     # TODO what if no penalty array
 
     return np.matmul(violation_array, scenario.rule_collection.penalty_array), violation_array

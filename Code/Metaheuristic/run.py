@@ -8,7 +8,7 @@ from Heuristic import Heuristic
 from Input.input_NRC import Instance
 
 settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json"
-two_stage = False
+two_stage = True
 def run_stage(instance, stage_settings, previous_solution=None):
     scenario = Scenario(stage_settings, instance)
 
