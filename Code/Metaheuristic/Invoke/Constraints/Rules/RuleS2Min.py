@@ -74,16 +74,16 @@ class RuleS2Min(Rule):
         elif not solution.check_if_last_day(d_index) \
                 and solution.check_if_working_day(employee_id, d_index + 1):
             # if first day and history before
-            if change_info['d_index'] == 0 and solution.historical_working_stretch[employee_id] > 0:
+            if change_info['d_index'] == 0 and solution.historical_work_stretch[employee_id] > 0:
                 # new stretch is combination of two stretches
                 previous_violations = np.maximum(employee_parameter - employee_work_stretch[d_index+1]['length'], 0)
 
                 # new violations is difference between minimal stretch length and length of new stretch
                 new_violations = np.maximum(employee_parameter
                                             - (employee_work_stretch[d_index+1]['length']
-                                               + solution.historical_working_stretch[employee_id]
+                                               + solution.historical_work_stretch[employee_id]
                                                + 1), 0)
-                return previous_violations - new_violations
+                return new_violations - previous_violations
             else:
                 return -1 if employee_work_stretch[d_index+1]['length'] < employee_parameter else 0
 
@@ -96,7 +96,10 @@ class RuleS2Min(Rule):
 
         # if single day
         else:
-            return np.maximum(employee_parameter-1, 0)
+            if d_index == 0 and solution.historical_work_stretch[employee_id] > 0:
+                return np.maximum(employee_parameter - solution.historical_work_stretch[employee_id]-1, 0)
+            else:
+                return np.maximum(employee_parameter-1, 0)
 
     def incremental_violation_assigned_to_off(self, solution, change_info):
         employee_parameter = self.parameter_per_employee[change_info['employee_id']]

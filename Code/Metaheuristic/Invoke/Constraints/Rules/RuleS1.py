@@ -30,11 +30,8 @@ class RuleS1(Rule):
         """
         Function to count violations for a given day, shift type and skill
         """
-        assignment_count = 0
+        assignment_count = self.count_assignments_day_shift_skill(solution, d_index, s_index, sk_index)
 
-        for employee in solution.shift_assignments.values():
-            if np.array_equal(employee[d_index], np.array([s_index, sk_index])):
-                assignment_count += 1
         if assignment_count < scenario.optimal_coverage[(d_index, sk_index, s_index)]:
             return scenario.optimal_coverage[(d_index, sk_index, s_index)] - assignment_count
         else:
@@ -48,7 +45,6 @@ class RuleS1(Rule):
                 assignment_count += 1
 
         return assignment_count
-
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """
@@ -73,7 +69,7 @@ class RuleS1(Rule):
         return violation
 
     def increment_violations_day_shift_skill(self, solution, d_index, s_index,
-                                             sk_index, insertion=True, increment=1):
+                                             sk_index, insertion=True):
         """
         Function to count violations for a given day, shift type and skill
         """

@@ -13,7 +13,7 @@ def run_stage(instance, stage_settings, previous_solution=None):
     scenario = Scenario(stage_settings, instance)
 
     init_solution = BuildSolution(scenario, previous_solution)
-    best_solution = Heuristic(scenario, heuristic_settings=stage_settings["heuristic_settings"]).run_heuristic(starting_solution=deepcopy(init_solution))
+    best_solution = Heuristic(scenario, stage_settings=stage_settings).run_heuristic(starting_solution=deepcopy(init_solution))
 
     return best_solution
 
@@ -30,6 +30,7 @@ def run_two_stage(settings_file_path):
     # run stage 2
     stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
     print(stage_1_solution.violation_array)
+    print(stage_1_solution.change_counters)
     print(stage_2_solution.obj_value)
     print(stage_2_solution.violation_array)
     print(stage_2_solution.change_counters)

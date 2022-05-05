@@ -10,10 +10,12 @@ class Heuristic:
     """
     Class to create the heuristic
     """
-    def __init__(self, scenario, heuristic_settings=None):
+    def __init__(self, scenario, stage_settings=None):
         self.scenario = scenario
         self.rule_collection = scenario.rule_collection
+        self.stage_number = stage_settings['stage_number']
 
+        heuristic_settings = stage_settings['heuristic_settings']
         # set initial temperature
         # heuristic settings
         self.max_time = heuristic_settings['max_time']
@@ -74,11 +76,12 @@ class Heuristic:
 
         n_iter = 1
         no_improve_iter = 0
-        while time.time() < self.start_time + self.max_time and n_iter < self.max_iter:
+        while self.stopping_criterion(current_solution, n_iter):
             # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
                 print(current_solution.violation_array)
-            print(current_solution.rules[0], current_solution.violation_array[0])
+                print("\nIteration: ", n_iter)
+            # print(current_solution.violation_array)
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)
@@ -118,13 +121,14 @@ class Heuristic:
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
             # if "S2Max" in current_solution.rules:
             #     FeasibilityCheck().work_stretches_info(current_solution, self.scenario, change_info)
-            # FeasibilityCheck().assignment_equals_tracked_info(current_solution, self.scenario)
-            FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+            # if "S3Max" in current_solution.rules:
+            #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
+            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
-            n_iter += 1
 
+            n_iter += 1
 
         # best solution
         best_solution.change_counters = change_counters
@@ -138,6 +142,15 @@ class Heuristic:
         else:
             change_counters["off_work"] += 1
         return change_counters
+
+    def stopping_criterion(self, current_solution, n_iter):
+        if self.stage_number == 1:
+            return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
+                    and not np.array_equal(current_solution.violation_array, np.zeros(2))
+        else:
+            return time.time() < self.start_time + self.max_time and n_iter < self.max_iter
+
+
 
     def acceptance_simulated_annealing(self, change_info):
         """
