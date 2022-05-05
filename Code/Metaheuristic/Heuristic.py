@@ -10,10 +10,12 @@ class Heuristic:
     """
     Class to create the heuristic
     """
-    def __init__(self, scenario, heuristic_settings=None):
+    def __init__(self, scenario, stage_settings=None):
         self.scenario = scenario
         self.rule_collection = scenario.rule_collection
+        self.stage_number = stage_settings['stage_number']
 
+        heuristic_settings = stage_settings['heuristic_settings']
         # set initial temperature
         # heuristic settings
         self.max_time = heuristic_settings['max_time']
@@ -74,7 +76,7 @@ class Heuristic:
 
         n_iter = 1
         no_improve_iter = 0
-        while time.time() < self.start_time + self.max_time and n_iter < self.max_iter:
+        while self.stopping_criterion(current_solution, n_iter):
             # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
                 print(current_solution.violation_array)
@@ -125,6 +127,7 @@ class Heuristic:
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
+
             n_iter += 1
 
         # best solution
@@ -139,6 +142,15 @@ class Heuristic:
         else:
             change_counters["off_work"] += 1
         return change_counters
+
+    def stopping_criterion(self, current_solution, n_iter):
+        if self.stage_number == 1:
+            return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
+                    and not np.array_equal(current_solution.violation_array, np.zeros(2))
+        else:
+            return time.time() < self.start_time + self.max_time and n_iter < self.max_iter
+
+
 
     def acceptance_simulated_annealing(self, change_info):
         """

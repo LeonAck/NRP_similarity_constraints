@@ -13,7 +13,7 @@ def run_stage(instance, stage_settings, previous_solution=None):
     scenario = Scenario(stage_settings, instance)
 
     init_solution = BuildSolution(scenario, previous_solution)
-    best_solution = Heuristic(scenario, heuristic_settings=stage_settings["heuristic_settings"]).run_heuristic(starting_solution=deepcopy(init_solution))
+    best_solution = Heuristic(scenario, stage_settings=stage_settings).run_heuristic(starting_solution=deepcopy(init_solution))
 
     return best_solution
 
