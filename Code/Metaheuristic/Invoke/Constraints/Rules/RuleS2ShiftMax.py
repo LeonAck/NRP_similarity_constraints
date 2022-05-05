@@ -1,6 +1,6 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
-
+from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 
 class RuleS2ShiftMax(Rule):
     """
@@ -50,65 +50,80 @@ class RuleS2ShiftMax(Rule):
         """
         Function to update solution information after change from off to assigned
         """
+        d_index = change_info['d_index']
+        employee_id = change_info['employee_id']
+        new_s_type = change_info['new_s_type']
 
-        if solution.check_if_middle_day(change_info['d_index']) \
-        and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] + 1, change_info['new_s_type']) \
-        and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] - 1, change_info['new_s_type']):
-            start_index = self.find_shift_stretch_end(solution, change_info['employee_id'], change_info['d_index']-1, change_info['new_s_type'])
+        if solution.check_if_middle_day(d_index) \
+        and solution.check_if_working_s_type_on_day(employee_id, d_index + 1, new_s_type) \
+        and solution.check_if_working_s_type_on_day(employee_id, d_index - 1, new_s_type):
+            start_index = self.find_shift_stretch_end(solution, employee_id, d_index-1, new_s_type)
 
-            # replace end_index of new work stretch with last
-            solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][
-                start_index][
-                "end_index"] \
-                = solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][
-                change_info['d_index'] + 1][
-                'end_index'
-            ]
-            # compute new length
-            solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][
-                start_index][
-                "length"] \
-                += solution.shift_stretches[
-                       change_info['employee_id']][change_info['new_s_type']][
-                       change_info['d_index'] + 1]['length'] + 1
+            # # replace end_index of new work stretch with last
+            # solution.shift_stretches[
+            #     employee_id][new_s_type][
+            #     start_index][
+            #     "end_index"] \
+            #     = solution.shift_stretches[
+            #     employee_id][new_s_type][
+            #     d_index + 1][
+            #     'end_index'
+            # ]
+            # # compute new length
+            # solution.shift_stretches[
+            #     employee_id][new_s_type][
+            #     start_index][
+            #     "length"] \
+            #     += solution.shift_stretches[
+            #            employee_id][new_s_type][
+            #            d_index + 1]['length'] + 1
+            #
+            # # remove unnecessary stretch
+            # solution.shift_stretches[
+            #     employee_id][new_s_type].pop(d_index + 1)
 
-            # remove unnecessary stretch
-            solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']].pop(change_info['d_index'] + 1)
+            solution.shift_stretches[employee_id][new_s_type] \
+                = RuleS2Max().merge_stretches(solution.shift_stretches[employee_id][new_s_type],
+                                               start_index_1=start_index,
+                                               start_index_2=d_index+1)
 
         # check if not the last day and the day after working
-        elif not solution.check_if_last_day(change_info['d_index'])\
-                and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index']+1, change_info['new_s_type']):
+        elif not solution.check_if_last_day(d_index)\
+                and solution.check_if_working_s_type_on_day(employee_id, d_index+1, new_s_type):
 
-            # create change key of dictionary
-            solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][change_info['d_index']] = solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][change_info['d_index'] + 1]
-            # adjust length
-            solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][change_info['d_index']]['length'] += 1
+            # # create change key of dictionary
+            # solution.shift_stretches[
+            #     employee_id][new_s_type][d_index] = solution.shift_stretches[
+            #     employee_id][new_s_type][d_index + 1]
+            # # adjust length
+            # solution.shift_stretches[
+            #     employee_id][new_s_type][d_index]['length'] += 1
+            #
+            # del solution.shift_stretches[
+            #     employee_id][new_s_type][d_index + 1]
 
-            del solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][change_info['d_index'] + 1]
+            solution.shift_stretches[employee_id][new_s_type] \
+                = RuleS2Max().extend_stretch_pre(
+                solution.shift_stretches[
+                employee_id][new_s_type],
+                old_start=d_index+1,
+                new_start=d_index)
 
-        elif not solution.check_if_first_day(change_info['d_index']) \
-            and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index']-1, change_info['new_s_type']):
-            start_index = self.find_shift_stretch_end(solution, change_info['employee_id'], change_info['d_index']-1, change_info['new_s_type'])
+        elif not solution.check_if_first_day(d_index) \
+            and solution.check_if_working_s_type_on_day(employee_id, d_index-1, new_s_type):
+            start_index = self.find_shift_stretch_end(solution, employee_id, d_index-1, new_s_type)
             # change end index by one
             solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][start_index]['end_index'] += 1
+                employee_id][new_s_type][start_index]['end_index'] += 1
 
             solution.shift_stretches[
-                change_info['employee_id']][change_info['new_s_type']][start_index]['length'] += 1
+                employee_id][new_s_type][start_index]['length'] += 1
 
         # if single day
         else:
             # create index of single length
-            solution.shift_stretches[change_info['employee_id']][change_info['new_s_type']][change_info['d_index']] \
-                = {'end_index': change_info['d_index'],
+            solution.shift_stretches[employee_id][new_s_type][d_index] \
+                = {'end_index': d_index,
                    'length': 1}
 
         return solution
@@ -117,57 +132,73 @@ class RuleS2ShiftMax(Rule):
         """
         Function to update solution information after change from assigned to off
         """
+        d_index = change_info['d_index']
+        employee_id = change_info['employee_id']
+        curr_s_type = change_info['curr_s_type']
+
         # check if not the last or first day and in a work stretch
-        if solution.check_if_middle_day(change_info['d_index']) \
-             and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] + 1, change_info['curr_s_type']) \
-             and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] - 1, change_info['curr_s_type']):
+        if solution.check_if_middle_day(d_index) \
+             and solution.check_if_working_s_type_on_day(employee_id, d_index + 1, curr_s_type) \
+             and solution.check_if_working_s_type_on_day(employee_id, d_index - 1, curr_s_type):
 
-            start_index = self.find_shift_stretch_middle(solution, change_info['employee_id'], change_info['d_index'], change_info['curr_s_type'])
-            # add new key value for second new work stretch
-            solution.shift_stretches[change_info['employee_id']][change_info['curr_s_type']][
-                change_info['d_index'] + 1] \
-                = {
-                'end_index': solution.shift_stretches[
-                    change_info['employee_id']][change_info['curr_s_type']][
-                    start_index]['end_index'],
-                'length': solution.shift_stretches[
-                              change_info['employee_id']][change_info['curr_s_type']][
-                              start_index]['end_index'] - change_info['d_index']
-            }
+            start_index = self.find_shift_stretch_middle(solution, employee_id, d_index, curr_s_type)
+            # # add new key value for second new work stretch
+            # solution.shift_stretches[employee_id][curr_s_type][
+            #     d_index + 1] \
+            #     = {
+            #     'end_index': solution.shift_stretches[
+            #         employee_id][curr_s_type][
+            #         start_index]['end_index'],
+            #     'length': solution.shift_stretches[
+            #                   employee_id][curr_s_type][
+            #                   start_index]['end_index'] - d_index
+            # }
+            #
+            # # change end index and length of first new work stretch
+            # solution.shift_stretches[employee_id][curr_s_type][start_index]['end_index'] \
+            #     = d_index - 1
+            # solution.shift_stretches[employee_id][curr_s_type][start_index]['length'] \
+            #     = d_index - start_index
 
-            # change end index and length of first new work stretch
-            solution.shift_stretches[change_info['employee_id']][change_info['curr_s_type']][start_index]['end_index'] \
-                = change_info['d_index'] - 1
-            solution.shift_stretches[change_info['employee_id']][change_info['curr_s_type']][start_index]['length'] \
-                = change_info['d_index'] - start_index
+            solution.shift_stretches[employee_id][curr_s_type] \
+                = RuleS2Max().split_stretch(
+                solution.shift_stretches[employee_id][curr_s_type],
+                start_index_1=start_index,
+                d_index=d_index)
 
         # check if not the last day and the day after working
-        elif not solution.check_if_last_day(change_info['d_index']) \
-                and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] + 1, change_info['curr_s_type']):
-            # change start index of old key
-            solution.shift_stretches[
-                change_info['employee_id']][change_info['curr_s_type']][change_info['d_index'] + 1] \
-                = solution.shift_stretches[
-                change_info['employee_id']][change_info['curr_s_type']][change_info['d_index']]
-            # change the length of the stretch
-            solution.shift_stretches[
-                change_info['employee_id']][change_info['curr_s_type']][change_info['d_index'] + 1]['length'] -= 1
-            del solution.shift_stretches[
-                change_info['employee_id']][change_info['curr_s_type']][change_info['d_index']]
+        elif not solution.check_if_last_day(d_index) \
+                and solution.check_if_working_s_type_on_day(employee_id, d_index + 1, curr_s_type):
+            # # change start index of old key
+            # solution.shift_stretches[
+            #     employee_id][curr_s_type][d_index + 1] \
+            #     = solution.shift_stretches[
+            #     employee_id][curr_s_type][d_index]
+            # # change the length of the stretch
+            # solution.shift_stretches[
+            #     employee_id][curr_s_type][d_index + 1]['length'] -= 1
+            # del solution.shift_stretches[
+            #     employee_id][curr_s_type][d_index]
+
+            solution.shift_stretches[employee_id][curr_s_type] \
+                = RuleS2Max().shorten_stretch_pre(
+                solution.shift_stretches[employee_id][curr_s_type],
+                old_start=d_index,
+                new_start=d_index+1)
 
         # check if not the first day and the day before working
-        elif not change_info['d_index'] == 0 \
-                and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] - 1, change_info['curr_s_type']):
-            start_index = self.find_shift_stretch_end(solution, change_info['employee_id'], change_info['d_index'], change_info['curr_s_type'])
-            solution.shift_stretches[change_info['employee_id']][change_info['curr_s_type']][start_index]['end_index'] \
+        elif not d_index == 0 \
+                and solution.check_if_working_s_type_on_day(employee_id, d_index - 1, curr_s_type):
+            start_index = self.find_shift_stretch_end(solution, employee_id, d_index, curr_s_type)
+            solution.shift_stretches[employee_id][curr_s_type][start_index]['end_index'] \
                 -= 1
-            solution.shift_stretches[change_info['employee_id']][change_info['curr_s_type']][start_index]['length'] \
+            solution.shift_stretches[employee_id][curr_s_type][start_index]['length'] \
                 -= 1
 
         # if single day
         else:
             del solution.shift_stretches[
-                change_info['employee_id']][change_info['curr_s_type']][change_info['d_index']]
+                employee_id][curr_s_type][d_index]
 
         return solution
 
@@ -198,40 +229,43 @@ class RuleS2ShiftMax(Rule):
             return self.incremental_violations_assigned_to_assigned(solution, change_info)
 
     def incremental_violations_off_to_assigned(self, solution, change_info):
+        d_index = change_info['d_index']
+        employee_id = change_info['employee_id']
+        new_s_type = change_info['new_s_type']
+        shift_parameter = self.parameter_per_s_type[new_s_type]
 
-        shift_parameter = self.parameter_per_s_type[change_info['new_s_type']]
-
-        if solution.check_if_middle_day(change_info['d_index']) \
-                and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] + 1, change_info['new_s_type']) \
-                and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] - 1, change_info['new_s_type']):
-            start_index = self.find_shift_stretch_end(solution, change_info['employee_id'], change_info['d_index']-1, change_info['new_s_type'])
+        if solution.check_if_middle_day(d_index) \
+                and solution.check_if_working_s_type_on_day(employee_id, d_index + 1, new_s_type) \
+                and solution.check_if_working_s_type_on_day(employee_id, d_index - 1, new_s_type):
+            start_index = self.find_shift_stretch_end(solution, employee_id, d_index-1, new_s_type)
             # calc previous violations of the separate work stretches
             previous_violations = np.maximum(
-                solution.shift_stretches[change_info['employee_id']][change_info['new_s_type']][
-                    change_info['d_index'] + 1]['length'] - shift_parameter,
-                0) \
+                solution.shift_stretches[employee_id][new_s_type][
+                    d_index + 1]['length'] - shift_parameter, 0) \
                                   + np.maximum(
-                solution.shift_stretches[change_info['employee_id']][change_info['new_s_type']][start_index]['length'] - shift_parameter,
-                0)
-            return np.maximum((solution.shift_stretches[change_info['employee_id']][change_info['new_s_type']][
-                                   change_info['d_index'] + 1]['length']
-                               + solution.shift_stretches[change_info['employee_id']][change_info['new_s_type']][start_index][
-                                   'length'] + 1) - shift_parameter, 0) \
-                   - previous_violations
+                solution.shift_stretches[employee_id][new_s_type][start_index]['length'] - shift_parameter,0)
+
+            new_violations = np.maximum(
+                (solution.shift_stretches[employee_id][new_s_type][
+                                   d_index + 1]['length']
+                               + solution.shift_stretches[employee_id][new_s_type][start_index][
+                                   'length'] + 1)
+                - shift_parameter, 0)
+            return new_violations - previous_violations
         # check if not the last day and the day after working
-        elif not solution.check_if_last_day(change_info['d_index']) \
-            and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] + 1, change_info['new_s_type']):
+        elif not solution.check_if_last_day(d_index) \
+            and solution.check_if_working_s_type_on_day(employee_id, d_index + 1, new_s_type):
             # check whether the length of the new work stretch is longer than allowed
-            return 1 if solution.shift_stretches[change_info['employee_id']][change_info['new_s_type']][
-                            change_info['d_index'] + 1]['length'] >= shift_parameter \
+            return 1 if solution.shift_stretches[employee_id][new_s_type][
+                            d_index + 1]['length'] >= shift_parameter \
                 else 0
 
         # check if not the first day and the day before working
-        elif not change_info['d_index'] == 0 \
-                and solution.check_if_working_s_type_on_day(change_info['employee_id'], change_info['d_index'] - 1, change_info['new_s_type']):
-            start_index = self.find_shift_stretch_end(solution, change_info['employee_id'], change_info['d_index']-1, change_info['new_s_type'])
+        elif not d_index == 0 \
+                and solution.check_if_working_s_type_on_day(employee_id, d_index - 1, new_s_type):
+            start_index = self.find_shift_stretch_end(solution, employee_id, d_index-1, new_s_type)
             # check if the length of the new work stretch is too long
-            return 1 if solution.shift_stretches[change_info['employee_id']][change_info['new_s_type']][start_index]['length'] >= shift_parameter \
+            return 1 if solution.shift_stretches[employee_id][new_s_type][start_index]['length'] >= shift_parameter \
                 else 0
 
         # if single day

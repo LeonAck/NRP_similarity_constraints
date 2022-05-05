@@ -149,6 +149,11 @@ class RuleS3Max(Rule):
             solution.day_off_stretches[
                 change_info['employee_id']].pop(change_info['d_index'] + 1)
 
+            # solution.work_stretches[employee_id] = \
+            #     self.merge_stretches(solution.work_stretches[employee_id],
+            #                          start_index_1=start_index_1,
+            #                          start_index_2=d_index + 1)
+
             # check if not the last day and the day after working
         elif not solution.check_if_last_day(change_info['d_index']) \
                 and not solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] + 1):
@@ -164,17 +169,6 @@ class RuleS3Max(Rule):
                     stretch_object_employee=solution.day_off_stretches[change_info['employee_id']],
                     old_start=change_info['d_index'] + 1,
                     new_start=change_info['d_index'])
-
-            # # create change key of dictionary
-            # solution.day_off_stretches[
-            #     change_info['employee_id']][change_info['d_index']] = solution.day_off_stretches[
-            #     change_info['employee_id']][change_info['d_index'] + 1]
-            # # adjust length
-            # solution.day_off_stretches[
-            #     change_info['employee_id']][change_info['d_index']]['length'] += 1
-            #
-            # del solution.day_off_stretches[
-            #     change_info['employee_id']][change_info['d_index'] + 1]
 
         elif not solution.check_if_first_day(change_info['d_index']) \
                 and not solution.check_if_working_day(change_info['employee_id'], change_info['d_index'] - 1):

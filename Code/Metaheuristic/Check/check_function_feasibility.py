@@ -247,15 +247,15 @@ class FeasibilityCheck:
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
 
-                print("violation per d, s, sk after change",
-                      RuleS1().count_violations_day_shift_skill(solution, scenario, change_info["d_index"],
-                                                                change_info["new_s_type"], change_info["new_sk_type"]))
-                print("optimal request", solution.diff_opt_request[
-                    (change_info["d_index"], change_info["new_sk_type"], change_info["new_s_type"],)]+scenario.skill_requests[
-                    (change_info["d_index"], change_info["new_sk_type"], change_info["new_s_type"],)])
-                print("actual assignments: ",
-                      RuleS1().count_assignments_day_shift_skill(solution, change_info["d_index"],
-                                                                 change_info["new_s_type"], change_info["new_sk_type"]))
+                # print("violation per d, s, sk after change",
+                #       RuleS1().count_violations_day_shift_skill(solution, scenario, change_info["d_index"],
+                #                                                 change_info["new_s_type"], change_info["new_sk_type"]))
+                # print("optimal request", solution.diff_opt_request[
+                #     (change_info["d_index"], change_info["new_sk_type"], change_info["new_s_type"],)]+scenario.skill_requests[
+                #     (change_info["d_index"], change_info["new_sk_type"], change_info["new_s_type"],)])
+                # print("actual assignments: ",
+                #       RuleS1().count_assignments_day_shift_skill(solution, change_info["d_index"],
+                #                                                  change_info["new_s_type"], change_info["new_sk_type"]))
                 print(solution.shift_assignments[change_info['employee_id']][:, 0])
 
                 flag = False
