@@ -56,8 +56,6 @@ class Heuristic:
         # take initial solution as best solution
         best_solution = Solution(starting_solution)
 
-        FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info=None)
-        FeasibilityCheck().assignment_equals_tracked_info(current_solution, self.scenario)
         # Initialize tracking
         # number of iterations
         # number of iterations without improvement
@@ -120,7 +118,7 @@ class Heuristic:
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
             # if "S2Max" in current_solution.rules:
             #     FeasibilityCheck().work_stretches_info(current_solution, self.scenario, change_info)
-            FeasibilityCheck().assignment_equals_tracked_info(current_solution, self.scenario)
+            # FeasibilityCheck().assignment_equals_tracked_info(current_solution, self.scenario)
             FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
