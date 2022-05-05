@@ -8,7 +8,7 @@ class RuleS1(Rule):
         Compares optimal skill request to number of nurses with that skill assigned to shift
     """
 
-    def __init__(self, employees, rule_spec=None):
+    def __init__(self, employees=None, rule_spec=None):
         super().__init__(employees, rule_spec)
 
     def count_violations(self, solution, scenario):
@@ -39,6 +39,16 @@ class RuleS1(Rule):
             return scenario.optimal_coverage[(d_index, sk_index, s_index)] - assignment_count
         else:
             return 0
+
+    def count_assignments_day_shift_skill(self, solution, d_index, s_index, sk_index):
+        assignment_count = 0
+
+        for employee in solution.shift_assignments.values():
+            if np.array_equal(employee[d_index], np.array([s_index, sk_index])):
+                assignment_count += 1
+
+        return assignment_count
+
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """

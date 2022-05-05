@@ -1,6 +1,6 @@
 {"instance_settings": {
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON",
-  "instance_name": "n005w4",
+  "instance_name": "n050w4",
   "history_file": 0,
   "weeks": [1, 2, 3, 4],
   "two_stage": false
@@ -9,7 +9,7 @@
   {
     "stage_number": 1,
     "heuristic_settings": {
-        "max_time": 1,
+        "max_time": 10,
         "max_iter":10000,
         "initial_temp": 22,
         "cooling_rate": 0.99,
@@ -49,7 +49,7 @@
   "stage_2_settings": {
     "stage_number": 2,
     "heuristic_settings": {
-        "max_time": 1000,
+        "max_time": 100,
         "max_iter":20000,
         "initial_temp": 22,
         "cooling_rate": 0.99,

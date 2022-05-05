@@ -4,6 +4,7 @@ import pprint
 from Invoke.Initial_solution.initial_solution import BuildSolution
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
+from Invoke.Constraints.Rules.RuleS1 import RuleS1
 
 class FeasibilityCheck:
     """
@@ -63,25 +64,6 @@ class FeasibilityCheck:
 
         return flag
 
-    def assignments_equals_skill_counter(self, solution, scenario):
-        """
-        Function to check whether number of assignments to a shift
-        equals the number of assigned in the skill_counter
-        """
-        flag = True
-        for d_index, day_counts in enumerate(solution.skill_counter):
-            tot_day = np.sum(day_counts)
-            tot_assigned = 0
-            for shift_assignments in solution.shift_assignments.values():
-                if shift_assignments[d_index] > 0:
-                    tot_assigned += 1
-            if tot_day != tot_assigned:
-                flag = False
-                raise ValueError('tot daily counter {} is not equal to assigned to nurses{}'.format(
-                    tot_day, tot_assigned))
-
-        return flag
-
     def assignment_equals_tracked_info(self, solution, scenario):
         """
         Function to check whether the cumulative shift assignments
@@ -105,6 +87,7 @@ class FeasibilityCheck:
                     if assignment_count != real_assignments[(d_index, sk_index, s_index)]:
                         print(assignment_count)
                         print(real_assignments[(d_index, sk_index, s_index)])
+                        print([[employee_id, solution.shift_assignments[employee_id][d_index]] == np.array(s_index, sk_index) for employee_id in solution.shift_assignments.keys()])
                         print("info is incorrect")
                         break
 
@@ -149,7 +132,7 @@ class FeasibilityCheck:
         Function to find differences in the day off stretch information
         """
         flag = True
-        collected_day_off_stretches = BuildSolution(scenario).collect_work_stretches(solution, working=False)
+        collected_day_off_stretches = BuildSolution(scenario).collect_work_stretches(solution)
         if collected_day_off_stretches != solution.day_off_stretches :
             print("stretches is false")
             flag = False
@@ -255,7 +238,16 @@ class FeasibilityCheck:
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
-                print(solution.shift_assignments[change_info['employee_id']][:,0])
+                print("violation per d, s, sk after change",
+                      RuleS1().count_violations_day_shift_skill(solution, scenario, change_info["d_index"],
+                                                                change_info["new_s_type"], change_info["new_sk_type"]))
+                print("optimal request", solution.diff_opt_request[
+                    (change_info["d_index"], change_info["new_sk_type"], change_info["new_s_type"],)]+scenario.skill_requests[
+                    (change_info["d_index"], change_info["new_sk_type"], change_info["new_s_type"],)])
+                print("actual assignments: ",
+                      RuleS1().count_assignments_day_shift_skill(solution, change_info["d_index"],
+                                                                 change_info["new_s_type"], change_info["new_sk_type"]))
+                print(solution.shift_assignments[change_info['employee_id']][:, 0])
 
                 flag = False
 
