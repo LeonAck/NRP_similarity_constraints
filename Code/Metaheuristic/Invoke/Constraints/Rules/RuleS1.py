@@ -80,7 +80,6 @@ class RuleS1(Rule):
         # check if there is a shortage compared to optimal level
         # TODO adjust for higher increments if necessary
         if insertion:
-            print("diff opt:", solution.diff_opt_request[(d_index, sk_index, s_index)])
             return -1 if solution.diff_opt_request[(d_index, sk_index, s_index)] < 0 else 0
         else:
             return 1 if solution.diff_opt_request[(d_index, sk_index, s_index)] <= 0 else 0
