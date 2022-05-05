@@ -126,7 +126,6 @@ class Heuristic:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
             n_iter += 1
 
-
         # best solution
         best_solution.change_counters = change_counters
         return best_solution

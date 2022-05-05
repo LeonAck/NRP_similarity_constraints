@@ -69,7 +69,7 @@ class RuleS1(Rule):
         return violation
 
     def increment_violations_day_shift_skill(self, solution, d_index, s_index,
-                                             sk_index, insertion=True, increment=1):
+                                             sk_index, insertion=True):
         """
         Function to count violations for a given day, shift type and skill
         """
