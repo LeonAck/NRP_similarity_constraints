@@ -182,15 +182,18 @@ class RuleS2Max(Rule):
         # if single day
         else:
             # check if d_index is the end of the stretch starting in the history
-            if change_info['d_index'] == 0 and solution.historical_off_stretch[change_info['employee_id']] > 0:
-                start_index = -solution.historical_off_stretch[change_info['employee_id']]
-                solution.day_off_stretches[change_info['employee_id']][start_index]['end_index'] \
+            if change_info['d_index'] == 0 and solution.historical_work_stretch[change_info['employee_id']] > 0:
+                start_index = -solution.historical_work_stretch[change_info['employee_id']]
+                solution.work_stretches[change_info['employee_id']][start_index]['end_index'] \
                     -= 1
-                solution.day_off_stretches[change_info['employee_id']][start_index]['length'] \
+                solution.work_stretches[change_info['employee_id']][start_index]['length'] \
                     -= 1
             else:
-                del solution.work_stretches[
-                     change_info['employee_id']][change_info['d_index']]
+                try:
+                    del solution.work_stretches[
+                         change_info['employee_id']][change_info['d_index']]
+                except KeyError:
+                    print("hi")
 
         return solution
 
