@@ -24,8 +24,7 @@ class RuleS2Max(Rule):
         """
         return sum([work_stretch['length'] - self.parameter_per_employee[employee_id]
                     for work_stretch in solution.work_stretches[employee_id].values()
-                    if work_stretch['length'] > self.parameter_per_employee[employee_id]
-                    and work_stretch['end_index'] > -1])
+                    if work_stretch['length'] > self.parameter_per_employee[employee_id]])
 
     def find_work_stretch_end(self, solution, employee_id, d_index):
         """
@@ -54,29 +53,6 @@ class RuleS2Max(Rule):
         and solution.check_if_working_day(employee_id, d_index - 1):
             start_index_1 = self.find_work_stretch_end(solution, employee_id, d_index-1)
 
-            # # replace end_index of new work stretch with last
-            # solution.work_stretches[
-            #     employee_id][
-            #     start_index][
-            #     "end_index"] \
-            #     = solution.work_stretches[
-            #     employee_id][
-            #     d_index + 1][
-            #     'end_index'
-            # ]
-            # # compute new length
-            # solution.work_stretches[
-            #     employee_id][
-            #     start_index][
-            #     "length"] \
-            #     += solution.work_stretches[
-            #            employee_id][
-            #            d_index + 1]['length'] + 1
-            #
-            # # remove unnecessary stretch
-            # solution.work_stretches[
-            #     employee_id].pop(d_index + 1)
-
             solution.work_stretches[employee_id] = \
                 self.merge_stretches(solution.work_stretches[employee_id],
                                  start_index_1=start_index_1,
@@ -91,6 +67,7 @@ class RuleS2Max(Rule):
                     stretch_object_employee=solution.work_stretches[employee_id],
                     old_start=d_index + 1,
                     new_start=-solution.historical_work_stretch[employee_id])
+
             else:
                 solution.work_stretches[employee_id] \
                     = self.extend_stretch_pre(stretch_object_employee=solution.work_stretches[employee_id],
@@ -237,34 +214,38 @@ class RuleS2Max(Rule):
                 and solution.check_if_working_day(employee_id, d_index + 1) \
                 and solution.check_if_working_day(employee_id, d_index - 1):
             start_index = self.find_work_stretch_end(solution, employee_id, d_index-1)
-            # calc previous violations of the separate work stretches
-            previous_violations = np.maximum(
-                solution.work_stretches[employee_id][
-                    d_index + 1]['length'] - employee_parameter, 0) \
-                                  + np.maximum(
-                solution.work_stretches[employee_id][start_index]['length'] - employee_parameter, 0)
-
-            new_violations = np.maximum((solution.work_stretches[employee_id][
-                                   d_index + 1]['length']
-                               + solution.work_stretches[employee_id][start_index][
-                                   'length'] + 1) - employee_parameter, 0)
-            return new_violations - previous_violations
+            # # calc previous violations of the separate work stretches
+            # previous_violations = np.maximum(
+            #     solution.work_stretches[employee_id][
+            #         d_index + 1]['length'] - employee_parameter, 0) \
+            #                       + np.maximum(
+            #     solution.work_stretches[employee_id][start_index]['length'] - employee_parameter, 0)
+            #
+            # new_violations = np.maximum((solution.work_stretches[employee_id][
+            #                        d_index + 1]['length']
+            #                    + solution.work_stretches[employee_id][start_index][
+            #                        'length'] + 1) - employee_parameter, 0)
+            return self.calc_incremental_violations_merge_stretch(solution.work_stretches[employee_id], rule_parameter=employee_parameter,
+                                                           start_index_1=start_index, start_index_2=d_index+1)
 
         # check if not the last day and the day after working
         elif not solution.check_if_last_day(d_index) \
                 and solution.check_if_working_day(employee_id, d_index + 1):
             if d_index == 0 and solution.historical_work_stretch[employee_id] > 0:
-                previous_violations = np.maximum(
-                    solution.work_stretches[employee_id][
-                        d_index + 1]['length'] - employee_parameter,
-                    0)
-                # adapt violations compared to whether there is history before
-                new_violations = np.maximum(solution.work_stretches[employee_id][
-                                                d_index + 1]['length']
-                                            + solution.historical_work_stretch[
-                                                employee_id] + 1 - employee_parameter, 0)
+                # previous_violations = np.maximum(
+                #     solution.work_stretches[employee_id][
+                #         d_index + 1]['length'] - employee_parameter,
+                #     0)
+                # # adapt violations compared to whether there is history before
+                # new_violations = np.maximum(solution.work_stretches[employee_id][
+                #                                 d_index + 1]['length']
+                #                             + solution.historical_work_stretch[
+                #                                 employee_id] + 1 - employee_parameter, 0)
 
-                return new_violations - previous_violations
+                # return new_violations - previous_violations
+                return self.calc_incremental_violations_merge_stretch(solution.work_stretches[employee_id], rule_parameter=employee_parameter,
+                                                           start_index_1=-solution.historical_work_stretch[
+                                                employee_id], start_index_2=d_index+1, history=True)
             else:
                 return 1 if solution.work_stretches[employee_id][
                                 d_index + 1]['length'] >= employee_parameter \
@@ -287,7 +268,8 @@ class RuleS2Max(Rule):
                 return 1 if solution.work_stretches[employee_id][start_index][
                                 'length'] >= employee_parameter \
                     else 0
-            return 0
+            else:
+                return 0
 
     def incremental_violations_assigned_to_off(self, solution, change_info):
         employee_parameter = self.parameter_per_employee[change_info['employee_id']]
@@ -299,7 +281,7 @@ class RuleS2Max(Rule):
                 split_2 = work_stretch['end_index'] - change_info['d_index']
 
                 # calculate new violations based on history
-                new_violations_1 = 0 if change_info['d_index'] == 0 and split_1 > 0 else np.maximum(split_1 - employee_parameter, 0)
+                new_violations_1 = np.maximum(split_1 - employee_parameter, 0)
 
                 return -(np.maximum(work_stretch['length'] - employee_parameter, 0)
                          - new_violations_1
@@ -307,7 +289,11 @@ class RuleS2Max(Rule):
 
     def extend_stretch_pre(self, stretch_object_employee, old_start, new_start):
         # create change key of dictionary
-        stretch_object_employee[new_start] = stretch_object_employee[old_start]
+        try:
+            stretch_object_employee[new_start] = stretch_object_employee[old_start]
+        except KeyError:
+            a = 1
+            print("hi")
         # adjust length
         stretch_object_employee[new_start]['length'] += old_start - new_start
 
@@ -372,6 +358,27 @@ class RuleS2Max(Rule):
             = d_index - start_index_1
 
         return stretch_object_employee
+
+    def calc_incremental_violations_merge_stretch(self, stretch_object_employee, rule_parameter, start_index_1, start_index_2, history=False):
+
+        # calc previous violations of the separate work stretches
+        # if history:
+        #     previous_violations = np.maximum(
+        #         stretch_object_employee[
+        #             start_index_2]['length'] - rule_parameter, 0)
+        # else:
+
+        previous_violations = np.maximum(
+            stretch_object_employee[
+                start_index_2]['length'] - rule_parameter, 0) \
+                              + np.maximum(
+            stretch_object_employee[start_index_1]['length'] - rule_parameter, 0)
+
+        new_violations = np.maximum((stretch_object_employee[
+                                         start_index_2]['length']
+                                     + stretch_object_employee[start_index_1][
+                                         'length'] + 1) - rule_parameter, 0)
+        return new_violations - previous_violations
 
 
 

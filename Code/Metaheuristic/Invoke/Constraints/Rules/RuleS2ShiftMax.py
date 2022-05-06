@@ -59,29 +59,6 @@ class RuleS2ShiftMax(Rule):
         and solution.check_if_working_s_type_on_day(employee_id, d_index - 1, new_s_type):
             start_index = self.find_shift_stretch_end(solution, employee_id, d_index-1, new_s_type)
 
-            # # replace end_index of new work stretch with last
-            # solution.shift_stretches[
-            #     employee_id][new_s_type][
-            #     start_index][
-            #     "end_index"] \
-            #     = solution.shift_stretches[
-            #     employee_id][new_s_type][
-            #     d_index + 1][
-            #     'end_index'
-            # ]
-            # # compute new length
-            # solution.shift_stretches[
-            #     employee_id][new_s_type][
-            #     start_index][
-            #     "length"] \
-            #     += solution.shift_stretches[
-            #            employee_id][new_s_type][
-            #            d_index + 1]['length'] + 1
-            #
-            # # remove unnecessary stretch
-            # solution.shift_stretches[
-            #     employee_id][new_s_type].pop(d_index + 1)
-
             solution.shift_stretches[employee_id][new_s_type] \
                 = RuleS2Max().merge_stretches(solution.shift_stretches[employee_id][new_s_type],
                                                start_index_1=start_index,
@@ -101,13 +78,18 @@ class RuleS2ShiftMax(Rule):
             #
             # del solution.shift_stretches[
             #     employee_id][new_s_type][d_index + 1]
-
-            solution.shift_stretches[employee_id][new_s_type] \
-                = RuleS2Max().extend_stretch_pre(
-                solution.shift_stretches[
-                employee_id][new_s_type],
-                old_start=d_index+1,
-                new_start=d_index)
+            if d_index == 0 and solution.last_assigned_shift[employee_id] == new_s_type:
+                solution.shift_stretches[employee_id][new_s_type] \
+                    = RuleS2Max().extend_stretch_pre(
+                    stretch_object_employee=solution.shift_stretches[employee_id][new_s_type],
+                    old_start=d_index + 1,
+                    new_start=-solution.historical_shift_stretch[employee_id])
+            else:
+                solution.shift_stretches[employee_id][new_s_type] \
+                    = RuleS2Max().extend_stretch_pre(
+                    solution.shift_stretches[employee_id][new_s_type],
+                    old_start=d_index+1,
+                    new_start=d_index)
 
         elif not solution.check_if_first_day(d_index) \
             and solution.check_if_working_s_type_on_day(employee_id, d_index-1, new_s_type):
@@ -121,10 +103,21 @@ class RuleS2ShiftMax(Rule):
 
         # if single day
         else:
-            # create index of single length
-            solution.shift_stretches[employee_id][new_s_type][d_index] \
-                = {'end_index': d_index,
-                   'length': 1}
+            # check if d_index is the end of the stretch starting in the history
+            if d_index == 0 and solution.last_assigned_shift[employee_id] == new_s_type:
+                start_index = -solution.historical_shift_stretch[employee_id]
+
+                # change end index by one
+                solution.shift_stretches[
+                    employee_id][new_s_type][start_index]['end_index'] += 1
+
+                solution.shift_stretches[
+                    employee_id][new_s_type][start_index]['length'] += 1
+            else:
+                # create index of single length
+                solution.shift_stretches[employee_id][new_s_type][d_index] \
+                    = {'end_index': d_index,
+                       'length': 1}
 
         return solution
 
@@ -179,12 +172,24 @@ class RuleS2ShiftMax(Rule):
             #     employee_id][curr_s_type][d_index + 1]['length'] -= 1
             # del solution.shift_stretches[
             #     employee_id][curr_s_type][d_index]
+            if d_index == 0 and solution.last_assigned_shift[employee_id] == curr_s_type:
+                # shorten existing stretch
+                solution.shift_stretches[employee_id][curr_s_type] = RuleS2Max().shorten_stretch_pre(
+                    stretch_object_employee=solution.shift_stretches[employee_id][curr_s_type],
+                    old_start=-solution.historical_shift_stretch[employee_id],
+                    new_start=d_index + 1)
 
-            solution.shift_stretches[employee_id][curr_s_type] \
-                = RuleS2Max().shorten_stretch_pre(
-                solution.shift_stretches[employee_id][curr_s_type],
-                old_start=d_index,
-                new_start=d_index+1)
+                # create new stretch for historical stretch
+                solution.shift_stretches[employee_id][curr_s_type] = solution.create_work_stretch(
+                    stretch_object_employee=solution.shift_stretches[employee_id][curr_s_type],
+                    start_index=-solution.historical_shift_stretch[employee_id],
+                    end_index=-1)
+            else:
+                solution.shift_stretches[employee_id][curr_s_type] \
+                    = RuleS2Max().shorten_stretch_pre(
+                    solution.shift_stretches[employee_id][curr_s_type],
+                    old_start=d_index,
+                    new_start=d_index+1)
 
         # check if not the first day and the day before working
         elif not d_index == 0 \
@@ -197,8 +202,16 @@ class RuleS2ShiftMax(Rule):
 
         # if single day
         else:
-            del solution.shift_stretches[
-                employee_id][curr_s_type][d_index]
+            # check if d_index is the end of the stretch starting in the history
+            if d_index == 0 and solution.last_assigned_shift[employee_id] == curr_s_type:
+                start_index = -solution.historical_shift_stretch[employee_id]
+                solution.shift_stretches[employee_id][curr_s_type][start_index]['end_index'] \
+                    -= 1
+                solution.shift_stretches[employee_id][curr_s_type][start_index]['length'] \
+                    -= 1
+            else:
+                del solution.shift_stretches[
+                    employee_id][curr_s_type][d_index]
 
         return solution
 
@@ -270,7 +283,15 @@ class RuleS2ShiftMax(Rule):
 
         # if single day
         else:
-            return 0
+            # check if d_index is the end of the stretch starting in the history
+            if d_index == 0 and solution.last_assigned_shift[employee_id] == new_s_type:
+                start_index = -solution.historical_shift_stretch[employee_id]
+                # check if the length of the new work stretch is too long
+                return 1 if solution.shift_stretches[employee_id][new_s_type][start_index][
+                                'length'] >= shift_parameter \
+                    else 0
+            else:
+                return 0
 
     def incremental_violations_assigned_to_off(self, solution, change_info):
         shift_parameter = self.parameter_per_s_type[change_info['curr_s_type']]
@@ -281,6 +302,7 @@ class RuleS2ShiftMax(Rule):
                 split_1 = change_info['d_index'] - start_index
                 split_2 = shift_stretch['end_index'] - change_info['d_index']
                 violation = True
+
                 return -(np.maximum(shift_stretch['length'] - shift_parameter, 0)
                          - np.maximum(split_1 - shift_parameter, 0)
                          - np.maximum(split_2 - shift_parameter, 0))

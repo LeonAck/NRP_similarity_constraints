@@ -1,4 +1,5 @@
 from Invoke.Constraints.initialize_rules import Rule
+from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
 import numpy as np
 
 class RuleS3Min(Rule):
@@ -21,8 +22,7 @@ class RuleS3Min(Rule):
         Function to count violations for an employee
         """
         return sum([np.maximum(self.parameter_per_employee[employee_id] - day_off_stretch['length'], 0)
-                    for day_off_stretch in solution.day_off_stretches[employee_id].values()
-                    if day_off_stretch['end_index'] > -1])
+                    for day_off_stretch in solution.day_off_stretches[employee_id].values()])
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """
@@ -60,11 +60,11 @@ class RuleS3Min(Rule):
                 the_day_off_stretch = day_off_stretch
                 break
 
-            # add extra violations
-        new_violations_1 = np.maximum(employee_parameter - length_1, 0) if change_info['d_index'] != 0 else 0
+        #     # add extra violations
+        # new_violations_1 = np.maximum(employee_parameter - length_1, 0) if change_info['d_index'] != 0 else 0
         # the new violations - the old violations
 
-        return new_violations_1 \
+        return np.maximum(employee_parameter - length_1, 0)  \
                + np.maximum(employee_parameter - length_2, 0) \
                - np.maximum(employee_parameter - the_day_off_stretch['length'], 0)
 
@@ -77,21 +77,33 @@ class RuleS3Min(Rule):
                 and not solution.check_if_working_day(employee_id, d_index - 1):
             start_index = self.find_day_off_stretch_end(solution, employee_id, d_index - 1)
 
-            previous_violations = np.maximum(
-                employee_parameter - solution.day_off_stretches[employee_id][d_index + 1]['length'], 0) \
-                                  + np.maximum(
-                employee_parameter - solution.day_off_stretches[employee_id][start_index]['length'], 0)
-            new_violations = np.maximum(employee_parameter
-                                        - (solution.day_off_stretches[employee_id][d_index + 1]['length']
-                                           + solution.day_off_stretches[employee_id][start_index][
-                                               'length']
-                                           + 1), 0)
-            return -(previous_violations - new_violations)
-        # check if not the last day and the day after working
+            # previous_violations = np.maximum(
+            #     employee_parameter - solution.day_off_stretches[employee_id][d_index + 1]['length'], 0) \
+            #                       + np.maximum(
+            #     employee_parameter - solution.day_off_stretches[employee_id][start_index]['length'], 0)
+            # new_violations = np.maximum(employee_parameter
+            #                             - (solution.day_off_stretches[employee_id][d_index + 1]['length']
+            #                                + solution.day_off_stretches[employee_id][start_index][
+            #                                    'length']
+            #                                + 1), 0)
+            # return -(previous_violations - new_violations)
+
+            return RuleS2Min().calc_incremental_violations_merge_stretch(solution.day_off_stretches[employee_id], rule_parameter=employee_parameter,
+                                                           start_index_1=start_index, start_index_2=d_index+1)
+        # check if not the last day and the day after off
         elif not solution.check_if_last_day(d_index) \
                 and not solution.check_if_working_day(employee_id, d_index + 1):
-            return -1 if solution.day_off_stretches[employee_id][d_index + 1][
-                             'length'] < employee_parameter else 0
+
+            if change_info['d_index'] == 0 and solution.historical_off_stretch[employee_id] > 0:
+
+                return RuleS2Min().calc_incremental_violations_merge_stretch(solution.day_off_stretches[employee_id],
+                                              rule_parameter=employee_parameter,
+                                              start_index_1=-solution.historical_off_stretch[
+                                                  employee_id],
+                                              start_index_2=d_index + 1, history=True)
+            else:
+                return -1 if solution.day_off_stretches[employee_id][d_index + 1][
+                                 'length'] < employee_parameter else 0
 
         # check if not the first day and the day before working
         elif not d_index == 0 \
@@ -102,8 +114,10 @@ class RuleS3Min(Rule):
 
         # if single day
         else:
-            if d_index == 0 and solution.historical_work_stretch[employee_id] > 0:
-                return np.maximum(employee_parameter - solution.historical_work_stretch[employee_id] - 1, 0)
+            if d_index == 0 and solution.historical_off_stretch[employee_id] > 0:
+                start_index = -solution.historical_off_stretch[employee_id]
+                return -1 if solution.day_off_stretches[employee_id][start_index][
+                                 'length'] < employee_parameter else 0
             else:
                 return np.maximum(employee_parameter - 1, 0)
 

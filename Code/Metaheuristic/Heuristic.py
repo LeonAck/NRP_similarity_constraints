@@ -81,7 +81,8 @@ class Heuristic:
             if n_iter % 100 == 0:
                 print(current_solution.violation_array)
                 print("\nIteration: ", n_iter)
-            # print(current_solution.violation_array)
+            print(current_solution.violation_array)
+
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators)
             self.update_frequency_operator(operator_name)

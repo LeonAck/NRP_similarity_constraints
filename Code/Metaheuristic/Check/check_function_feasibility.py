@@ -201,7 +201,6 @@ class FeasibilityCheck:
                 print("saved new", solution.shift_stretches[employee_id][change_info['new_s_type']])
 
             print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
-
             print("hi", flag)
 
         return flag
@@ -242,6 +241,8 @@ class FeasibilityCheck:
                 ))
                 if change_info['current_working']:
                     print("current shift type", change_info['curr_s_type'])
+                if change_info['new_working']:
+                    print("new shift type", change_info['new_s_type'])
                 # print("past: {}, present: {}, future: {}".format(
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],

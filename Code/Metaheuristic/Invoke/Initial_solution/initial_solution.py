@@ -40,7 +40,7 @@ class BuildSolution(Solution):
 
         # H3 forbidden successions
         self.forbidden_shift_type_successions = scenario.forbidden_shift_type_successions
-        self.last_assigned_shifts = scenario.last_assigned_shifts
+        self.last_assigned_shift = scenario.last_assigned_shift
 
         # S1 create array to keep track of difference between optimal skill_requests and actual skill assignment
         if 'S1' in self.rules:
@@ -48,17 +48,19 @@ class BuildSolution(Solution):
 
         # S2 collect work stretches
         if 'S2Max' in self.rules:
-            self.historical_work_stretch = scenario.history_working_streak
+            self.last_assigned_shift = scenario.last_assigned_shift
+            self.historical_work_stretch = scenario.historical_work_stretch
             self.work_stretches = self.collect_work_stretches(solution=self)
 
 
         # S2Shift collect shift stretches
         if 'S2ShiftMax' in self.rules:
+            self.historical_shift_stretch = scenario.historical_shift_stretch
             self.shift_stretches = self.collect_shift_stretches(solution=self)
 
         # S3 collect day off stretches
         if 'S3Max' in self.rules:
-            self.historical_off_stretch = scenario.history_off_streak
+            self.historical_off_stretch = scenario.historical_off_stretch
             self.day_off_stretches = self.collect_day_off_stretches(solution=self)
 
         # S5 collect number of assignments per nurse
@@ -173,9 +175,8 @@ class BuildSolution(Solution):
         """
         shift_assignments = {}
         for employee_id in self.scenario.employees._collection.keys():
-            # shift_assignments[id] = np.array([{'s_type': 0, 'sk_type': 0}] * self.scenario.num_days_in_horizon)
             shift_assignments[employee_id] = np.full((self.scenario.num_days_in_horizon, 2), -1, dtype=int)
-        # two dimensioal array
+
         return shift_assignments
 
     def get_num_assignments_per_nurse(self):
@@ -198,7 +199,7 @@ class BuildSolution(Solution):
         """
         work_stretches = {}
         for employee_id in self.scenario.employees._collection.keys():
-            work_stretch_employee = {}
+
             # for each working day, get check if employee is working
             working_check = [1 if solution.check_if_working_day(employee_id, d_index) else 0
                                 for d_index in range(self.scenario.num_days_in_horizon)]
@@ -289,22 +290,40 @@ class BuildSolution(Solution):
                                  else 0
                                  for d_index in range(self.scenario.num_days_in_horizon)]
 
-                start_index = 0
-                # get lists of consecutive days working specific shift type
-                for k, v in itertools.groupby(working_shift_check):
-                    len_stretch = sum(1 for _ in v)
-                    if k:
-                        # save in dict under start index with end index
-                        shift_stretch = {}
-                        shift_stretch["end_index"] = start_index + len_stretch - 1
-                        shift_stretch["length"] = len_stretch
-                        shift_stretches_employee_per_shift[start_index] = shift_stretch
-                        start_index += len_stretch
-                    else:
-                        start_index += len_stretch
+                # start_index = 0
+                # # get lists of consecutive days working specific shift type
+                # for k, v in itertools.groupby(working_shift_check):
+                #     len_stretch = sum(1 for _ in v)
+                #     if k:
+                #         # save in dict under start index with end index
+                #         shift_stretch = {}
+                #         shift_stretch["end_index"] = start_index + len_stretch - 1
+                #         shift_stretch["length"] = len_stretch
+                #         shift_stretches_employee_per_shift[start_index] = shift_stretch
+                #         start_index += len_stretch
+                #     else:
+                #         start_index += len_stretch
 
                 # assign for each s_type the stretches to the employee
-                shift_stretch_employee[s_index] = shift_stretches_employee_per_shift
+                shift_stretch_employee_shift = self.collect_stretches(working_shift_check)
+
+                # implement history
+                if self.last_assigned_shift[employee_id] == s_index:
+                    if 0 in shift_stretch_employee_shift:
+                        # combine history stretch with first day stretch
+                        shift_stretch_employee_shift = RuleS2Max().extend_stretch_pre(
+                            stretch_object_employee=shift_stretch_employee_shift,
+                            new_start=-self.historical_shift_stretch[employee_id],
+                            old_start=0)
+                    else:
+                        # add new stretch to history
+                        shift_stretch_employee_shift = solution.create_work_stretch(
+                            stretch_object_employee=shift_stretch_employee_shift,
+                            start_index=-self.historical_shift_stretch[employee_id],
+                            end_index=-1)
+
+                shift_stretch_employee[s_index] = shift_stretch_employee_shift
+
             # add for each employee the stretches to the general dict
             shift_stretches[employee_id] = shift_stretch_employee
 
@@ -362,16 +381,3 @@ class BuildSolution(Solution):
                 (np.full(rule_parameter, fill_value=-1), np.array( shift_comparison_empl)))
 
         return shift_assignment_comparison
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -26,7 +26,7 @@ class Solution:
 
             # H3
             self.forbidden_shift_type_successions = other_solution.forbidden_shift_type_successions
-            self.last_assigned_shifts = other_solution.last_assigned_shifts
+            self.last_assigned_shift = other_solution.last_assigned_shift
 
             # S1
             if 'S1' in self.rules:
@@ -39,11 +39,12 @@ class Solution:
 
             # S2Shift
             if 'S2ShiftMax' in self.rules:
-                self.historical_off_stretch = other_solution.historical_off_stretch
+                self.historical_shift_stretch = other_solution.historical_shift_stretch
                 self.shift_stretches = other_solution.shift_stretches
 
             # S3
             if 'S3Max' in self.rules:
+                self.historical_off_stretch = other_solution.historical_off_stretch
                 self.day_off_stretches = other_solution.day_off_stretches
 
             # S5 number of assignments
