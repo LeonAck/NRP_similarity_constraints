@@ -1,24 +1,40 @@
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 import random
+import numpy as np
 
 
-def change_operator(solution, scenario, k):
+def swap_operator(solution, scenario, k):
     """
         Function to swap the assignments of two skill-compatible nurses for k
         consecutive days
-        Skill-compatible means that the nurses have the same skillset
+        Skill-compatible means that the nurses have the same skill set
 
         :return:
-        change_information
+        swap_info
     """
     # get a change that is allowed by hard constraints
-    change_info = get_feasible_swap(solution, scenario, k)
+    swap_info = get_feasible_swap(solution, scenario, k)
 
     # add penalty to objective
-    # if change_info['feasible']:
-    #     change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_swap(solution, scenario, change_info)
+    if swap_info['feasible']:
+        swap_info["cost_increment"], swap_info['violation_increment'] \
+            = calc_new_costs_after_change(solution, swap_info)
 
-    return change_info
+    return swap_info
+
+def calc_new_costs_after_change(solution, swap_info):
+    """
+    Function to calculate the number of violations given a change operations
+    :return:
+    array with violations per rule
+    """
+    # calculate incremental penalties
+    violation_array = np.zeros(len(solution.rule_collection.soft_rule_collection))
+    relevant_rules = solution.rule_collection.soft_rule_collection.collection
+    for i, rule in enumerate(relevant_rules.values()):
+        violation_array[i] = rule.incremental_violations_change(solution, swap_info)
+
+    return violation_array
 
 def get_feasible_swap(solution, scenario, k):
     """
@@ -32,7 +48,9 @@ def get_feasible_swap(solution, scenario, k):
     feasible_employees = list((scenario.employees._collection.keys()))
     swap_info["employee_id"] = random.choice(feasible_employees)
     while not feasible:
-        employee_id_1, employee_id_2, compatible = find_skill_compatible_employees(feasible_employees, scenario.employees, infeasible_combinations)
+        employee_id_1, employee_id_2, compatible = find_skill_compatible_employees(feasible_employees,
+                                                                                   scenario.employees,
+                                                                                   infeasible_combinations)
 
         if compatible:
             feasible_days = find_feasible_days_swap(solution, scenario, k, employee_id_1, employee_id_2)
@@ -53,6 +71,7 @@ def get_feasible_swap(solution, scenario, k):
         swap_info['feasible'] = False
 
     return swap_info
+
 
 def find_feasible_days_swap(solution, scenario, k, employee_id_1, employee_id_2):
     """
@@ -77,15 +96,18 @@ def find_feasible_days_swap(solution, scenario, k, employee_id_1, employee_id_2)
 
     return feasible_days
 
+
 def create_swap_info(employee_id_1, employee_id_2, start_index, k):
     swap_info = {}
 
     swap_info['employee_id_1'] = employee_id_1
     swap_info['employee_id_2'] = employee_id_2
     swap_info['start_index'] = start_index
-    swap_info['end_index'] = start_index - 1
+    swap_info['end_index'] = start_index + k - 1
+    swap_info['k'] = k
 
     return swap_info
+
 
 def check_one_way_swap(solution, k, feasible_days, employee_id_1, employee_id_2):
     """
@@ -94,18 +116,27 @@ def check_one_way_swap(solution, k, feasible_days, employee_id_1, employee_id_2)
     """
 
     for d_index in feasible_days:
+        # collect whether start index is infeasible
+        start_index_check = RuleH3().check_forbidden(solution.forbidden_shift_type_successions,
+                                    s_index_1=solution.shift_assignments[employee_id_2][d_index - 1][0],
+                                    s_index_2=solution.shift_assignments[employee_id_1][d_index][0]) \
+            if solution.shift_assignments[employee_id_2][d_index - 1][0] != -1 and solution.shift_assignments[employee_id_1][d_index][0] !=-1\
+            else False
 
-        if RuleH3().check_forbidden(solution.forbidden_shift_type_successions,
-                                            s_index_1=solution.shift_assignments[employee_id_2][d_index-1][0],
-                                            s_index_2=solution.shift_assignments[employee_id_1][d_index][0]) \
-            or RuleH3().check_forbidden(solution.forbidden_shift_type_successions,
-                                            s_index_1=solution.shift_assignments[employee_id_1][d_index+k-1][0],
-                                            s_index_2=solution.shift_assignments[employee_id_2][d_index+k][0]):
+        end_index_check = RuleH3().check_forbidden(solution.forbidden_shift_type_successions,
+                                            s_index_1=solution.shift_assignments[employee_id_1][d_index + k - 1][0],
+                                            s_index_2=solution.shift_assignments[employee_id_2][d_index + k][0]) \
+            if solution.shift_assignments[employee_id_1][d_index + k - 1][0] != -1 \
+            and solution.shift_assignments[employee_id_2][d_index + k][0] != -1 \
+            else False
+        if start_index_check or end_index_check:
             feasible_days.remove(d_index)
 
     return feasible_days
 
+
 def find_skill_compatible_employees(feasible_employees, employee_collection, infeasible_combinations):
+    # TODO add swaps that are not the same skill but perform the same skills
     compatible = False
     employee_id_1 = random.choice(feasible_employees)
     skill_set_id = employee_collection._collection[employee_id_1].skill_set_id
@@ -128,12 +159,6 @@ def find_skill_compatible_employees(feasible_employees, employee_collection, inf
 
     return employee_id_1, employee_id_2, compatible
 
+
 def find_sets_of_skill_compatible_employees(employee_collection, scenario):
     skill_set_indices = range(0, len(scenario.skill_sets))
-
-
-
-
-
-
-
