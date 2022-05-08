@@ -17,6 +17,7 @@ class Solution:
             self.day_collection = other_solution.day_collection
             self.rule_collection = other_solution.rule_collection
             self.rules = other_solution.rules
+            self.k_swap = other_solution.k_swap
 
             # employee shift assignments
             self.shift_assignments = other_solution.shift_assignments
@@ -26,7 +27,7 @@ class Solution:
 
             # H3
             self.forbidden_shift_type_successions = other_solution.forbidden_shift_type_successions
-            self.last_assigned_shifts = other_solution.last_assigned_shifts
+            self.last_assigned_shift = other_solution.last_assigned_shift
 
             # S1
             if 'S1' in self.rules:
@@ -39,11 +40,12 @@ class Solution:
 
             # S2Shift
             if 'S2ShiftMax' in self.rules:
-                self.historical_off_stretch = other_solution.historical_off_stretch
+                self.historical_shift_stretch = other_solution.historical_shift_stretch
                 self.shift_stretches = other_solution.shift_stretches
 
             # S3
             if 'S3Max' in self.rules:
+                self.historical_off_stretch = other_solution.historical_off_stretch
                 self.day_off_stretches = other_solution.day_off_stretches
 
             # S5 number of assignments
@@ -240,6 +242,43 @@ class Solution:
         self.obj_value += change_info['cost_increment']
         self.violation_array += change_info['violation_increment']
 
+    def update_solution_operator(self, operator_name, operator_info):
+        if operator_name == "change":
+            self.update_solution_change(operator_info)
+        elif operator_name == "swap":
+            self.update_solution_swap(operator_info)
+
+    def update_information_swap(self, solution, swap_info):
+        for rule in self.rule_collection.soft_rule_collection.collection.values():
+            solution = rule.update_information_swap(solution=solution, swap_info=swap_info)
+
+    def update_solution_swap(self, swap_info):
+        """
+        Function to implement all changes after swap in the solution
+        """
+        self.update_information_swap(solution=self, swap_info=swap_info)
+
+        # swap assignment of nurses in shift assignment
+        self.swap_assignments(swap_info['start_index'], swap_info['end_index'],
+                              swap_info['employee_id_1'], swap_info['employee_id_2'])
+
+        # change objective value
+        self.obj_value += swap_info['cost_increment']
+        self.violation_array += swap_info['violation_increment']
+
+    def swap_assignments(self, start_index, end_index, employee_id_1, employee_id_2):
+        # TODO check whether swap is made
+        # save stretch of employee 1
+        stretch_1 = self.shift_assignments[employee_id_1][start_index:end_index+1, ].copy()
+
+        # replace stretch of employee 1 with the one from employee 2
+        self.shift_assignments[employee_id_1][start_index:end_index+1, ] \
+            = self.shift_assignments[employee_id_2][start_index:end_index+1, ]
+
+        # replace stretch of employee 1 with the one from employee 2
+        self.shift_assignments[employee_id_2][start_index:end_index+1, ] \
+            = stretch_1
+
     def calc_objective_value(self, scenario, rule_collection):
         """
         Function to calculate the objective value of a solution based on the
@@ -280,34 +319,6 @@ class Solution:
         stretch_object_employee[start_index] = {"end_index": end_index,
                                                 "length": end_index-start_index+1}
         return stretch_object_employee
-
-
-    # def create_skill_counter(self):
-    #     """
-    #     Function to create skill counter
-    #     :return:
-    #     Array with dimensions num_days x num_shift_types x (sum of skill sets x skills per skill set)
-    #     """
-    #
-    #     dim_skills = sum([len(skill_set) for skill_set in self.scenario.skill_set_collection.collection.values()])
-    #     return np.zeros((self.scenario.num_days_in_horizon, self.scenario.num_shift_types, dim_skills))
-
-    # def update_skill_counter(self, day_index, s_type_index, skill_index, skill_set_index, add=True, increment=1):
-    #     """
-    #     Function to change skill counter upon assignment
-    #     :return:
-    #     skill_counter object
-    #     """
-    #     # calc where to change the skill counter
-    #     skill_index_to_change = self.scenario.skill_set_collection.collection[skill_set_index].start_index + \
-    #                             self.scenario.skill_set_collection.collection[skill_set_index].get_index_in_set(
-    #                                 skill_index)
-    #     if add:
-    #         self.skill_counter[day_index, s_type_index, skill_index_to_change] += increment
-    #     else:
-    #         self.skill_counter[day_index, s_type_index, skill_index_to_change] -= increment
-
-
 
 
 

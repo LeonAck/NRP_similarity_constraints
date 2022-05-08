@@ -31,10 +31,10 @@ class Instance:
         self.history_data = self.simplify_history_data()
 
         # get history data per employee
-        self.last_assigned_shifts = self.collect_history_data_per_employee(feature='lastAssignedShiftType')
-        self.history_working_streak = self.collect_history_data_per_employee(feature='numberOfConsecutiveWorkingDays')
-        self.history_off_streak = self.collect_history_data_per_employee(feature='numberOfConsecutiveDaysOff')
-        self.history_shift_streak = self.collect_history_data_per_employee(feature='numberOfConsecutiveAssignments')
+        self.last_assigned_shift = self.collect_history_data_per_employee(feature='lastAssignedShiftType')
+        self.historical_work_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveWorkingDays')
+        self.historical_off_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveDaysOff')
+        self.historical_shift_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveAssignments')
 
     def collect_history_data_per_employee(self, feature):
         last_assigned_shifts = {}

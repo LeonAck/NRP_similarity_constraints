@@ -57,11 +57,11 @@ def run_one_stage(settings_file_path, stage_number=2):
 # scenario = Scenario(settings.stage_1_settings, instance)
 # init_solution = BuildSolution(scenario)
 # stage_1_solution = Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))
-
-if two_stage:
-    run_two_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
-else:
-    run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
+if __name__ == '__main__':
+    if two_stage:
+        run_two_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
+    else:
+        run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
 
 #cProfile.run("Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))", sort=1)
 

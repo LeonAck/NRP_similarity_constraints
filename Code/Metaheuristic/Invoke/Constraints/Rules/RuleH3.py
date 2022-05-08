@@ -38,11 +38,11 @@ class RuleH3(Rule):
                 number_of_violations += 1
 
         # count violations through history
-        elif d_index == 0 and solution.last_assigned_shifts[employee_id] != -1:
+        elif d_index == 0 and solution.last_assigned_shift[employee_id] != -1:
             if solution.shift_assignments[employee_id][d_index][0] \
                     in \
                     scenario.forbidden_shift_type_successions[
-                        solution.last_assigned_shifts[employee_id]][
+                        solution.last_assigned_shift[employee_id]][
                         1]:
                 number_of_violations += 1
 
@@ -88,11 +88,11 @@ class RuleH3(Rule):
                             change_info['d_index'] - 1][0]][
                         1]:
                 violation_counter += 1
-        elif change_info['d_index'] == 0 and solution.last_assigned_shifts[change_info['employee_id']] != -1:
+        elif change_info['d_index'] == 0 and solution.last_assigned_shift[change_info['employee_id']] != -1:
             if change_info['new_s_type'] \
                     in \
                     solution.forbidden_shift_type_successions[
-                        solution.last_assigned_shifts[change_info['employee_id']]][
+                        solution.last_assigned_shift[change_info['employee_id']]][
                         1]:
                 violation_counter += 1
 
@@ -120,11 +120,11 @@ class RuleH3(Rule):
                 1]:
                 violation_counter -= 1
 
-        elif change_info['d_index'] == 0 and solution.last_assigned_shifts[change_info['employee_id']] != -1:
+        elif change_info['d_index'] == 0 and solution.last_assigned_shift[change_info['employee_id']] != -1:
             if change_info['curr_s_type'] \
                     in \
                     solution.forbidden_shift_type_successions[
-                        solution.last_assigned_shifts[change_info['employee_id']]][
+                        solution.last_assigned_shift[change_info['employee_id']]][
                         1]:
                 violation_counter -= 1
 
@@ -216,8 +216,8 @@ class RuleH3(Rule):
                 for s_type in scenario.forbidden_shift_type_successions[shift_type_day_before][1]:
                     # delete forbidden shifts
                     allowed_shift_types = np.delete(allowed_shift_types, np.in1d(allowed_shift_types, s_type))
-        elif d_index == 0 and solution.last_assigned_shifts[employee_id] != -1:
-            for s_type in scenario.forbidden_shift_type_successions[solution.last_assigned_shifts[employee_id]][1]:
+        elif d_index == 0 and solution.last_assigned_shift[employee_id] != -1:
+            for s_type in scenario.forbidden_shift_type_successions[solution.last_assigned_shift[employee_id]][1]:
                 # delete forbidden shifts
                 allowed_shift_types = np.delete(allowed_shift_types, np.in1d(allowed_shift_types, s_type))
 
@@ -235,4 +235,12 @@ class RuleH3(Rule):
                                                         np.in1d(allowed_shift_types, succession[0]))
 
         return allowed_shift_types
+
+    def check_forbidden(self, forbidden_successions, s_index_1, s_index_2):
+        """
+        For two shift types, check whether they can follow each other
+        """
+
+        return s_index_2 in forbidden_successions[s_index_1][1]
+
 
