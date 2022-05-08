@@ -1,4 +1,5 @@
 from Invoke.Constraints.initialize_rules import Rule
+from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
 import numpy as np
 
 
@@ -42,3 +43,42 @@ class RuleS5Min(Rule):
             return 1
         else:
             return 0
+
+    def incremental_violations_swap(self, solution, swap_info):
+        # check the number of assignments per stretch
+        assignments_stretch_1 = RuleS5Max().count_assignments_in_stretch(solution,
+                                                                  swap_info['employee_id_1'],
+                                                                  swap_info['start_index'],
+                                                                  swap_info['end_index'])
+
+        assignments_stretch_2 = RuleS5Max().count_assignments_in_stretch(solution,
+                                                                  swap_info['employee_id_2'],
+                                                                  swap_info['start_index'],
+                                                                  swap_info['end_index'])
+        # check if nuber if the same
+        if assignments_stretch_1 == assignments_stretch_2:
+            return 0
+        else:
+            return self.incremental_violation_swap_per_employee(solution,
+                                                                swap_info['employee_id_1'],
+                                                                assignments_in_old_stretch=assignments_stretch_1,
+                                                                assignments_in_new_stretch=assignments_stretch_2) \
+                   + self.incremental_violation_swap_per_employee(solution,
+                                                                  swap_info['employee_id_2'],
+                                                                  assignments_in_old_stretch=assignments_stretch_2,
+                                                                  assignments_in_new_stretch=assignments_stretch_1)
+
+    def incremental_violation_swap_per_employee(self, solution, employee_id,
+                                                assignments_in_old_stretch,
+                                                assignments_in_new_stretch):
+        incremental_assignments = assignments_in_new_stretch - assignments_in_old_stretch
+
+        new_violations = np.maximum(self.parameter_per_employee[employee_id] -
+                                    (incremental_assignments
+                                    + solution.num_assignments_per_nurse[employee_id]), 0)
+
+        old_violations = np.maximum(
+            self.parameter_per_employee[employee_id] -
+            solution.num_assignments_per_nurse[employee_id], 0)
+
+        return new_violations - old_violations

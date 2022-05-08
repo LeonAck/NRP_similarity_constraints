@@ -54,6 +54,7 @@ class RuleS5Max(Rule):
                                                                   swap_info['employee_id_2'],
                                                                   swap_info['start_index'],
                                                                   swap_info['end_index'])
+
         # check if nuber if the same
         if assignments_stretch_1 == assignments_stretch_2:
             return 0
@@ -99,8 +100,6 @@ class RuleS5Max(Rule):
                                                                   swap_info['start_index'],
                                                                   swap_info['end_index'])
 
-        print("stretch_1", assignments_stretch_1)
-        print("stretch_2", assignments_stretch_2)
         # update the change of number of assignments due to swap
         if assignments_stretch_1 != assignments_stretch_2:
             solution.num_assignments_per_nurse[swap_info['employee_id_1']] += assignments_stretch_2 - assignments_stretch_1

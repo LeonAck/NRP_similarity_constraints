@@ -1,8 +1,8 @@
 {"instance_settings": {
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON",
-  "instance_name": "n030w4",
+  "instance_name": "n005w4",
   "history_file": 0,
-  "weeks": [1, 2],
+  "weeks": [1, 2, 3, 4],
   "two_stage": false
 },
   "stage_1_settings":
@@ -32,7 +32,8 @@
     "parameter_per_contract": false,
     "parameter_per_s_type": false,
     "penalty": 20,
-    "parameter_1": 0
+    "parameter_1": 0,
+        "swap": false
   },
   "H3": {
     "id": "H3",
@@ -42,7 +43,8 @@
     "parameter_per_contract": false,
     "parameter_per_s_type": false,
     "penalty": 20,
-    "parameter_1": 0
+    "parameter_1": 0,
+    "swap": true
   }
 
   }
@@ -71,7 +73,8 @@
                    "parameter_per_contract": false,
                    "parameter_per_s_type": false,
                    "penalty": 20,
-                   "parameter_1": 0
+                   "parameter_1": 0,
+                  "swap": false
                    },
             "H3":{"id": "H3",
              "is_mandatory": true,
@@ -80,16 +83,18 @@
              "parameter_per_contract": false,
                   "parameter_per_s_type": false,
              "penalty": 20,
-             "parameter_1": 0
+             "parameter_1": 0,
+              "swap": true
              },
              "S1":{"id": "S1",
             "is_mandatory": false,
-            "is_active": false,
+            "is_active": true,
             "is_horizontal": false,
              "parameter_per_contract": false,
                    "parameter_per_s_type": false,
             "penalty": 30,
-             "parameter_1": 0
+             "parameter_1": 0,
+               "swap": false
             },
             "S2Max": {"id":  "S2Max",
              "is_mandatory": false,
@@ -98,7 +103,8 @@
              "parameter_per_contract": true,
               "parameter_per_s_type": false,
              "penalty": 30,
-             "parameter_1": 0
+             "parameter_1": 0,
+              "swap": true
              },
              "S2Min": {"id": "S2Min",
              "is_mandatory": false,
@@ -107,7 +113,8 @@
              "parameter_per_contract": true,
             "parameter_per_s_type": false,
              "penalty": 30,
-             "parameter_1": 0
+             "parameter_1": 0,
+               "swap": true
              },
             "S2ShiftMax":{"id": "S2Shiftmax",
              "is_mandatory": false,
@@ -116,7 +123,8 @@
                           "parameter_per_contract": false,
                           "parameter_per_s_type": true,
              "penalty": 15,
-             "parameter_1": 0
+             "parameter_1": 0,
+              "swap": true
              },
             "S2ShiftMin":{"id": "S2ShiftMin",
              "is_mandatory": false,
@@ -125,7 +133,8 @@
               "parameter_per_contract": false,
             "parameter_per_s_type": true,
              "penalty": 15,
-             "parameter_1": 0
+             "parameter_1": 0,
+              "swap": true
              },
             "S3Max":{"id": "S3Max",
              "is_mandatory": false,
@@ -134,7 +143,8 @@
              "parameter_per_contract": true,
               "parameter_per_s_type": false,
              "penalty": 30,
-             "parameter_1": 0
+             "parameter_1": 0,
+              "swap": true
              },
             "S3Min":{"id": "S3Min",
              "is_mandatory": false,
@@ -143,7 +153,8 @@
              "parameter_per_contract": true,
               "parameter_per_s_type": false,
              "penalty": 30,
-             "parameter_1": 0
+             "parameter_1": 0,
+              "swap": true
              },
             "S4":{"id":  "S4",
              "is_mandatory": false,
@@ -152,7 +163,8 @@
              "parameter_per_contract": true,
             "parameter_per_s_type": false,
              "penalty": 30,
-             "parameter_1": 0
+             "parameter_1": 0,
+              "swap": true
              },
             "S5Max": {"id": "S5Max",
              "is_mandatory": false,
@@ -161,16 +173,18 @@
              "parameter_per_contract": true,
                        "parameter_per_s_type": false,
              "penalty": 20,
-             "parameter_1": 3
+             "parameter_1": 3,
+              "swap": true
              },
             "S5Min": {"id": "S5Min",
              "is_mandatory": false,
-             "is_active": false,
+             "is_active": true,
              "is_horizontal": true,
              "parameter_per_contract": true,
                        "parameter_per_s_type": false,
              "penalty": 20,
-             "parameter_1": 2
+             "parameter_1": 2,
+              "swap": true
              },
             "S6": {"id": "S6",
              "is_mandatory": false,
@@ -179,7 +193,8 @@
              "parameter_per_contract": true,
                    "parameter_per_s_type": false,
              "penalty": 30,
-             "parameter_1": 2
+             "parameter_1": 2,
+              "swap": true
              },
             "S7Day": {"id": "S7Day",
                         "is_mandatory": false,
@@ -188,7 +203,9 @@
                        "parameter_per_contract": false,
                    "parameter_per_s_type": false,
              "penalty": 10,
-             "parameter_1": 4},
+             "parameter_1": 4,
+            "swap": true},
+
             "S7Shift": {"id": "S7Shift",
                       "is_mandatory": false,
                       "is_active": false,
@@ -196,7 +213,8 @@
                       "parameter_per_contract": false,
                       "parameter_per_s_type": false,
                       "penalty": 6,
-                      "parameter_1": 4}
+                      "parameter_1": 4,
+            "swap": true}
         }
     }
 }

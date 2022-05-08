@@ -18,11 +18,11 @@ def swap_operator(solution, scenario):
     # add penalty to objective
     if swap_info['feasible']:
         swap_info["cost_increment"], swap_info['violation_increment'] \
-            = calc_new_costs_after_change(solution, swap_info)
+            = calc_new_costs_after_swap(solution, swap_info)
 
     return swap_info
 
-def calc_new_costs_after_change(solution, swap_info):
+def calc_new_costs_after_swap(solution, swap_info):
     """
     Function to calculate the number of violations given a change operations
     :return:
@@ -32,8 +32,8 @@ def calc_new_costs_after_change(solution, swap_info):
     violation_array = np.zeros(len(solution.rule_collection.soft_rule_collection))
     relevant_rules = solution.rule_collection.soft_rule_collection.collection
     for i, rule in enumerate(relevant_rules.values()):
-        violation_array[i] = rule.incremental_violations_swap(solution, swap_info)
-    # violation_array[8] = solution.rule_collection.soft_rule_collection.collection['S5Max'].incremental_violations_swap(solution, swap_info)
+        if rule.swap:
+            violation_array[i] = rule.incremental_violations_swap(solution, swap_info)
 
     return np.matmul(violation_array, solution.rule_collection.penalty_array), violation_array
 

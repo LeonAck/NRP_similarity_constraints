@@ -1,6 +1,7 @@
 import numpy as np
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS3Max import RuleS3Max
+from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
 from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
@@ -249,8 +250,8 @@ class Solution:
             self.update_solution_swap(operator_info)
 
     def update_information_swap(self, solution, swap_info):
-        for rule in self.rule_collection.soft_rule_collection.collection.values():
-            solution = rule.update_information_swap(solution=solution, swap_info=swap_info)
+        if "S5Max" in solution.rules:
+            solution = RuleS5Max().update_information_swap(solution, swap_info)
 
     def update_solution_swap(self, swap_info):
         """
