@@ -42,3 +42,69 @@ class RuleS5Max(Rule):
             return -1
         else:
             return 0
+
+    def incremental_violations_swap(self, solution, swap_info):
+        # check the number of assignments per stretch
+        assignments_stretch_1 = self.count_assignments_in_stretch(solution,
+                                                                  swap_info['employee_id_1'],
+                                                                  swap_info['start_index'],
+                                                                  swap_info['end_index'])
+
+        assignments_stretch_2 = self.count_assignments_in_stretch(solution,
+                                                                  swap_info['employee_id_2'],
+                                                                  swap_info['start_index'],
+                                                                  swap_info['end_index'])
+        # check if nuber if the same
+        if assignments_stretch_1 == assignments_stretch_2:
+            return 0
+        else:
+            return self.incremental_violation_swap_per_employee(solution,
+                                                                swap_info['employee_id_1'],
+                                                                assignments_in_old_stretch=assignments_stretch_1,
+                                                                assignments_in_new_stretch=assignments_stretch_2) \
+                + self.incremental_violation_swap_per_employee(solution,
+                                                                swap_info['employee_id_2'],
+                                                                assignments_in_old_stretch=assignments_stretch_2,
+                                                                assignments_in_new_stretch=assignments_stretch_1)
+
+    def count_assignments_in_stretch(self, solution, employee_id, start_index, end_index):
+        """
+        Function to count number of assignments in a set of days
+        """
+        return sum([assignment[0] != -1 for assignment in
+             solution.shift_assignments[employee_id][start_index:end_index+1, ]])
+
+    def incremental_violation_swap_per_employee(self, solution, employee_id,
+                                                assignments_in_old_stretch,
+                                                assignments_in_new_stretch):
+        incremental_assignments = assignments_in_new_stretch - assignments_in_old_stretch
+
+        new_violations = np.maximum(incremental_assignments
+                         + solution.num_assignments_per_nurse[employee_id]
+                         - self.parameter_per_employee[employee_id], 0)
+        old_violations = np.maximum(
+            solution.num_assignments_per_nurse[employee_id]
+            -self.parameter_per_employee[employee_id], 0)
+
+        return new_violations - old_violations
+
+    def update_information_swap(self, solution, swap_info):
+        assignments_stretch_1 = self.count_assignments_in_stretch(solution,
+                                                                  swap_info['employee_id_1'],
+                                                                  swap_info['start_index'],
+                                                                  swap_info['end_index'])
+
+        assignments_stretch_2 = self.count_assignments_in_stretch(solution,
+                                                                  swap_info['employee_id_2'],
+                                                                  swap_info['start_index'],
+                                                                  swap_info['end_index'])
+
+        print("stretch_1", assignments_stretch_1)
+        print("stretch_2", assignments_stretch_2)
+        # update the change of number of assignments due to swap
+        if assignments_stretch_1 != assignments_stretch_2:
+            solution.num_assignments_per_nurse[swap_info['employee_id_1']] += assignments_stretch_2 - assignments_stretch_1
+            solution.num_assignments_per_nurse[swap_info['employee_id_2']] += assignments_stretch_1 - assignments_stretch_2
+
+        return solution
+

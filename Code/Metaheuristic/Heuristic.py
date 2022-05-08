@@ -2,10 +2,12 @@ import time
 import random
 import numpy as np
 from Invoke.Operators import change_operator
+from Invoke.Operators.swap_operator import swap_operator
 from solution import Solution
 from Check.check_function_feasibility import FeasibilityCheck
 from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
 from copy import deepcopy
+from pprint import pprint
 class Heuristic:
     """
     Class to create the heuristic
@@ -25,7 +27,8 @@ class Heuristic:
         self.no_improve_max = heuristic_settings['no_improve_max']
 
         # introduce objects necessary for algorithm
-        self.operators = {"change": change_operator}
+        self.operator_collection = {"change": change_operator, "swap": swap_operator}
+        self.operators_to_use = heuristic_settings['operators']
 
         # Weight parameters
         self.reaction_factor = heuristic_settings['reaction_factor']
@@ -58,6 +61,8 @@ class Heuristic:
         # take initial solution as best solution
         best_solution = Solution(starting_solution)
 
+        FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info=None)
+
         # Initialize tracking
         # number of iterations
         # number of iterations without improvement
@@ -82,20 +87,24 @@ class Heuristic:
                 print(current_solution.violation_array)
                 print("\nIteration: ", n_iter)
             print(current_solution.violation_array)
+            pprint(current_solution.num_assignments_per_nurse)
 
             # choose operator
-            operator_name = self.roulette_wheel_selection(self.operators)
+            operator_name = self.roulette_wheel_selection(self.operators_to_use)
             self.update_frequency_operator(operator_name)
-            change_info = self.operators[operator_name](current_solution, self.scenario)
-            if not change_info['feasible']:
+
+            operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
+            if not operator_info['feasible']:
                 print("no feasible change")
                 break
             # print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
-            change_counters = self.update_change_counter(change_counters, change_info)
+
+            if operator_name == "change":
+                change_counters = self.update_change_counter(change_counters, operator_info)
             no_improve_iter += 1
-            if change_info['cost_increment'] <= 0:
+            if operator_info['cost_increment'] <= 0:
                 # update solutions accordingly
-                current_solution.update_solution_change(change_info)
+                current_solution.update_solution_operator(operator_name, operator_info)
                 # check if best. Then current solution, becomes the best solution
                 if current_solution.obj_value < best_solution.obj_value:
                     best_solution = Solution(current_solution)
@@ -104,10 +113,10 @@ class Heuristic:
 
             else:
                 # check if solution is accepted
-                accepted = self.acceptance_simulated_annealing(change_info)
+                accepted = self.acceptance_simulated_annealing(operator_info)
                 if accepted:
                     # update solutions accordingly
-                    current_solution.update_solution_change(change_info)
+                    current_solution.update_solution_operator(operator_name, operator_info)
 
             if no_improve_iter > self.no_improve_max:
                 current_solution = Solution(best_solution)
@@ -120,13 +129,14 @@ class Heuristic:
             self.update_temperature()
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            if "S2Max" in current_solution.rules:
-                FeasibilityCheck().work_stretches_info(current_solution, self.scenario, change_info)
-            if "S3Max" in current_solution.rules:
-                FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
-            if "S2ShiftMax" in current_solution.rules:
-                FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
-            FeasibilityCheck().check_violation_array(current_solution, self.scenario, change_info)
+            # if "S2Max" in current_solution.rules:
+            #     FeasibilityCheck().work_stretches_info(current_solution, self.scenario, change_info)
+            # if "S3Max" in current_solution.rules:
+            #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
+            # if "S2ShiftMax" in current_solution.rules:
+            #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
+            FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
@@ -212,13 +222,13 @@ class Heuristic:
         # Obtain the total sum of the weights
         total_weights = sum([
             value for key, value in self.operator_weights.items()
-            if key in operators.keys()])
+            if key in operators])
 
         # Pick a random number
         pick = random.uniform(0, total_weights)
 
         current = 0
-        for name in operators.keys():
+        for name in operators:
             current += self.operator_weights[name]
 
             # Choose the name of operator
@@ -286,8 +296,8 @@ class Heuristic:
         operator_weights = {}
 
         # Assign weights to each of the used destroy operators
-        for operator_name in self.operators.keys():
+        for operator_name in self.operators_to_use:
             operator_weights[operator_name] = \
-                1 / len(self.operators)
+                1 / len(self.operators_to_use)
 
         return operator_weights

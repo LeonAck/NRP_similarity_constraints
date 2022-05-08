@@ -24,6 +24,9 @@ class BuildSolution(Solution):
         self.rule_collection = scenario.rule_collection
         self.rules = list(self.rule_collection.collection.keys())
 
+        # set parameter
+        self.k_swap = scenario.stage_settings['heuristic_settings']['k_swap']
+
         if previous_solution:
             self.shift_assignments = previous_solution.shift_assignments
             self.diff_min_request = previous_solution.diff_min_request

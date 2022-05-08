@@ -25,6 +25,9 @@ class EmployeeCollection:
         """
         return EmployeeCollection([employee for employee in self._collection.values() if employee.has_skill(skill)])
 
+    def get_employee_w_skillset(self, skill_set_id):
+        return EmployeeCollection([employee for employee in self._collection.values() if employee.skill_set_id == skill_set_id])
+
     def get_nurse_w_s_sk_assignment(self, assignment_tuple):
         """
         Collect employees that work a specific shift skill combination for certain day

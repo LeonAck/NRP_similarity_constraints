@@ -3,8 +3,7 @@ from deepdiff import DeepDiff
 import pprint
 from Invoke.Initial_solution.initial_solution import BuildSolution
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
-from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
-from Invoke.Constraints.Rules.RuleS1 import RuleS1
+from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
 
 class FeasibilityCheck:
     """
@@ -223,8 +222,13 @@ class FeasibilityCheck:
             flag = False
 
         return flag
+    def check_violation_array(self, solution, scenario, operator_info, operator_name):
+        if operator_name == "change":
+            return self.check_violation_array_change(solution, scenario, operator_info)
+        elif operator_name == "swap":
+            return self.check_violation_array_swap(solution, scenario, operator_info)
 
-    def check_violation_array(self, solution, scenario, change_info):
+    def check_violation_array_change(self, solution, scenario, change_info):
         """
         Check whether tracked violations are different from calculated
         """
@@ -232,17 +236,17 @@ class FeasibilityCheck:
         calc_violations = solution.get_violations(scenario, scenario.rule_collection)
         for i, violation in enumerate(solution.violation_array):
             if calc_violations[i] != violation:
-                print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-                print("current working: {}, new working: {}".format(change_info['current_working'],
-                                                                    change_info['new_working']))
+                # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+                # print("current working: {}, new working: {}".format(change_info['current_working'],
+                #                                                     change_info['new_working']))
 
                 print("number of violation for soft constraint {} is tracked {} and calc {}".format(
                     i, violation, calc_violations[i]
                 ))
-                if change_info['current_working']:
-                    print("current shift type", change_info['curr_s_type'])
-                if change_info['new_working']:
-                    print("new shift type", change_info['new_s_type'])
+                # if change_info['current_working']:
+                #     print("current shift type", change_info['curr_s_type'])
+                # if change_info['new_working']:
+                #     print("new shift type", change_info['new_s_type'])
                 # print("past: {}, present: {}, future: {}".format(
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
                 #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
@@ -257,7 +261,24 @@ class FeasibilityCheck:
                 # print("actual assignments: ",
                 #       RuleS1().count_assignments_day_shift_skill(solution, change_info["d_index"],
                 #                                                  change_info["new_s_type"], change_info["new_sk_type"]))
-                print(solution.shift_assignments[change_info['employee_id']][:, 0])
+                # print(solution.shift_assignments[change_info['employee_id']][:, 0])
+
+                flag = False
+
+        return flag
+
+    def check_violation_array_swap(self, solution, scenario, swap_info):
+        flag = True
+        calc_violations = solution.get_violations(scenario, scenario.rule_collection)
+        for i, violation in enumerate(solution.violation_array):
+            if calc_violations[i] != violation:
+                # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+                # print("current working: {}, new working: {}".format(change_info['current_working'],
+                #                                                     change_info['new_working']))
+
+                print("number of violation for soft constraint {} is tracked {} and calc {}".format(
+                    i, violation, calc_violations[i]
+                ))
 
                 flag = False
 
@@ -312,5 +333,22 @@ class FeasibilityCheck:
             print("hi")
 
         return flag
+
+    def check_number_of_assignments_per_nurse(self, solution, scenario, operator_info):
+        flag = True
+        calc_num_assignments = {}
+        for employee_id in scenario.employees._collection.keys():
+            calc_num_assignments[employee_id] = RuleS5Max().count_assignments_in_stretch(solution, employee_id,
+                                                                                         0, scenario.num_days_in_horizon-1)
+        deepdiff = DeepDiff(calc_num_assignments, solution.num_assignments_per_nurse)
+
+        if deepdiff:
+            pprint.pprint(operator_info)
+            pprint.pprint(deepdiff)
+            flag = False
+
+        return flag
+
+
 
 
