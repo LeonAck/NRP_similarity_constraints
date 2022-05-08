@@ -43,6 +43,9 @@ class RuleCollection:
 
         self.soft_rule_collection = self.collect_soft_rules()
 
+        # collect rules for which the swap operator is relevant
+        self.soft_rule_swap_collection = RuleCollection([rule for rule in self.collection.values() if not rule.is_mandatory and rule.swap])
+
         if self.soft_rule_collection.collection:
             self.penalty_array = self.create_penalty_array()
 
@@ -76,6 +79,7 @@ class Rule:
             self.is_mandatory = rule_spec["is_mandatory"]
             self.penalty = rule_spec["penalty"]
             self.is_horizontal = rule_spec["is_horizontal"]
+            self.swap = rule_spec['swap']
             if rule_spec["parameter_per_contract"]:
                 self.parameter_per_employee = self.get_parameter_per_employee(employees,
                                                                               rule_spec['parameter_1'])

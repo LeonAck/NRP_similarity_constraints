@@ -280,6 +280,11 @@ class FeasibilityCheck:
                     i, violation, calc_violations[i]
                 ))
 
+                if i == 0:
+                    pprint.pprint(swap_info)
+                    print(solution.shift_assignments[swap_info['employee_id_1']])
+                    print(solution.shift_assignments[swap_info['employee_id_2']])
+
                 flag = False
 
         return flag
