@@ -250,6 +250,8 @@ class Solution:
             self.update_solution_swap(operator_info)
 
     def update_information_swap(self, solution, swap_info):
+        if "S2Max" in solution.rules:
+            solution = RuleS2Max().update_information_swap(solution, swap_info, "work_stretches")
         if "S5Max" in solution.rules:
             solution = RuleS5Max().update_information_swap(solution, swap_info)
 
@@ -268,7 +270,7 @@ class Solution:
         self.violation_array += swap_info['violation_increment']
 
     def swap_assignments(self, start_index, end_index, employee_id_1, employee_id_2):
-        # TODO check whether swap is made
+
         # save stretch of employee 1
         stretch_1 = self.shift_assignments[employee_id_1][start_index:end_index+1, ].copy()
 
@@ -316,7 +318,7 @@ class Solution:
         return self.shift_assignments[employee_id][d_index_1][0] \
                == self.shift_assignments[employee_id][d_index_2][0]
 
-    def create_work_stretch(self, stretch_object_employee, start_index, end_index):
+    def create_stretch(self, stretch_object_employee, start_index, end_index):
         stretch_object_employee[start_index] = {"end_index": end_index,
                                                 "length": end_index-start_index+1}
         return stretch_object_employee

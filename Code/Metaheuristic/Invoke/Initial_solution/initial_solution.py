@@ -1,6 +1,3 @@
-"""
-Set to create initial solution
-"""
 import numpy as np
 import itertools
 from pprint import pprint
@@ -54,7 +51,6 @@ class BuildSolution(Solution):
             self.last_assigned_shift = scenario.last_assigned_shift
             self.historical_work_stretch = scenario.historical_work_stretch
             self.work_stretches = self.collect_work_stretches(solution=self)
-
 
         # S2Shift collect shift stretches
         if 'S2ShiftMax' in self.rules:
@@ -219,7 +215,7 @@ class BuildSolution(Solution):
                         old_start=0)
                 else:
                     # add new stretch to history
-                    work_stretch_employee = solution.create_work_stretch(
+                    work_stretch_employee = solution.create_stretch(
                         stretch_object_employee=work_stretch_employee,
                         start_index=-self.historical_work_stretch[employee_id],
                         end_index=-1)
@@ -251,7 +247,7 @@ class BuildSolution(Solution):
                         old_start=0)
                 else:
                     # add new stretch to history
-                    day_off_stretch_employee = solution.create_work_stretch(
+                    day_off_stretch_employee = solution.create_stretch(
                         stretch_object_employee=day_off_stretch_employee,
                         start_index=-self.historical_off_stretch[employee_id],
                         end_index=-1)
@@ -320,7 +316,7 @@ class BuildSolution(Solution):
                             old_start=0)
                     else:
                         # add new stretch to history
-                        shift_stretch_employee_shift = solution.create_work_stretch(
+                        shift_stretch_employee_shift = solution.create_stretch(
                             stretch_object_employee=shift_stretch_employee_shift,
                             start_index=-self.historical_shift_stretch[employee_id],
                             end_index=-1)

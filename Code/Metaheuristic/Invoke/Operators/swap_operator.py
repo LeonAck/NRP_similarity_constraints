@@ -1,4 +1,5 @@
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
+from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 import random
 import numpy as np
 
@@ -14,6 +15,9 @@ def swap_operator(solution, scenario):
     """
     # get a change that is allowed by hard constraints
     swap_info = get_feasible_swap(solution, scenario, solution.k_swap)
+
+    # get stretch information for swap
+    swap_info = get_stretch_information_swap(solution, swap_info)
 
     # add penalty to objective
     if swap_info['feasible']:
@@ -33,7 +37,8 @@ def calc_new_costs_after_swap(solution, swap_info):
     relevant_rules = solution.rule_collection.soft_rule_collection.collection
     for i, rule in enumerate(relevant_rules.values()):
         if rule.swap:
-            violation_array[i] = rule.incremental_violations_swap(solution, swap_info)
+            print(rule.id)
+            violation_array[i] = rule.incremental_violations_swap(solution, swap_info, rule.id)
 
     return np.matmul(violation_array, solution.rule_collection.penalty_array), violation_array
 
@@ -160,10 +165,6 @@ def find_skill_compatible_employees(feasible_employees, employee_collection, inf
 
     return employee_id_1, employee_id_2, compatible
 
-
-def find_sets_of_skill_compatible_employees(employee_collection, scenario):
-    skill_set_indices = range(0, len(scenario.skill_sets))
-
 def swap_assignments(solution, d_index, employee_id_1, employee_id_2):
     # save stretch of employee 1
     stretch_1 = solution.shift_assignments[employee_id_1][d_index:d_index+solution.k_swap-1, ]
@@ -177,3 +178,30 @@ def swap_assignments(solution, d_index, employee_id_1, employee_id_2):
         = stretch_1
 
     return solution
+
+def get_stretch_information_swap(solution, swap_info):
+    """
+    Function to find for the exchanged streaks of consecutive days
+    the work, off and shift stretches in the streak
+    We only save the stretches that are completely in the streak
+    """
+    if "S2Max" or "S2Min" in solution.rules:
+        swap_info = stretches_in_range(solution, swap_info, solution.work_stretches, "work_stretches")
+        swap_info['work_stretches_new'] = RuleS2Max().collect_new_stretches(solution, solution.work_stretches,
+                                                                                swap_info)
+    return swap_info
+
+def stretches_in_range(solution, swap_info, stretch_object, object_name):
+    # TODO only get stretches that are not in the outside days
+    day_range = range(swap_info['start_index']+1, swap_info['end_index'])
+
+    for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+        stretches_in_swap = {}
+        for key, value in stretch_object[employee_id].items():
+            if key in day_range and value['end_index'] in day_range:
+                stretches_in_swap[key] = value
+
+        swap_info['{}_{}'.format(object_name, i+1)] = stretches_in_swap
+
+    return swap_info
+

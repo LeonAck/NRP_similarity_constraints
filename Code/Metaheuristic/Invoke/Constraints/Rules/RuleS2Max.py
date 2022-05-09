@@ -1,5 +1,6 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
+from copy import deepcopy
 
 
 class RuleS2Max(Rule):
@@ -15,32 +16,16 @@ class RuleS2Max(Rule):
         """
         Function to count violations in the entire solution
         """
-        return sum([self.count_violations_employee(solution, employee_id)
+        return sum([self.count_violations_employee(solution.work_stretches[employee_id], employee_id)
                     for employee_id in scenario.employees._collection.keys()])
 
-    def count_violations_employee(self, solution, employee_id):
+    def count_violations_employee(self, stretch_object_employee, employee_id):
         """
         Function to count violations for an employee
         """
         return sum([work_stretch['length'] - self.parameter_per_employee[employee_id]
-                    for work_stretch in solution.work_stretches[employee_id].values()
+                    for work_stretch in stretch_object_employee.values()
                     if work_stretch['length'] > self.parameter_per_employee[employee_id]])
-
-    def find_work_stretch_end(self, solution, employee_id, d_index):
-        """
-        Find key of work stretch given that d_index is the last day
-        """
-        for s_index, work_stretch in solution.work_stretches[employee_id].items():
-            if work_stretch['end_index'] == d_index:
-                return s_index
-
-    def find_work_stretch_middle(self, solution, employee_id, d_index):
-        """
-       Find key of work stretch given that d_index is the last day
-       """
-        for s_index, work_stretch in solution.work_stretches[employee_id].items():
-            if d_index in range(s_index+1, work_stretch['end_index']):
-                return s_index
 
     def update_information_off_to_assigned(self, solution, change_info):
         """
@@ -117,23 +102,6 @@ class RuleS2Max(Rule):
              and solution.check_if_working_day(employee_id, d_index - 1):
 
             start_index = self.find_work_stretch_middle(solution, employee_id, d_index)
-            # # add new key value for second new work stretch
-            # solution.work_stretches[employee_id][
-            #     d_index + 1] \
-            #     = {
-            #     'end_index': solution.work_stretches[
-            #         employee_id][
-            #         start_index]['end_index'],
-            #     'length': solution.work_stretches[
-            #                   employee_id][
-            #                   start_index]['end_index'] - d_index
-            # }
-            #
-            # # change end index and length of first new work stretch
-            # solution.work_stretches[employee_id][start_index]['end_index'] \
-            #     = d_index - 1
-            # solution.work_stretches[employee_id][start_index]['length'] \
-            #     = d_index - start_index
 
             solution.work_stretches[employee_id] \
                 = RuleS2Max().split_stretch(
@@ -152,7 +120,7 @@ class RuleS2Max(Rule):
                     new_start=d_index + 1)
 
                 # create new stretch for historical stretch
-                solution.work_stretches[employee_id] = solution.create_work_stretch(
+                solution.work_stretches[employee_id] = solution.create_stretch(
                     stretch_object_employee=solution.work_stretches[employee_id],
                     start_index=-solution.historical_work_stretch[employee_id],
                     end_index=-1)
@@ -214,17 +182,7 @@ class RuleS2Max(Rule):
                 and solution.check_if_working_day(employee_id, d_index + 1) \
                 and solution.check_if_working_day(employee_id, d_index - 1):
             start_index = self.find_work_stretch_end(solution, employee_id, d_index-1)
-            # # calc previous violations of the separate work stretches
-            # previous_violations = np.maximum(
-            #     solution.work_stretches[employee_id][
-            #         d_index + 1]['length'] - employee_parameter, 0) \
-            #                       + np.maximum(
-            #     solution.work_stretches[employee_id][start_index]['length'] - employee_parameter, 0)
-            #
-            # new_violations = np.maximum((solution.work_stretches[employee_id][
-            #                        d_index + 1]['length']
-            #                    + solution.work_stretches[employee_id][start_index][
-            #                        'length'] + 1) - employee_parameter, 0)
+
             return self.calc_incremental_violations_merge_stretch(solution.work_stretches[employee_id], rule_parameter=employee_parameter,
                                                            start_index_1=start_index, start_index_2=d_index+1)
 
@@ -232,20 +190,11 @@ class RuleS2Max(Rule):
         elif not solution.check_if_last_day(d_index) \
                 and solution.check_if_working_day(employee_id, d_index + 1):
             if d_index == 0 and solution.historical_work_stretch[employee_id] > 0:
-                # previous_violations = np.maximum(
-                #     solution.work_stretches[employee_id][
-                #         d_index + 1]['length'] - employee_parameter,
-                #     0)
-                # # adapt violations compared to whether there is history before
-                # new_violations = np.maximum(solution.work_stretches[employee_id][
-                #                                 d_index + 1]['length']
-                #                             + solution.historical_work_stretch[
-                #                                 employee_id] + 1 - employee_parameter, 0)
 
                 # return new_violations - previous_violations
                 return self.calc_incremental_violations_merge_stretch(solution.work_stretches[employee_id], rule_parameter=employee_parameter,
                                                            start_index_1=-solution.historical_work_stretch[
-                                                employee_id], start_index_2=d_index+1, history=True)
+                                                employee_id], start_index_2=d_index+1)
             else:
                 return 1 if solution.work_stretches[employee_id][
                                 d_index + 1]['length'] >= employee_parameter \
@@ -287,17 +236,323 @@ class RuleS2Max(Rule):
                          - new_violations_1
                          - np.maximum(split_2 - employee_parameter, 0))
 
+    def update_information_swap(self, solution, swap_info, stretch_name):
+        """
+        function to update the information collected
+        """
+        solution.work_stretches = swap_info['{}_new'.format(stretch_name)]
+
+        return solution
+
+    def collect_new_stretches(self, solution, stretch_object, swap_info):
+        # adjust stretches for edges
+        stretch_object_copy = self.update_stretch_incoming(solution,
+                                                           stretch_object,
+                                                           swap_info)
+        # swap stretches inside
+        stretch_object_copy = self.swap_stretches(swap_info, stretch_object_copy, "work_stretches")
+
+        return stretch_object_copy
+
+    def incremental_violations_swap(self, solution, swap_info, rule_id):
+        """
+        Function to calculate the incremental violations after a swap operation
+        """
+        if rule_id == "S2Max":
+            stretch_name = 'work_stretches'
+            stretch_object = solution.work_stretches
+        incremental_violations = 0
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            old_violations = self.count_violations_employee(stretch_object[employee_id], employee_id)
+            new_violations = self.count_violations_employee(swap_info['{}_new'.format(stretch_name)][employee_id], employee_id)
+            incremental_violations += new_violations - old_violations
+        return incremental_violations
+
+    def swap_stretches(self, swap_info, stretch_object, stretch_name):
+        """
+        Function to swap the information of the stretches between two employees
+        that are affected by the swap operation
+        """
+        # TODO only carry over the stretches that are not in the outside
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            # remove the keys that are in the swapped days
+            stretch_object[employee_id] = {k: stretch_object[employee_id][k] for k in set(stretch_object[employee_id]) - set(swap_info["{}_{}".format(stretch_name, i + 1)])}
+
+            # add key, value pairs that are in the day range of the other nurses
+            stretch_object[employee_id].update(swap_info["{}_{}".format(stretch_name, 2-i)])
+
+        return stretch_object
+
+    def calc_incremental_violations_merge_stretch(self, stretch_object_employee, rule_parameter, start_index_1, start_index_2):
+
+        previous_violations = np.maximum(
+            stretch_object_employee[
+                start_index_2]['length'] - rule_parameter, 0) \
+                              + np.maximum(
+            stretch_object_employee[start_index_1]['length'] - rule_parameter, 0)
+
+        new_violations = np.maximum((stretch_object_employee[
+                                         start_index_2]['length']
+                                     + stretch_object_employee[start_index_1][
+                                         'length'] + 1) - rule_parameter, 0)
+        return new_violations - previous_violations
+
+    def update_stretch_incoming(self, solution, stretch_object, swap_info):
+        """
+        Update the stretches for the incoming swap from the other employee's assignments
+        if no upcoming stretch, shorten the existing stretch
+        """
+        stretch_object_copy = deepcopy(stretch_object)
+        stretch_object_copy = self.update_stretch_incoming_start(solution, stretch_object, stretch_object_copy, swap_info)
+        self.check_length(stretch_object_copy)
+        stretch_object_copy = self.update_stretch_incoming_end(solution, stretch_object, stretch_object_copy, swap_info)
+
+        return stretch_object_copy
+
+    # def remove_left_over_stretches(self, stretch_object_copy, swap_info):
+    #     # check if there are starting indices left to remove
+    #     for employee_id in [swap_info['employee_id_1'], swap_info['employee_id_2']]:
+    #         if swap_info['start_index']
+
+
+    def update_stretch_incoming_end(self, solution, stretch_object, stretch_object_copy, swap_info):
+        """
+        Function to update stretches on the end of the swap
+        """
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            other_employee_id = swap_info['employee_id_{}'.format(2-i)]
+
+            # merge incoming and present stretch
+            if solution.check_if_working_day(employee_id, swap_info['end_index']+1) \
+                    and solution.check_if_working_day(other_employee_id, swap_info['end_index']):
+                start_index_1 = self.find_stretch(stretch_object[employee_id], swap_info['end_index']+1)
+                start_index_2 = self.find_stretch(stretch_object[other_employee_id], swap_info['end_index'])
+                stretch_object_copy[employee_id] = self.extend_stretch_pre_copy(stretch_object[employee_id],
+                                                                           stretch_object_copy[employee_id],
+                                                                           old_start=start_index_1,
+                                                                           new_start=start_index_2)
+            # check if old stretch over border is unmatched
+            elif solution.check_if_working_day(employee_id, swap_info['end_index']) \
+                and solution.check_if_working_day(employee_id, swap_info['end_index']+1):
+                start_index = self.find_stretch(stretch_object[employee_id], swap_info['end_index'])
+                stretch_object_copy[employee_id] = self.shorten_stretch_pre_copy(stretch_object[employee_id],
+                                                                                 stretch_object_copy[employee_id],
+                                                                           old_start=start_index,
+                                                                           new_start=swap_info['end_index']+1)
+            # check if both incoming and present on the same day
+            elif solution.check_if_working_day(employee_id, swap_info['end_index']) \
+                and solution.check_if_working_day(other_employee_id, swap_info['end_index']):
+                start_index_2 = self.find_stretch(stretch_object[other_employee_id], swap_info['end_index'])
+                stretch_object_copy = self.update_same_day_stretches_end(stretch_object,
+                                                                         stretch_object_copy,
+                                                                         employee_id,
+                                                                         other_employee_id,
+                                                                         swap_info,
+                                                                         start_index_2)
+            # check if incoming stretch unmatched
+            elif solution.check_if_working_day(other_employee_id, swap_info['end_index']):
+                start_index = self.find_stretch(stretch_object[other_employee_id], swap_info['end_index'])
+                stretch_object_copy[employee_id] = solution.create_stretch(stretch_object_copy[employee_id],
+                                                                           start_index=start_index,
+                                                                           end_index=swap_info['end_index'])
+
+            # check remove outgoing stretch
+            elif solution.check_if_working_day(other_employee_id, swap_info['end_index']):
+                start_index = self.find_stretch(stretch_object[employee_id], swap_info['end_index'])
+                del stretch_object_copy[employee_id][start_index]
+
+        return stretch_object_copy
+
+    def update_stretch_incoming_start(self, solution, stretch_object, stretch_object_copy, swap_info):
+        print("update)_start")
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            other_employee_id = swap_info['employee_id_{}'.format(2-i)]
+
+            # check if first day
+            if swap_info['start_index'] == 0:
+                # check if a stretch should be merged
+                if solution.historical_work_stretch[employee_id] > 0 and solution.check_if_working_day(other_employee_id,
+                                                                                                       swap_info[
+                                                                                                           'start_index']):
+                    start_index_2 = self.find_stretch(stretch_object[other_employee_id], swap_info['start_index'])
+                    stretch_object_copy = self.merge_stretches_different_objects(stretch_object_copy,
+                                                                                            stretch_object,
+                                                                                              employee_id,
+                                                                                              other_employee_id,
+                                                                                         -solution.historical_work_stretch[
+                                                                                             employee_id],
+                                                                                         start_index_2,
+                                                                                 swap_info)
+                # check if stretch is unmatched by other employee
+                elif solution.historical_work_stretch[employee_id] > 0 and solution.check_if_working_day(employee_id, swap_info['start_index']):
+                    stretch_object_copy[employee_id] = self.shorten_stretch_end(
+                        stretch_object[employee_id],
+                        stretch_object_copy[employee_id],
+                        -solution.historical_work_stretch[employee_id],
+                        new_end=-1)
+                # check if both start on the start index and not working before
+                elif solution.check_if_working_day(employee_id, swap_info['start_index']) \
+                        and solution.check_if_working_day(other_employee_id,swap_info['start_index']):
+                    stretch_object_copy = self.extend_stretch_end_copy(stretch_object, stretch_object_copy,
+                                                                       employee_id, other_employee_id,
+                                                                       swap_info, swap_info['start_index'])
+
+                # check if other employees stretch is unmatched
+                elif solution.check_if_working_day(other_employee_id, swap_info['start_index']):
+                    start_index_2 = self.find_stretch(stretch_object[other_employee_id], swap_info['start_index'])
+                    stretch_object_copy[employee_id] \
+                        = solution.create_stretch(stretch_object_copy,
+                                                  start_index=swap_info['start_index'],
+                                                  end_index=stretch_object[other_employee_id][start_index_2]['end_index'])
+                elif solution.check_if_working_day(employee_id, swap_info['start_index']):
+                    del stretch_object_copy[employee_id]['start_index']
+
+            else:
+                # check if stretch of one employee is matched with the other employee
+                if solution.check_if_working_day(employee_id, swap_info['start_index'] - 1) \
+                        and solution.check_if_working_day(other_employee_id, swap_info['start_index']):
+                    start_index_1 = self.find_stretch(stretch_object[employee_id], swap_info['start_index'] - 1)
+                    start_index_2 = self.find_stretch(stretch_object[other_employee_id], swap_info['start_index'])
+
+                    stretch_object_copy = self.merge_stretches_different_objects(stretch_object_copy,
+                                                                                            stretch_object,
+                                                                                              employee_id,
+                                                                                              other_employee_id,
+                                                                                         start_index_1,
+                                                                                         start_index_2,
+                                                                                 swap_info)
+                # check if stretch of employee is unmatched with other employees
+                elif solution.check_if_working_day(employee_id, swap_info['start_index'] - 1) \
+                        and solution.check_if_working_day(employee_id, swap_info['start_index']):
+                    start_index = self.find_stretch(stretch_object[employee_id],
+                                                    swap_info['start_index'] - 1)
+                    stretch_object_copy[employee_id] = self.shorten_stretch_end(
+                        stretch_object[employee_id],
+                        stretch_object_copy[employee_id],
+                        start_index,
+                        new_end=swap_info['start_index'] - 1)
+                # check if both start on the start index and not working before
+                elif solution.check_if_working_day(employee_id, swap_info['start_index']) \
+                     and solution.check_if_working_day(other_employee_id, swap_info['start_index']):
+                    stretch_object_copy = self.extend_stretch_end_copy(stretch_object, stretch_object_copy,
+                                                                       employee_id, other_employee_id,
+                                                                       swap_info, swap_info['start_index'])
+                # check if other employee's stretch is unmatched
+                elif solution.check_if_working_day(other_employee_id, swap_info['start_index']):
+                    start_index_2 = self.find_stretch(stretch_object[other_employee_id], swap_info['start_index'])
+                    stretch_object_copy[employee_id] \
+                        = solution.create_stretch(stretch_object_copy[employee_id],
+                                                  start_index=swap_info['start_index'],
+                                                  end_index=stretch_object[other_employee_id][start_index_2][
+                                                      'end_index'])
+                elif solution.check_if_working_day(employee_id, swap_info['start_index']):
+                    del stretch_object_copy[employee_id][swap_info['start_index']]
+
+        return stretch_object_copy
+
+
+    def enumerate_employee(self, swap_info):
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            yield i, employee_id
+
+    def find_stretch(self, stretch_object_employee, d_index):
+        for s_index, work_stretch in stretch_object_employee.items():
+            if d_index in range(s_index, work_stretch['end_index']+1):
+                return s_index
+
+    def merge_stretches_different_objects(self, stretch_object_copy,
+                                          stretch_object,
+                                          employee_id_1,
+                                          employee_id_2,
+                                          start_index_1,
+                                          start_index_2,
+                                          swap_info):
+
+        """
+                Function to change a stretch object 1 after merge of two stretches
+                """
+
+        stretch_object_copy[employee_id_1][start_index_1] = {
+            "length": stretch_object[employee_id_2][
+            start_index_2][
+            'end_index'] - start_index_1 + 1,
+            'end_index': stretch_object[employee_id_2][
+            start_index_2][
+            'end_index']}
+        # check whether the stretch is longer than the swap
+        if stretch_object[employee_id_2][
+            start_index_2]['end_index'] > swap_info['end_index']:
+            stretch_object_copy = self.shorten_stretch_pre_copy(stretch_object,
+                                                                stretch_object_copy,
+                                                                old_start=start_index_2,
+                                                                new_start=swap_info['end_index']+1)
+        else:
+            del stretch_object_copy[employee_id_2][start_index_2]
+
+        return stretch_object_copy
+
     def extend_stretch_pre(self, stretch_object_employee, old_start, new_start):
         # create change key of dictionary
-        try:
-            stretch_object_employee[new_start] = stretch_object_employee[old_start]
-        except KeyError:
-            a = 1
-            print("hi")
+
+        stretch_object_employee[new_start] = stretch_object_employee[old_start]
+
         # adjust length
         stretch_object_employee[new_start]['length'] += old_start - new_start
 
         del stretch_object_employee[old_start]
+
+        return stretch_object_employee
+
+    def extend_stretch_end_copy(self, stretch_object, stretch_object_copy,
+                                employee_id_1, employee_id_2,
+                                swap_info,
+                                start_index):
+        stretch_object_copy[employee_id_1][start_index] = stretch_object[employee_id_2][start_index]
+        if stretch_object[employee_id_2][start_index]['end_index'] > swap_info['end_index']:
+            stretch_object_copy[employee_id_2] = self.shorten_stretch_pre_copy(stretch_object[employee_id_2],
+                                                                stretch_object_copy[employee_id_2],
+                                                                old_start=start_index,
+                                                                new_start=swap_info['end_index']+1)
+        else:
+            del stretch_object_copy[employee_id_2]
+
+        return stretch_object_copy
+
+
+    def extend_stretch_pre_copy(self, stretch_object_employee, stretch_object_copy,
+                                old_start, new_start):
+        stretch_object_copy[new_start] = stretch_object_employee[old_start]
+
+        # adjust length
+        stretch_object_copy[new_start]['length'] += old_start - new_start
+
+        # TODO check if necessary
+        if old_start in stretch_object_copy:
+            del stretch_object_copy[old_start]
+
+        return stretch_object_copy
+
+    def update_same_day_stretches_end(self, stretch_object, stretch_object_copy,
+                                      employee_id_1, employee_id_2,
+                                      swap_info, start_index):
+        stretch_object_copy[employee_id_1][start_index] = stretch_object[employee_id_2][start_index]
+
+        if start_index in stretch_object_copy:
+            del stretch_object_copy[employee_id_2][start_index]
+
+        return stretch_object_copy
+
+    def shorten_stretch_pre_copy(self, stretch_object_employee, stretch_object_copy,
+                                old_start, new_start):
+
+        # change start index of old key
+        stretch_object_copy[new_start] \
+            = stretch_object_employee[old_start]
+        # change the length of the stretch
+        stretch_object_copy[new_start]['length'] = new_start - stretch_object_employee[old_start]['end_index'] + 1
+
+        if old_start in stretch_object_copy:
+            del stretch_object_copy[old_start]
 
         return stretch_object_employee
 
@@ -338,6 +593,13 @@ class RuleS2Max(Rule):
 
         return stretch_object_employee
 
+    def shorten_stretch_end(self, stretch_object_employee, stretch_object_copy, start_index, new_end):
+        # function to shorten a stretch
+        stretch_object_copy[start_index]['length'] = start_index - new_end + 1
+        stretch_object_copy[start_index]['end_index'] = new_end
+
+        return stretch_object_copy
+
     def split_stretch(self, stretch_object_employee, start_index_1, d_index):
         """
         Function to split stretch in two different stretches
@@ -359,44 +621,67 @@ class RuleS2Max(Rule):
 
         return stretch_object_employee
 
-    def calc_incremental_violations_merge_stretch(self, stretch_object_employee, rule_parameter, start_index_1, start_index_2, history=False):
+    def find_work_stretch_end(self, solution, employee_id, d_index):
+        """
+        Find key of work stretch given that d_index is the last day
+        """
+        for s_index, work_stretch in solution.work_stretches[employee_id].items():
+            if work_stretch['end_index'] == d_index:
+                return s_index
 
-        # calc previous violations of the separate work stretches
-        # if history:
-        #     previous_violations = np.maximum(
-        #         stretch_object_employee[
-        #             start_index_2]['length'] - rule_parameter, 0)
-        # else:
+    def find_work_stretch_middle(self, solution, employee_id, d_index):
+        """
+       Find key of work stretch given that d_index is the middle day
+       """
+        for s_index, work_stretch in solution.work_stretches[employee_id].items():
+            if d_index in range(s_index + 1, work_stretch['end_index']):
+                return s_index
 
-        previous_violations = np.maximum(
-            stretch_object_employee[
-                start_index_2]['length'] - rule_parameter, 0) \
-                              + np.maximum(
-            stretch_object_employee[start_index_1]['length'] - rule_parameter, 0)
+    def check_length(self, stretch_object):
+        for stretch_employee in stretch_object.values():
+            for stretch in stretch_employee.values():
+                print(stretch)
+                if stretch['length'] < 0:
+                    print("length negative")
+                    break
 
-        new_violations = np.maximum((stretch_object_employee[
-                                         start_index_2]['length']
-                                     + stretch_object_employee[start_index_1][
-                                         'length'] + 1) - rule_parameter, 0)
-        return new_violations - previous_violations
+    def update_stretch_outgoing(self, solution, stretch_object, swap_info):
+        # TODO only change stretches that are not going to be changed by incoming
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            # check start_day
+            # if both days working
+            if swap_info['start_index'] == 0:
+                if solution.historical_work_stretch[employee_id] > 0 and solution.check_if_working_day(employee_id,
+                                                                                                       swap_info[
+                                                                                                           'start_index']):
+                    stretch_object[employee_id] = self.shorten_stretch_end(
+                        stretch_object[employee_id],
+                        stretch_object[employee_id],
+                        -solution.historical_work_stretch[employee_id],
+                        new_end=-1)
+            else:
+                if solution.check_if_working_day(employee_id, swap_info['start_index'] - 1) \
+                        and solution.check_if_working_day(employee_id, swap_info['start_index']):
+                    start_index = self.find_stretch(stretch_object[employee_id],
+                                                    swap_info['start_index'] - 1)
+                    stretch_object[employee_id] = self.shorten_stretch_end(
+                        stretch_object[employee_id],
+                        stretch_object[employee_id],
+                        start_index,
+                        new_end=swap_info['start_index'] - 1)
 
+            # check whether stretch around the end index is split up
+            if solution.check_if_working_day(employee_id, swap_info['end_index']) \
+                    and solution.check_if_working_day(employee_id, swap_info['end_index'] + 1):
+                start_index = self.find_stretch(stretch_object[employee_id],
+                                                swap_info['end_index'])
+                stretch_object[employee_id] = self.shorten_stretch_pre(
+                    stretch_object[employee_id],
+                    stretch_object[employee_id][start_index]['end_index'],
+                    new_start=swap_info['end_index'] + 1
+                )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return stretch_object
 
 
 

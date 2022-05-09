@@ -90,7 +90,7 @@ class FeasibilityCheck:
                         print("info is incorrect")
                         break
 
-    def work_stretches_info(self, solution, scenario, change_info):
+    def work_stretches_info(self, solution, scenario, operator_info):
         """
         Function to find differences in the work stretch information
         """
@@ -110,14 +110,8 @@ class FeasibilityCheck:
                 except KeyError:
                     employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
             pprint.pprint(deepdiff)
-            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-            print("previous: {}, current: {}".format(change_info['current_working'], change_info['new_working']))
-            print("true", collected_work_stretches[employee_id])
-            print("saved", solution.work_stretches[employee_id])
-            print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
 
             print("hi")
-
 
         return flag
 

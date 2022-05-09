@@ -55,23 +55,6 @@ class RuleS3Max(Rule):
                 and not solution.check_if_working_day(employee_id, d_index - 1):
 
             start_index = self.find_day_off_stretch_middle(solution, employee_id, d_index)
-            # # add new key value for second new work stretch
-            # solution.day_off_stretches[employee_id][
-            #     d_index + 1] \
-            #     = {
-            #     'end_index': solution.day_off_stretches[
-            #         employee_id][
-            #         start_index]['end_index'],
-            #     'length': solution.day_off_stretches[
-            #                   employee_id][
-            #                   start_index]['end_index'] - d_index
-            # }
-            #
-            # # change end index and length of first new work stretch
-            # solution.day_off_stretches[employee_id][start_index]['end_index'] \
-            #     = d_index - 1
-            # solution.day_off_stretches[employee_id][start_index]['length'] \
-            #     = d_index - start_index
 
             solution.day_off_stretches[employee_id] \
                 = RuleS2Max().split_stretch(solution.day_off_stretches[employee_id],
@@ -89,7 +72,7 @@ class RuleS3Max(Rule):
                     new_start=d_index + 1)
 
                 # create new stretch for historical stretch
-                solution.day_off_stretches[employee_id] = solution.create_work_stretch(
+                solution.day_off_stretches[employee_id] = solution.create_stretch(
                     stretch_object_employee=solution.day_off_stretches[employee_id],
                     start_index=-solution.historical_off_stretch[employee_id],
                     end_index=-1)
@@ -134,29 +117,6 @@ class RuleS3Max(Rule):
                 and not solution.check_if_working_day(employee_id, d_index + 1) \
                 and not solution.check_if_working_day(employee_id, d_index - 1):
             start_index = self.find_day_off_stretch_end(solution, employee_id, d_index - 1)
-
-            # # replace end_index of new work stretch with last
-            # solution.day_off_stretches[
-            #     employee_id][
-            #     start_index][
-            #     "end_index"] \
-            #     = solution.day_off_stretches[
-            #     employee_id][
-            #     d_index + 1][
-            #     'end_index'
-            # ]
-            # # compute new length
-            # solution.day_off_stretches[
-            #     employee_id][
-            #     start_index][
-            #     "length"] \
-            #     += solution.day_off_stretches[
-            #            employee_id][
-            #            d_index + 1]['length'] + 1
-            #
-            # # remove unnecessary stretch
-            # solution.day_off_stretches[
-            #     employee_id].pop(d_index + 1)
 
             solution.day_off_stretches[employee_id] = \
                 RuleS2Max().merge_stretches(solution.day_off_stretches[employee_id],
