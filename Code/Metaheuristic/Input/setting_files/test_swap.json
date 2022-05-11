@@ -1,6 +1,6 @@
 {"instance_settings": {
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON",
-  "instance_name": "n050w4",
+  "instance_name": "n030w4",
   "history_file": 0,
   "weeks": [1, 2, 3 ,4],
   "two_stage": false
@@ -77,7 +77,7 @@
                   "swap": false
                    },
             "H3":{"id": "H3",
-             "is_mandatory": true,
+             "is_mandatory": false,
              "is_active": true,
              "is_horizontal": true,
              "parameter_per_contract": false,

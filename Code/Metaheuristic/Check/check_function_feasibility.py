@@ -282,14 +282,25 @@ class FeasibilityCheck:
                 ))
                 print("start", swap_info['start_index'])
                 print("end", swap_info['end_index'])
-                print("working_1:", solution.num_working_weekends[swap_info['employee_id_1']])
-                print("change_weekends_1: ", swap_info['change_working_weekends'][swap_info['employee_id_1']])
-                print("parameter_1: ", solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_1']])
-                print("working_2: ", solution.num_working_weekends[swap_info['employee_id_2']])
-                print("change_weekends_2: ", swap_info['change_working_weekends'][swap_info['employee_id_2']])
-                print("parameter_2: ",
-                      solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_2']])
-                pprint.pprint(solution.day_collection.weekends)
+                # print("working_1:", solution.num_working_weekends[swap_info['employee_id_1']])
+                # print("change_weekends_1: ", swap_info['change_working_weekends'][swap_info['employee_id_1']])
+                # print("parameter_1: ", solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_1']])
+                # print("working_2: ", solution.num_working_weekends[swap_info['employee_id_2']])
+                # print("change_weekends_2: ", swap_info['change_working_weekends'][swap_info['employee_id_2']])
+                # print("parameter_2: ",
+                #       solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_2']])
+                # pprint.pprint(solution.day_collection.weekends)
+                print(solution.forbidden_shift_type_successions)
+                print("employee_1, start-1: {}, start: {},  end: {}, end + 1: {}".format(
+                    solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']-1][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['end_index']][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['end_index']+1][0]))
+                print("employee_2, start-1: {}, start: {},  end: {}, end + 1: {}".format(
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['start_index'] - 1][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['start_index']][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['end_index']][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['end_index'] + 1][0]))
                 print(solution.shift_assignments[swap_info['employee_id_1']][:,0])
                 print(solution.shift_assignments[swap_info['employee_id_2']][:,0])
                 print("hi")

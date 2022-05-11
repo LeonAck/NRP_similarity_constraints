@@ -72,3 +72,7 @@ class RuleH2(Rule):
         else:
             return 1 if solution.diff_min_request[(d_index, sk_index, s_index)] <= 0 else 0
 
+    def incremental_violations_swap(self, solution, swap_info, rule_id=None):
+        return 0
+
+
