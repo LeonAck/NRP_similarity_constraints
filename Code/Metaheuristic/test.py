@@ -10,6 +10,7 @@ from Check.check_function_feasibility import FeasibilityCheck
 from Heuristic import Heuristic
 from Input.input_NRC import Instance
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
+from run import run_two_stage
 
 k = 7
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")

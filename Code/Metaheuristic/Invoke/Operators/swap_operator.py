@@ -1,4 +1,5 @@
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
+from Invoke.Constraints.Rules.RuleS6 import RuleS6
 import random
 import numpy as np
 
@@ -14,6 +15,9 @@ def swap_operator(solution, scenario):
     """
     # get a change that is allowed by hard constraints
     swap_info = get_feasible_swap(solution, scenario, solution.k_swap)
+
+    if "S6" in solution.rules:
+        swap_info = RuleS6().incremental_working_weekends_swap(solution, swap_info)
 
     # add penalty to objective
     if swap_info['feasible']:

@@ -30,6 +30,7 @@ class BuildSolution(Solution):
         if previous_solution:
             self.shift_assignments = previous_solution.shift_assignments
             self.diff_min_request = previous_solution.diff_min_request
+            self.working_days = previous_solution.working_days
 
         else:
             # initialize shift assignment objects
@@ -40,6 +41,9 @@ class BuildSolution(Solution):
             # ALWAYS
             #H2 create array to keep track of difference between optimal skill_requests and actual skill assignment
             self.diff_min_request = self.initialize_diff_min_request(self.scenario)
+
+            # collect working days
+            self.working_days = self.collect_working_days(self.scenario)
 
         # H3 forbidden successions
         self.forbidden_shift_type_successions = scenario.forbidden_shift_type_successions
@@ -54,7 +58,6 @@ class BuildSolution(Solution):
             self.last_assigned_shift = scenario.last_assigned_shift
             self.historical_work_stretch = scenario.historical_work_stretch
             self.work_stretches = self.collect_work_stretches(solution=self)
-
 
         # S2Shift collect shift stretches
         if 'S2ShiftMax' in self.rules:
@@ -194,6 +197,18 @@ class BuildSolution(Solution):
                                                 self.shift_assignments[employee_id]])
 
         return num_assignments
+
+    def collect_working_days(self, scenario):
+        working_days = {}
+        for employee_id in scenario.employees._collection.keys():
+            working_days_employee = []
+            for d_index in range(0, scenario.num_days_in_horizon):
+                if self.check_if_working_day(employee_id, d_index):
+                    working_days_employee.append(d_index)
+
+            working_days[employee_id] = working_days_employee
+
+        return working_days
 
     def collect_work_stretches(self, solution):
         """

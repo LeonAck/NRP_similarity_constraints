@@ -5,6 +5,7 @@ from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
 from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
+from Invoke.Constraints.Rules.RuleS6 import RuleS6
 
 class Solution:
     """
@@ -68,7 +69,7 @@ class Solution:
 
             self.violation_array = other_solution.violation_array
             # information to keep track of solution per nurse
-            self.working_days = None
+            self.working_days = other_solution.working_days
 
     def replace_shift_assignment(self, employee_id, d_index, s_index, sk_index):
         """
@@ -104,6 +105,8 @@ class Solution:
         # hard constraints
         solution.diff_min_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
+        # working days
+        solution.working_days[change_info['employee_id']].remove(change_info['d_index'])
         # soft constraints
         # S1
         if 'S1' in solution.rules:
@@ -149,6 +152,9 @@ class Solution:
         """
         # hard constraints
         solution.diff_min_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+
+        # working days
+        solution.working_days[change_info['employee_id']].append(change_info['d_index'])
 
         # soft constraints
         # S1
@@ -250,8 +256,11 @@ class Solution:
             self.update_solution_swap(operator_info)
 
     def update_information_swap(self, solution, swap_info):
+        solution.working_days = self.update_working_days_swap(swap_info)
         if "S5Max" in solution.rules:
             solution = RuleS5Max().update_information_swap(solution, swap_info)
+        if "S6" in solution.rules:
+            solution.num_working_weekends = RuleS6().update_information_swap(solution.num_working_weekends, swap_info)
 
     def update_solution_swap(self, swap_info):
         """
@@ -279,6 +288,26 @@ class Solution:
         # replace stretch of employee 1 with the one from employee 2
         self.shift_assignments[employee_id_2][start_index:end_index+1, ] \
             = stretch_1
+
+    def update_working_days_swap(self, swap_info):
+        new_working_days = {}
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+
+            other_employee_id = swap_info['employee_id_{}'.format(2-i)]
+
+            new_working_days[employee_id] \
+                = [d_index for d_index in range(0, self.day_collection.num_days_in_horizon)
+                    if d_index in self.get_working_days_in_range(other_employee_id, swap_info['start_index'], swap_info['end_index'])
+                    or (d_index in self.working_days[employee_id]
+                   and d_index not in self.get_working_days_in_range(employee_id, swap_info['start_index'], swap_info['end_index']))]
+
+        self.working_days[swap_info['employee_id_1']] = new_working_days[swap_info['employee_id_1']]
+        self.working_days[swap_info['employee_id_2']] = new_working_days[swap_info['employee_id_2']]
+        return self.working_days
+
+    def get_working_days_in_range(self, employee_id, start_index, end_index):
+        return [d_index for d_index in self.working_days[employee_id]
+                if start_index <= d_index <= end_index]
 
     def calc_objective_value(self, scenario, rule_collection):
         """
