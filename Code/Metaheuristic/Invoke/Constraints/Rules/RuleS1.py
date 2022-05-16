@@ -21,9 +21,9 @@ class RuleS1(Rule):
             for s_index in range(scenario.num_shift_types):
                 for sk_index in range(scenario.skill_collection.num_skills):
                     violation_counter += self.count_violations_day_shift_skill(
-                                            solution, scenario,
-                                            d_index, s_index,
-                                            sk_index)
+                        solution, scenario,
+                        d_index, s_index,
+                        sk_index)
         return violation_counter
 
     def count_violations_day_shift_skill(self, solution, scenario, d_index, s_index, sk_index):
@@ -50,7 +50,7 @@ class RuleS1(Rule):
         """
         Calculate the difference in violations after using the change opeator
         :return:
-        \delta number_of_violations
+        delta number_of_violations
         """
         violation = 0
         if change_info["current_working"]:
@@ -79,4 +79,3 @@ class RuleS1(Rule):
             return -1 if solution.diff_opt_request[(d_index, sk_index, s_index)] < 0 else 0
         else:
             return 1 if solution.diff_opt_request[(d_index, sk_index, s_index)] <= 0 else 0
-

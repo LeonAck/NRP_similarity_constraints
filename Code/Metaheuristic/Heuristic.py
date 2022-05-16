@@ -80,11 +80,10 @@ class Heuristic:
         n_iter = 1
         no_improve_iter = 0
         while self.stopping_criterion(current_solution, n_iter):
-            # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
                 print(current_solution.violation_array)
                 print("\nIteration: ", n_iter)
-            print(current_solution.violation_array)
+            # print(current_solution.violation_array)
 
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators_to_use)
@@ -133,11 +132,12 @@ class Heuristic:
             # if "S2ShiftMax" in current_solution.rules:
             #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
             # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
-            #FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
-            #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
+            # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
+            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+            FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
-
+            #FeasibilityCheck().check_working_days(current_solution, self.scenario)
             n_iter += 1
 
         # best solution

@@ -25,7 +25,7 @@ class RuleS3Max(Rule):
         return sum([day_off_stretch['length'] - self.parameter_per_employee[employee_id]
                     for day_off_stretch in solution.day_off_stretches[employee_id].values()
                     if day_off_stretch['length'] > self.parameter_per_employee[employee_id]
-                   and day_off_stretch['end_index'] > -1])
+                    and day_off_stretch['end_index'] > -1])
 
     def find_day_off_stretch_end(self, solution, employee_id, d_index):
         """
@@ -40,7 +40,7 @@ class RuleS3Max(Rule):
        Find key of work stretch given that d_index is the last day
        """
         for s_index, day_off_stretch in solution.day_off_stretches[employee_id].items():
-            if d_index in range(s_index+1, day_off_stretch['end_index']):
+            if d_index in range(s_index + 1, day_off_stretch['end_index']):
                 return s_index
 
     def update_information_off_to_assigned(self, solution, change_info):
@@ -121,7 +121,6 @@ class RuleS3Max(Rule):
                 del solution.day_off_stretches[
                     employee_id][d_index]
 
-
         return solution
 
     def update_information_assigned_to_off(self, solution, change_info):
@@ -160,8 +159,8 @@ class RuleS3Max(Rule):
 
             solution.day_off_stretches[employee_id] = \
                 RuleS2Max().merge_stretches(solution.day_off_stretches[employee_id],
-                                     start_index_1=start_index,
-                                     start_index_2=d_index + 1)
+                                            start_index_1=start_index,
+                                            start_index_2=d_index + 1)
 
             # check if not the last day and the day after working
         elif not solution.check_if_last_day(d_index) \
@@ -208,7 +207,6 @@ class RuleS3Max(Rule):
                        'length': 1}
 
         return solution
-
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """
@@ -265,9 +263,9 @@ class RuleS3Max(Rule):
             #                        'length'] + 1) - employee_parameter, 0) \
             #        - previous_violations
             return RuleS2Max().calc_incremental_violations_merge_stretch(solution.day_off_stretches[employee_id],
-                                                                      rule_parameter=employee_parameter,
-                                                                      start_index_1=start_index,
-                                                                      start_index_2=d_index+1)
+                                                                         rule_parameter=employee_parameter,
+                                                                         start_index_1=start_index,
+                                                                         start_index_2=d_index + 1)
 
         # check if not the last day and the day after off
         elif not solution.check_if_last_day(d_index) \
@@ -311,10 +309,3 @@ class RuleS3Max(Rule):
                     else 0
             else:
                 return 0
-
-
-
-
-
-
-

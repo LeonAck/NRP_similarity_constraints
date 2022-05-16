@@ -1,4 +1,5 @@
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
+from Invoke.Constraints.Rules.RuleS6 import RuleS6
 import random
 import numpy as np
 
@@ -14,6 +15,9 @@ def swap_operator(solution, scenario):
     """
     # get a change that is allowed by hard constraints
     swap_info = get_feasible_swap(solution, scenario, solution.k_swap)
+
+    if "S6" in solution.rules:
+        swap_info = RuleS6().incremental_working_weekends_swap(solution, swap_info)
 
     # add penalty to objective
     if swap_info['feasible']:
@@ -118,23 +122,13 @@ def check_one_way_swap(solution, k, feasible_days, employee_id_1, employee_id_2)
 
     for d_index in feasible_days:
         # collect whether start index is infeasible
-        start_index_check = RuleH3().check_forbidden(solution.forbidden_shift_type_successions,
-                                    s_index_1=solution.shift_assignments[employee_id_2][d_index - 1][0],
-                                    s_index_2=solution.shift_assignments[employee_id_1][d_index][0]) \
-            if solution.shift_assignments[employee_id_2][d_index - 1][0] != -1 and solution.shift_assignments[employee_id_1][d_index][0] !=-1\
-            else False
+        start_index_check = RuleH3().check_one_way_swap_start_day(solution, employee_id_1, employee_id_2, d_index)
 
-        end_index_check = RuleH3().check_forbidden(solution.forbidden_shift_type_successions,
-                                            s_index_1=solution.shift_assignments[employee_id_1][d_index + k - 1][0],
-                                            s_index_2=solution.shift_assignments[employee_id_2][d_index + k][0]) \
-            if solution.shift_assignments[employee_id_1][d_index + k - 1][0] != -1 \
-            and solution.shift_assignments[employee_id_2][d_index + k][0] != -1 \
-            else False
+        end_index_check = RuleH3().check_one_way_swap_end_day(solution, k, employee_id_1, employee_id_2, d_index)
         if start_index_check or end_index_check:
             feasible_days.remove(d_index)
 
     return feasible_days
-
 
 def find_skill_compatible_employees(feasible_employees, employee_collection, infeasible_combinations):
     # TODO add swaps that are not the same skill but perform the same skills

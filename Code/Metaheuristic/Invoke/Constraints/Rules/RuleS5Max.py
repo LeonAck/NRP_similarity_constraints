@@ -55,7 +55,7 @@ class RuleS5Max(Rule):
                                                                   swap_info['start_index'],
                                                                   swap_info['end_index'])
 
-        # check if nuber if the same
+        # check if number if the same
         if assignments_stretch_1 == assignments_stretch_2:
             return 0
         else:

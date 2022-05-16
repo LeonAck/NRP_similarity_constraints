@@ -2,6 +2,7 @@ from Invoke.Constraints.initialize_rules import Rule
 from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
 import numpy as np
 
+
 class RuleS2ShiftMin(Rule):
     """
         Rule that checks for optimal coverage per skill request
@@ -61,25 +62,29 @@ class RuleS2ShiftMin(Rule):
                 and solution.check_if_working_s_type_on_day(employee_id, d_index - 1, new_s_type):
             start_index = self.find_shift_stretch_end(solution, employee_id, d_index - 1, new_s_type)
 
-            previous_violations = np.maximum(shift_parameter - solution.shift_stretches[employee_id][new_s_type][d_index+1]['length'], 0) \
-                                    + np.maximum(shift_parameter - solution.shift_stretches[employee_id][new_s_type][start_index]['length'], 0)
+            previous_violations = np.maximum(
+                shift_parameter - solution.shift_stretches[employee_id][new_s_type][d_index + 1]['length'], 0) \
+                                  + np.maximum(
+                shift_parameter - solution.shift_stretches[employee_id][new_s_type][start_index]['length'], 0)
             new_violations = np.maximum(shift_parameter
-                                         - (solution.shift_stretches[employee_id][new_s_type][d_index+1]['length']
-                                            + solution.shift_stretches[employee_id][new_s_type][start_index]['length']
-                                            + 1), 0)
+                                        - (solution.shift_stretches[employee_id][new_s_type][d_index + 1]['length']
+                                           + solution.shift_stretches[employee_id][new_s_type][start_index]['length']
+                                           + 1), 0)
             return -(previous_violations - new_violations)
         # check if not the last day and the day after working
         elif not solution.check_if_last_day(d_index) \
                 and solution.check_if_working_s_type_on_day(employee_id, d_index + 1, new_s_type):
             # if first day and history before
             if change_info['d_index'] == 0 and solution.last_assigned_shift[employee_id] == new_s_type:
-                return RuleS2Min().calc_incremental_violations_merge_stretch(solution.shift_stretches[employee_id][new_s_type],
-                                                                      rule_parameter=shift_parameter,
-                                                                      start_index_1=-solution.historical_shift_stretch[
-                                                                          employee_id],
-                                                                      start_index_2=d_index + 1, history=True)
+                return RuleS2Min().calc_incremental_violations_merge_stretch(
+                    solution.shift_stretches[employee_id][new_s_type],
+                    rule_parameter=shift_parameter,
+                    start_index_1=-solution.historical_shift_stretch[
+                        employee_id],
+                    start_index_2=d_index + 1, history=True)
             else:
-                return -1 if solution.shift_stretches[employee_id][new_s_type][d_index+1]['length'] < shift_parameter else 0
+                return -1 if solution.shift_stretches[employee_id][new_s_type][d_index + 1][
+                                 'length'] < shift_parameter else 0
 
         # check if not the first day and the day before working
         elif not d_index == 0 \
@@ -95,21 +100,26 @@ class RuleS2ShiftMin(Rule):
                 return -1 if solution.shift_stretches[employee_id][new_s_type][start_index][
                                  'length'] < shift_parameter else 0
             else:
-                return np.maximum(shift_parameter-1, 0)
+                return np.maximum(shift_parameter - 1, 0)
 
     def incremental_violations_assigned_to_off(self, solution, change_info):
         shift_parameter = self.parameter_per_s_type[change_info['curr_s_type']]
         length_1, length_2, the_shift_stretch = None, None, None
         # find in what work stretch the d_index is
-        for start_index, shift_stretch in solution.shift_stretches[change_info['employee_id']][change_info['curr_s_type']].items():
-            if change_info['d_index'] in range(start_index, shift_stretch["end_index"]+1):
+        for start_index, shift_stretch in solution.shift_stretches[change_info['employee_id']][
+            change_info['curr_s_type']].items():
+            if change_info['d_index'] in range(start_index, shift_stretch["end_index"] + 1):
                 # calc length of remaining stretches
-                length_1 = change_info['d_index'] - start_index if change_info['d_index'] - start_index > 0 else shift_parameter
-                length_2 = shift_stretch['end_index'] - change_info['d_index'] if shift_stretch['end_index'] - change_info['d_index'] > 0 else shift_parameter
+                length_1 = change_info['d_index'] - start_index if change_info[
+                                                                       'd_index'] - start_index > 0 else shift_parameter
+                length_2 = shift_stretch['end_index'] - change_info['d_index'] if shift_stretch['end_index'] - \
+                                                                                  change_info[
+                                                                                      'd_index'] > 0 else shift_parameter
                 the_shift_stretch = shift_stretch
                 break
         # add extra violations
-        new_violations_1 = np.maximum(shift_parameter - length_1, 0) if change_info['d_index'] != 0 and length_1 > 0 else 0
+        new_violations_1 = np.maximum(shift_parameter - length_1, 0) if change_info[
+                                                                            'd_index'] != 0 and length_1 > 0 else 0
 
         # add extra violations
         # the new violations - the old violations
