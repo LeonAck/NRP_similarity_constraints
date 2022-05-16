@@ -1,6 +1,7 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
 
+
 class RuleS2Min(Rule):
     """
         Rule that checks for violations of minimal shif tlength
@@ -25,8 +26,10 @@ class RuleS2Min(Rule):
 
     def print_violations_per_employee(self, solution, scenario):
         for employee_id in scenario.employees._collection.keys():
-            print(employee_id, sum([np.maximum(solution.rule_collection.collection['S2Min'].parameter_per_employee[employee_id] - work_stretch['length'], 0)
-                    for work_stretch in solution.work_stretches[employee_id].values()]))
+            print(employee_id, sum([np.maximum(
+                solution.rule_collection.collection['S2Min'].parameter_per_employee[employee_id] - work_stretch[
+                    'length'], 0)
+                                    for work_stretch in solution.work_stretches[employee_id].values()]))
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """
@@ -70,8 +73,9 @@ class RuleS2Min(Rule):
             #                                 + 1), 0)
             # return -(previous_violations - new_violations)
 
-            return self.calc_incremental_violations_merge_stretch(solution.work_stretches[employee_id], rule_parameter=employee_parameter,
-                                                           start_index_1=start_index, start_index_2=d_index+1)
+            return self.calc_incremental_violations_merge_stretch(solution.work_stretches[employee_id],
+                                                                  rule_parameter=employee_parameter,
+                                                                  start_index_1=start_index, start_index_2=d_index + 1)
 
         # check if not the last day and the day after working
         elif not solution.check_if_last_day(d_index) \
@@ -82,10 +86,10 @@ class RuleS2Min(Rule):
                 return self.calc_incremental_violations_merge_stretch(solution.work_stretches[employee_id],
                                                                       rule_parameter=employee_parameter,
                                                                       start_index_1=-solution.historical_work_stretch[
-                                                                                    employee_id],
+                                                                          employee_id],
                                                                       start_index_2=d_index + 1, history=True)
             else:
-                return -1 if employee_work_stretch[d_index+1]['length'] < employee_parameter else 0
+                return -1 if employee_work_stretch[d_index + 1]['length'] < employee_parameter else 0
 
         # check if not the first day and the day before working
         elif not d_index == 0 \
@@ -99,26 +103,28 @@ class RuleS2Min(Rule):
             if d_index == 0 and solution.historical_work_stretch[employee_id] > 0:
                 start_index = -solution.historical_work_stretch[employee_id]
                 return -1 if solution.work_stretches[employee_id][start_index][
-                                'length'] < employee_parameter else 0
+                                 'length'] < employee_parameter else 0
             else:
-                return np.maximum(employee_parameter-1, 0)
+                return np.maximum(employee_parameter - 1, 0)
 
     def incremental_violation_assigned_to_off(self, solution, change_info):
         employee_parameter = self.parameter_per_employee[change_info['employee_id']]
         length_1, length_2, the_work_stretch = None, None, None
         # find in what work stretch the d_index is
         for start_index, work_stretch in solution.work_stretches[change_info['employee_id']].items():
-            if change_info['d_index'] in range(start_index, work_stretch["end_index"]+1):
+            if change_info['d_index'] in range(start_index, work_stretch["end_index"] + 1):
                 # calc length of remaining stretches
-                length_1 = change_info['d_index'] - start_index if change_info['d_index'] - start_index > 0 else employee_parameter
-                length_2 = work_stretch['end_index'] - change_info['d_index'] if work_stretch['end_index'] - change_info['d_index'] > 0 else employee_parameter
+                length_1 = change_info['d_index'] - start_index if change_info[
+                                                                       'd_index'] - start_index > 0 else employee_parameter
+                length_2 = work_stretch['end_index'] - change_info['d_index'] if work_stretch['end_index'] - \
+                                                                                 change_info[
+                                                                                     'd_index'] > 0 else employee_parameter
                 the_work_stretch = work_stretch
                 break
 
         # # add extra violations
         # new_violations_1 = np.maximum(employee_parameter - length_1, 0) if change_info['d_index'] != 0 and length_1 > 0 else 0
         # the new violations - the old violations
-
 
         return np.maximum(employee_parameter - length_1, 0) \
                + np.maximum(employee_parameter - length_2, 0) \
@@ -140,7 +146,8 @@ class RuleS2Min(Rule):
             if d_index in range(s_index + 1, work_stretch['end_index']):
                 return s_index
 
-    def calc_incremental_violations_merge_stretch(self, stretch_object_employee, rule_parameter, start_index_1, start_index_2, history=False):
+    def calc_incremental_violations_merge_stretch(self, stretch_object_employee, rule_parameter, start_index_1,
+                                                  start_index_2, history=False):
 
         # if history:
         #     # only the stretch within the scheduling period counts as violations
@@ -161,4 +168,4 @@ class RuleS2Min(Rule):
                                     - (stretch_object_employee[start_index_2]['length']
                                        + stretch_object_employee[start_index_1]['length']
                                        + 1), 0)
-        return -(previous_violations-new_violations)
+        return -(previous_violations - new_violations)

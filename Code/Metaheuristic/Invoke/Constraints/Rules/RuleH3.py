@@ -236,11 +236,69 @@ class RuleH3(Rule):
 
         return allowed_shift_types
 
-    def check_forbidden(self, forbidden_successions, s_index_1, s_index_2):
+    def check_forbidden_given_shifts(self, forbidden_successions, s_index_1, s_index_2):
         """
         For two shift types, check whether they can follow each other
         """
 
         return s_index_2 in forbidden_successions[s_index_1][1]
 
+    def check_forbidden_before_day(self, solution, forbidden_successions, employee_id_1, employee_id_2,
+                                d_index):
+        if d_index == 0:
+            return self.check_forbidden_given_shifts(forbidden_successions,
+                                                     solution.last_assigned_shift[employee_id_1],
+                                                     solution.shift_assignments[employee_id_2][d_index][0],
+                                                     ) \
+                    if solution.last_assigned_shift[employee_id_1] != -1 \
+                        and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
+                        else False
+        if d_index > 0:
+            return self.check_forbidden_given_shifts(forbidden_successions,
+                                                     solution.shift_assignments[employee_id_1][d_index - 1][0],
+                                                     solution.shift_assignments[employee_id_2][d_index][0],
+                                                     ) \
+                if solution.shift_assignments[employee_id_1][d_index - 1][0] != -1 \
+                   and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
+                else False
 
+    def check_one_way_swap_start_day(self, solution, employee_id_1, employee_id_2, d_index):
+        # collect whether start index is infeasible
+       return self.check_forbidden_before_day(solution, solution.forbidden_shift_type_successions,
+                                                    employee_id_1,
+                                                    employee_id_2,
+                                                    d_index) \
+
+    def check_one_way_swap_end_day(self, solution, k, employee_id_1, employee_id_2, d_index):
+        return self.check_forbidden_before_day(solution, solution.forbidden_shift_type_successions,
+                                        employee_id_2,
+                                        employee_id_1,
+                                        d_index+k)
+
+    def check_removed_violations_swap(self, solution, k, employee_id_1, d_index):
+        removed_violations = 0
+        start_check = self.check_forbidden_before_day(solution, solution.forbidden_shift_type_successions,
+                                                    employee_id_1,
+                                                    employee_id_1,
+                                                    d_index)
+        end_check = self.check_forbidden_before_day(solution, solution.forbidden_shift_type_successions,
+                                        employee_id_1,
+                                        employee_id_1,
+                                        d_index+k)
+        if start_check:
+            removed_violations += 1
+        if end_check:
+            removed_violations += 1
+        return removed_violations
+
+    def incremental_violations_swap(self, solution, swap_info, rule_id=None):
+        incremental_violations = 0
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            other_employee_id = swap_info['employee_id_{}'.format(2-i)]
+            if self.check_one_way_swap_start_day(solution, employee_id, other_employee_id, swap_info['start_index']):
+                incremental_violations += 1
+            if self.check_one_way_swap_end_day(solution, solution.k_swap, employee_id, other_employee_id, swap_info['start_index']):
+                incremental_violations += 1
+
+            incremental_violations -= self.check_removed_violations_swap(solution, solution.k_swap, employee_id, swap_info['start_index'])
+        return incremental_violations

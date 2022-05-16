@@ -133,6 +133,9 @@ class Heuristic:
             # if "S2ShiftMax" in current_solution.rules:
             #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
             # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
+            # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
+            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+            # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:

@@ -5,6 +5,8 @@ from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
 from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
+from Invoke.Constraints.Rules.RuleS6 import RuleS6
+
 
 class Solution:
     """
@@ -68,7 +70,7 @@ class Solution:
 
             self.violation_array = other_solution.violation_array
             # information to keep track of solution per nurse
-            self.working_days = None
+            self.working_days = other_solution.working_days
 
     def replace_shift_assignment(self, employee_id, d_index, s_index, sk_index):
         """
@@ -102,12 +104,16 @@ class Solution:
         Function to update relevant information after removal from shift skill combination
         """
         # hard constraints
-        solution.diff_min_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
+        solution.diff_min_request[
+            (change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
+        # working days
+        solution.working_days[change_info['employee_id']].remove(change_info['d_index'])
         # soft constraints
         # S1
         if 'S1' in solution.rules:
-            solution.diff_opt_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
+            solution.diff_opt_request[
+                (change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # S2Max and S2Min
         if 'S2Max' in solution.rules:
@@ -132,8 +138,11 @@ class Solution:
         if 'S6' in solution.rules:
             if change_info['d_index'] in solution.day_collection.list_weekend_days:
                 if not solution.check_if_working_day(employee_id=change_info['employee_id'],
-                                                                d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
-                                                              solution.day_collection.weekend_day_indices[change_info['d_index']])):
+                                                     d_index=change_info[
+                                                                 'd_index']
+                                                             + solution.day_collection.get_index_other_weekend_day(
+                                                         solution.day_collection.weekend_day_indices[
+                                                             change_info['d_index']])):
                     solution.num_working_weekends[change_info['employee_id']] -= 1
 
         # S7
@@ -150,10 +159,14 @@ class Solution:
         # hard constraints
         solution.diff_min_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
 
+        # working days
+        solution.working_days[change_info['employee_id']].append(change_info['d_index'])
+
         # soft constraints
         # S1
         if 'S1' in solution.rules:
-            solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+            solution.diff_opt_request[
+                (change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
 
         # S2Max and S2Min
         if 'S2Max' in solution.rules:
@@ -163,7 +176,7 @@ class Solution:
         if 'S2ShiftMax' in solution.rules:
             solution = RuleS2ShiftMax().update_information_off_to_assigned(solution, change_info)
 
-        #S3Max
+        # S3Max
         if 'S3Max' in solution.rules:
             solution = RuleS3Max().update_information_off_to_assigned(solution, change_info)
 
@@ -177,16 +190,18 @@ class Solution:
         # S6
         if 'S6' in solution.rules:
             if change_info['d_index'] in solution.day_collection.list_weekend_days:
-               if not solution.check_if_working_day(employee_id=change_info['employee_id'],
-                                                        d_index=change_info['d_index'] + solution.day_collection.get_index_other_weekend_day(
-                                                      solution.day_collection.weekend_day_indices[change_info['d_index']])):
-                solution.num_working_weekends[change_info['employee_id']] += 1
+                if not solution.check_if_working_day(employee_id=change_info['employee_id'],
+                                                     d_index=change_info[
+                                                                 'd_index'] + solution.day_collection.get_index_other_weekend_day(
+                                                         solution.day_collection.weekend_day_indices[
+                                                             change_info['d_index']])):
+                    solution.num_working_weekends[change_info['employee_id']] += 1
 
         # S7
         if 'S7Day' in solution.rules:
             solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
         if 'S7Shift' in solution.rules:
-            solution =RuleS7Shift().update_information_off_to_assigned(solution, change_info)
+            solution = RuleS7Shift().update_information_off_to_assigned(solution, change_info)
 
     def update_information_assigned_to_assigned(self, solution, change_info):
         """
@@ -194,13 +209,16 @@ class Solution:
         """
         # hard constraints
         solution.diff_min_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
-        solution.diff_min_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
+        solution.diff_min_request[
+            (change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # soft constraints
         # S1
         if 'S1' in solution.rules:
-            solution.diff_opt_request[(change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
-            solution.diff_opt_request[(change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
+            solution.diff_opt_request[
+                (change_info['d_index'], change_info['new_sk_type'], change_info['new_s_type'])] += 1
+            solution.diff_opt_request[
+                (change_info['d_index'], change_info['curr_sk_type'], change_info['curr_s_type'])] -= 1
 
         # S2ShiftMax
         if 'S2ShiftMax' in solution.rules:
@@ -250,10 +268,13 @@ class Solution:
             self.update_solution_swap(operator_info)
 
     def update_information_swap(self, solution, swap_info):
+        solution.working_days = self.update_working_days_swap(swap_info)
         if "S2Max" in solution.rules:
             solution = RuleS2Max().update_information_swap(solution, swap_info, "work_stretches")
         if "S5Max" in solution.rules:
             solution = RuleS5Max().update_information_swap(solution, swap_info)
+        if "S6" in solution.rules:
+            solution.num_working_weekends = RuleS6().update_information_swap(solution.num_working_weekends, swap_info)
 
     def update_solution_swap(self, swap_info):
         """
@@ -270,17 +291,38 @@ class Solution:
         self.violation_array += swap_info['violation_increment']
 
     def swap_assignments(self, start_index, end_index, employee_id_1, employee_id_2):
-
+        # TODO check whether swap is made
         # save stretch of employee 1
-        stretch_1 = self.shift_assignments[employee_id_1][start_index:end_index+1, ].copy()
+        stretch_1 = self.shift_assignments[employee_id_1][start_index:end_index + 1, ].copy()
 
         # replace stretch of employee 1 with the one from employee 2
-        self.shift_assignments[employee_id_1][start_index:end_index+1, ] \
-            = self.shift_assignments[employee_id_2][start_index:end_index+1, ]
+        self.shift_assignments[employee_id_1][start_index:end_index + 1, ] \
+            = self.shift_assignments[employee_id_2][start_index:end_index + 1, ]
 
         # replace stretch of employee 1 with the one from employee 2
-        self.shift_assignments[employee_id_2][start_index:end_index+1, ] \
+        self.shift_assignments[employee_id_2][start_index:end_index + 1, ] \
             = stretch_1
+
+    def update_working_days_swap(self, swap_info):
+        new_working_days = {}
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            other_employee_id = swap_info['employee_id_{}'.format(2 - i)]
+
+            new_working_days[employee_id] \
+                = [d_index for d_index in range(0, self.day_collection.num_days_in_horizon)
+                   if d_index in self.get_working_days_in_range(other_employee_id, swap_info['start_index'],
+                                                                swap_info['end_index'])
+                   or (d_index in self.working_days[employee_id]
+                       and d_index not in self.get_working_days_in_range(employee_id, swap_info['start_index'],
+                                                                         swap_info['end_index']))]
+
+        self.working_days[swap_info['employee_id_1']] = new_working_days[swap_info['employee_id_1']]
+        self.working_days[swap_info['employee_id_2']] = new_working_days[swap_info['employee_id_2']]
+        return self.working_days
+
+    def get_working_days_in_range(self, employee_id, start_index, end_index):
+        return [d_index for d_index in self.working_days[employee_id]
+                if start_index <= d_index <= end_index]
 
     def calc_objective_value(self, scenario, rule_collection):
         """
@@ -320,8 +362,5 @@ class Solution:
 
     def create_stretch(self, stretch_object_employee, start_index, end_index):
         stretch_object_employee[start_index] = {"end_index": end_index,
-                                                "length": end_index-start_index+1}
+                                                "length": end_index-start_index + 1}
         return stretch_object_employee
-
-
-

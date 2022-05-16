@@ -4,6 +4,7 @@ import pprint
 from Invoke.Initial_solution.initial_solution import BuildSolution
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
+from Invoke.Constraints.Rules.RuleS6 import RuleS6
 
 class FeasibilityCheck:
     """
@@ -273,15 +274,54 @@ class FeasibilityCheck:
                 print("number of violation for soft constraint {} is tracked {} and calc {}".format(
                     i, violation, calc_violations[i]
                 ))
-
-                if i == 0:
-                    pprint.pprint(swap_info)
-                    print(solution.shift_assignments[swap_info['employee_id_1']])
-                    print(solution.shift_assignments[swap_info['employee_id_2']])
+                print("start", swap_info['start_index'])
+                print("end", swap_info['end_index'])
+                # print("working_1:", solution.num_working_weekends[swap_info['employee_id_1']])
+                # print("change_weekends_1: ", swap_info['change_working_weekends'][swap_info['employee_id_1']])
+                # print("parameter_1: ", solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_1']])
+                # print("working_2: ", solution.num_working_weekends[swap_info['employee_id_2']])
+                # print("change_weekends_2: ", swap_info['change_working_weekends'][swap_info['employee_id_2']])
+                # print("parameter_2: ",
+                #       solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_2']])
+                # pprint.pprint(solution.day_collection.weekends)
+                print(solution.forbidden_shift_type_successions)
+                print("employee_1, start-1: {}, start: {},  end: {}, end + 1: {}".format(
+                    solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']-1][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['end_index']][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['end_index']+1][0]))
+                print("employee_2, start-1: {}, start: {},  end: {}, end + 1: {}".format(
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['start_index'] - 1][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['start_index']][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['end_index']][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['end_index'] + 1][0]))
+                print(solution.shift_assignments[swap_info['employee_id_1']][:,0])
+                print(solution.shift_assignments[swap_info['employee_id_2']][:,0])
+                print("hi")
 
                 flag = False
+                a = 5
 
         return flag
+
+    def check_working_weekends(self, solution, scenario):
+        for employee_id in scenario.employees._collection.keys():
+            working_weekends = 0
+            for weekend in scenario.day_collection.weekends.values():
+                # a weekend is a working weekend if one of the two days is assigned
+                if solution.check_if_working_day(employee_id, weekend[0]) or \
+                        solution.check_if_working_day(employee_id, weekend[1]):
+                    working_weekends += 1
+
+            if solution.num_working_weekends[employee_id] != working_weekends:
+                print("\nworking weekends are off")
+                print(employee_id)
+                print("actual: {}, tracked: {}".format(working_weekends, solution.num_working_weekends[employee_id]))
+                print(solution.shift_assignments[employee_id][:,0])
+
+                print(employee_id)
+
+
 
     def check_day_comparison_info(self, solution, scenario, change_info):
         flag = True
@@ -348,6 +388,21 @@ class FeasibilityCheck:
 
         return flag
 
+    def check_working_days(self, solution, scenario):
+        flag = True
+
+        for employee_id in scenario.employees._collection.keys():
+            for d_index in range(0, scenario.num_days_in_horizon):
+                if (not solution.check_if_working_day(employee_id, d_index)
+                        and d_index in solution.working_days[employee_id])\
+                        or (solution.check_if_working_day(employee_id, d_index)
+                            and not d_index in solution.working_days[employee_id]):
+                    print("working days wrong")
+                    print(solution.working_days[employee_id])
+                    print(solution.shift_assignments[employee_id][:, 0])
+                    flag = False
+
+        return flag
 
 
 
