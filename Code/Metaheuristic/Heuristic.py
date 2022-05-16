@@ -80,7 +80,6 @@ class Heuristic:
         n_iter = 1
         no_improve_iter = 0
         while self.stopping_criterion(current_solution, n_iter):
-            # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
                 print(current_solution.violation_array)
                 print("\nIteration: ", n_iter)

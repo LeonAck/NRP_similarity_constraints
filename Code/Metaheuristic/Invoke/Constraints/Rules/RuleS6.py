@@ -136,9 +136,6 @@ class RuleS6(Rule):
             change_in_working_weekends[employee_id_1] += working_weekends_2 - working_weekends_1
             change_in_working_weekends[employee_id_2] += working_weekends_1 - working_weekends_2
 
-        if -change_in_working_weekends[employee_id_1] > solution.num_working_weekends[employee_id_1]\
-                or -change_in_working_weekends[employee_id_2] > solution.num_working_weekends[employee_id_2]:
-            print("hi")
         change_in_working_weekends[employee_id_1] += self.get_change_weekends_start_swap(solution, employee_id_1,
                                                                                          employee_id_2,
                                                                                          swap_info['start_index']) \
@@ -151,9 +148,7 @@ class RuleS6(Rule):
                                                      + self.get_change_weekends_end_swap(solution, employee_id_2,
                                                                                          employee_id_1,
                                                                                          swap_info['end_index'])
-        if -change_in_working_weekends[employee_id_1] > solution.num_working_weekends[employee_id_1]\
-                or -change_in_working_weekends[employee_id_2] > solution.num_working_weekends[employee_id_2]:
-            print("hi")
+
         swap_info['change_working_weekends'] = change_in_working_weekends
         return swap_info
 

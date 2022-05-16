@@ -254,7 +254,6 @@ class RuleH3(Rule):
                         and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
                         else False
         if d_index > 0:
-            print(employee_id_1, employee_id_2, solution.shift_assignments[employee_id_1][d_index - 1][0],  solution.shift_assignments[employee_id_2][d_index][0])
             return self.check_forbidden_given_shifts(forbidden_successions,
                                                      solution.shift_assignments[employee_id_1][d_index - 1][0],
                                                      solution.shift_assignments[employee_id_2][d_index][0],
@@ -290,8 +289,6 @@ class RuleH3(Rule):
             removed_violations += 1
         if end_check:
             removed_violations += 1
-        print(employee_id_1, "start: ", start_check, "end: ", end_check)
-        print(removed_violations)
         return removed_violations
 
     def incremental_violations_swap(self, solution, swap_info, rule_id=None):
@@ -300,11 +297,8 @@ class RuleH3(Rule):
             other_employee_id = swap_info['employee_id_{}'.format(2-i)]
             if self.check_one_way_swap_start_day(solution, employee_id, other_employee_id, swap_info['start_index']):
                 incremental_violations += 1
-                print("violations start, ", employee_id)
             if self.check_one_way_swap_end_day(solution, solution.k_swap, employee_id, other_employee_id, swap_info['start_index']):
                 incremental_violations += 1
-                print("violations end, ", employee_id)
 
             incremental_violations -= self.check_removed_violations_swap(solution, solution.k_swap, employee_id, swap_info['start_index'])
-            print("incremental", employee_id, incremental_violations)
         return incremental_violations

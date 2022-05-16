@@ -72,7 +72,7 @@
                    "parameter_1": 0
                    },
             "H3":{"id": "H3",
-             "is_mandatory": true,
+             "is_mandatory": false,
              "is_active": true,
              "is_horizontal": true,
              "parameter_per_contract": false,
