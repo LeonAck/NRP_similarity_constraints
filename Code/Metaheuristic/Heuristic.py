@@ -91,8 +91,8 @@ class Heuristic:
             self.update_frequency_operator(operator_name)
 
             operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
-            print("\nemployee_1", current_solution.shift_assignments[operator_info['employee_id_1']][:, 0])
-            print("employee_2", current_solution.shift_assignments[operator_info['employee_id_2']][:, 0])
+            # print("\nemployee_1", current_solution.shift_assignments[operator_info['employee_id_1']][:, 0])
+            # print("employee_2", current_solution.shift_assignments[operator_info['employee_id_2']][:, 0])
             if not operator_info['feasible']:
                 print("no feasible change")
                 break

@@ -16,7 +16,9 @@ def swap_operator(solution, scenario):
     """
     # get a change that is allowed by hard constraints
     swap_info = get_feasible_swap(solution, scenario, solution.k_swap)
-
+    print("\nTimeline__", np.array(range(0, 14)))
+    print("employee_1", solution.shift_assignments[swap_info['employee_id_1']][:, 0])
+    print("employee_2", solution.shift_assignments[swap_info['employee_id_2']][:, 0])
     # get stretch information for swap
     swap_info = get_stretch_information_swap(solution, swap_info)
 

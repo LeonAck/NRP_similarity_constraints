@@ -115,11 +115,14 @@ class FeasibilityCheck:
             if "work_stretches_1" in operator_info:
                 print("start", operator_info['start_index'])
                 print("end", operator_info['end_index'])
+                print("employee_1", operator_info['employee_id_1'])
+                print("employee_2", operator_info['employee_id_2'])
                 print("work_stretches_1", operator_info['work_stretches_1'])
                 print("work_stretches_2", operator_info['work_stretches_2'])
                 print("\nedge", operator_info['edge_work_stretches'])
                 print("overlapping", operator_info['overlapping_work_stretches'])
-                print("\nemployee_1",solution.shift_assignments[operator_info['employee_id_1']][:, 0])
+                print("\nTimeline__", np.array(range(0, 14)))
+                print("employee_1",solution.shift_assignments[operator_info['employee_id_1']][:, 0])
                 print("employee_2",solution.shift_assignments[operator_info['employee_id_2']][:, 0])
             print("hi")
 
