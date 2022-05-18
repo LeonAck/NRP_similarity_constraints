@@ -180,7 +180,7 @@ class RuleS2ShiftMax(Rule):
                     new_start=d_index + 1)
 
                 # create new stretch for historical stretch
-                solution.shift_stretches[employee_id][curr_s_type] = solution.create_work_stretch(
+                solution.shift_stretches[employee_id][curr_s_type] = solution.create_stretch(
                     stretch_object_employee=solution.shift_stretches[employee_id][curr_s_type],
                     start_index=-solution.historical_shift_stretch[employee_id],
                     end_index=-1)

@@ -43,7 +43,7 @@ class RuleS5Max(Rule):
         else:
             return 0
 
-    def incremental_violations_swap(self, solution, swap_info):
+    def incremental_violations_swap(self, solution, swap_info, rule_id=None):
         # check the number of assignments per stretch
         assignments_stretch_1 = self.count_assignments_in_stretch(solution,
                                                                   swap_info['employee_id_1'],

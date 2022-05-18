@@ -237,7 +237,7 @@ class Solution:
         # check what change has been made
         if change_info["current_working"] and change_info['new_working']:
             self.update_information_assigned_to_assigned(solution=self,
-                                                         change_info=change_info)
+                                                        change_info=change_info)
         elif change_info['current_working']:
             self.update_information_assigned_to_off(solution=self,
                                                     change_info=change_info)
@@ -269,6 +269,8 @@ class Solution:
 
     def update_information_swap(self, solution, swap_info):
         solution.working_days = self.update_working_days_swap(swap_info)
+        if "S2Max" in solution.rules:
+            solution = RuleS2Max().update_information_swap(solution, swap_info, "work_stretches")
         if "S5Max" in solution.rules:
             solution = RuleS5Max().update_information_swap(solution, swap_info)
         if "S6" in solution.rules:
@@ -358,7 +360,7 @@ class Solution:
         return self.shift_assignments[employee_id][d_index_1][0] \
                == self.shift_assignments[employee_id][d_index_2][0]
 
-    def create_work_stretch(self, stretch_object_employee, start_index, end_index):
+    def create_stretch(self, stretch_object_employee, start_index, end_index):
         stretch_object_employee[start_index] = {"end_index": end_index,
-                                                "length": end_index - start_index + 1}
+                                                "length": end_index-start_index + 1}
         return stretch_object_employee

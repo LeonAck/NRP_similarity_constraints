@@ -91,7 +91,7 @@ class FeasibilityCheck:
                         print("info is incorrect")
                         break
 
-    def work_stretches_info(self, solution, scenario, change_info):
+    def work_stretches_info(self, solution, scenario, operator_info):
         """
         Function to find differences in the work stretch information
         """
@@ -111,14 +111,20 @@ class FeasibilityCheck:
                 except KeyError:
                     employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
             pprint.pprint(deepdiff)
-            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-            print("previous: {}, current: {}".format(change_info['current_working'], change_info['new_working']))
-            print("true", collected_work_stretches[employee_id])
-            print("saved", solution.work_stretches[employee_id])
-            print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
 
+            if "work_stretches_1" in operator_info:
+                print("start", operator_info['start_index'])
+                print("end", operator_info['end_index'])
+                print("employee_1", operator_info['employee_id_1'])
+                print("employee_2", operator_info['employee_id_2'])
+                print("work_stretches_1", operator_info['work_stretches_1'])
+                print("work_stretches_2", operator_info['work_stretches_2'])
+                print("\nedge", operator_info['edge_work_stretches'])
+                print("overlapping", operator_info['overlapping_work_stretches'])
+                print("\nTimeline__", np.array(range(0, 14)))
+                print("employee_1",solution.shift_assignments[operator_info['employee_id_1']][:, 0])
+                print("employee_2",solution.shift_assignments[operator_info['employee_id_2']][:, 0])
             print("hi")
-
 
         return flag
 

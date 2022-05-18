@@ -1,4 +1,5 @@
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
+from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 import random
 import numpy as np
@@ -15,6 +16,11 @@ def swap_operator(solution, scenario):
     """
     # get a change that is allowed by hard constraints
     swap_info = get_feasible_swap(solution, scenario, solution.k_swap)
+    print("\nTimeline__", np.array(range(0, 14)))
+    print("employee_1", solution.shift_assignments[swap_info['employee_id_1']][:, 0])
+    print("employee_2", solution.shift_assignments[swap_info['employee_id_2']][:, 0])
+    # get stretch information for swap
+    swap_info = get_stretch_information_swap(solution, swap_info)
 
     if "S6" in solution.rules:
         swap_info = RuleS6().incremental_working_weekends_swap(solution, swap_info)
@@ -37,7 +43,7 @@ def calc_new_costs_after_swap(solution, swap_info):
     relevant_rules = solution.rule_collection.soft_rule_collection.collection
     for i, rule in enumerate(relevant_rules.values()):
         if rule.swap:
-            violation_array[i] = rule.incremental_violations_swap(solution, swap_info)
+            violation_array[i] = rule.incremental_violations_swap(solution, swap_info, rule.id)
 
     return np.matmul(violation_array, solution.rule_collection.penalty_array), violation_array
 
@@ -144,7 +150,10 @@ def find_skill_compatible_employees(feasible_employees, employee_collection, inf
     for combination in infeasible_combinations:
         if employee_id_1 in combination:
             combination.remove(employee_id_1)
-            employees_w_skill_set.remove(combination[0])
+            try:
+                employees_w_skill_set.remove(combination[0])
+            except ValueError or IndexError:
+                pass
     # check if nonempty
     if employees_w_skill_set:
         employee_id_2 = random.choice(employees_w_skill_set)
@@ -153,10 +162,6 @@ def find_skill_compatible_employees(feasible_employees, employee_collection, inf
         employee_id_2 = None
 
     return employee_id_1, employee_id_2, compatible
-
-
-def find_sets_of_skill_compatible_employees(employee_collection, scenario):
-    skill_set_indices = range(0, len(scenario.skill_sets))
 
 def swap_assignments(solution, d_index, employee_id_1, employee_id_2):
     # save stretch of employee 1
@@ -171,3 +176,64 @@ def swap_assignments(solution, d_index, employee_id_1, employee_id_2):
         = stretch_1
 
     return solution
+
+
+def get_stretch_information_swap(solution, swap_info):
+    """
+    Function to find for the exchanged streaks of consecutive days
+    the work, off and shift stretches in the streak
+    We only save the stretches that are completely in the streak
+    """
+    if "S2Max" or "S2Min" in solution.rules:
+        swap_info = collect_edge_stretches(swap_info, solution.work_stretches, "work_stretches")
+        swap_info = stretches_in_range(swap_info, solution.work_stretches, "work_stretches")
+        swap_info['work_stretches_new'] = RuleS2Max().collect_new_stretches(solution, solution.work_stretches,
+                                                                                swap_info, "work_stretches")
+    return swap_info
+
+
+def stretches_in_range(swap_info, stretch_object, object_name):
+    day_range = range(swap_info['start_index']+1, swap_info['end_index'])
+
+    for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+        stretches_in_swap = {}
+        start_indices_to_keep = None
+        for key, value in stretch_object[employee_id].items():
+            if key in day_range and value['end_index'] in day_range:
+
+                stretches_in_swap[key] = value
+                if swap_info['edge_{}'.format(object_name)][swap_info['employee_id_{}'.format(2 - i)]]['end'] is not None \
+                        and key == swap_info['edge_{}'.format(object_name)][swap_info['employee_id_{}'.format(2 - i)]]['end'][
+                            'start_index']:
+                    start_indices_to_keep = key
+
+        swap_info['{}_{}'.format(object_name, i+1)] = stretches_in_swap
+        swap_info['{}_{}_start_indices_to_keep'.format(object_name, i+1)] =start_indices_to_keep
+    return swap_info
+
+
+def collect_edge_stretches(swap_info, stretch_object, object_name):
+    start_index = swap_info['start_index']
+    end_index = swap_info['end_index']
+    swap_info['edge_{}'.format(object_name)] = {swap_info['employee_id_1']: None, swap_info['employee_id_2']: None}
+    swap_info['overlapping_{}'.format(object_name)] = {}
+    for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+        overlapping_stretch = None
+        edge_stretches_employee = {"start": None, "end": None}
+        # TODO verkorten door uit te sluiten dat hij gaat zoeken naar overlapping stretches
+        # wanneer ook inside stretches zijn
+        for key, value in stretch_object[employee_id].items():
+            if key <= start_index and value['end_index'] >= end_index:
+                overlapping_stretch = create_stretch_new_format(key, value['end_index'])
+            elif key <= start_index <= value['end_index']:
+                edge_stretches_employee['start'] = create_stretch_new_format(key, value['end_index'])
+            elif key <= end_index <= value['end_index']:
+                edge_stretches_employee['end'] = create_stretch_new_format(key, value['end_index'])
+
+        swap_info['edge_{}'.format(object_name)][employee_id] = edge_stretches_employee
+        swap_info['overlapping_{}'.format(object_name)][employee_id] = overlapping_stretch
+
+    return swap_info
+
+def create_stretch_new_format(start_index, end_index):
+    return {"start_index": start_index, "end_index": end_index, "length": end_index - start_index + 1}

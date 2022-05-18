@@ -70,7 +70,7 @@ class RuleS4(Rule):
         else:
             return 0
 
-    def incremental_violations_swap(self, solution, swap_info):
+    def incremental_violations_swap(self, solution, swap_info, rule_id=None):
 
         employee_id_1 = swap_info['employee_id_1']
         employee_id_2 = swap_info['employee_id_2']

@@ -80,16 +80,19 @@ class Heuristic:
         n_iter = 1
         no_improve_iter = 0
         while self.stopping_criterion(current_solution, n_iter):
+            # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
                 print(current_solution.violation_array)
                 print("\nIteration: ", n_iter)
-            # print(current_solution.violation_array)
+            print(current_solution.violation_array)
 
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators_to_use)
             self.update_frequency_operator(operator_name)
 
             operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
+            # print("\nemployee_1", current_solution.shift_assignments[operator_info['employee_id_1']][:, 0])
+            # print("employee_2", current_solution.shift_assignments[operator_info['employee_id_2']][:, 0])
             if not operator_info['feasible']:
                 print("no feasible change")
                 break
@@ -125,8 +128,8 @@ class Heuristic:
             self.update_temperature()
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            # if "S2Max" in current_solution.rules:
-            #     FeasibilityCheck().work_stretches_info(current_solution, self.scenario, change_info)
+            if "S2Max" in current_solution.rules:
+                FeasibilityCheck().work_stretches_info(current_solution, self.scenario, operator_info)
             # if "S3Max" in current_solution.rules:
             #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
             # if "S2ShiftMax" in current_solution.rules:
@@ -134,10 +137,12 @@ class Heuristic:
             # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
             # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
             # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
-            FeasibilityCheck().h2_check_function(current_solution, self.scenario)
+            # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+            #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
-            #FeasibilityCheck().check_working_days(current_solution, self.scenario)
+
             n_iter += 1
 
         # best solution
