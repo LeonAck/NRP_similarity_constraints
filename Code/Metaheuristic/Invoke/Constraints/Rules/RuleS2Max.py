@@ -149,11 +149,10 @@ class RuleS2Max(Rule):
                 solution.work_stretches[employee_id][start_index]['length'] \
                     -= 1
             else:
-                try:
-                    del solution.work_stretches[
-                        employee_id][d_index]
-                except KeyError:
-                    print("hi")
+
+                del solution.work_stretches[
+                    employee_id][d_index]
+
 
         return solution
 
@@ -271,12 +270,13 @@ class RuleS2Max(Rule):
 
     def collect_new_stretches(self, solution, stretch_object, swap_info, stretch_name):
         # adjust stretches for edges
+
         stretch_object_copy = self.update_edge_stretches(solution,
                                                          stretch_object,
                                                          swap_info, stretch_name)
         # swap stretches inside
         stretch_object_copy = self.swap_stretches(swap_info, stretch_object_copy, stretch_name)
-        pprint.pprint(stretch_object_copy)
+        # pprint.pprint(stretch_object_copy)
         return stretch_object_copy
 
     def incremental_violations_swap(self, solution, swap_info, rule_id):
@@ -301,10 +301,18 @@ class RuleS2Max(Rule):
         """
         # TODO change such that effected stretches are not affected again
         for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+
             # remove the keys that are in the swapped days
-            stretch_object[employee_id] = {k: stretch_object[employee_id][k] for k in
-                                           set(stretch_object[employee_id]) - set(
-                                               swap_info["{}_{}".format(stretch_name, i + 1)])}
+            if swap_info['{}_{}_start_indices_to_keep'.format(stretch_name, i+1)] is not None:
+                stretch_object[employee_id] = {k: stretch_object[employee_id][k] for k in
+                                               set(stretch_object[employee_id]) - (set(
+                                                   swap_info["{}_{}".format(stretch_name, i + 1)])
+                                                   - {swap_info['{}_{}_start_indices_to_keep'.format(stretch_name, i+1)]})}
+            else:
+                stretch_object[employee_id] = {k: stretch_object[employee_id][k] for k in
+                                               set(stretch_object[employee_id]) - set(
+                                                   swap_info["{}_{}".format(stretch_name, i + 1)])}
+
 
             # add key, value pairs that are in the day range of the other nurses
             stretch_object[employee_id].update(swap_info["{}_{}".format(stretch_name, 2 - i)])
@@ -348,7 +356,7 @@ class RuleS2Max(Rule):
         # both overlapping
         else:
             pass
-        pprint.pprint(stretch_object_copy)
+        # pprint.pprint(stretch_object_copy)
         return stretch_object_copy
 
     def update_none_overlapping(self, solution, stretch_object_copy, employee_1,
@@ -357,7 +365,6 @@ class RuleS2Max(Rule):
                                 edge_stretches_2,
                                 start_index,
                                 end_index):
-        print(stretch_object_copy)
         stretch_object_copy = self.update_none_overlapping_start(solution, stretch_object_copy, employee_1,
                                                                  employee_2,
                                                                  edge_stretches_1['start'],
@@ -371,7 +378,7 @@ class RuleS2Max(Rule):
                                                                edge_stretches_1['end'],
                                                                edge_stretches_2['end'],
                                                                end_index)
-        pprint.pprint(stretch_object_copy)
+        # pprint.pprint(stretch_object_copy)
         return stretch_object_copy
 
     def update_none_overlapping_end(self, solution, stretch_object_copy, employee_1,
@@ -401,8 +408,7 @@ class RuleS2Max(Rule):
                                                                             employee_1,
                                                                             edge_stretch_end_2,
                                                                             end_index)
-            for key in stretch_object_copy[employee_1].keys():
-                print(key)
+
         return stretch_object_copy
 
     def update_none_overlapping_end_one_edge(self, solution, stretch_object_copy,
@@ -414,14 +420,12 @@ class RuleS2Max(Rule):
         stretch_object_copy[employee] = self.shorten_stretch_pre(stretch_object_copy[employee],
                                                                  old_start=edge_stretch_end['start_index'],
                                                                  new_start=end_index + 1)
-        for key in stretch_object_copy[other_employee].keys():
-            print(key)
+
 
         if end_index + 1 in stretch_object_copy[other_employee]:
             stretch_object_copy[other_employee] = self.shorten_stretch_pre(stretch_object_copy[other_employee],
                                                                            old_start=end_index + 1,
                                                                            new_start=edge_stretch_end['start_index'])
-            print("createed_stretch", stretch_object_copy[other_employee][edge_stretch_end['start_index']])
         else:
             stretch_object_copy[other_employee] = solution.create_stretch(stretch_object_copy[other_employee],
                                                                           start_index=edge_stretch_end['start_index'],
@@ -564,15 +568,15 @@ class RuleS2Max(Rule):
             start_stretch_starting_index_to_combine = self.find_stretch(stretch_object_employee,
                                                                         d_index=start_index-1)
 
-        if start_stretch_starting_index_to_combine and end_stretch_starting_index_to_combine:
+        if start_stretch_starting_index_to_combine is not None and end_stretch_starting_index_to_combine is not None:
             stretch_object_employee = self.merge_overlapping_with_two_stretches(stretch_object_employee,
                                                                                 start_stretch_starting_index_to_combine,
                                                                                 end_stretch_starting_index_to_combine)
-        elif start_stretch_starting_index_to_combine:
+        elif start_stretch_starting_index_to_combine is not None:
             stretch_object_employee = self.shorten_stretch_end(stretch_object_employee,
                                                                start_index=start_stretch_starting_index_to_combine,
                                                                new_end=end_index)
-        elif end_stretch_starting_index_to_combine:
+        elif end_stretch_starting_index_to_combine is not None:
             stretch_object_employee = self.shorten_stretch_pre(stretch_object_employee,
                                                                old_start=end_stretch_starting_index_to_combine,
                                                                new_start=start_index)
@@ -581,7 +585,7 @@ class RuleS2Max(Rule):
                                                           start_index=start_index,
                                                           end_index=end_index)
         print("non_overlapping")
-        pprint.pprint(stretch_object_employee)
+        # pprint.pprint(stretch_object_employee)
         return stretch_object_employee
 
     def update_overlapping_start(self, stretch_object_employee,
@@ -670,6 +674,7 @@ class RuleS2Max(Rule):
                                      end_stretch_other,
                                      start_index,
                                      end_index):
+        del stretch_object_employee[start_index]
         # start
         if start_stretch_other:
             # shorten/ change
@@ -685,7 +690,6 @@ class RuleS2Max(Rule):
                                                               start_index=end_stretch_other['start_index'],
                                                               end_index=end_index)
 
-        del stretch_object_employee[start_index]
         return stretch_object_employee
 
     def merge_stretches_different_objects(self, stretch_object_copy,
@@ -805,7 +809,6 @@ class RuleS2Max(Rule):
             # change the length of the stretch
             stretch_object_employee[new_start]['length'] = stretch_object_employee[new_start]['end_index'] - new_start + 1
         del stretch_object_employee[old_start]
-        print("in shorten", stretch_object_employee)
         return stretch_object_employee
 
     def merge_stretches(self, stretch_object_employee, start_index_1, start_index_2):

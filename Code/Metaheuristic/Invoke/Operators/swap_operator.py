@@ -150,7 +150,10 @@ def find_skill_compatible_employees(feasible_employees, employee_collection, inf
     for combination in infeasible_combinations:
         if employee_id_1 in combination:
             combination.remove(employee_id_1)
-            employees_w_skill_set.remove(combination[0])
+            try:
+                employees_w_skill_set.remove(combination[0])
+            except ValueError or IndexError:
+                pass
     # check if nonempty
     if employees_w_skill_set:
         employee_id_2 = random.choice(employees_w_skill_set)
@@ -182,8 +185,8 @@ def get_stretch_information_swap(solution, swap_info):
     We only save the stretches that are completely in the streak
     """
     if "S2Max" or "S2Min" in solution.rules:
-        swap_info = stretches_in_range(swap_info, solution.work_stretches, "work_stretches")
         swap_info = collect_edge_stretches(swap_info, solution.work_stretches, "work_stretches")
+        swap_info = stretches_in_range(swap_info, solution.work_stretches, "work_stretches")
         swap_info['work_stretches_new'] = RuleS2Max().collect_new_stretches(solution, solution.work_stretches,
                                                                                 swap_info, "work_stretches")
     return swap_info
@@ -194,12 +197,18 @@ def stretches_in_range(swap_info, stretch_object, object_name):
 
     for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
         stretches_in_swap = {}
+        start_indices_to_keep = None
         for key, value in stretch_object[employee_id].items():
             if key in day_range and value['end_index'] in day_range:
+
                 stretches_in_swap[key] = value
+                if swap_info['edge_{}'.format(object_name)][swap_info['employee_id_{}'.format(2 - i)]]['end'] is not None \
+                        and key == swap_info['edge_{}'.format(object_name)][swap_info['employee_id_{}'.format(2 - i)]]['end'][
+                            'start_index']:
+                    start_indices_to_keep = key
 
         swap_info['{}_{}'.format(object_name, i+1)] = stretches_in_swap
-
+        swap_info['{}_{}_start_indices_to_keep'.format(object_name, i+1)] =start_indices_to_keep
     return swap_info
 
 
