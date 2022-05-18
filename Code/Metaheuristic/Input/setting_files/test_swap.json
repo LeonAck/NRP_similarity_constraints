@@ -15,7 +15,7 @@
         "cooling_rate": 0.99,
         "no_improve_max": 200,
         "operators": ["swap", "change"],
-        "k_swap": 7,
+        "k_swap": 5,
         "reaction_factor": 0.9,
         "score_event_1": 33,
         "score_event_2": 9,
@@ -52,7 +52,7 @@
   "stage_2_settings": {
     "stage_number": 2,
     "heuristic_settings": {
-        "max_time": 100,
+        "max_time": 1000,
         "max_iter":200000,
         "initial_temp": 22,
         "cooling_rate": 0.99,

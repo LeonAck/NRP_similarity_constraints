@@ -162,7 +162,7 @@ class RuleS6(Rule):
         swap_info['change_working_weekends'] = change_in_working_weekends
         return swap_info
 
-    def incremental_violations_swap(self, solution, swap_info):
+    def incremental_violations_swap(self, solution, swap_info, rule_id=None):
         """
         Calc incremental violations after a swap move
         """

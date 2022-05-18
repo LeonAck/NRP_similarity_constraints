@@ -41,7 +41,7 @@ def calc_new_costs_after_swap(solution, swap_info):
     relevant_rules = solution.rule_collection.soft_rule_collection.collection
     for i, rule in enumerate(relevant_rules.values()):
         if rule.swap:
-            violation_array[i] = rule.incremental_violations_swap(solution, swap_info)
+            violation_array[i] = rule.incremental_violations_swap(solution, swap_info, rule.id)
 
     return np.matmul(violation_array, solution.rule_collection.penalty_array), violation_array
 
@@ -172,6 +172,7 @@ def swap_assignments(solution, d_index, employee_id_1, employee_id_2):
 
     return solution
 
+
 def get_stretch_information_swap(solution, swap_info):
     """
     Function to find for the exchanged streaks of consecutive days
@@ -179,13 +180,14 @@ def get_stretch_information_swap(solution, swap_info):
     We only save the stretches that are completely in the streak
     """
     if "S2Max" or "S2Min" in solution.rules:
-        swap_info = stretches_in_range(solution, swap_info, solution.work_stretches, "work_stretches")
+        swap_info = stretches_in_range(swap_info, solution.work_stretches, "work_stretches")
+        swap_info = collect_edge_stretches(swap_info, solution.work_stretches, "work_stretches")
         swap_info['work_stretches_new'] = RuleS2Max().collect_new_stretches(solution, solution.work_stretches,
-                                                                                swap_info)
+                                                                                swap_info, "work_stretches")
     return swap_info
 
-def stretches_in_range(solution, swap_info, stretch_object, object_name):
-    # TODO only get stretches that are not in the outside days
+
+def stretches_in_range(swap_info, stretch_object, object_name):
     day_range = range(swap_info['start_index']+1, swap_info['end_index'])
 
     for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
@@ -198,3 +200,29 @@ def stretches_in_range(solution, swap_info, stretch_object, object_name):
 
     return swap_info
 
+
+def collect_edge_stretches(swap_info, stretch_object, object_name):
+    start_index = swap_info['start_index']
+    end_index = swap_info['end_index']
+    swap_info['edge_{}'.format(object_name)] = {swap_info['employee_id_1']: None, swap_info['employee_id_2']: None}
+    swap_info['overlapping_{}'.format(object_name)] = {}
+    for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+        overlapping_stretch = None
+        edge_stretches_employee = {"start": None, "end": None}
+        # TODO verkorten door uit te sluiten dat hij gaat zoeken naar overlapping stretches
+        # wanneer ook inside stretches zijn
+        for key, value in stretch_object[employee_id].items():
+            if key <= start_index and value['end_index'] >= end_index:
+                overlapping_stretch = create_stretch_new_format(key, value['end_index'])
+            elif key <= start_index <= value['end_index']:
+                edge_stretches_employee['start'] = create_stretch_new_format(key, value['end_index'])
+            elif key <= end_index <= value['end_index']:
+                edge_stretches_employee['end'] = create_stretch_new_format(key, value['end_index'])
+
+        swap_info['edge_{}'.format(object_name)][employee_id] = edge_stretches_employee
+        swap_info['overlapping_{}'.format(object_name)][employee_id] = overlapping_stretch
+
+    return swap_info
+
+def create_stretch_new_format(start_index, end_index):
+    return {"start_index": start_index, "end_index": end_index, "length": end_index - start_index + 1}
