@@ -286,12 +286,12 @@ class RuleS2Max(Rule):
         if rule_id == "S2Max":
             stretch_name = 'work_stretches'
             stretch_object = solution.work_stretches
-        incremental_violations = -1
-        # for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
-        #     old_violations = self.count_violations_employee(stretch_object[employee_id], employee_id)
-        #     new_violations = self.count_violations_employee(swap_info['{}_new'.format(stretch_name)][employee_id],
-        #                                                     employee_id)
-        #     incremental_violations += new_violations - old_violations
+        incremental_violations = 0
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            old_violations = self.count_violations_employee(stretch_object[employee_id], employee_id)
+            new_violations = self.count_violations_employee(swap_info['{}_new'.format(stretch_name)][employee_id],
+                                                            employee_id)
+            incremental_violations += new_violations - old_violations
         return incremental_violations
 
     def swap_stretches(self, swap_info, stretch_object, stretch_name):
