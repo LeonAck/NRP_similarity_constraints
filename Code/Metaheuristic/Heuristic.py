@@ -128,8 +128,8 @@ class Heuristic:
             self.update_temperature()
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            if "S2Max" in current_solution.rules:
-                FeasibilityCheck().work_stretches_info(current_solution, self.scenario, operator_info)
+            # if "S2Max" in current_solution.rules:
+            #     FeasibilityCheck().work_stretches_info(current_solution, self.scenario, operator_info)
             # if "S3Max" in current_solution.rules:
             #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
             # if "S2ShiftMax" in current_solution.rules:

@@ -14,15 +14,16 @@ class RuleS2Min(Rule):
         """
         Function to count violations in the entire solution
         """
-        return sum([self.count_violations_employee(solution, employee_id)
+        return sum([self.count_violations_employee(solution.work_stretches[employee_id], employee_id)
                     for employee_id in scenario.employees._collection.keys()])
 
-    def count_violations_employee(self, solution, employee_id):
+    def count_violations_employee(self, stretch_object_employee, employee_id):
         """
         Function to count violations for an employee
         """
+
         return sum([np.maximum(self.parameter_per_employee[employee_id] - work_stretch['length'], 0)
-                    for work_stretch in solution.work_stretches[employee_id].values()])
+                    for work_stretch in stretch_object_employee.values()])
 
     def print_violations_per_employee(self, solution, scenario):
         for employee_id in scenario.employees._collection.keys():
@@ -169,3 +170,19 @@ class RuleS2Min(Rule):
                                        + stretch_object_employee[start_index_1]['length']
                                        + 1), 0)
         return -(previous_violations - new_violations)
+
+
+    def incremental_violations_swap(self, solution, swap_info, rule_id):
+        """
+        Function to calculate the incremental violations after a swap operation
+        """
+
+        stretch_name = 'work_stretches'
+        stretch_object = solution.work_stretches
+        incremental_violations = 0
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            old_violations = self.count_violations_employee(stretch_object[employee_id], employee_id)
+            new_violations = self.count_violations_employee(swap_info['{}_new'.format(stretch_name)][employee_id],
+                                                            employee_id)
+            incremental_violations += new_violations - old_violations
+        return incremental_violations
