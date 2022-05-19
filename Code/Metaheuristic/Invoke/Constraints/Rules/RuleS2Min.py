@@ -30,7 +30,7 @@ class RuleS2Min(Rule):
             print(employee_id, sum([np.maximum(
                 solution.rule_collection.collection['S2Min'].parameter_per_employee[employee_id] - work_stretch[
                     'length'], 0)
-                                    for work_stretch in solution.work_stretches[employee_id].values()]))
+                for work_stretch in solution.work_stretches[employee_id].values()]))
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """
@@ -170,7 +170,6 @@ class RuleS2Min(Rule):
                                        + stretch_object_employee[start_index_1]['length']
                                        + 1), 0)
         return -(previous_violations - new_violations)
-
 
     def incremental_violations_swap(self, solution, swap_info, rule_id):
         """

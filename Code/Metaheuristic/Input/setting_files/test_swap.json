@@ -118,7 +118,7 @@
              },
             "S2ShiftMax":{"id": "S2Shiftmax",
              "is_mandatory": false,
-             "is_active": false,
+             "is_active": true,
              "is_horizontal": true,
                           "parameter_per_contract": false,
                           "parameter_per_s_type": true,
