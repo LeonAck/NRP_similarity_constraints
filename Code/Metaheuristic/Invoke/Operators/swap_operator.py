@@ -19,8 +19,9 @@ def swap_operator(solution, scenario):
     print("\nTimeline__", np.array(range(0, 14)))
     print("employee_1", solution.shift_assignments[swap_info['employee_id_1']][:, 0])
     print("employee_2", solution.shift_assignments[swap_info['employee_id_2']][:, 0])
-    # get stretch information for swap
-    swap_info = get_stretch_information_swap(solution, swap_info)
+    if "S2Max" in solution.rules or "S2Min" in solution.rules:
+        # get stretch information for swap
+        swap_info = get_stretch_information_swap(solution, swap_info)
 
     if "S6" in solution.rules:
         swap_info = RuleS6().incremental_working_weekends_swap(solution, swap_info)
