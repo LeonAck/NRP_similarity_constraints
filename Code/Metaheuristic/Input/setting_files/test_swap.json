@@ -1,8 +1,8 @@
 {"instance_settings": {
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON",
-  "instance_name": "n030w4",
+  "instance_name": "n012w8",
   "history_file": 0,
-  "weeks": [1, 2, 3, 4, 5],
+  "weeks": [1, 2, 3, 4, 5, 6],
   "two_stage": false
 },
   "stage_1_settings":
@@ -57,7 +57,7 @@
         "initial_temp": 22,
         "cooling_rate": 0.99,
         "no_improve_max": 200,
-        "operators": ["change"],
+        "operators": ["change", "swap"],
          "k_swap": 10,
         "reaction_factor": 0.9,
         "score_event_1": 33,
@@ -118,10 +118,10 @@
              },
             "S2ShiftMax":{"id": "S2Shiftmax",
              "is_mandatory": false,
-             "is_active": false,
+             "is_active": true,
              "is_horizontal": true,
-                          "parameter_per_contract": false,
-                          "parameter_per_s_type": true,
+              "parameter_per_contract": false,
+              "parameter_per_s_type": true,
              "penalty": 15,
              "parameter_1": 0,
               "swap": true

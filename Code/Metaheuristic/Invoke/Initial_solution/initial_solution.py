@@ -20,6 +20,7 @@ class BuildSolution(Solution):
         self.day_collection = scenario.day_collection
         self.rule_collection = scenario.rule_collection
         self.rules = list(self.rule_collection.collection.keys())
+        self.num_shift_types = scenario.num_shift_types
 
         # set parameter
         self.k_swap = scenario.stage_settings['heuristic_settings']['k_swap']
@@ -295,37 +296,38 @@ class BuildSolution(Solution):
         the work stretches of that particular shift type
         """
         shift_stretches = {}
-        for employee_id in self.scenario.employees._collection.keys():
-            shift_stretch_employee = {}
-            for s_index in self.scenario.shift_collection.shift_types_indices:
-                shift_stretches_employee_per_shift = {}
+        for s_index in self.scenario.shift_collection.shift_types_indices:
+            shift_stretch_shift = {}
+            for employee_id in self.scenario.employees._collection.keys():
+
+            
                 # for each working day, check if employee works that shift type
 
                 working_shift_check = [1 if solution.check_if_working_s_type_on_day(employee_id, d_index, s_index)
                                  else 0
                                  for d_index in range(self.scenario.num_days_in_horizon)]
 
-                shift_stretch_employee_shift = self.collect_stretches(working_shift_check)
+                shift_stretch_shift_employee = self.collect_stretches(working_shift_check)
 
                 # implement history
                 if self.last_assigned_shift[employee_id] == s_index:
-                    if 0 in shift_stretch_employee_shift:
+                    if 0 in shift_stretch_shift_employee:
                         # combine history stretch with first day stretch
-                        shift_stretch_employee_shift = RuleS2Max().extend_stretch_pre(
-                            stretch_object_employee=shift_stretch_employee_shift,
+                        shift_stretch_shift_employee = RuleS2Max().extend_stretch_pre(
+                            stretch_object_employee=shift_stretch_shift_employee,
                             new_start=-self.historical_shift_stretch[employee_id],
                             old_start=0)
                     else:
                         # add new stretch to history
-                        shift_stretch_employee_shift = solution.create_stretch(
-                            stretch_object_employee=shift_stretch_employee_shift,
+                        shift_stretch_shift_employee = solution.create_stretch(
+                            stretch_object_employee=shift_stretch_shift_employee,
                             start_index=-self.historical_shift_stretch[employee_id],
                             end_index=-1)
 
-                shift_stretch_employee[s_index] = shift_stretch_employee_shift
+                shift_stretch_shift[employee_id] = shift_stretch_shift_employee
 
             # add for each employee the stretches to the general dict
-            shift_stretches[employee_id] = shift_stretch_employee
+            shift_stretches[s_index] = shift_stretch_shift
 
         return shift_stretches
 

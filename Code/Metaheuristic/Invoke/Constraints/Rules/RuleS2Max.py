@@ -282,9 +282,9 @@ class RuleS2Max(Rule):
         """
         Function to calculate the incremental violations after a swap operation
         """
-        if rule_id == "S2Max":
-            stretch_name = 'work_stretches'
-            stretch_object = solution.work_stretches
+
+        stretch_name = 'work_stretches'
+        stretch_object = solution.work_stretches
         incremental_violations = 0
         for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
             old_violations = self.count_violations_employee(stretch_object[employee_id], employee_id)
