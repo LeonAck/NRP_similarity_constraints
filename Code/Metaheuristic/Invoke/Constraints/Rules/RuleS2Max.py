@@ -276,7 +276,6 @@ class RuleS2Max(Rule):
                                                          swap_info, stretch_name)
         # swap stretches inside
         stretch_object_copy = self.swap_stretches(swap_info, stretch_object_copy, stretch_name)
-        # pprint.pprint(stretch_object_copy)
         return stretch_object_copy
 
     def incremental_violations_swap(self, solution, swap_info, rule_id):
@@ -354,9 +353,7 @@ class RuleS2Max(Rule):
                                                                           start_index=swap_info['start_index'],
                                                                           end_index=swap_info['end_index'])
         # both overlapping
-        else:
-            pass
-        # pprint.pprint(stretch_object_copy)
+
         return stretch_object_copy
 
     def update_none_overlapping(self, solution, stretch_object_copy, employee_1,
@@ -378,7 +375,6 @@ class RuleS2Max(Rule):
                                                                edge_stretches_1['end'],
                                                                edge_stretches_2['end'],
                                                                end_index)
-        # pprint.pprint(stretch_object_copy)
         return stretch_object_copy
 
     def update_none_overlapping_end(self, solution, stretch_object_copy, employee_1,
@@ -584,8 +580,7 @@ class RuleS2Max(Rule):
             stretch_object_employee = self.create_stretch(stretch_object_employee,
                                                           start_index=start_index,
                                                           end_index=end_index)
-        print("non_overlapping")
-        # pprint.pprint(stretch_object_employee)
+
         return stretch_object_employee
 
     def update_overlapping_start(self, stretch_object_employee,

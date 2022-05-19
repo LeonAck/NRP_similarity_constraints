@@ -305,21 +305,6 @@ class BuildSolution(Solution):
                                  else 0
                                  for d_index in range(self.scenario.num_days_in_horizon)]
 
-                # start_index = 0
-                # # get lists of consecutive days working specific shift type
-                # for k, v in itertools.groupby(working_shift_check):
-                #     len_stretch = sum(1 for _ in v)
-                #     if k:
-                #         # save in dict under start index with end index
-                #         shift_stretch = {}
-                #         shift_stretch["end_index"] = start_index + len_stretch - 1
-                #         shift_stretch["length"] = len_stretch
-                #         shift_stretches_employee_per_shift[start_index] = shift_stretch
-                #         start_index += len_stretch
-                #     else:
-                #         start_index += len_stretch
-
-                # assign for each s_type the stretches to the employee
                 shift_stretch_employee_shift = self.collect_stretches(working_shift_check)
 
                 # implement history
