@@ -15,17 +15,16 @@ class RuleS3Max(Rule):
         """
         Function to count violations in the entire solution
         """
-        return sum([self.count_violations_employee(solution, employee_id)
+        return sum([self.count_violations_employee(solution.day_off_stretches[employee_id], employee_id)
                     for employee_id in scenario.employees._collection.keys()])
 
-    def count_violations_employee(self, solution, employee_id):
+    def count_violations_employee(self, stretch_object_employee, employee_id):
         """
         Function to count violations for an employee
         """
-        return sum([day_off_stretch['length'] - self.parameter_per_employee[employee_id]
-                    for day_off_stretch in solution.day_off_stretches[employee_id].values()
-                    if day_off_stretch['length'] > self.parameter_per_employee[employee_id]
-                    and day_off_stretch['end_index'] > -1])
+        return sum([np.maximum(day_off_stretch['length'] - self.parameter_per_employee[employee_id], 0)
+                    for day_off_stretch in stretch_object_employee.values()
+                    if day_off_stretch['end_index'] > -1])
 
     def find_day_off_stretch_end(self, solution, employee_id, d_index):
         """
@@ -269,3 +268,25 @@ class RuleS3Max(Rule):
                     else 0
             else:
                 return 0
+
+    def incremental_violations_swap(self, solution, swap_info, rule_id):
+        """
+        Function to calculate the incremental violations after a swap operation
+        """
+        stretch_name = 'day_off_stretches'
+        stretch_object = solution.day_off_stretches
+        incremental_violations = 0
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            old_violations = self.count_violations_employee(stretch_object[employee_id], employee_id)
+            new_violations = self.count_violations_employee(swap_info['{}_new'.format(stretch_name)][employee_id],
+                                                            employee_id)
+            incremental_violations += new_violations - old_violations
+        return incremental_violations
+
+    def update_information_swap(self, solution, swap_info, stretch_name):
+        """
+        function to update the information collected
+        """
+        solution.day_off_stretches = swap_info['{}_new'.format(stretch_name)]
+
+        return solution
