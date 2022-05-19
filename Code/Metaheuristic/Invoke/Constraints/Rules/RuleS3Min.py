@@ -14,15 +14,15 @@ class RuleS3Min(Rule):
         """
         Function to count violations in the entire solution
         """
-        return sum([self.count_violations_employee(solution, employee_id)
+        return sum([self.count_violations_employee(solution.day_off_stretches[employee_id], employee_id)
                     for employee_id in scenario.employees._collection.keys()])
 
-    def count_violations_employee(self, solution, employee_id):
+    def count_violations_employee(self, stretch_object_employee, employee_id):
         """
         Function to count violations for an employee
         """
         return sum([np.maximum(self.parameter_per_employee[employee_id] - day_off_stretch['length'], 0)
-                    for day_off_stretch in solution.day_off_stretches[employee_id].values()])
+                    for day_off_stretch in stretch_object_employee.values()])
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
         """
@@ -137,3 +137,18 @@ class RuleS3Min(Rule):
         for s_index, day_off_stretch in solution.day_off_stretches[employee_id].items():
             if d_index in range(s_index + 1, day_off_stretch['end_index']):
                 return s_index
+
+
+    def incremental_violations_swap(self, solution, swap_info, rule_id):
+        """
+        Function to calculate the incremental violations after a swap operation
+        """
+        stretch_name = 'day_off_stretches'
+        stretch_object = solution.day_off_stretches
+        incremental_violations = 0
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            old_violations = self.count_violations_employee(stretch_object[employee_id], employee_id)
+            new_violations = self.count_violations_employee(swap_info['{}_new'.format(stretch_name)][employee_id],
+                                                            employee_id)
+            incremental_violations += new_violations - old_violations
+        return incremental_violations

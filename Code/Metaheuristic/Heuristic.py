@@ -82,9 +82,9 @@ class Heuristic:
         while self.stopping_criterion(current_solution, n_iter):
             # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
-                print(current_solution.violation_array)
+                # print(current_solution.violation_array)
                 print("\nIteration: ", n_iter)
-            print(current_solution.violation_array)
+            # print(current_solution.violation_array)
 
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators_to_use)
@@ -107,7 +107,7 @@ class Heuristic:
                 # check if best. Then current solution, becomes the best solution
                 if current_solution.obj_value < best_solution.obj_value:
                     best_solution = Solution(current_solution)
-                    print("new best_solution: {}".format(best_solution.obj_value))
+                    # print("new best_solution: {}".format(best_solution.obj_value))
                     no_improve_iter = 0
 
             else:
@@ -131,7 +131,7 @@ class Heuristic:
             # if "S2Max" in current_solution.rules:
             #     FeasibilityCheck().work_stretches_info(current_solution, self.scenario, operator_info)
             # if "S3Max" in current_solution.rules:
-            #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, change_info)
+            #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
             # if "S2ShiftMax" in current_solution.rules:
             #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
             # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
