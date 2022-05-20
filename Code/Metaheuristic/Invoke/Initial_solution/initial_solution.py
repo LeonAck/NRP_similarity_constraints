@@ -20,6 +20,7 @@ class BuildSolution(Solution):
         self.day_collection = scenario.day_collection
         self.rule_collection = scenario.rule_collection
         self.rules = list(self.rule_collection.collection.keys())
+        self.employee_preferences = scenario.employee_preferences
 
         # set parameter
         self.k_swap = scenario.stage_settings['heuristic_settings']['k_swap']

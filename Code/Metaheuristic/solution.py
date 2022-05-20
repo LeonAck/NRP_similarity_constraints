@@ -21,6 +21,7 @@ class Solution:
             self.rule_collection = other_solution.rule_collection
             self.rules = other_solution.rules
             self.k_swap = other_solution.k_swap
+            self.employee_preferences = other_solution.employee_preferences
 
             # employee shift assignments
             self.shift_assignments = other_solution.shift_assignments
