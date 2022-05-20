@@ -270,11 +270,11 @@ class Solution:
 
     def update_information_swap(self, solution, swap_info):
         solution.working_days = self.update_working_days_swap(swap_info)
-        if "S2Max" or "S2Min" in solution.rules:
+        if "S2Max" in solution.rules or "S2Min" in solution.rules:
             solution = RuleS2Max().update_information_swap(solution, swap_info, "work_stretches")
-        if "S2ShiftMax" or "S2ShiftMin" in solution.rules:
+        if "S2ShiftMax" in solution.rules or "S2ShiftMin" in solution.rules:
             solution = RuleS2ShiftMax().update_information_swap(solution, swap_info, "shift_stretches")
-        if "S3Max" or "S3Min" in solution.rules:
+        if "S3Max" in solution.rules or "S3Min" in solution.rules:
             solution = RuleS3Max().update_information_swap(solution, swap_info, "day_off_stretches")
         if "S5Max" in solution.rules:
             solution = RuleS5Max().update_information_swap(solution, swap_info)

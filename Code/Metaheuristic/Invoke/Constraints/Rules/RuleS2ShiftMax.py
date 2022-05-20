@@ -300,7 +300,7 @@ class RuleS2ShiftMax(Rule):
                 new_violations = self.count_violations_shift_employee(swap_info['{}_new'.format(stretch_name)][employee_id],
                                                                 s_index,
                                                                 employee_id)
-            incremental_violations += new_violations - old_violations
+                incremental_violations += new_violations - old_violations
         return incremental_violations
 
     def update_information_swap(self, solution, swap_info, stretch_name):

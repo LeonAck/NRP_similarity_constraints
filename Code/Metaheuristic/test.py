@@ -13,7 +13,7 @@ from Input.input_NRC import Instance
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from run import run_two_stage
 
-# run_two_stage(settings_file_path)
+run_two_stage(settings_file_path)
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")
 settings = Settings(settings_file_path)
 instance = Instance(settings)

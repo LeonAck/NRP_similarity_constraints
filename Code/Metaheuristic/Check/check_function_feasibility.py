@@ -121,9 +121,11 @@ class FeasibilityCheck:
                 print("work_stretches_2", operator_info['work_stretches_2'])
                 print("\nedge", operator_info['edge_work_stretches'])
                 print("overlapping", operator_info['overlapping_work_stretches'])
-                print("\nTimeline__", np.array(range(0, 14)))
+                print("\nTimeline__", np.array(range(0, len(solution.day_collection.num_days_in_horizon))))
                 print("employee_1",solution.shift_assignments[operator_info['employee_id_1']][:, 0])
                 print("employee_2",solution.shift_assignments[operator_info['employee_id_2']][:, 0])
+            elif "current_working" in operator_info:
+                print("d_index", operator_info['d_index'])
             print("hi")
 
         return flag
@@ -160,9 +162,9 @@ class FeasibilityCheck:
                     employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
                 except KeyError:
                     employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
-            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-            print("current working: {}, new working: {}".format(change_info['current_working'],
-                                                                change_info['new_working']))
+            # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+            # print("current working: {}, new working: {}".format(change_info['current_working'],
+            #                                                     change_info['new_working']))
 
             pprint.pprint(deepdiff)
             print("true", collected_day_off_stretches[employee_id])

@@ -200,9 +200,9 @@ def get_stretch_information_swap(solution, swap_info):
     if "S2ShiftMax" or "S2ShiftMin" in solution.rules:
         for s_index in range(0, solution.num_shift_types):
             stretch_name = "shift_stretches_{}".format(s_index)
-            swap_info = collect_edge_stretches(swap_info, solution.day_off_stretches, stretch_name)
-            swap_info = stretches_in_range(swap_info, solution.day_off_stretches, stretch_name)
-            swap_info['{}_new'.format(stretch_name)] = RuleS2Max().collect_new_stretches(solution, solution.day_off_stretches,
+            swap_info = collect_edge_stretches(swap_info, solution.shift_stretches[s_index], stretch_name)
+            swap_info = stretches_in_range(swap_info, solution.shift_stretches[s_index], stretch_name)
+            swap_info['{}_new'.format(stretch_name)] = RuleS2Max().collect_new_stretches(solution, solution.shift_stretches[s_index],
                                                                                    swap_info, stretch_name)
     return swap_info
 
@@ -223,7 +223,7 @@ def stretches_in_range(swap_info, stretch_object, object_name):
                     start_indices_to_keep = key
 
         swap_info['{}_{}'.format(object_name, i+1)] = stretches_in_swap
-        swap_info['{}_{}_start_indices_to_keep'.format(object_name, i+1)] =start_indices_to_keep
+        swap_info['{}_{}_start_indices_to_keep'.format(object_name, i+1)] = start_indices_to_keep
     return swap_info
 
 

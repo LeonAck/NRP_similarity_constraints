@@ -155,3 +155,20 @@ class RuleS2ShiftMin(Rule):
         for start_index, shift_stretch in solution.shift_stretches[employee_id][s_index].items():
             if d_index in range(start_index + 1, shift_stretch['end_index']):
                 return start_index
+
+    def incremental_violations_swap(self, solution, swap_info, rule_id):
+        """
+        Function to calculate the incremental violations after a swap operation
+        """
+
+        incremental_violations = 0
+        for s_index in range(0, solution.num_shift_types):
+            stretch_name = 'shift_stretches_{}'.format(s_index)
+            stretch_object = solution.shift_stretches[s_index]
+            for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+                old_violations = self.count_violations_shift_employee(stretch_object[employee_id], s_index, employee_id)
+                new_violations = self.count_violations_shift_employee(swap_info['{}_new'.format(stretch_name)][employee_id],
+                                                                s_index,
+                                                                employee_id)
+                incremental_violations += new_violations - old_violations
+        return incremental_violations
