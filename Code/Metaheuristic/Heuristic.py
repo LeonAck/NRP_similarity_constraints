@@ -138,7 +138,7 @@ class Heuristic:
             # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
             # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-            FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
