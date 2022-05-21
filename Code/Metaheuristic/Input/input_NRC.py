@@ -36,6 +36,30 @@ class Instance:
         self.historical_off_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveDaysOff')
         self.historical_shift_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveAssignments')
 
+        # get employee preferences
+        self.employee_preferences = self.collect_employee_preferences()
+
+    def collect_employee_preferences(self):
+        employee_preferences = {}
+
+        for i, value in enumerate(self.weeks_data.values()):
+            for shift_off_request in value["shiftOffRequests"]:
+                if shift_off_request['nurse'] in employee_preferences:
+
+                    employee_preferences[shift_off_request['nurse']][7 * i + self.weekday_to_index(shift_off_request['day'])] \
+                        = self.get_index_of_shift_type(shift_off_request['shiftType']) \
+                                if shift_off_request['shiftType'] != "Any" else -1
+                # create new
+                else:
+                    employee_preferences[shift_off_request['nurse']] = {}
+                    employee_preferences[shift_off_request['nurse']][
+                        7 * i + self.weekday_to_index(shift_off_request['day'])] \
+                        = self.get_index_of_shift_type(shift_off_request['shiftType']) \
+                        if shift_off_request['shiftType'] != "Any" else -1
+
+        return employee_preferences
+
+
     def collect_history_data_per_employee(self, feature):
         last_assigned_shifts = {}
         for employee_id, employee_history in self.history_data.items():
