@@ -1,7 +1,8 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
-from copy import deepcopy
+from copy import deepcopy, copy
 import pprint
+import marshal
 
 class RuleS2Max(Rule):
     """
@@ -197,9 +198,12 @@ class RuleS2Max(Rule):
                                                                       start_index_1=-solution.historical_work_stretch[
                                                                           employee_id], start_index_2=d_index + 1)
             else:
-                return 1 if solution.work_stretches[employee_id][
-                                d_index + 1]['length'] >= employee_parameter \
-                    else 0
+                try:
+                    return 1 if solution.work_stretches[employee_id][
+                                    d_index + 1]['length'] >= employee_parameter \
+                        else 0
+                except KeyError:
+                    print("hi")
 
         # check if not the first day and the day before working
         elif not d_index == 0 \
@@ -319,7 +323,7 @@ class RuleS2Max(Rule):
         return stretch_object
 
     def update_edge_stretches(self, solution, stretch_object, swap_info, stretch_name):
-        stretch_object_copy = deepcopy(stretch_object)
+        stretch_object_copy = marshal.loads(marshal.dumps(stretch_object))
         employee_id_1 = swap_info['employee_id_1']
         employee_id_2 = swap_info['employee_id_2']
         overlapping = swap_info['overlapping_{}'.format(stretch_name)]

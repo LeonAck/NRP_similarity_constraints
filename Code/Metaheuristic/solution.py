@@ -178,7 +178,7 @@ class Solution:
             solution = RuleS2ShiftMax().update_information_off_to_assigned(solution, change_info)
 
         # S3Max
-        if 'S3Max' in solution.rules:
+        if 'S3Max' in solution.rules or 'S3Min' in solution.rules:
             solution = RuleS3Max().update_information_off_to_assigned(solution, change_info)
 
         # S4

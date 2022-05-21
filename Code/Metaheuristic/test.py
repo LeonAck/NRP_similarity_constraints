@@ -11,7 +11,8 @@ from Check.check_function_feasibility import FeasibilityCheck
 from Heuristic import Heuristic
 from Input.input_NRC import Instance
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
-from run import run_two_stage
+from run import run_two_stage, run_stage
+cProfile.run("run_two_stage(settings_file_path)", sort=1)
 
 run_two_stage(settings_file_path)
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")
@@ -19,5 +20,6 @@ settings = Settings(settings_file_path)
 instance = Instance(settings)
 scenario = Scenario(settings.stage_2_settings, instance)
 init_solution = BuildSolution(scenario, previous_solution=None)
+
 best_solution = Heuristic(scenario, stage_settings=settings.stage_2_settings).run_heuristic(
     starting_solution=deepcopy(init_solution))

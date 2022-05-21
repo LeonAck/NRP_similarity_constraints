@@ -240,6 +240,30 @@ class BuildSolution(Solution):
 
         return work_stretches
 
+    def collect_work_stretches_employee(self, solution, employee_id):
+        # for each working day, get check if employee is working
+        working_check = [1 if solution.check_if_working_day(employee_id, d_index) else 0
+                         for d_index in range(self.scenario.num_days_in_horizon)]
+
+        work_stretch_employee = self.collect_stretches(working_check)
+
+        # implement history
+        if self.historical_work_stretch[employee_id] > 0:
+            if 0 in work_stretch_employee:
+                # combine history stretch with first day stretch
+                work_stretch_employee = RuleS2Max().extend_stretch_pre(
+                    stretch_object_employee=work_stretch_employee,
+                    new_start=-self.historical_work_stretch[employee_id],
+                    old_start=0)
+            else:
+                # add new stretch to history
+                work_stretch_employee = solution.create_stretch(
+                    stretch_object_employee=work_stretch_employee,
+                    start_index=-self.historical_work_stretch[employee_id],
+                    end_index=-1)
+
+        return work_stretch_employee
+
     def collect_day_off_stretches(self, solution):
         """
         Collect streaks of days off for all employees

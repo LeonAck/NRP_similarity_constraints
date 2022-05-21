@@ -19,9 +19,9 @@ def swap_operator(solution, scenario):
     # print("\nTimeline__", np.array(range(0, 14)))
     # print("employee_1", solution.shift_assignments[swap_info['employee_id_1']][:, 0])
     # print("employee_2", solution.shift_assignments[swap_info['employee_id_2']][:, 0])
-    if "S2Max" in solution.rules or "S2Min" in solution.rules:
-        # get stretch information for swap
-        swap_info = get_stretch_information_swap(solution, swap_info)
+
+    # get stretch information for swap
+    swap_info = get_stretch_information_swap(solution, swap_info)
 
     if "S6" in solution.rules:
         swap_info = RuleS6().incremental_working_weekends_swap(solution, swap_info)
@@ -185,19 +185,19 @@ def get_stretch_information_swap(solution, swap_info):
     the work, off and shift stretches in the streak
     We only save the stretches that are completely in the streak
     """
-    if "S2Max" or "S2Min" in solution.rules:
+    if "S2Max" in solution.rules or "S2Min" in solution.rules:
         swap_info = collect_edge_stretches(swap_info, solution.work_stretches, "work_stretches")
         swap_info = stretches_in_range(swap_info, solution.work_stretches, "work_stretches")
         swap_info['work_stretches_new'] = RuleS2Max().collect_new_stretches(solution, solution.work_stretches,
                                                                                 swap_info, "work_stretches")
 
-    if "S3Max" or "S3Min" in solution.rules:
+    if "S3Max" in solution.rules or "S3Min" in solution.rules:
         swap_info = collect_edge_stretches(swap_info, solution.day_off_stretches, "day_off_stretches")
         swap_info = stretches_in_range(swap_info, solution.day_off_stretches, "day_off_stretches")
         swap_info['day_off_stretches_new'] = RuleS2Max().collect_new_stretches(solution, solution.day_off_stretches,
                                                                                 swap_info, "day_off_stretches")
 
-    if "S2ShiftMax" or "S2ShiftMin" in solution.rules:
+    if "S2ShiftMax" in solution.rules or "S2ShiftMin" in solution.rules:
         for s_index in range(0, solution.num_shift_types):
             stretch_name = "shift_stretches_{}".format(s_index)
             swap_info = collect_edge_stretches(swap_info, solution.shift_stretches[s_index], stretch_name)
