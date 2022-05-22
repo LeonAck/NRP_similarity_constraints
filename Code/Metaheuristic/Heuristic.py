@@ -85,7 +85,7 @@ class Heuristic:
             if n_iter % 100 == 0:
                 # print(current_solution.violation_array)
                 print("\nIteration: ", n_iter)
-            # print(current_solution.violation_array)
+            print(current_solution.violation_array)
 
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators_to_use)
@@ -140,6 +140,9 @@ class Heuristic:
             # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             if "S8RefDay" in current_solution.rules:
                 FeasibilityCheck().check_day_comparison_info_reference(current_solution, self.scenario, operator_info)
+            if "S8RefShift" in current_solution.rules:
+                FeasibilityCheck().check_shift_comparison_info_reference(current_solution, self.scenario, operator_info)
+            if "S8RefDay" in current_solution.rules or "S8RefShift" in current_solution.rules:
                 FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:

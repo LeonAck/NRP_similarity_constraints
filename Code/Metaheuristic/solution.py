@@ -7,6 +7,8 @@ from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
+from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
+
 
 class Solution:
     """
@@ -71,6 +73,9 @@ class Solution:
 
             if 'S8RefDay' in self.rules:
                 self.ref_comparison_day_level = other_solution.ref_comparison_day_level
+
+            if 'S8RefShift' in self.rules:
+                self.ref_comparison_shift_level = other_solution.ref_comparison_shift_level
 
             # objective value
             self.obj_value = other_solution.obj_value
@@ -163,6 +168,9 @@ class Solution:
         if 'S8RefDay' in solution.rules:
             solution = RuleS8RefDay().update_information_off_to_assigned(solution, change_info)
 
+        if 'S8RefShift' in solution.rules:
+            solution = RuleS8RefShift().update_information_assigned_to_off(solution, change_info)
+
     def update_information_off_to_assigned(self, solution, change_info):
         """
         Function to update relevant information after insertion into new shift skill combination
@@ -218,6 +226,9 @@ class Solution:
         if 'S8RefDay' in solution.rules:
             solution = RuleS8RefDay().update_information_off_to_assigned(solution, change_info)
 
+        if 'S8RefShift' in solution.rules:
+            solution = RuleS8RefShift().update_information_off_to_assigned(solution, change_info)
+
     def update_information_assigned_to_assigned(self, solution, change_info):
         """
         Update information after moving from one assignment to the other
@@ -243,6 +254,9 @@ class Solution:
         # S7Shift
         if 'S7Shift' in solution.rules:
             solution = RuleS7Shift().update_information_assigned_to_assigned(solution, change_info)
+
+        if 'S8RefShift' in solution.rules:
+            solution = RuleS8RefShift().update_information_assigned_to_assigned(solution, change_info)
 
     def update_solution_change(self, change_info):
         """
@@ -296,6 +310,8 @@ class Solution:
             solution.num_working_weekends = RuleS6().update_information_swap(solution.num_working_weekends, swap_info)
         if "S8RefDay" in solution.rules:
             solution.ref_comparison_day_level = RuleS8RefDay().update_information_swap(solution, swap_info)
+        if "S8RefShift" in solution.rules:
+            solution.ref_comparison_shift_level = RuleS8RefShift().update_information_swap(solution, swap_info)
 
     def update_solution_swap(self, swap_info):
         """
@@ -388,3 +404,6 @@ class Solution:
 
     def check_if_working_day_ref(self, employee_id, d_index):
         return self.ref_assignments[employee_id][d_index][0] > -1
+
+    def check_if_same_shift_type_ref(self, employee_id, d_index):
+        return self.ref_assignments[employee_id][d_index][0] == self.shift_assignments[employee_id][d_index][0]
