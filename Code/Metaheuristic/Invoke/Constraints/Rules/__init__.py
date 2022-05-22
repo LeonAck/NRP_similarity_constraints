@@ -14,3 +14,4 @@ from Invoke.Constraints.Rules.RuleS5Min import RuleS5Min
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
+from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay

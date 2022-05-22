@@ -79,11 +79,15 @@ class BuildSolution(Solution):
 
         # S7Day collect reference day comparison
         if 'S7Day' in self.rules:
-            self.day_comparison = self.collect_ref_day_comparison(solution=self)
+            self.day_comparison = self.collect_day_within_comparison(solution=self)
 
         # S7Shift
         if 'S7Shift' in self.rules:
-            self.shift_comparison = self.collect_ref_shift_comparison(solution=self)
+            self.shift_comparison = self.collect_shift_comparison_within(solution=self)
+        if 'S8RefDay' in self.rules or 'S8RefShift' in self.rules or 'S8RefSkill' in self.rules:
+            self.ref_assignments = scenario.ref_assignments
+        if 'S8RefDay' in self.rules:
+            self.ref_comparison_day_level = self.collect_day_comparison_ref(solution=self)
 
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
@@ -355,7 +359,7 @@ class BuildSolution(Solution):
 
         return shift_stretches
 
-    def collect_ref_day_comparison(self, solution):
+    def collect_day_within_comparison(self, solution):
         """
         Create object with True and False that show whether assignment
         of current day and reference day are the same
@@ -376,7 +380,26 @@ class BuildSolution(Solution):
 
         return day_assignment_comparison
 
-    def collect_ref_shift_comparison(self, solution):
+    def collect_day_comparison_ref(self, solution):
+        """
+        Create object with True and False that show whether assignment
+        of current day and day in reference are the same
+        True if assigned on both days
+        False if assigned on one of the day
+        """
+
+        day_assignment_comparison = {}
+        # np.array(len(self.day_collection.num_days_in_horizon))
+        for employee_id in self.scenario.employees._collection.keys():
+            day_list = [1 if solution.check_if_working_day_ref(employee_id, d_index)
+                             == solution.check_if_working_day(employee_id, d_index) else 0
+                        for d_index in range(0, self.scenario.day_collection.num_days_in_horizon)]
+            # combine into one list
+            day_assignment_comparison[employee_id] = np.array(day_list)
+
+        return day_assignment_comparison
+
+    def collect_shift_comparison_within(self, solution):
         """
         Collect dict where for each employee we have an array
         with:

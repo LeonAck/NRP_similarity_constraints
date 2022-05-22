@@ -395,7 +395,7 @@ class FeasibilityCheck:
 
     def check_day_comparison_info(self, solution, scenario, change_info):
         flag = True
-        collected_day_comparison = BuildSolution(scenario).collect_ref_day_comparison(solution)
+        collected_day_comparison = BuildSolution(scenario).collect_day_within_comparison(solution)
 
         deepdiff = DeepDiff(collected_day_comparison, solution.day_comparison)
 
@@ -418,9 +418,34 @@ class FeasibilityCheck:
 
         return flag
 
+    def check_day_comparison_info_reference(self, solution, scenario, change_info):
+        flag = True
+        collected_day_comparison = BuildSolution(scenario).collect_day_comparison_ref(solution)
+
+        deepdiff = DeepDiff(collected_day_comparison, solution.ref_comparison_day_level)
+
+        if deepdiff:
+            pprint.pprint(deepdiff)
+            flag = False
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            print("on {} for employee {}".format(change_info['d_index'], employee_id))
+            print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                change_info['new_working']))
+            print("\n working this day: {}".format(solution.check_if_working_day(employee_id, change_info['d_index'])))
+            print("\nworking ref day: {}".format(solution.check_if_working_day_ref(employee_id, change_info['d_index'])))
+            print("hi")
+
+        return flag
+
     def check_shift_comparison_info(self, solution, scenario, change_info):
         flag = True
-        collected_shift_comparison = BuildSolution(scenario).collect_ref_shift_comparison(solution)
+        collected_shift_comparison = BuildSolution(scenario).collect_shift_comparison_within(solution)
 
         deepdiff = DeepDiff(collected_shift_comparison, solution.shift_comparison)
 

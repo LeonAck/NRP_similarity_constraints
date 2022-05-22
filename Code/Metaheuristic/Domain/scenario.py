@@ -5,6 +5,7 @@ from Domain.skill_set import SkillSetCollection
 from Domain.shifts import ShiftTypeCollection
 from Invoke.Constraints.initialize_rules import RuleCollection
 from Domain.days import DayCollection
+import pickle
 
 class Scenario:
     """
@@ -71,6 +72,7 @@ class Scenario:
         self.historical_off_stretch = instance.historical_off_stretch
         self.historical_shift_stretch = instance.historical_shift_stretch
 
+
         # save rule mappings
         self.parameter_to_rule_mapping = {
             "S2Max": "maximumNumberOfConsecutiveWorkingDays",
@@ -88,6 +90,10 @@ class Scenario:
         # collect rules
         self.rules_specs = self.add_differentiate_rule_parameters(self.rules_specs)
         self.rule_collection = RuleCollection().initialize_rules(self.rules_specs, self.employees)
+
+        # S8ref
+        if 'S8RefDay' in self.rule_collection.collection or 'S8RefShift' in self.rule_collection.collection or 'S8RefSkill' in self.rule_collection.collection:
+            self.ref_assignments = self.get_ref_assignments()
 
     # TODO remove function
     def get_unique_skill_sets(self):
@@ -178,6 +184,11 @@ class Scenario:
                         skill_index, s_type_index] = v['minimum']
 
         return request_array
+
+    def get_ref_assignments(self):
+        with open(self.stage_settings['ref_period_path'], "rb") as ref_shift_assignments_file:
+            ref_assignments = pickle.load(ref_shift_assignments_file)
+        return ref_assignments
 
     def initialize_optimal_coverage(self):
         """

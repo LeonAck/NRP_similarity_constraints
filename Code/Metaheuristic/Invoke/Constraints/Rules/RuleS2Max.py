@@ -243,12 +243,14 @@ class RuleS2Max(Rule):
 
     def calc_incremental_violations_merge_stretch(self, stretch_object_employee, rule_parameter, start_index_1,
                                                   start_index_2):
-
-        previous_violations = np.maximum(
-            stretch_object_employee[
-                start_index_2]['length'] - rule_parameter, 0) \
-                              + np.maximum(
-            stretch_object_employee[start_index_1]['length'] - rule_parameter, 0)
+        try:
+            previous_violations = np.maximum(
+                stretch_object_employee[
+                    start_index_2]['length'] - rule_parameter, 0) \
+                                  + np.maximum(
+                stretch_object_employee[start_index_1]['length'] - rule_parameter, 0)
+        except KeyError:
+            print("hi")
 
         new_violations = np.maximum((stretch_object_employee[
                                          start_index_2]['length']

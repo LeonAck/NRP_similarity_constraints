@@ -6,7 +6,7 @@ from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
-
+from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
 
 class Solution:
     """
@@ -65,6 +65,12 @@ class Solution:
                 self.day_comparison = other_solution.day_comparison
             if 'S7Shift' in self.rules:
                 self.shift_comparison = other_solution.shift_comparison
+            # S8ref
+            if 'S8RefDay' in self.rules or 'S8RefShift' in self.rules or 'S8RefSkill' in self.rules:
+                self.ref_assignments = other_solution.ref_assignments
+
+            if 'S8RefDay' in self.rules:
+                self.ref_comparison_day_level = other_solution.ref_comparison_day_level
 
             # objective value
             self.obj_value = other_solution.obj_value
@@ -153,6 +159,10 @@ class Solution:
         if 'S7Shift' in solution.rules:
             solution = RuleS7Shift().update_information_assigned_to_off(solution, change_info)
 
+        # S8
+        if 'S8RefDay' in solution.rules:
+            solution = RuleS8RefDay().update_information_off_to_assigned(solution, change_info)
+
     def update_information_off_to_assigned(self, solution, change_info):
         """
         Function to update relevant information after insertion into new shift skill combination
@@ -203,6 +213,10 @@ class Solution:
             solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
         if 'S7Shift' in solution.rules:
             solution = RuleS7Shift().update_information_off_to_assigned(solution, change_info)
+
+        # S8
+        if 'S8RefDay' in solution.rules:
+            solution = RuleS8RefDay().update_information_off_to_assigned(solution, change_info)
 
     def update_information_assigned_to_assigned(self, solution, change_info):
         """
@@ -369,3 +383,6 @@ class Solution:
         stretch_object_employee[start_index] = {"end_index": end_index,
                                                 "length": end_index-start_index + 1}
         return stretch_object_employee
+
+    def check_if_working_day_ref(self, employee_id, d_index):
+        return self.ref_assignments[employee_id][d_index][0] > -1

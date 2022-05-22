@@ -24,6 +24,8 @@ class Settings:
             # load stage_2_settings
             self.stage_2_settings = settings_json['stage_2_settings']
 
+            # ref
+
         else:
 
             # input data settings
@@ -32,7 +34,7 @@ class Settings:
             # settings for NRC-II data
             if self.source == "NRC":
                 self.instance_name = "n100w4"
-                self.path = "C:\Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering-website-ecbcccff92e9/Datasets/JSON"
+                self.path = "/Input/sceschia-nurserostering/Datasets/JSON"
                 self.history_file = 0
                 # should be a list of numbers, no range
                 self.weeks = [1, 2, 3, 4]
