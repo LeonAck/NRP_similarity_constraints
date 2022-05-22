@@ -49,11 +49,11 @@ class RuleS8RefDay(Rule):
 
     def incremental_violations_swap(self, solution, swap_info, rule_id):
 
-        return np.sum(solution.day_comparison[swap_info['employee_id_1']][
-                      swap_info['start_index']:swap_info['end_index'] + 1]) - np.sum(swap_info['new_day_comparison_1']) \
-               + np.sum(solution.day_comparison[swap_info['employee_id_2']][
+        return np.sum(solution.ref_comparison_day_level[swap_info['employee_id_1']][
+                      swap_info['start_index']:swap_info['end_index'] + 1]) - np.sum(swap_info['ref_comparison_day_level_1']) \
+               + np.sum(solution.ref_comparison_day_level[swap_info['employee_id_2']][
                         swap_info['start_index']:swap_info['end_index'] + 1]) - np.sum(
-            swap_info['new_day_comparison_2'])
+            swap_info['ref_comparison_day_level_2'])
 
     def check_comparison_swap(self, solution, swap_info, compare_function, comparison_object,
                               comparison_object_name):
@@ -62,9 +62,6 @@ class RuleS8RefDay(Rule):
         and calculate the incremental violations
         """
         comparison_array = self.compare_assignment_swap(solution, swap_info, compare_function)
-        new_comparison = np.ones(solution.k_swap) - np.abs(
-            comparison_object[swap_info['employee_id_1']][
-            swap_info['start_index']:swap_info['end_index'] + 1] - comparison_array)
 
         swap_info['{}_1'.format(comparison_object_name)] = np.ones(solution.k_swap) - np.abs(
             comparison_object[swap_info['employee_id_1']][
@@ -87,13 +84,13 @@ class RuleS8RefDay(Rule):
 
     def update_information_swap(self, solution, swap_info):
 
-        solution.day_comparison[swap_info['employee_id_1']][
-        swap_info['start_index']:swap_info['end_index'] + 1] = swap_info['new_day_comparison_1']
+        solution.ref_comparison_day_level[swap_info['employee_id_1']][
+        swap_info['start_index']:swap_info['end_index'] + 1] = swap_info['ref_comparison_day_level_1']
 
-        solution.day_comparison[swap_info['employee_id_2']][
-        swap_info['start_index']:swap_info['end_index'] + 1] = swap_info['new_day_comparison_2']
+        solution.ref_comparison_day_level[swap_info['employee_id_2']][
+        swap_info['start_index']:swap_info['end_index'] + 1] = swap_info['ref_comparison_day_level_2']
 
-        return solution
+        return solution.ref_comparison_day_level
 
 
 

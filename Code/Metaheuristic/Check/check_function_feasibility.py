@@ -434,11 +434,12 @@ class FeasibilityCheck:
                     employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
                 except KeyError:
                     employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
-            print("on {} for employee {}".format(change_info['d_index'], employee_id))
-            print("current working: {}, new working: {}".format(change_info['current_working'],
-                                                                change_info['new_working']))
-            print("\n working this day: {}".format(solution.check_if_working_day(employee_id, change_info['d_index'])))
-            print("\nworking ref day: {}".format(solution.check_if_working_day_ref(employee_id, change_info['d_index'])))
+            if "new_working" in change_info:
+                print("on {} for employee {}".format(change_info['d_index'], employee_id))
+                print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                    change_info['new_working']))
+                print("\n working this day: {}".format(solution.check_if_working_day(employee_id, change_info['d_index'])))
+                print("\nworking ref day: {}".format(solution.check_if_working_day_ref(employee_id, change_info['d_index'])))
             print("hi")
 
         return flag

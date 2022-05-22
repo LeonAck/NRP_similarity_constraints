@@ -58,7 +58,7 @@
         "initial_temp": 22,
         "cooling_rate": 0.99,
         "no_improve_max": 200,
-        "operators": ["change"],
+        "operators": ["change", "swap"],
          "k_swap": 10,
         "reaction_factor": 0.9,
         "score_event_1": 33,

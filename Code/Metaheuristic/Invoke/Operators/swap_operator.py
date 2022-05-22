@@ -1,6 +1,7 @@
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
+from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
 import random
 import numpy as np
 
@@ -25,7 +26,9 @@ def swap_operator(solution, scenario):
 
     if "S6" in solution.rules:
         swap_info = RuleS6().incremental_working_weekends_swap(solution, swap_info)
-
+    if "S8RefDay" in solution.rules:
+        swap_info = RuleS8RefDay().check_comparison_swap(solution, swap_info, RuleS8RefDay().compare_function,
+                                                      solution.ref_comparison_day_level, "ref_comparison_day_level")
     # add penalty to objective
     if swap_info['feasible']:
         swap_info["cost_increment"], swap_info['violation_increment'] \

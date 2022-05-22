@@ -294,6 +294,8 @@ class Solution:
             solution = RuleS5Max().update_information_swap(solution, swap_info)
         if "S6" in solution.rules:
             solution.num_working_weekends = RuleS6().update_information_swap(solution.num_working_weekends, swap_info)
+        if "S8RefDay" in solution.rules:
+            solution.ref_comparison_day_level = RuleS8RefDay().update_information_swap(solution, swap_info)
 
     def update_solution_swap(self, swap_info):
         """
