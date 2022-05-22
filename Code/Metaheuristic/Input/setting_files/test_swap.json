@@ -2,7 +2,7 @@
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
   "instance_name": "n012w8",
   "history_file": 0,
-  "weeks": [1, 2, 3, 4],
+  "weeks": [5, 4, 7, 1],
   "two_stage": false
 },
   "stage_1_settings":
