@@ -170,7 +170,7 @@ class Scenario:
         s_type_indices = self.list_to_index(self.shift_collection.shift_types)
         skill_indices = self.list_to_index(self.skill_collection.skills)
 
-        for key, value in self.weeks_data.items():
+        for i, value in enumerate(self.weeks_data.values()):
             for req_dict in value['requirements']:
                 for k, v in req_dict.items():
                     if k == "shiftType":
@@ -180,7 +180,7 @@ class Scenario:
 
                 for k, v in req_dict.items():
                     if isinstance(k, int):
-                        request_array[(key - 1) * 7 + k,
+                        request_array[i * 7 + k,
                         skill_index, s_type_index] = v['minimum']
 
         return request_array
@@ -204,7 +204,7 @@ class Scenario:
         s_type_indices = self.list_to_index(self.shift_collection.shift_types)
         skill_indices = self.list_to_index(self.skill_collection.skills)
 
-        for key, value in self.weeks_data.items():
+        for i, value in enumerate(self.weeks_data.values()):
             for req_dict in value['requirements']:
                 for k, v in req_dict.items():
                     if k == "shiftType":
@@ -214,7 +214,7 @@ class Scenario:
 
                 for k, v in req_dict.items():
                     if isinstance(k, int):
-                        request_array[(key - 1) * 7 + k,
+                        request_array[i * 7 + k,
                                       skill_index, s_type_index] = v['optimal']
 
         return request_array
