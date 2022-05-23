@@ -6,7 +6,9 @@ from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
-
+from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
+from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
+from Invoke.Constraints.Rules.RuleS8RefSkill import RuleS8RefSkill
 
 class Solution:
     """
@@ -22,6 +24,7 @@ class Solution:
             self.rules = other_solution.rules
             self.k_swap = other_solution.k_swap
             self.employee_preferences = other_solution.employee_preferences
+            self.num_shift_types = other_solution.num_shift_types
 
             # employee shift assignments
             self.shift_assignments = other_solution.shift_assignments
@@ -65,6 +68,19 @@ class Solution:
                 self.day_comparison = other_solution.day_comparison
             if 'S7Shift' in self.rules:
                 self.shift_comparison = other_solution.shift_comparison
+            # S8ref
+            if 'S8RefDay' in self.rules or 'S8RefShift' in self.rules or 'S8RefSkill' in self.rules:
+                self.ref_assignments = other_solution.ref_assignments
+
+            if 'S8RefDay' in self.rules:
+                self.ref_comparison_day_level = other_solution.ref_comparison_day_level
+
+            if 'S8RefShift' in self.rules:
+                self.ref_comparison_shift_level = other_solution.ref_comparison_shift_level
+
+            if 'S8RefSkill' in self.rules:
+                self.multi_skill = other_solution.multi_skill
+                self.ref_comparison_skill_level = other_solution.ref_comparison_skill_level
 
             # objective value
             self.obj_value = other_solution.obj_value
@@ -153,6 +169,16 @@ class Solution:
         if 'S7Shift' in solution.rules:
             solution = RuleS7Shift().update_information_assigned_to_off(solution, change_info)
 
+        # S8
+        if 'S8RefDay' in solution.rules:
+            solution = RuleS8RefDay().update_information_off_to_assigned(solution, change_info)
+
+        if 'S8RefShift' in solution.rules:
+            solution = RuleS8RefShift().update_information_assigned_to_off(solution, change_info)
+
+        if 'S8RefSkill' in solution.rules:
+            solution = RuleS8RefSkill().update_information_assigned_to_off(solution, change_info)
+
     def update_information_off_to_assigned(self, solution, change_info):
         """
         Function to update relevant information after insertion into new shift skill combination
@@ -178,7 +204,7 @@ class Solution:
             solution = RuleS2ShiftMax().update_information_off_to_assigned(solution, change_info)
 
         # S3Max
-        if 'S3Max' in solution.rules:
+        if 'S3Max' in solution.rules or 'S3Min' in solution.rules:
             solution = RuleS3Max().update_information_off_to_assigned(solution, change_info)
 
         # S4
@@ -203,6 +229,17 @@ class Solution:
             solution = RuleS7Day().update_information_off_to_assigned(solution, change_info)
         if 'S7Shift' in solution.rules:
             solution = RuleS7Shift().update_information_off_to_assigned(solution, change_info)
+
+        # S8
+        if 'S8RefDay' in solution.rules:
+            solution = RuleS8RefDay().update_information_off_to_assigned(solution, change_info)
+
+        if 'S8RefShift' in solution.rules:
+            solution = RuleS8RefShift().update_information_off_to_assigned(solution, change_info)
+
+        if 'S8RefSkill' in solution.rules:
+            solution = RuleS8RefSkill().update_information_off_to_assigned(solution, change_info)
+
 
     def update_information_assigned_to_assigned(self, solution, change_info):
         """
@@ -229,6 +266,12 @@ class Solution:
         # S7Shift
         if 'S7Shift' in solution.rules:
             solution = RuleS7Shift().update_information_assigned_to_assigned(solution, change_info)
+
+        if 'S8RefShift' in solution.rules:
+            solution = RuleS8RefShift().update_information_assigned_to_assigned(solution, change_info)
+
+        if 'S8RefSkill' in solution.rules:
+            solution = RuleS8RefSkill().update_information_assigned_to_assigned(solution, change_info)
 
     def update_solution_change(self, change_info):
         """
@@ -270,14 +313,22 @@ class Solution:
 
     def update_information_swap(self, solution, swap_info):
         solution.working_days = self.update_working_days_swap(swap_info)
-        if "S2Max" or "S2Min" in solution.rules:
+        if "S2Max" in solution.rules or "S2Min" in solution.rules:
             solution = RuleS2Max().update_information_swap(solution, swap_info, "work_stretches")
-        if "S3Max" or "S3Min" in solution.rules:
+        if "S2ShiftMax" in solution.rules or "S2ShiftMin" in solution.rules:
+            solution = RuleS2ShiftMax().update_information_swap(solution, swap_info, "shift_stretches")
+        if "S3Max" in solution.rules or "S3Min" in solution.rules:
             solution = RuleS3Max().update_information_swap(solution, swap_info, "day_off_stretches")
         if "S5Max" in solution.rules:
             solution = RuleS5Max().update_information_swap(solution, swap_info)
         if "S6" in solution.rules:
             solution.num_working_weekends = RuleS6().update_information_swap(solution.num_working_weekends, swap_info)
+        if "S8RefDay" in solution.rules:
+            solution.ref_comparison_day_level = RuleS8RefDay().update_information_swap(solution, swap_info)
+        if "S8RefShift" in solution.rules:
+            solution.ref_comparison_shift_level = RuleS8RefShift().update_information_swap(solution, swap_info)
+        if "S8RefSkill" in solution.rules:
+            solution.ref_comparison_skill_level = RuleS8RefSkill().update_information_swap(solution, swap_info)
 
     def update_solution_swap(self, swap_info):
         """
@@ -367,3 +418,12 @@ class Solution:
         stretch_object_employee[start_index] = {"end_index": end_index,
                                                 "length": end_index-start_index + 1}
         return stretch_object_employee
+
+    def check_if_working_day_ref(self, employee_id, d_index):
+        return self.ref_assignments[employee_id][d_index][0] > -1
+
+    def check_if_same_shift_type_ref(self, employee_id, d_index):
+        return self.ref_assignments[employee_id][d_index][0] == self.shift_assignments[employee_id][d_index][0]
+
+    def check_if_same_skill_type_ref(self, employee_id, d_index):
+        return self.ref_assignments[employee_id][d_index][1] == self.shift_assignments[employee_id][d_index][1]

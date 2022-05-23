@@ -63,10 +63,12 @@ class RuleS3Min(Rule):
         #     # add extra violations
         # new_violations_1 = np.maximum(employee_parameter - length_1, 0) if change_info['d_index'] != 0 else 0
         # the new violations - the old violations
-
-        return np.maximum(employee_parameter - length_1, 0)  \
-               + np.maximum(employee_parameter - length_2, 0) \
-               - np.maximum(employee_parameter - the_day_off_stretch['length'], 0)
+        try:
+            return np.maximum(employee_parameter - length_1, 0)  \
+                   + np.maximum(employee_parameter - length_2, 0) \
+                   - np.maximum(employee_parameter - the_day_off_stretch['length'], 0)
+        except TypeError:
+            print("hi")
 
     def incremental_violation_assigned_to_off(self, solution, change_info):
         employee_parameter = self.parameter_per_employee[change_info['employee_id']]

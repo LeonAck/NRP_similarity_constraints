@@ -6,7 +6,8 @@ from Invoke.Operators.swap_operator import swap_operator
 from solution import Solution
 from Check.check_function_feasibility import FeasibilityCheck
 from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
-from copy import deepcopy
+from copy import deepcopy, copy
+import marshal
 from pprint import pprint
 class Heuristic:
     """
@@ -72,7 +73,6 @@ class Heuristic:
 
         # Set the temperature for the first iteration
         self.temperature = self.initial_temp
-
         change_counters = {"off_work": 0,
                            "work_off": 0,
                            "work_work": 0}
@@ -80,6 +80,7 @@ class Heuristic:
         n_iter = 1
         no_improve_iter = 0
         while self.stopping_criterion(current_solution, n_iter):
+
             # print("\nIteration: ", n_iter)
             if n_iter % 100 == 0:
                 # print(current_solution.violation_array)
@@ -91,8 +92,7 @@ class Heuristic:
             self.update_frequency_operator(operator_name)
 
             operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
-            # print("\nemployee_1", current_solution.shift_assignments[operator_info['employee_id_1']][:, 0])
-            # print("employee_2", current_solution.shift_assignments[operator_info['employee_id_2']][:, 0])
+
             if not operator_info['feasible']:
                 print("no feasible change")
                 break
@@ -129,12 +129,12 @@ class Heuristic:
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
             # if "S2Max" in current_solution.rules:
-            #     FeasibilityCheck().work_stretches_info(current_solution, self.scenario, operator_info)
+            #     FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
             # if "S3Max" in current_solution.rules:
             #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
             # if "S2ShiftMax" in current_solution.rules:
-            #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, change_info)
-            # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
+            #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, operator_info, operator_name)
+            # # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
             # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
             # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
@@ -142,7 +142,7 @@ class Heuristic:
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
-
+            previous_operator_info = operator_info
             n_iter += 1
 
         # best solution

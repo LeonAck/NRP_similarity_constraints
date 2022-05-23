@@ -20,6 +20,7 @@ class BuildSolution(Solution):
         self.day_collection = scenario.day_collection
         self.rule_collection = scenario.rule_collection
         self.rules = list(self.rule_collection.collection.keys())
+        self.num_shift_types = scenario.num_shift_types
         self.employee_preferences = scenario.employee_preferences
 
         # set parameter
@@ -79,11 +80,22 @@ class BuildSolution(Solution):
 
         # S7Day collect reference day comparison
         if 'S7Day' in self.rules:
-            self.day_comparison = self.collect_ref_day_comparison(solution=self)
+            self.day_comparison = self.collect_day_within_comparison(solution=self)
 
         # S7Shift
         if 'S7Shift' in self.rules:
-            self.shift_comparison = self.collect_ref_shift_comparison(solution=self)
+            self.shift_comparison = self.collect_shift_comparison_within(solution=self)
+        if 'S8RefDay' in self.rules or 'S8RefShift' in self.rules or 'S8RefSkill' in self.rules:
+            self.ref_assignments = scenario.ref_assignments
+        if 'S8RefDay' in self.rules:
+            self.ref_comparison_day_level = self.collect_day_comparison_ref(solution=self)
+
+        if 'S8RefShift' in self.rules:
+            self.ref_comparison_shift_level = self.collect_shift_comparison_ref(solution=self)
+
+        if 'S8RefSkill' in self.rules:
+            self.multi_skill = scenario.multi_skill
+            self.ref_comparison_skill_level = self.collect_skill_comparison_ref(solution=self)
 
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
@@ -240,6 +252,30 @@ class BuildSolution(Solution):
 
         return work_stretches
 
+    def collect_work_stretches_employee(self, solution, employee_id):
+        # for each working day, get check if employee is working
+        working_check = [1 if solution.check_if_working_day(employee_id, d_index) else 0
+                         for d_index in range(self.scenario.num_days_in_horizon)]
+
+        work_stretch_employee = self.collect_stretches(working_check)
+
+        # implement history
+        if self.historical_work_stretch[employee_id] > 0:
+            if 0 in work_stretch_employee:
+                # combine history stretch with first day stretch
+                work_stretch_employee = RuleS2Max().extend_stretch_pre(
+                    stretch_object_employee=work_stretch_employee,
+                    new_start=-self.historical_work_stretch[employee_id],
+                    old_start=0)
+            else:
+                # add new stretch to history
+                work_stretch_employee = solution.create_stretch(
+                    stretch_object_employee=work_stretch_employee,
+                    start_index=-self.historical_work_stretch[employee_id],
+                    end_index=-1)
+
+        return work_stretch_employee
+
     def collect_day_off_stretches(self, solution):
         """
         Collect streaks of days off for all employees
@@ -296,56 +332,42 @@ class BuildSolution(Solution):
         the work stretches of that particular shift type
         """
         shift_stretches = {}
-        for employee_id in self.scenario.employees._collection.keys():
-            shift_stretch_employee = {}
-            for s_index in self.scenario.shift_collection.shift_types_indices:
-                shift_stretches_employee_per_shift = {}
+        for s_index in self.scenario.shift_collection.shift_types_indices:
+            shift_stretch_shift = {}
+            for employee_id in self.scenario.employees._collection.keys():
+
+
                 # for each working day, check if employee works that shift type
 
                 working_shift_check = [1 if solution.check_if_working_s_type_on_day(employee_id, d_index, s_index)
                                  else 0
                                  for d_index in range(self.scenario.num_days_in_horizon)]
 
-                # start_index = 0
-                # # get lists of consecutive days working specific shift type
-                # for k, v in itertools.groupby(working_shift_check):
-                #     len_stretch = sum(1 for _ in v)
-                #     if k:
-                #         # save in dict under start index with end index
-                #         shift_stretch = {}
-                #         shift_stretch["end_index"] = start_index + len_stretch - 1
-                #         shift_stretch["length"] = len_stretch
-                #         shift_stretches_employee_per_shift[start_index] = shift_stretch
-                #         start_index += len_stretch
-                #     else:
-                #         start_index += len_stretch
-
-                # assign for each s_type the stretches to the employee
-                shift_stretch_employee_shift = self.collect_stretches(working_shift_check)
+                shift_stretch_shift_employee = self.collect_stretches(working_shift_check)
 
                 # implement history
                 if self.last_assigned_shift[employee_id] == s_index:
-                    if 0 in shift_stretch_employee_shift:
+                    if 0 in shift_stretch_shift_employee:
                         # combine history stretch with first day stretch
-                        shift_stretch_employee_shift = RuleS2Max().extend_stretch_pre(
-                            stretch_object_employee=shift_stretch_employee_shift,
+                        shift_stretch_shift_employee = RuleS2Max().extend_stretch_pre(
+                            stretch_object_employee=shift_stretch_shift_employee,
                             new_start=-self.historical_shift_stretch[employee_id],
                             old_start=0)
                     else:
                         # add new stretch to history
-                        shift_stretch_employee_shift = solution.create_stretch(
-                            stretch_object_employee=shift_stretch_employee_shift,
+                        shift_stretch_shift_employee = solution.create_stretch(
+                            stretch_object_employee=shift_stretch_shift_employee,
                             start_index=-self.historical_shift_stretch[employee_id],
                             end_index=-1)
 
-                shift_stretch_employee[s_index] = shift_stretch_employee_shift
+                shift_stretch_shift[employee_id] = shift_stretch_shift_employee
 
             # add for each employee the stretches to the general dict
-            shift_stretches[employee_id] = shift_stretch_employee
+            shift_stretches[s_index] = shift_stretch_shift
 
         return shift_stretches
 
-    def collect_ref_day_comparison(self, solution):
+    def collect_day_within_comparison(self, solution):
         """
         Create object with True and False that show whether assignment
         of current day and reference day are the same
@@ -366,7 +388,7 @@ class BuildSolution(Solution):
 
         return day_assignment_comparison
 
-    def collect_ref_shift_comparison(self, solution):
+    def collect_shift_comparison_within(self, solution):
         """
         Collect dict where for each employee we have an array
         with:
@@ -397,3 +419,85 @@ class BuildSolution(Solution):
                 (np.full(rule_parameter, fill_value=-1), np.array( shift_comparison_empl)))
 
         return shift_assignment_comparison
+
+    def collect_day_comparison_ref(self, solution):
+        """
+        Create object with True and False that show whether assignment
+        of current day and day in reference are the same
+        True if assigned on both days
+        False if assigned on one of the day
+        """
+
+        day_assignment_comparison = {}
+        # np.array(len(self.day_collection.num_days_in_horizon))
+        for employee_id in self.scenario.employees._collection.keys():
+            day_list = [1 if solution.check_if_working_day_ref(employee_id, d_index)
+                             == solution.check_if_working_day(employee_id, d_index) else 0
+                        for d_index in range(0, self.scenario.day_collection.num_days_in_horizon)]
+            # combine into one list
+            day_assignment_comparison[employee_id] = np.array(day_list)
+
+        return day_assignment_comparison
+
+    def collect_shift_comparison_ref(self, solution):
+        """
+        Collect dict where for each employee we have an array
+        with:
+        1 if working both days and same shift
+        0 if working both days and different shift
+        -1 if outside of range of comparison or not working both days
+
+        """
+        shift_assignment_comparison = {}
+
+        for employee_id in self.scenario.employees._collection.keys():
+            shift_comparison_empl = [
+                (
+                      1 if solution.check_if_same_shift_type_ref(employee_id, d_index) else 0
+                )
+                if solution.check_if_working_day(
+                    employee_id, d_index)
+                   and solution.check_if_working_day_ref(employee_id, d_index)
+                else -1
+                for d_index in range(0, self.scenario.day_collection.num_days_in_horizon)
+
+            ]
+
+            # combine into one dict
+            shift_assignment_comparison[employee_id] = np.array(shift_comparison_empl)
+
+        return shift_assignment_comparison
+
+    def collect_skill_comparison_ref(self, solution):
+        """
+        Collect dict where for each employee we have an array
+        with:
+        1 if working both days, working the same shift, working the same skill
+        0 if working both days, working the same shift, but not the same skill
+        -1 if not working either of the days, or working both days but working a different shift
+        :return:
+        dict
+        """
+        skill_assignment_comparison = {}
+
+        for employee_id in self.scenario.employees._collection.keys():
+            skill_comparison_empl =[]
+            for d_index in range(0, self.scenario.day_collection.num_days_in_horizon):
+                if self.multi_skill[employee_id]:
+                    if solution.check_if_working_day(employee_id, d_index) \
+                   and solution.check_if_working_day_ref(employee_id, d_index)\
+                    and solution.check_if_same_shift_type_ref(employee_id, d_index):
+                        if solution.check_if_same_skill_type_ref(employee_id, d_index):
+                            skill_comparison_empl.append(1)
+                        else:
+                            skill_comparison_empl.append(0)
+                    else:
+                        skill_comparison_empl.append(-1)
+                else:
+                    skill_comparison_empl.append(-1)
+
+            # combine into one dict
+            skill_assignment_comparison[employee_id] = np.array(skill_comparison_empl)
+
+        return skill_assignment_comparison
+

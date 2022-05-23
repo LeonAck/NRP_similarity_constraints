@@ -1,6 +1,10 @@
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
+from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
+from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
+from Invoke.Constraints.Rules.RuleS8RefSkill import RuleS8RefSkill
+
 import random
 import numpy as np
 
@@ -19,12 +23,21 @@ def swap_operator(solution, scenario):
     # print("\nTimeline__", np.array(range(0, 14)))
     # print("employee_1", solution.shift_assignments[swap_info['employee_id_1']][:, 0])
     # print("employee_2", solution.shift_assignments[swap_info['employee_id_2']][:, 0])
-    if "S2Max" in solution.rules or "S2Min" in solution.rules:
-        # get stretch information for swap
-        swap_info = get_stretch_information_swap(solution, swap_info)
+
+    # get stretch information for swap
+    swap_info = get_stretch_information_swap(solution, swap_info)
 
     if "S6" in solution.rules:
         swap_info = RuleS6().incremental_working_weekends_swap(solution, swap_info)
+    if "S8RefDay" in solution.rules:
+        swap_info = RuleS8RefDay().check_comparison_swap(solution, swap_info, RuleS8RefDay().compare_function,
+                                                      solution.ref_comparison_day_level, "ref_comparison_day_level")
+
+    if "S8RefShift" in solution.rules:
+        swap_info = RuleS8RefShift().check_comparison_swap(solution, swap_info, "ref_comparison_shift_level")
+
+    if "S8RefSkill" in solution.rules:
+        swap_info = RuleS8RefSkill().check_comparison_swap(solution, swap_info, "ref_comparison_skill_level")
 
     # add penalty to objective
     if swap_info['feasible']:
@@ -185,17 +198,25 @@ def get_stretch_information_swap(solution, swap_info):
     the work, off and shift stretches in the streak
     We only save the stretches that are completely in the streak
     """
-    if "S2Max" or "S2Min" in solution.rules:
+    if "S2Max" in solution.rules or "S2Min" in solution.rules:
         swap_info = collect_edge_stretches(swap_info, solution.work_stretches, "work_stretches")
         swap_info = stretches_in_range(swap_info, solution.work_stretches, "work_stretches")
         swap_info['work_stretches_new'] = RuleS2Max().collect_new_stretches(solution, solution.work_stretches,
                                                                                 swap_info, "work_stretches")
 
-    if "S3Max" or "S3Min" in solution.rules:
+    if "S3Max" in solution.rules or "S3Min" in solution.rules:
         swap_info = collect_edge_stretches(swap_info, solution.day_off_stretches, "day_off_stretches")
         swap_info = stretches_in_range(swap_info, solution.day_off_stretches, "day_off_stretches")
         swap_info['day_off_stretches_new'] = RuleS2Max().collect_new_stretches(solution, solution.day_off_stretches,
                                                                                 swap_info, "day_off_stretches")
+
+    if "S2ShiftMax" in solution.rules or "S2ShiftMin" in solution.rules:
+        for s_index in range(0, solution.num_shift_types):
+            stretch_name = "shift_stretches_{}".format(s_index)
+            swap_info = collect_edge_stretches(swap_info, solution.shift_stretches[s_index], stretch_name)
+            swap_info = stretches_in_range(swap_info, solution.shift_stretches[s_index], stretch_name)
+            swap_info['{}_new'.format(stretch_name)] = RuleS2Max().collect_new_stretches(solution, solution.shift_stretches[s_index],
+                                                                                   swap_info, stretch_name)
     return swap_info
 
 
@@ -215,7 +236,7 @@ def stretches_in_range(swap_info, stretch_object, object_name):
                     start_indices_to_keep = key
 
         swap_info['{}_{}'.format(object_name, i+1)] = stretches_in_swap
-        swap_info['{}_{}_start_indices_to_keep'.format(object_name, i+1)] =start_indices_to_keep
+        swap_info['{}_{}_start_indices_to_keep'.format(object_name, i+1)] = start_indices_to_keep
     return swap_info
 
 

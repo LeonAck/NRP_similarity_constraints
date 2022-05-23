@@ -151,8 +151,13 @@ class Instance:
         """
         # TODO must still add way to keep the order of the week files
         weeks_strings = ["-"+str(i) for i in self.weeks]
-        return [file for file in list_of_files if file.startswith("WD")
-                and file.endswith(tuple(weeks_strings))]
+        week_files = []
+        for string in weeks_strings:
+            for file in list_of_files:
+                if file.startswith("WD") \
+                and file.endswith(string):
+                    week_files.append(file)
+        return week_files
 
     def load_files(self, list_of_files):
         """
