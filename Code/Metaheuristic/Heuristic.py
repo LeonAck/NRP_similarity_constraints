@@ -1,8 +1,10 @@
 import time
 import random
 import numpy as np
-from Invoke.Operators import change_operator
+from Invoke.Operators.change_operator import change_operator
 from Invoke.Operators.swap_operator import swap_operator
+from Invoke.Operators.greedy_change import greedy_change
+
 from solution import Solution
 from Check.check_function_feasibility import FeasibilityCheck
 from Invoke.Constraints.Rules.RuleS2Min import RuleS2Min
@@ -28,7 +30,9 @@ class Heuristic:
         self.no_improve_max = heuristic_settings['no_improve_max']
 
         # introduce objects necessary for algorithm
-        self.operator_collection = {"change": change_operator, "swap": swap_operator}
+        self.operator_collection = {"change": change_operator, "swap": swap_operator,
+                                    "greedy_change": greedy_change}
+
         self.operators_to_use = heuristic_settings['operators']
 
         # Weight parameters
@@ -138,7 +142,7 @@ class Heuristic:
             # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
             # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+            FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))

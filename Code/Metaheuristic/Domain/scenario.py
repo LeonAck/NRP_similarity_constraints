@@ -73,7 +73,8 @@ class Scenario:
         self.historical_off_stretch = instance.historical_off_stretch
         self.historical_shift_stretch = instance.historical_shift_stretch
 
-
+        # greedy operator
+        self.greedy_number = stage_settings['heuristic_settings']['greedy_number']
         # save rule mappings
         self.parameter_to_rule_mapping = {
             "S2Max": "maximumNumberOfConsecutiveWorkingDays",
