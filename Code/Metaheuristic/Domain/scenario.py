@@ -56,6 +56,9 @@ class Scenario:
         self.employees_specs = self.scenario_data["nurses"]
         self.employees = EmployeeCollection().initialize_employees(self, self.employees_specs)
 
+        # get dict of multiskill employees
+        self.multi_skill = self.get_dict_multi_skill()
+
         # extract minimal and optimal skill requests
         self.skill_requests = self.initialize_skill_requests()
         self.optimal_coverage = self.initialize_optimal_coverage()
@@ -104,6 +107,11 @@ class Scenario:
                                  self.scenario_data['nurses']], dtype=object)
         skills_array = np.unique(skills_array)
         return sorted(np.unique(skills_array), key=lambda x: len(x))
+
+    def get_dict_multi_skill(self):
+        multi_skill_dict = {employee_id: True if len(v.skills) > 1 else False for employee_id, v in self.employees._collection.items()}
+        return multi_skill_dict
+
 
     def add_differentiate_rule_parameters(self, rules_specs):
         """

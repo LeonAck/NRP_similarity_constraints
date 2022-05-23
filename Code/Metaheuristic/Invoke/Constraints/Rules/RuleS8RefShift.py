@@ -150,20 +150,20 @@ class RuleS8RefShift(Rule):
         else:
             return -1
 
-    def compare_assignment_swap(self, solution, swap_info, compare_function):
-
-        return np.array([compare_function(solution, swap_info['employee_id_1'], swap_info['employee_id_2'], d_index)
-                         for d_index in range(swap_info['start_index'], swap_info['end_index'] + 1)])
-
-    def compare_function(self, solution, employee_id_1, employee_id_2, d_index):
-        if solution.check_if_working_day(employee_id_1, d_index) == solution.check_if_working_day(
-                employee_id_2, d_index):
-            if self.compare_shift_type(solution, employee_id_1, employee_id_2, d_index):
-                return 1
-            else:
-                return 0
-        else:
-            return -1
+    # def compare_assignment_swap(self, solution, swap_info, compare_function):
+    #
+    #     return np.array([compare_function(solution, swap_info['employee_id_1'], swap_info['employee_id_2'], d_index)
+    #                      for d_index in range(swap_info['start_index'], swap_info['end_index'] + 1)])
+    #
+    # def compare_function(self, solution, employee_id_1, employee_id_2, d_index):
+    #     if solution.check_if_working_day(employee_id_1, d_index) == solution.check_if_working_day(
+    #             employee_id_2, d_index):
+    #         if self.compare_shift_type(solution, employee_id_1, employee_id_2, d_index):
+    #             return 1
+    #         else:
+    #             return 0
+    #     else:
+    #         return -1
 
     def update_information_swap(self, solution, swap_info):
 
@@ -175,6 +175,6 @@ class RuleS8RefShift(Rule):
 
         return solution.ref_comparison_shift_level
 
-    def compare_shift_type(self, solution, employee_id_1, employee_id_2, d_index):
-        return solution.shift_assignments[employee_id_1][d_index][0] == solution.shift_assignments[employee_id_2][d_index][0]
+    # def compare_shift_type(self, solution, employee_id_1, employee_id_2, d_index):
+    #     return solution.shift_assignments[employee_id_1][d_index][0] == solution.shift_assignments[employee_id_2][d_index][0]
 

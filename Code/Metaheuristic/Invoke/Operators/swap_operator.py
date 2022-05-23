@@ -3,6 +3,8 @@ from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
 from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
+from Invoke.Constraints.Rules.RuleS8RefSkill import RuleS8RefSkill
+
 import random
 import numpy as np
 
@@ -33,6 +35,9 @@ def swap_operator(solution, scenario):
 
     if "S8RefShift" in solution.rules:
         swap_info = RuleS8RefShift().check_comparison_swap(solution, swap_info, "ref_comparison_shift_level")
+
+    if "S8RefSkill" in solution.rules:
+        swap_info = RuleS8RefSkill().check_comparison_swap(solution, swap_info, "ref_comparison_skill_level")
 
     # add penalty to objective
     if swap_info['feasible']:

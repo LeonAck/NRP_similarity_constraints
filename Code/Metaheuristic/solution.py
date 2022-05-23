@@ -8,7 +8,7 @@ from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
 from Invoke.Constraints.Rules.RuleS6 import RuleS6
 from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
 from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
-
+from Invoke.Constraints.Rules.RuleS8RefSkill import RuleS8RefSkill
 
 class Solution:
     """
@@ -76,6 +76,10 @@ class Solution:
 
             if 'S8RefShift' in self.rules:
                 self.ref_comparison_shift_level = other_solution.ref_comparison_shift_level
+
+            if 'S8RefSkill' in self.rules:
+                self.multi_skill = other_solution.multi_skill
+                self.ref_comparison_skill_level = other_solution.ref_comparison_skill_level
 
             # objective value
             self.obj_value = other_solution.obj_value
@@ -171,6 +175,9 @@ class Solution:
         if 'S8RefShift' in solution.rules:
             solution = RuleS8RefShift().update_information_assigned_to_off(solution, change_info)
 
+        if 'S8RefSkill' in solution.rules:
+            solution = RuleS8RefSkill().update_information_assigned_to_off(solution, change_info)
+
     def update_information_off_to_assigned(self, solution, change_info):
         """
         Function to update relevant information after insertion into new shift skill combination
@@ -229,6 +236,10 @@ class Solution:
         if 'S8RefShift' in solution.rules:
             solution = RuleS8RefShift().update_information_off_to_assigned(solution, change_info)
 
+        if 'S8RefSkill' in solution.rules:
+            solution = RuleS8RefSkill().update_information_off_to_assigned(solution, change_info)
+
+
     def update_information_assigned_to_assigned(self, solution, change_info):
         """
         Update information after moving from one assignment to the other
@@ -257,6 +268,9 @@ class Solution:
 
         if 'S8RefShift' in solution.rules:
             solution = RuleS8RefShift().update_information_assigned_to_assigned(solution, change_info)
+
+        if 'S8RefSkill' in solution.rules:
+            solution = RuleS8RefSkill().update_information_assigned_to_assigned(solution, change_info)
 
     def update_solution_change(self, change_info):
         """
@@ -312,6 +326,8 @@ class Solution:
             solution.ref_comparison_day_level = RuleS8RefDay().update_information_swap(solution, swap_info)
         if "S8RefShift" in solution.rules:
             solution.ref_comparison_shift_level = RuleS8RefShift().update_information_swap(solution, swap_info)
+        if "S8RefSkill" in solution.rules:
+            solution.ref_comparison_skill_level = RuleS8RefSkill().update_information_swap(solution, swap_info)
 
     def update_solution_swap(self, swap_info):
         """
@@ -407,3 +423,6 @@ class Solution:
 
     def check_if_same_shift_type_ref(self, employee_id, d_index):
         return self.ref_assignments[employee_id][d_index][0] == self.shift_assignments[employee_id][d_index][0]
+
+    def check_if_same_skill_type_ref(self, employee_id, d_index):
+        return self.ref_assignments[employee_id][d_index][1] == self.shift_assignments[employee_id][d_index][1]

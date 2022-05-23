@@ -138,12 +138,14 @@ class Heuristic:
             # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
             # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-            if "S8RefDay" in current_solution.rules:
-                FeasibilityCheck().check_day_comparison_info_reference(current_solution, self.scenario, operator_info)
-            if "S8RefShift" in current_solution.rules:
-                FeasibilityCheck().check_shift_comparison_info_reference(current_solution, self.scenario, operator_info)
-            if "S8RefDay" in current_solution.rules or "S8RefShift" in current_solution.rules:
-                FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+            # if "S8RefDay" in current_solution.rules:
+            #     FeasibilityCheck().check_day_comparison_info_reference(current_solution, self.scenario, operator_info)
+            # if "S8RefShift" in current_solution.rules:
+            #     FeasibilityCheck().check_shift_comparison_info_reference(current_solution, self.scenario, operator_info)
+            # if "S8RefDay" in current_solution.rules or "S8RefShift" in current_solution.rules or "S8RefSkill" in current_solution.rules:
+            #     FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+            # if "S8RefSkill" in current_solution.rules:
+            #     FeasibilityCheck().check_skill_comparison_info_reference(current_solution, self.scenario, operator_info)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
             #if n_iter < 10 or n_iter > 2000:
             #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))

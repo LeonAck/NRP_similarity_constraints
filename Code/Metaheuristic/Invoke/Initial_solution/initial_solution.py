@@ -92,6 +92,10 @@ class BuildSolution(Solution):
         if 'S8RefShift' in self.rules:
             self.ref_comparison_shift_level = self.collect_shift_comparison_ref(solution=self)
 
+        if 'S8RefSkill' in self.rules:
+            self.multi_skill = scenario.multi_skill
+            self.ref_comparison_skill_level = self.collect_skill_comparison_ref(solution=self)
+
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
 
@@ -460,8 +464,41 @@ class BuildSolution(Solution):
 
             ]
 
-            # combine into one list
+            # combine into one dict
             shift_assignment_comparison[employee_id] = np.array(shift_comparison_empl)
 
         return shift_assignment_comparison
+
+    def collect_skill_comparison_ref(self, solution):
+        """
+        Collect dict where for each employee we have an array
+        with:
+        1 if working both days, working the same shift, working the same skill
+        0 if working both days, working the same shift, but not the same skill
+        -1 if not working either of the days, or working both days but working a different shift
+        :return:
+        dict
+        """
+        skill_assignment_comparison = {}
+
+        for employee_id in self.scenario.employees._collection.keys():
+            skill_comparison_empl =[]
+            for d_index in range(0, self.scenario.day_collection.num_days_in_horizon):
+                if self.multi_skill[employee_id]:
+                    if solution.check_if_working_day(employee_id, d_index) \
+                   and solution.check_if_working_day_ref(employee_id, d_index)\
+                    and solution.check_if_same_shift_type_ref(employee_id, d_index):
+                        if solution.check_if_same_skill_type_ref(employee_id, d_index):
+                            skill_comparison_empl.append(1)
+                        else:
+                            skill_comparison_empl.append(0)
+                    else:
+                        skill_comparison_empl.append(-1)
+                else:
+                    skill_comparison_empl.append(-1)
+
+            # combine into one dict
+            skill_assignment_comparison[employee_id] = np.array(skill_comparison_empl)
+
+        return skill_assignment_comparison
 
