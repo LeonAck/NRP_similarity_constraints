@@ -24,7 +24,8 @@ class Settings:
             # load stage_2_settings
             self.stage_2_settings = settings_json['stage_2_settings']
 
-            # ref
+            # history
+            self.history = settings_json['instance_settings']['history']
 
         else:
 

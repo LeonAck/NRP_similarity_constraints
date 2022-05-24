@@ -76,7 +76,7 @@ def get_feasible_change(solution, scenario):
 
             # add off day to options if employee currently not working
             if change_info["current_working"]:
-                allowed_shift_types = np.append(allowed_shift_types, "off") # todo replace "off" by a number
+                allowed_shift_types = np.append(allowed_shift_types, "off")
 
             while len(allowed_shift_types) > 0 and not feasible:
                 # pick random shift type
@@ -114,36 +114,6 @@ def get_feasible_change(solution, scenario):
     else:
         change_info['feasible'] = True
     return change_info
-
-
-def get_feasible_removal2(solution, scenario, feasible_employees):
-    """
-    Get employee that can be savely removed from current assignment without
-    leading to understaffing
-    """
-    feasible = False
-    n = 0
-    change_info = dict()
-
-    while not feasible:
-        # pick random nurse
-        employee_id = random.choice(feasible_employees) # remove nurse if picked before
-        feasible_days = list(range(0, scenario.num_days_in_horizon))
-        feasible_days = remove_infeasible_days_understaffing(solution, employee_id, feasible_days)
-
-        if len(feasible_days) == 0:
-            feasible_employees = feasible_employees.remove(employee_id)
-        else:
-            d_index = random.choice(feasible_days)
-            feasible = True
-            # save info of current assignment
-            change_info = fill_change_info_curr_ass(solution, employee_id, d_index)
-
-
-    if not feasible:
-        return "no change possible"
-    else:
-        return change_info, feasible_employees
 
 def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
     """

@@ -31,10 +31,16 @@ class Instance:
         self.history_data = self.simplify_history_data()
 
         # get history data per employee
-        self.last_assigned_shift = self.collect_history_data_per_employee(feature='lastAssignedShiftType')
-        self.historical_work_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveWorkingDays')
-        self.historical_off_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveDaysOff')
-        self.historical_shift_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveAssignments')
+        if settings.history:
+            self.last_assigned_shift = self.collect_history_data_per_employee(feature='lastAssignedShiftType')
+            self.historical_work_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveWorkingDays')
+            self.historical_off_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveDaysOff')
+            self.historical_shift_stretch = self.collect_history_data_per_employee(feature='numberOfConsecutiveAssignments')
+        else:
+            self.last_assigned_shift = self.replace_history_data_per_employee(-1)
+            self.historical_work_stretch = self.replace_history_data_per_employee(0)
+            self.historical_off_stretch = self.replace_history_data_per_employee(0)
+            self.historical_shift_stretch = self.replace_history_data_per_employee(0)
 
         # get employee preferences
         self.employee_preferences = self.collect_employee_preferences()
@@ -66,6 +72,12 @@ class Instance:
             last_assigned_shifts[employee_id] = employee_history[feature]
 
         return last_assigned_shifts
+
+    def replace_history_data_per_employee(self, value):
+        placeholder = {}
+        for employee_id in self.history_data.keys():
+            placeholder[employee_id] = value
+        return placeholder
 
     def simplify_history_data(self):
         history_data = {}

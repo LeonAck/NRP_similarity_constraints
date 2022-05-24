@@ -258,21 +258,3 @@ class Contract:
         self.minimumNumberOfAssignments = None
         self.minimumNumberOfConsecutiveDaysOff = None
         self.minimumNumberOfConsecutiveWorkingDays = None
-
-
-class SkillSet:
-    """
-    Create class to save skill set info
-    """
-
-    def __init__(self, id, skills):
-        self.id = None
-        self.skills = None
-
-        # get id of skills in counter
-        self.skill_set_index = None
-
-class ShiftType:
-    """
-    Class to collect shift type information
-    """

@@ -45,8 +45,13 @@ class Heuristic:
 
         # updating functions
         self.updating_functions = {"change": Solution().update_solution_change}
+        #
 
         self.frequency_operator = {}
+
+        # Create objects to save information for plots
+        self.obj_values = []
+        self.best_obj_values = []
 
     def run_heuristic(self, starting_solution):
         """
@@ -65,12 +70,6 @@ class Heuristic:
         current_solution = Solution(deepcopy(starting_solution))
         # take initial solution as best solution
         best_solution = Solution(starting_solution)
-
-        # Initialize tracking
-        # number of iterations
-        # number of iterations without improvement
-        # create objects for tracking use of operators
-        # create objects for tracking performance of operators
 
         # Set the elapsed time equal to zero
         self.start_time = time.time()
@@ -110,7 +109,7 @@ class Heuristic:
                 current_solution.update_solution_operator(operator_name, operator_info)
                 # check if best. Then current solution, becomes the best solution
                 if current_solution.obj_value < best_solution.obj_value:
-                    best_solution = Solution(current_solution)
+                    best_solution = Solution(deepcopy(current_solution))
                     # print("new best_solution: {}".format(best_solution.obj_value))
                     no_improve_iter = 0
 
@@ -120,9 +119,9 @@ class Heuristic:
                 if accepted:
                     # update solutions accordingly
                     current_solution.update_solution_operator(operator_name, operator_info)
-
+            # print("current: {}".format(current_solution.obj_value))
             if no_improve_iter > self.no_improve_max:
-                current_solution = Solution(best_solution)
+                current_solution = Solution(deepcopy(best_solution))
                 no_improve_iter = 0
 
             # adjust weights
@@ -132,8 +131,8 @@ class Heuristic:
             self.update_temperature()
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            # if "S2Max" in current_solution.rules:
-            #     FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
+            if "S2Max" in current_solution.rules:
+                FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
             # if "S3Max" in current_solution.rules:
             #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
             # if "S2ShiftMax" in current_solution.rules:
@@ -142,15 +141,18 @@ class Heuristic:
             # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
             # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-            FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
             #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-            #if n_iter < 10 or n_iter > 2000:
-            #   print("violations", FeasibilityCheck().h3_check_function(current_solution, self.scenario))
+
             previous_operator_info = operator_info
             n_iter += 1
 
+            self.gather_plot_information(current_solution, best_solution)
+
         # best solution
         best_solution.change_counters = change_counters
+
+        self.n_iter = n_iter
         return best_solution
 
     def update_change_counter(self, change_counters, change_info):
@@ -307,3 +309,14 @@ class Heuristic:
                 1 / len(self.operators_to_use)
 
         return operator_weights
+
+    def gather_plot_information(self, current_solution, best_solution):
+        """
+        Function to gather information for objective value plot
+        and operator weights plot after every iteration
+        """
+
+        # information for objective plot
+        self.obj_values.append(current_solution.obj_value)
+        self.best_obj_values.append(best_solution.obj_value)
+

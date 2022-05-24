@@ -6,6 +6,7 @@ from Invoke.Initial_solution.initial_solution import BuildSolution
 from Check.check_function_feasibility import FeasibilityCheck
 from Heuristic import Heuristic
 from Input.input_NRC import Instance
+import create_plots as plot
 
 settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json"
 two_stage = True
@@ -13,9 +14,10 @@ def run_stage(instance, stage_settings, previous_solution=None):
     scenario = Scenario(stage_settings, instance)
 
     init_solution = BuildSolution(scenario, previous_solution)
-    best_solution = Heuristic(scenario, stage_settings=stage_settings).run_heuristic(starting_solution=deepcopy(init_solution))
+    heuristic = Heuristic(scenario, stage_settings=stage_settings)
+    best_solution = heuristic.run_heuristic(starting_solution=deepcopy(init_solution))
 
-    return best_solution
+    return heuristic, best_solution
 
 def run_two_stage(settings_file_path):
     """
@@ -25,11 +27,13 @@ def run_two_stage(settings_file_path):
     instance = Instance(settings)
 
     # run stage_1
-    stage_1_solution = run_stage(instance, settings.stage_1_settings)
+    heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
 
     # run stage 2
     # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
-    stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
+    heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
+
+    plot.objective_value_plot(heuristic_2)
     print(stage_1_solution.violation_array)
     print(stage_1_solution.change_counters)
     print(stage_2_solution.obj_value)
@@ -42,9 +46,9 @@ def run_one_stage(settings_file_path, stage_number=2):
     settings = Settings(settings_file_path)
     instance = Instance(settings)
     if stage_number == 2:
-        stage_2_solution = run_stage(instance, settings.stage_2_settings)
+        heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings)
     else:
-        stage_2_solution = run_stage(instance, settings.stage_1_settings)
+        heuristic_2, stage_2_solution = run_stage(instance, settings.stage_1_settings)
 
     print(stage_2_solution.obj_value)
     print(stage_2_solution.violation_array)

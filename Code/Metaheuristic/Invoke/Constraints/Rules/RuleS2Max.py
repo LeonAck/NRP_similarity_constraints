@@ -210,8 +210,12 @@ class RuleS2Max(Rule):
                 and solution.check_if_working_day(employee_id, d_index - 1):
             start_index = self.find_work_stretch_end(solution, employee_id, d_index - 1)
             # check if the length of the new work stretch is too long
-            return 1 if solution.work_stretches[employee_id][start_index]['length'] >= employee_parameter \
-                else 0
+            try:
+                return 1 if solution.work_stretches[employee_id][start_index]['length'] >= employee_parameter \
+                    else 0
+            except KeyError:
+                print("hi")
+
 
         # if single day
         else:
