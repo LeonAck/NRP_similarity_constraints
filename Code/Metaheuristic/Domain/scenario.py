@@ -5,6 +5,7 @@ from Domain.skill_set import SkillSetCollection
 from Domain.shifts import ShiftTypeCollection
 from Invoke.Constraints.initialize_rules import RuleCollection
 from Domain.days import DayCollection
+import pickle
 
 class Scenario:
     """
@@ -55,6 +56,9 @@ class Scenario:
         self.employees_specs = self.scenario_data["nurses"]
         self.employees = EmployeeCollection().initialize_employees(self, self.employees_specs)
 
+        # get dict of multiskill employees
+        self.multi_skill = self.get_dict_multi_skill()
+
         # extract minimal and optimal skill requests
         self.skill_requests = self.initialize_skill_requests()
         self.optimal_coverage = self.initialize_optimal_coverage()
@@ -69,6 +73,8 @@ class Scenario:
         self.historical_off_stretch = instance.historical_off_stretch
         self.historical_shift_stretch = instance.historical_shift_stretch
 
+        # greedy operator
+        self.greedy_number = stage_settings['heuristic_settings']['greedy_number']
         # save rule mappings
         self.parameter_to_rule_mapping = {
             "S2Max": "maximumNumberOfConsecutiveWorkingDays",
@@ -87,6 +93,10 @@ class Scenario:
         self.rules_specs = self.add_differentiate_rule_parameters(self.rules_specs)
         self.rule_collection = RuleCollection().initialize_rules(self.rules_specs, self.employees)
 
+        # S8ref
+        if 'S8RefDay' in self.rule_collection.collection or 'S8RefShift' in self.rule_collection.collection or 'S8RefSkill' in self.rule_collection.collection:
+            self.ref_assignments = self.get_ref_assignments()
+
     # TODO remove function
     def get_unique_skill_sets(self):
         """
@@ -96,6 +106,11 @@ class Scenario:
                                  self.scenario_data['nurses']], dtype=object)
         skills_array = np.unique(skills_array)
         return sorted(np.unique(skills_array), key=lambda x: len(x))
+
+    def get_dict_multi_skill(self):
+        multi_skill_dict = {employee_id: True if len(v.skills) > 1 else False for employee_id, v in self.employees._collection.items()}
+        return multi_skill_dict
+
 
     def add_differentiate_rule_parameters(self, rules_specs):
         """
@@ -177,6 +192,11 @@ class Scenario:
 
         return request_array
 
+    def get_ref_assignments(self):
+        with open(self.stage_settings['ref_period_path'], "rb") as ref_shift_assignments_file:
+            ref_assignments = pickle.load(ref_shift_assignments_file)
+        return ref_assignments
+
     def initialize_optimal_coverage(self):
         """
                Create array of skill requests
@@ -238,21 +258,3 @@ class Contract:
         self.minimumNumberOfAssignments = None
         self.minimumNumberOfConsecutiveDaysOff = None
         self.minimumNumberOfConsecutiveWorkingDays = None
-
-
-class SkillSet:
-    """
-    Create class to save skill set info
-    """
-
-    def __init__(self, id, skills):
-        self.id = None
-        self.skills = None
-
-        # get id of skills in counter
-        self.skill_set_index = None
-
-class ShiftType:
-    """
-    Class to collect shift type information
-    """

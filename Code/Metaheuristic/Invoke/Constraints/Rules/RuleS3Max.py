@@ -208,19 +208,6 @@ class RuleS3Max(Rule):
             start_index = self.find_day_off_stretch_end(solution, employee_id,
                                                         d_index - 1)
 
-            # # calc previous violations of the separate work stretches
-            # previous_violations = np.maximum(
-            #     solution.day_off_stretches[employee_id][
-            #         d_index + 1]['length'] - employee_parameter,
-            #     0) \
-            #                       + np.maximum(
-            #     solution.day_off_stretches[employee_id][start_index]['length'] - employee_parameter,
-            #     0)
-            # return np.maximum((solution.day_off_stretches[employee_id][
-            #                        d_index + 1]['length']
-            #                    + solution.day_off_stretches[employee_id][start_index][
-            #                        'length'] + 1) - employee_parameter, 0) \
-            #        - previous_violations
             return RuleS2Max().calc_incremental_violations_merge_stretch(solution.day_off_stretches[employee_id],
                                                                          rule_parameter=employee_parameter,
                                                                          start_index_1=start_index,

@@ -1,7 +1,8 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
-from copy import deepcopy
+from copy import deepcopy, copy
 import pprint
+import marshal
 
 class RuleS2Max(Rule):
     """
@@ -197,17 +198,24 @@ class RuleS2Max(Rule):
                                                                       start_index_1=-solution.historical_work_stretch[
                                                                           employee_id], start_index_2=d_index + 1)
             else:
-                return 1 if solution.work_stretches[employee_id][
-                                d_index + 1]['length'] >= employee_parameter \
-                    else 0
+                try:
+                    return 1 if solution.work_stretches[employee_id][
+                                    d_index + 1]['length'] >= employee_parameter \
+                        else 0
+                except KeyError:
+                    print("hi")
 
         # check if not the first day and the day before working
         elif not d_index == 0 \
                 and solution.check_if_working_day(employee_id, d_index - 1):
             start_index = self.find_work_stretch_end(solution, employee_id, d_index - 1)
             # check if the length of the new work stretch is too long
-            return 1 if solution.work_stretches[employee_id][start_index]['length'] >= employee_parameter \
-                else 0
+            try:
+                return 1 if solution.work_stretches[employee_id][start_index]['length'] >= employee_parameter \
+                    else 0
+            except KeyError:
+                print("hi")
+
 
         # if single day
         else:
@@ -239,12 +247,14 @@ class RuleS2Max(Rule):
 
     def calc_incremental_violations_merge_stretch(self, stretch_object_employee, rule_parameter, start_index_1,
                                                   start_index_2):
-
-        previous_violations = np.maximum(
-            stretch_object_employee[
-                start_index_2]['length'] - rule_parameter, 0) \
-                              + np.maximum(
-            stretch_object_employee[start_index_1]['length'] - rule_parameter, 0)
+        try:
+            previous_violations = np.maximum(
+                stretch_object_employee[
+                    start_index_2]['length'] - rule_parameter, 0) \
+                                  + np.maximum(
+                stretch_object_employee[start_index_1]['length'] - rule_parameter, 0)
+        except KeyError:
+            print("hi")
 
         new_violations = np.maximum((stretch_object_employee[
                                          start_index_2]['length']
@@ -276,16 +286,15 @@ class RuleS2Max(Rule):
                                                          swap_info, stretch_name)
         # swap stretches inside
         stretch_object_copy = self.swap_stretches(swap_info, stretch_object_copy, stretch_name)
-        # pprint.pprint(stretch_object_copy)
         return stretch_object_copy
 
     def incremental_violations_swap(self, solution, swap_info, rule_id):
         """
         Function to calculate the incremental violations after a swap operation
         """
-        if rule_id == "S2Max":
-            stretch_name = 'work_stretches'
-            stretch_object = solution.work_stretches
+
+        stretch_name = 'work_stretches'
+        stretch_object = solution.work_stretches
         incremental_violations = 0
         for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
             old_violations = self.count_violations_employee(stretch_object[employee_id], employee_id)
@@ -320,7 +329,7 @@ class RuleS2Max(Rule):
         return stretch_object
 
     def update_edge_stretches(self, solution, stretch_object, swap_info, stretch_name):
-        stretch_object_copy = deepcopy(stretch_object)
+        stretch_object_copy = marshal.loads(marshal.dumps(stretch_object))
         employee_id_1 = swap_info['employee_id_1']
         employee_id_2 = swap_info['employee_id_2']
         overlapping = swap_info['overlapping_{}'.format(stretch_name)]
@@ -354,9 +363,7 @@ class RuleS2Max(Rule):
                                                                           start_index=swap_info['start_index'],
                                                                           end_index=swap_info['end_index'])
         # both overlapping
-        else:
-            pass
-        # pprint.pprint(stretch_object_copy)
+
         return stretch_object_copy
 
     def update_none_overlapping(self, solution, stretch_object_copy, employee_1,
@@ -378,7 +385,6 @@ class RuleS2Max(Rule):
                                                                edge_stretches_1['end'],
                                                                edge_stretches_2['end'],
                                                                end_index)
-        # pprint.pprint(stretch_object_copy)
         return stretch_object_copy
 
     def update_none_overlapping_end(self, solution, stretch_object_copy, employee_1,
@@ -584,8 +590,7 @@ class RuleS2Max(Rule):
             stretch_object_employee = self.create_stretch(stretch_object_employee,
                                                           start_index=start_index,
                                                           end_index=end_index)
-        print("non_overlapping")
-        # pprint.pprint(stretch_object_employee)
+
         return stretch_object_employee
 
     def update_overlapping_start(self, stretch_object_employee,

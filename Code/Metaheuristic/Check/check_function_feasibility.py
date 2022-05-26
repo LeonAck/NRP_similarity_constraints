@@ -121,12 +121,58 @@ class FeasibilityCheck:
                 print("work_stretches_2", operator_info['work_stretches_2'])
                 print("\nedge", operator_info['edge_work_stretches'])
                 print("overlapping", operator_info['overlapping_work_stretches'])
-                print("\nTimeline__", np.array(range(0, 14)))
+                print("\nTimeline__", np.array(range(0, len(solution.day_collection.num_days_in_horizon))))
                 print("employee_1",solution.shift_assignments[operator_info['employee_id_1']][:, 0])
                 print("employee_2",solution.shift_assignments[operator_info['employee_id_2']][:, 0])
+            elif "current_working" in operator_info:
+                print("d_index", operator_info['d_index'])
             print("hi")
 
         return flag
+
+    def work_stretches_info_employee(self, solution, scenario, operator_info, operator_name):
+        if operator_name == "change":
+            return self.work_stretches_info_change(solution, scenario, operator_info)
+        elif operator_name == "swap":
+            return self.work_stretches_info_swap(solution, scenario, operator_info)
+
+    def work_stretches_info_swap(self, solution, scenario, operator_info):
+        flag = True
+        collected_work_stretches_1 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info['employee_id_1'])
+        collected_work_stretches_2 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info[
+            'employee_id_2'])
+
+        if collected_work_stretches_1 != solution.work_stretches[operator_info['employee_id_1']]\
+                or collected_work_stretches_2 != solution.work_stretches[operator_info['employee_id_2']]:
+            print("stretches is false")
+            flag = False
+            if not flag:
+                deepdiff_1 = DeepDiff(collected_work_stretches_1, solution.work_stretches[operator_info['employee_id_1']])
+
+                pprint.pprint(deepdiff_1)
+
+                deepdiff_2 = DeepDiff(collected_work_stretches_2,
+                                      solution.work_stretches[operator_info['employee_id_2']])
+
+                pprint.pprint(deepdiff_2)
+                print("hi")
+        return flag
+
+    def work_stretches_info_change(self, solution, scenario, operator_info):
+        flag = True
+        collected_work_stretches_1 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info[
+            'employee_id'])
+
+        if collected_work_stretches_1 != solution.work_stretches[operator_info['employee_id']]:
+            print("stretches is false")
+            flag = False
+            if not flag:
+                deepdiff_1 = DeepDiff(collected_work_stretches_1,
+                                      solution.work_stretches[operator_info['employee_id']])
+
+                pprint.pprint(deepdiff_1)
+                print("hi")
+
 
     def check_number_of_work_stretches(self, solution, scenario):
         flag = True
@@ -147,7 +193,7 @@ class FeasibilityCheck:
 
         collected_day_off_stretches = BuildSolution(scenario).collect_day_off_stretches(solution)
 
-        if collected_day_off_stretches != solution.day_off_stretches :
+        if collected_day_off_stretches != solution.day_off_stretches:
             print("stretches is false")
             flag = False
 
@@ -160,9 +206,9 @@ class FeasibilityCheck:
                     employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
                 except KeyError:
                     employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
-            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-            print("current working: {}, new working: {}".format(change_info['current_working'],
-                                                                change_info['new_working']))
+            # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+            # print("current working: {}, new working: {}".format(change_info['current_working'],
+            #                                                     change_info['new_working']))
 
             pprint.pprint(deepdiff)
             print("true", collected_day_off_stretches[employee_id])
@@ -173,7 +219,13 @@ class FeasibilityCheck:
 
         return flag
 
-    def shift_stretches_info(self, solution, scenario, change_info):
+    def shift_stretches_info(self, solution, scenario, operator_info, operator_name):
+        if operator_name == "change":
+            return self.shift_stretches_info_change(solution, scenario, operator_info)
+        elif operator_name == "swap":
+            return self.shift_stretches_info_swap(solution, scenario, operator_info)
+
+    def shift_stretches_info_swap(self, solution, scenario, operator_info):
         """
         Function to find differences in the day off stretch information
         """
@@ -192,19 +244,44 @@ class FeasibilityCheck:
                     employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
                 except KeyError:
                     employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
-            print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-            print("current working: {}, new working: {}".format(change_info['current_working'],
-                                                                change_info['new_working']))
 
             pprint.pprint(deepdiff)
-            if change_info['current_working']:
-                print('\ncurrent s_type', change_info['curr_s_type'])
-                print("true current", collected_shift_stretches[employee_id][change_info['curr_s_type']])
-                print("saved current", solution.shift_stretches[employee_id][change_info['curr_s_type']])
-            if change_info['new_working']:
-                print('\nnew s_type', change_info['new_s_type'])
-                print("true new", collected_shift_stretches[employee_id][change_info['new_s_type']])
-                print("saved new", solution.shift_stretches[employee_id][change_info['new_s_type']])
+            print("hi")
+
+        return flag
+
+    def shift_stretches_info_change(self, solution, scenario, operator_info):
+        """
+        Function to find differences in the day off stretch information
+        """
+        flag = True
+        collected_shift_stretches = BuildSolution(scenario).collect_shift_stretches(solution)
+        if collected_shift_stretches != solution.shift_stretches:
+            print("stretches is false")
+            flag = False
+
+        if not flag:
+            deepdiff = DeepDiff(collected_shift_stretches, solution.shift_stretches)
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            print("on {} for employee {}".format(operator_info['d_index'], operator_info['employee_id']))
+            print("current working: {}, new working: {}".format(operator_info['current_working'],
+                                                                operator_info['new_working']))
+
+            pprint.pprint(deepdiff)
+            if operator_info['current_working']:
+                print('\ncurrent s_type', operator_info['curr_s_type'])
+                print("true current", collected_shift_stretches[operator_info['curr_s_type']][employee_id])
+                print("saved current", solution.shift_stretches[operator_info['curr_s_type']][employee_id])
+            if operator_info['new_working']:
+                print('\nnew s_type', operator_info['new_s_type'])
+                print("true new", collected_shift_stretches[operator_info['new_s_type']][employee_id])
+                print("saved new", solution.shift_stretches[operator_info['new_s_type']][employee_id])
 
             print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
             print("hi", flag)
@@ -250,25 +327,6 @@ class FeasibilityCheck:
                 print("number of violation for soft constraint {} is tracked {} and calc {}".format(
                     i, violation, calc_violations[i]
                 ))
-                # if change_info['current_working']:
-                #     print("current shift type", change_info['curr_s_type'])
-                # if change_info['new_working']:
-                #     print("new shift type", change_info['new_s_type'])
-                # print("past: {}, present: {}, future: {}".format(
-                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']-1][0],
-                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0],
-                #     solution.shift_assignments[change_info['employee_id']][change_info['d_index']+1][0] if change_info['d_index'] < solution.day_collection.num_days_in_horizon-1 else "-"))
-
-                # print("violation per d, s, sk after change",
-                #       RuleS1().count_violations_day_shift_skill(solution, scenario, change_info["d_index"],
-                #                                                 change_info["new_s_type"], change_info["new_sk_type"]))
-                # print("optimal request", solution.diff_opt_request[
-                #     (change_info["d_index"], change_info["new_sk_type"], change_info["new_s_type"],)]+scenario.skill_requests[
-                #     (change_info["d_index"], change_info["new_sk_type"], change_info["new_s_type"],)])
-                # print("actual assignments: ",
-                #       RuleS1().count_assignments_day_shift_skill(solution, change_info["d_index"],
-                #                                                  change_info["new_s_type"], change_info["new_sk_type"]))
-                # print(solution.shift_assignments[change_info['employee_id']][:, 0])
 
                 flag = False
 
@@ -337,7 +395,7 @@ class FeasibilityCheck:
 
     def check_day_comparison_info(self, solution, scenario, change_info):
         flag = True
-        collected_day_comparison = BuildSolution(scenario).collect_ref_day_comparison(solution)
+        collected_day_comparison = BuildSolution(scenario).collect_day_within_comparison(solution)
 
         deepdiff = DeepDiff(collected_day_comparison, solution.day_comparison)
 
@@ -360,9 +418,93 @@ class FeasibilityCheck:
 
         return flag
 
+    def check_day_comparison_info_reference(self, solution, scenario, change_info):
+        flag = True
+        collected_day_comparison = BuildSolution(scenario).collect_day_comparison_ref(solution)
+
+        deepdiff = DeepDiff(collected_day_comparison, solution.ref_comparison_day_level)
+
+        if deepdiff:
+            pprint.pprint(deepdiff)
+            flag = False
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            if "new_working" in change_info:
+                print("on {} for employee {}".format(change_info['d_index'], employee_id))
+                print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                    change_info['new_working']))
+                print("\n working this day: {}".format(solution.check_if_working_day(employee_id, change_info['d_index'])))
+                print("\nworking ref day: {}".format(solution.check_if_working_day_ref(employee_id, change_info['d_index'])))
+            print("hi")
+
+        return flag
+
+    def check_shift_comparison_info_reference(self, solution, scenario, change_info):
+        flag = True
+        collected_shift_comparison = BuildSolution(scenario).collect_shift_comparison_ref(solution)
+
+        deepdiff = DeepDiff(collected_shift_comparison, solution.ref_comparison_shift_level)
+
+        if deepdiff:
+            pprint.pprint(deepdiff)
+            flag = False
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            if "new_working" in change_info:
+                print("on {} for employee {}".format(change_info['d_index'], employee_id))
+                print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                    change_info['new_working']))
+                print("\n working this day: {}".format(solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0]))
+                print("\nworking ref day: {}".format(solution.ref_assignments[change_info['employee_id']][change_info['d_index']][0]))
+            print("hi")
+
+        return flag
+
+    def check_skill_comparison_info_reference(self, solution, scenario, change_info):
+        flag = True
+        collected_skill_comparison = BuildSolution(scenario).collect_skill_comparison_ref(solution)
+
+        deepdiff = DeepDiff(collected_skill_comparison, solution.ref_comparison_skill_level)
+
+        if deepdiff:
+            pprint.pprint(deepdiff)
+            flag = False
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            if "new_working" in change_info:
+                print("on {} for employee {}".format(change_info['d_index'], employee_id))
+                print("current working: {}, new working: {}".format(change_info['current_working'],
+                                                                    change_info['new_working']))
+                print("\n working this day: {}".format(
+                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']][0]))
+                print("working ref day: {}".format(
+                    solution.ref_assignments[change_info['employee_id']][change_info['d_index']][0]))
+                print("\n skill this day: {}".format(
+                    solution.shift_assignments[change_info['employee_id']][change_info['d_index']][1]))
+                print("skill ref day: {}".format(
+                    solution.ref_assignments[change_info['employee_id']][change_info['d_index']][1]))
+            print("hi")
+
+        return flag
+
     def check_shift_comparison_info(self, solution, scenario, change_info):
         flag = True
-        collected_shift_comparison = BuildSolution(scenario).collect_ref_shift_comparison(solution)
+        collected_shift_comparison = BuildSolution(scenario).collect_shift_comparison_within(solution)
 
         deepdiff = DeepDiff(collected_shift_comparison, solution.shift_comparison)
 
