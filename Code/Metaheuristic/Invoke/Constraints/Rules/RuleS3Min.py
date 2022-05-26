@@ -102,7 +102,7 @@ class RuleS3Min(Rule):
                                               rule_parameter=employee_parameter,
                                               start_index_1=-solution.historical_off_stretch[
                                                   employee_id],
-                                              start_index_2=d_index + 1, history=True)
+                                              start_index_2=d_index + 1)
             else:
                 return -1 if solution.day_off_stretches[employee_id][d_index + 1][
                                  'length'] < employee_parameter else 0

@@ -1,11 +1,7 @@
 {"instance_settings": {
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
-  "solution_path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
-  "instance_name": "n012w8",
-  "history_file": 0,
-  "weeks": [5, 4, 7, 1],
-  "two_stage": false,
-  "history": false
+  "solution_path": null,
+  "similarity": false
 },
   "stage_1_settings":
   {
@@ -14,12 +10,12 @@
     "heuristic_settings": {
         "max_time": 10,
         "max_iter":100000,
-        "initial_temp": 22,
+        "initial_temp": 50,
         "cooling_rate": 0.99,
-        "no_improve_max": 200,
+        "no_improve_max": 250,
         "operators": ["swap", "change", "greedy_change"],
-        "k_swap": 5,
-      "greedy_number": 5,
+        "k_swap": 10,
+        "greedy_number": 5,
         "reaction_factor": 0.9,
         "score_event_1": 33,
         "score_event_2": 9,
@@ -57,7 +53,6 @@
   },
   "stage_2_settings": {
     "stage_number": 2,
-    "ref_period_path": "C:/Master_thesis/Code/Metaheuristic/Input/ref_assignments_12.txt",
     "plots": true,
     "heuristic_settings": {
         "max_time": 100,
@@ -65,7 +60,7 @@
         "initial_temp": 200,
         "cooling_rate": 0.99,
         "no_improve_max": 200,
-        "operators": ["swap", "change", "greedy_change","similarity"],
+        "operators": ["swap", "change", "greedy_change"],
          "k_swap": 10,
       "greedy_number": 5,
         "reaction_factor": 0.9,
@@ -82,7 +77,7 @@
                    "parameter_per_contract": false,
                    "parameter_per_s_type": false,
                  "parameter_per_employee": false,
-                   "penalty": 20,
+                   "penalty": null,
                    "parameter_1": 0,
                   "swap": false
                    },
@@ -93,7 +88,7 @@
              "parameter_per_contract": false,
                   "parameter_per_s_type": false,
                 "parameter_per_employee": false,
-             "penalty": 20,
+             "penalty": null,
              "parameter_1": 0,
               "swap": true
              },
@@ -248,37 +243,6 @@
                        "parameter_per_employee": true,
                       "penalty": 10,
                       "parameter_1": null,
-            "swap": true},
-              "S8RefDay": {"id": "S8RefDay",
-                        "is_mandatory": false,
-                      "is_active": true,
-                      "is_horizontal": true,
-                       "parameter_per_contract": false,
-                   "parameter_per_s_type": false,
-                "parameter_per_employee": false,
-             "penalty": 10,
-             "parameter_1": null,
-            "swap": true},
-      "S8RefShift": {"id": "S8RefShift",
-                        "is_mandatory": false,
-                      "is_active": true,
-                      "is_horizontal": true,
-                       "parameter_per_contract": false,
-                   "parameter_per_s_type": false,
-        "parameter_per_employee": false,
-             "penalty": 8,
-             "parameter_1": null,
-            "swap": true},
-       "S8RefSkill": {"id": "S8RefSkill",
-                        "is_mandatory": false,
-                      "is_active": true,
-                      "is_horizontal": true,
-                       "parameter_per_contract": false,
-                   "parameter_per_s_type": false,
-         "parameter_per_employee": false,
-             "penalty": 4,
-             "parameter_1": null,
             "swap": true}
-    }
-    }
+    }}
 }

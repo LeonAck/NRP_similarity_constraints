@@ -1,6 +1,6 @@
 from run import run_one_stage
 
-settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json"
+settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 from Invoke.Operators.swap_operator import check_one_way_swap, get_feasible_swap
 from copy import deepcopy
 import cProfile

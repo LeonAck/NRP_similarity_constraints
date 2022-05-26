@@ -13,10 +13,12 @@ class Settings:
             settings_json = json.load(f)
 
             # instance loading info
-            self.instance_name = settings_json['instance_settings']['instance_name']
+            # self.instance_name = settings_json['instance_settings']['instance_name']
             self.path = settings_json['instance_settings']['path']
-            self.history_file = settings_json['instance_settings']['history_file']
-            self.weeks = settings_json['instance_settings']['weeks']
+            self.solution_path = settings_json['instance_settings']['solution_path']
+            # self.history_file = settings_json['instance_settings']['history_file']
+            # self.weeks = settings_json['instance_settings']['weeks']
+            self.similarity = settings_json['instance_settings']['similarity']
 
             # load stage_1_settings
             self.stage_1_settings = settings_json['stage_1_settings']
@@ -25,7 +27,7 @@ class Settings:
             self.stage_2_settings = settings_json['stage_2_settings']
 
             # history
-            self.history = settings_json['instance_settings']['history']
+            # self.history = settings_json['instance_settings']['history']
 
         else:
 

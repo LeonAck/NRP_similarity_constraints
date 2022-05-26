@@ -1,11 +1,7 @@
 {"instance_settings": {
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
   "solution_path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
-  "instance_name": "n012w8",
-  "history_file": 0,
-  "weeks": [5, 4, 7, 1],
-  "two_stage": false,
-  "history": false
+  "similarity": true
 },
   "stage_1_settings":
   {
@@ -14,12 +10,12 @@
     "heuristic_settings": {
         "max_time": 10,
         "max_iter":100000,
-        "initial_temp": 22,
+        "initial_temp": 50,
         "cooling_rate": 0.99,
-        "no_improve_max": 200,
+        "no_improve_max": 250,
         "operators": ["swap", "change", "greedy_change"],
-        "k_swap": 5,
-      "greedy_number": 5,
+        "k_swap": 10,
+        "greedy_number": 5,
         "reaction_factor": 0.9,
         "score_event_1": 33,
         "score_event_2": 9,
@@ -36,7 +32,7 @@
     "parameter_per_contract": false,
     "parameter_per_s_type": false,
           "parameter_per_employee": false,
-    "penalty": 20,
+    "penalty": null,
     "parameter_1": 0,
         "swap": false
   },
@@ -48,7 +44,7 @@
     "parameter_per_contract": false,
     "parameter_per_s_type": false,
       "parameter_per_employee": false,
-    "penalty": 20,
+    "penalty": null,
     "parameter_1": 0,
     "swap": true
   }
@@ -57,7 +53,6 @@
   },
   "stage_2_settings": {
     "stage_number": 2,
-    "ref_period_path": "C:/Master_thesis/Code/Metaheuristic/Input/ref_assignments_12.txt",
     "plots": true,
     "heuristic_settings": {
         "max_time": 100,

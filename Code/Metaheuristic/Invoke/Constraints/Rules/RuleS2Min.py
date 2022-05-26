@@ -76,7 +76,7 @@ class RuleS2Min(Rule):
                                                                       rule_parameter=employee_parameter,
                                                                       start_index_1=-solution.historical_work_stretch[
                                                                           employee_id],
-                                                                      start_index_2=d_index + 1, history=True)
+                                                                      start_index_2=d_index + 1)
             else:
                 return -1 if employee_work_stretch[d_index + 1]['length'] < employee_parameter else 0
 

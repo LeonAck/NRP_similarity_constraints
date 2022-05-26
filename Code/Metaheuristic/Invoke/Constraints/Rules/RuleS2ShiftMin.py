@@ -81,7 +81,7 @@ class RuleS2ShiftMin(Rule):
                     rule_parameter=shift_parameter,
                     start_index_1=-solution.historical_shift_stretch[
                         employee_id],
-                    start_index_2=d_index + 1, history=True)
+                    start_index_2=d_index + 1)
             else:
                 return -1 if solution.shift_stretches[new_s_type][employee_id][d_index + 1][
                                  'length'] < shift_parameter else 0

@@ -33,6 +33,7 @@ class Scenario:
         self.stage_number = stage_settings['stage_number']
         self.stage_settings = stage_settings
         self.rules_specs = self.stage_settings['rules']
+        self.similarity = instance.similarity
 
         # extract problem data
         self.num_days_in_horizon = self.problem_horizon * 7
@@ -94,8 +95,8 @@ class Scenario:
         self.rule_collection = RuleCollection().initialize_rules(self.rules_specs, self.employees)
 
         # S8ref
-        if 'S8RefDay' in self.rule_collection.collection or 'S8RefShift' in self.rule_collection.collection or 'S8RefSkill' in self.rule_collection.collection:
-            self.ref_assignments = self.get_ref_assignments()
+        if self.similarity and self.stage_number == 2:
+            self.ref_assignments = instance.ref_assignments
 
     # TODO remove function
     def get_unique_skill_sets(self):
