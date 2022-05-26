@@ -29,3 +29,4 @@ best_solution = heuristic.run_heuristic(
     starting_solution=deepcopy(init_solution))
 
 plot.objective_value_plot(heuristic)
+plot.operator_weight_plot(heuristic)

@@ -1,9 +1,7 @@
 import time
 import random
 import numpy as np
-from Invoke.Operators.change_operator import change_operator
-from Invoke.Operators.swap_operator import swap_operator
-from Invoke.Operators.greedy_change import greedy_change
+from Invoke.Operators import change_operator, swap_operator, greedy_change, similarity_operator
 
 from solution import Solution
 from Check.check_function_feasibility import FeasibilityCheck
@@ -31,7 +29,8 @@ class Heuristic:
 
         # introduce objects necessary for algorithm
         self.operator_collection = {"change": change_operator, "swap": swap_operator,
-                                    "greedy_change": greedy_change}
+                                    "greedy_change": greedy_change,
+                                    "similarity": similarity_operator}
 
         self.operators_to_use = heuristic_settings['operators']
 
@@ -52,6 +51,7 @@ class Heuristic:
         # Create objects to save information for plots
         self.obj_values = []
         self.best_obj_values = []
+        self.oper_vars = self.create_oper_vars()
 
     def run_heuristic(self, starting_solution):
         """
@@ -131,8 +131,8 @@ class Heuristic:
             self.update_temperature()
 
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            if "S2Max" in current_solution.rules:
-                FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
+            # if "S2Max" in current_solution.rules:
+            #     FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
             # if "S3Max" in current_solution.rules:
             #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
             # if "S2ShiftMax" in current_solution.rules:
@@ -151,7 +151,7 @@ class Heuristic:
 
         # best solution
         best_solution.change_counters = change_counters
-
+        self.run_time = time.time() - self.start_time
         self.n_iter = n_iter
         return best_solution
 
@@ -257,6 +257,15 @@ class Heuristic:
                                           + self.operator_score[operator_name] \
                                           * (1 - self.reaction_factor)
 
+    def create_oper_vars(self):
+        # create an empty list for every operator
+        oper_vars = {}
+        for key in self.operators_to_use:
+            # create a list for every key with initial weight as first item
+            oper_vars[key] = [self.operator_weights[key]]
+
+        return oper_vars
+
     def calc_operator_score(self, operator_name, accepted):
         """
         Give a score to the operator based on performance in previous iteration.
@@ -319,4 +328,9 @@ class Heuristic:
         # information for objective plot
         self.obj_values.append(current_solution.obj_value)
         self.best_obj_values.append(best_solution.obj_value)
+
+        # gather operator weights information
+        # Operator plot. For every iteration, append weights
+        for key, value in self.operator_weights.items():
+            self.oper_vars[key].append(value)
 

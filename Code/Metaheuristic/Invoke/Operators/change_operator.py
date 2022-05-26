@@ -64,7 +64,6 @@ def get_feasible_change(solution, scenario):
             feasible_days = remove_infeasible_days_understaffing(
                 solution, change_info["employee_id"], feasible_days)
 
-        i = 0
         while len(feasible_days) > 0 and not feasible:
             # choose day
             change_info["d_index"] = random.choice(feasible_days)
@@ -91,10 +90,9 @@ def get_feasible_change(solution, scenario):
 
                     # check if there are allowed shift types
                     if len(allowed_skills) == 0:
-                        # TODO try to rewrite to speed up
+
                         allowed_shift_types = np.delete(allowed_shift_types,
-                                                        np.in1d(allowed_shift_types,
-                                                                change_info["new_s_type"]))
+                                                        np.where(allowed_shift_types==change_info["new_s_type"]))
                     else:
                         change_info["new_sk_type"] = random.choice(allowed_skills)
                         change_info["new_working"] = True
@@ -102,8 +100,6 @@ def get_feasible_change(solution, scenario):
 
             # if no allowed shift type for day, remove day and find new day
             feasible_days.remove(change_info["d_index"])
-
-            i += 1
 
         # if no feasible day for change for employee, remove employee and find new employee
         feasible_employees.remove(change_info["employee_id"])
@@ -114,6 +110,8 @@ def get_feasible_change(solution, scenario):
     else:
         change_info['feasible'] = True
     return change_info
+
+
 
 def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
     """
