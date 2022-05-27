@@ -44,9 +44,9 @@ class Heuristic:
 
         # updating functions
         self.updating_functions = {"change": Solution().update_solution_change}
-        #
 
-        self.frequency_operator = {}
+
+        self.frequency_operator_improvement = self.create_object_improvement()
 
         # Create objects to save information for plots
         self.obj_values = []
@@ -92,7 +92,7 @@ class Heuristic:
 
             # choose operator
             operator_name = self.roulette_wheel_selection(self.operators_to_use)
-            self.update_frequency_operator(operator_name)
+            # self.update_frequency_operator(operator_name)
 
             operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
 
@@ -124,12 +124,10 @@ class Heuristic:
                 current_solution = Solution(deepcopy(best_solution))
                 no_improve_iter = 0
 
-            # adjust weights
-            # TODO operator weights
-            #self.update_operator_weights(operator_name)
+            # adjust weight
 
             self.update_temperature()
-
+            self.update_operator_weights(operator_name, operator_info)
             #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
             # if "S2Max" in current_solution.rules:
             #     FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
@@ -215,6 +213,12 @@ class Heuristic:
             # if not, now it is used for the first time
             self.frequency_operator[operator_name] = 1
 
+    def update_frequency_operator_improvement(self, operator_name, operator_info):
+        if operator_info['cost_increment'] < 0:
+            self.frequency_operator_improvement[operator_name] += 1
+            self.frequency_operator_improvement['total'] += 1
+
+
     def roulette_wheel_selection(self, operators):
         """
         Random select an operator based on the weights.
@@ -243,19 +247,29 @@ class Heuristic:
             if current > pick:
                 return name
 
-    def update_operator_weights(self, operator_name, accepted):
+    def create_object_improvement(self):
+        # create an empty list for every operator
+        oper_vars = {}
+        for key in self.operators_to_use:
+            # create a list for every key with initial weight as first item
+            oper_vars[key] = 0
+
+        oper_vars['total'] = 0
+        return oper_vars
+
+    def update_operator_weights(self, operator_name, operator_info):
         """
         Calc the weights of both the insertion and destroy operator
         used in this iteration based on their score
         self.operator_score is defined in
         """
 
-        # for each operator calculate the new weight based on the score in
-        # this iteration
-        self.operator_weights[operator_name] = self.reaction_factor \
-                                          * self.operator_weights[operator_name] \
-                                          + self.operator_score[operator_name] \
-                                          * (1 - self.reaction_factor)
+        self.update_frequency_operator_improvement(operator_name, operator_info)
+        if operator_info['cost_increment'] < 0:
+            for operator in self.operators_to_use:
+                self.operator_weights[operator] = \
+                    np.maximum(self.frequency_operator_improvement[operator] / self.frequency_operator_improvement['total'], 1/len(self.operators_to_use))
+
 
     def create_oper_vars(self):
         # create an empty list for every operator
@@ -266,7 +280,7 @@ class Heuristic:
 
         return oper_vars
 
-    def calc_operator_score(self, operator_name, accepted):
+    def update_operator_score(self, operator_info, accepted):
         """
         Give a score to the operator based on performance in previous iteration.
         -----

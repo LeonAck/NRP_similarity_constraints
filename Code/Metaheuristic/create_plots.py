@@ -12,7 +12,7 @@ def objective_value_plot(Heuristic, suppress=False):
 
     x_axis = np.linspace(0, Heuristic.max_time, Heuristic.n_iter)[0:-1]
     plt.plot(x_axis, Heuristic.obj_values, x_axis, Heuristic.best_obj_values, linewidth=0.5)
-
+    plt.ylim(0, 15000)
     if suppress:
         plt.savefig('output 2/plots/obj_{}.png'.format("bla"))
         plt.close()
