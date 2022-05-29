@@ -2,7 +2,7 @@ from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
 
 
-class RuleS5Max(Rule):
+class RuleS6Max(Rule):
     """
         Rule that compares the max number of assignments of an employee to the
         to the actual assignments

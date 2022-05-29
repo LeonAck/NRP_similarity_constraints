@@ -3,8 +3,8 @@ from deepdiff import DeepDiff
 import pprint
 from Invoke.Initial_solution.initial_solution import BuildSolution
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
-from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
-from Invoke.Constraints.Rules.RuleS6 import RuleS6
+from Invoke.Constraints.Rules.RuleS6Max import RuleS6Max
+from Invoke.Constraints.Rules.RuleS7 import RuleS7
 
 class FeasibilityCheck:
     """
@@ -531,8 +531,8 @@ class FeasibilityCheck:
         flag = True
         calc_num_assignments = {}
         for employee_id in scenario.employees._collection.keys():
-            calc_num_assignments[employee_id] = RuleS5Max().count_assignments_in_stretch(solution, employee_id,
-                                                                                         0, scenario.num_days_in_horizon-1)
+            calc_num_assignments[employee_id] = RuleS6Max().count_assignments_in_stretch(solution, employee_id,
+                                                                                         0, scenario.num_days_in_horizon - 1)
         deepdiff = DeepDiff(calc_num_assignments, solution.num_assignments_per_nurse)
 
         if deepdiff:

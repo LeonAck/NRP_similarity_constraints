@@ -82,10 +82,10 @@ class Scenario:
             "S2Min": "minimumNumberOfConsecutiveWorkingDays",
             "S3Max": "maximumNumberOfConsecutiveDaysOff",
             "S3Min": "minimumNumberOfConsecutiveDaysOff",
-            "S4": "completeWeekends",
-            "S5Max": "maximumNumberOfAssignments",
-            "S5Min": "minimumNumberOfAssignments",
-            "S6": "maximumNumberOfWorkingWeekends",
+            "S5": "completeWeekends",
+            "S6Max": "maximumNumberOfAssignments",
+            "S6Min": "minimumNumberOfAssignments",
+            "S7": "maximumNumberOfWorkingWeekends",
             "S2ShiftMax": "maximumNumberOfConsecutiveAssignments",
             "S2ShiftMin": "minimumNumberOfConsecutiveAssignments"
         }

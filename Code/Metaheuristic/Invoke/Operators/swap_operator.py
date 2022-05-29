@@ -1,6 +1,6 @@
 from Invoke.Constraints.Rules.RuleH3 import RuleH3
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
-from Invoke.Constraints.Rules.RuleS6 import RuleS6
+from Invoke.Constraints.Rules.RuleS7 import RuleS7
 from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
 from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
 from Invoke.Constraints.Rules.RuleS8RefSkill import RuleS8RefSkill
@@ -27,8 +27,8 @@ def swap_operator(solution, scenario):
     # get stretch information for swap
     swap_info = get_stretch_information_swap(solution, swap_info)
 
-    if "S6" in solution.rules:
-        swap_info = RuleS6().incremental_working_weekends_swap(solution, swap_info)
+    if "S7" in solution.rules:
+        swap_info = RuleS7().incremental_working_weekends_swap(solution, swap_info)
     if "S8RefDay" in solution.rules:
         swap_info = RuleS8RefDay().check_comparison_swap(solution, swap_info, RuleS8RefDay().compare_function,
                                                       solution.ref_comparison_day_level, "ref_comparison_day_level")

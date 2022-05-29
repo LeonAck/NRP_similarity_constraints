@@ -1,9 +1,9 @@
 from Invoke.Constraints.initialize_rules import Rule
-from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
+from Invoke.Constraints.Rules.RuleS6Max import RuleS6Max
 import numpy as np
 
 
-class RuleS5Min(Rule):
+class RuleS6Min(Rule):
     """
         Rule that compares the min number of assignments of an employee to the
         to the actual assignments
@@ -46,15 +46,15 @@ class RuleS5Min(Rule):
 
     def incremental_violations_swap(self, solution, swap_info, rule_id=None):
         # check the number of assignments per stretch
-        assignments_stretch_1 = RuleS5Max().count_assignments_in_stretch(solution,
-                                                                  swap_info['employee_id_1'],
-                                                                  swap_info['start_index'],
-                                                                  swap_info['end_index'])
+        assignments_stretch_1 = RuleS6Max().count_assignments_in_stretch(solution,
+                                                                         swap_info['employee_id_1'],
+                                                                         swap_info['start_index'],
+                                                                         swap_info['end_index'])
 
-        assignments_stretch_2 = RuleS5Max().count_assignments_in_stretch(solution,
-                                                                  swap_info['employee_id_2'],
-                                                                  swap_info['start_index'],
-                                                                  swap_info['end_index'])
+        assignments_stretch_2 = RuleS6Max().count_assignments_in_stretch(solution,
+                                                                         swap_info['employee_id_2'],
+                                                                         swap_info['start_index'],
+                                                                         swap_info['end_index'])
         # check if nuber if the same
         if assignments_stretch_1 == assignments_stretch_2:
             return 0

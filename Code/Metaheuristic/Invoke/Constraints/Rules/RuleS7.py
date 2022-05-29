@@ -2,7 +2,7 @@ from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
 
 
-class RuleS6(Rule):
+class RuleS7(Rule):
     """
         Rule that checks the number of working weekends
     """

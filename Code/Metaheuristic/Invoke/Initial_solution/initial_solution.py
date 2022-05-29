@@ -3,7 +3,7 @@ import itertools
 from pprint import pprint
 from solution import Solution
 from Domain.employee import EmployeeCollection
-from Invoke.Constraints.Rules.RuleS6 import RuleS6
+from Invoke.Constraints.Rules.RuleS7 import RuleS7
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 
 
@@ -68,13 +68,13 @@ class BuildSolution(Solution):
             self.historical_off_stretch = scenario.historical_off_stretch
             self.day_off_stretches = self.collect_day_off_stretches(solution=self)
 
-        # S5 collect number of assignments per nurse
-        if 'S5Max' in self.rules:
+        # S6 collect number of assignments per nurse
+        if 'S6Max' in self.rules:
             self.num_assignments_per_nurse = self.get_num_assignments_per_nurse()
 
-        # S6 collect number of working weekends per nurse
-        if 'S6' in self.rules:
-            self.num_working_weekends = RuleS6().count_working_weekends_employee(
+        # S7 collect number of working weekends per nurse
+        if 'S7' in self.rules:
+            self.num_working_weekends = RuleS7().count_working_weekends_employee(
                 solution=self,
                 scenario=self.scenario)
 

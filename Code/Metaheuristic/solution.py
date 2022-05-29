@@ -1,11 +1,11 @@
 import numpy as np
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS3Max import RuleS3Max
-from Invoke.Constraints.Rules.RuleS5Max import RuleS5Max
+from Invoke.Constraints.Rules.RuleS6Max import RuleS6Max
 from Invoke.Constraints.Rules.RuleS2ShiftMax import RuleS2ShiftMax
 from Invoke.Constraints.Rules.RuleS7Day import RuleS7Day
 from Invoke.Constraints.Rules.RuleS7Shift import RuleS7Shift
-from Invoke.Constraints.Rules.RuleS6 import RuleS6
+from Invoke.Constraints.Rules.RuleS7 import RuleS7
 from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
 from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
 from Invoke.Constraints.Rules.RuleS8RefSkill import RuleS8RefSkill
@@ -55,12 +55,12 @@ class Solution:
                 self.historical_off_stretch = other_solution.historical_off_stretch
                 self.day_off_stretches = other_solution.day_off_stretches
 
-            # S5 number of assignments
-            if 'S5Max' in self.rules:
+            # S6 number of assignments
+            if 'S6Max' in self.rules:
                 self.num_assignments_per_nurse = other_solution.num_assignments_per_nurse
 
-            # S6 number of working weekends
-            if 'S6' in self.rules:
+            # S7 number of working weekends
+            if 'S7' in self.rules:
                 self.num_working_weekends = other_solution.num_working_weekends
 
             # S7 similarity
@@ -144,15 +144,15 @@ class Solution:
         if 'S3Max' in solution.rules:
             solution = RuleS3Max().update_information_assigned_to_off(solution, change_info)
 
-        # S4
+        # S5
         # nothing
 
-        # S5
-        if 'S5Max' in solution.rules:
+        # S6
+        if 'S6Max' in solution.rules:
             solution.num_assignments_per_nurse[change_info['employee_id']] -= 1
 
-        # S6
-        if 'S6' in solution.rules:
+        # S7
+        if 'S7' in solution.rules:
             if change_info['d_index'] in solution.day_collection.list_weekend_days:
                 if not solution.check_if_working_day(employee_id=change_info['employee_id'],
                                                      d_index=change_info[
@@ -211,11 +211,11 @@ class Solution:
         # no changes necessary
 
         # S5
-        if 'S5Max' in solution.rules:
+        if 'S6Max' in solution.rules:
             solution.num_assignments_per_nurse[change_info['employee_id']] += 1
 
-        # S6
-        if 'S6' in solution.rules:
+        # S7
+        if 'S7' in solution.rules:
             if change_info['d_index'] in solution.day_collection.list_weekend_days:
                 if not solution.check_if_working_day(employee_id=change_info['employee_id'],
                                                      d_index=change_info[
@@ -319,10 +319,10 @@ class Solution:
             solution = RuleS2ShiftMax().update_information_swap(solution, swap_info, "shift_stretches")
         if "S3Max" in solution.rules or "S3Min" in solution.rules:
             solution = RuleS3Max().update_information_swap(solution, swap_info, "day_off_stretches")
-        if "S5Max" in solution.rules:
-            solution = RuleS5Max().update_information_swap(solution, swap_info)
-        if "S6" in solution.rules:
-            solution.num_working_weekends = RuleS6().update_information_swap(solution.num_working_weekends, swap_info)
+        if "S6Max" in solution.rules:
+            solution = RuleS6Max().update_information_swap(solution, swap_info)
+        if "S7" in solution.rules:
+            solution.num_working_weekends = RuleS7().update_information_swap(solution.num_working_weekends, swap_info)
         if "S8RefDay" in solution.rules:
             solution.ref_comparison_day_level = RuleS8RefDay().update_information_swap(solution, swap_info)
         if "S8RefShift" in solution.rules:

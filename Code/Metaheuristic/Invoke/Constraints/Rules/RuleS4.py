@@ -1,173 +1,117 @@
 from Invoke.Constraints.initialize_rules import Rule
+import numpy as np
 
 
 class RuleS4(Rule):
     """
-        Rule that checks whether a nurse works complete weekends
+        Rule that checks whether employees are assigned to their preferences
     """
 
-    def __init__(self, employees, rule_spec=None):
+    def __init__(self, employees=None, rule_spec=None):
         super().__init__(employees, rule_spec)
 
     def count_violations(self, solution, scenario):
         """
         Function to count violations in the entire solution
         """
-        return sum([self.count_violations_employee(solution, scenario, employee_id)
+        return sum([self.count_violations_employee(solution, employee_id)
                     for employee_id in scenario.employees._collection.keys()
-                    if self.parameter_per_employee[employee_id] == 1])
+                    if employee_id in solution.employee_preferences])
 
-    def count_violations_employee(self, solution, scenario, employee_id):
+    def count_violations_employee(self, solution, employee_id):
         """
         Function to count violations for a given day, shift type and skill
         """
-        incomplete_weekends = 0
-        for weekend in scenario.day_collection.weekends.values():
-            # check if only one day of the weekend is working
-            if (solution.check_if_working_day(employee_id, weekend[0]) and
-                not solution.check_if_working_day(employee_id, weekend[1])) or \
-                    (solution.check_if_working_day(employee_id, weekend[1]) and
-                     not solution.check_if_working_day(employee_id, weekend[0])):
-                incomplete_weekends += 1
-        return incomplete_weekends
+        violations = 0
+        for d_index, s_type in solution.employee_preferences[employee_id].items():
+            if s_type == -1:
+                if solution.check_if_working_day(employee_id, d_index):
+                    violations += 1
+            else:
+                if solution.shift_assignments[employee_id][d_index, 0] == s_type:
+                    violations += 1
+
+        return violations
 
     def incremental_violations_change(self, solution, change_info, scenario=None):
-        """
-        Calculate the difference in violations after using the change opeator
-        :return:
-        delta number_of_violations
-        """
-        # check if the day is a weekend day and the employee gets penalized for
-        # incomplete working weekends
-        if self.parameter_per_employee[change_info["employee_id"]] == 1 \
-                and change_info['d_index'] in scenario.day_collection.list_weekend_days:
-            # check whether change is off to assigned
+        # check if employee has preferences:
+        if change_info['employee_id'] in solution.employee_preferences:
+            # check if moving from off to assigned
             if not change_info['current_working']:
-                # check if the other day is a working day
-                if solution.check_if_working_day(
-                        employee_id=change_info['employee_id'],
-                        d_index=change_info['d_index'] +
-                                scenario.day_collection.get_index_other_weekend_day(
-                                    scenario.day_collection.weekend_day_indices[
-                                        change_info['d_index']])):
-                    return -1
-                else:
-                    return 1
-            # check whether change is assigned to off
+                return self.incremental_violations_off_to_assigned(solution, change_info['employee_id'], change_info['d_index'], change_info['new_s_type'])
+            # check if moving from assigned to off
             elif not change_info['new_working']:
-                # check if the other day is a working day
-                if solution.check_if_working_day(
-                        employee_id=change_info['employee_id'],
-                        d_index=change_info['d_index'] +
-                                scenario.day_collection.get_index_other_weekend_day(
-                                    scenario.day_collection.weekend_day_indices[
-                                        change_info['d_index']])):
-                    return 1
-                else:
-                    return -1
+                return self.incremental_violations_assigned_to_off(solution, change_info['employee_id'], change_info['d_index'], change_info['new_s_type'])
             else:
-                return 0
+                return self.incremental_violations_assigned_to_assigned(solution, change_info['employee_id'], change_info['d_index'], change_info['new_s_type'], change_info['curr_s_type'])
         else:
             return 0
 
-    def incremental_violations_swap(self, solution, swap_info, rule_id=None):
-
-        employee_id_1 = swap_info['employee_id_1']
-        employee_id_2 = swap_info['employee_id_2']
-        if self.parameter_per_employee[employee_id_1] == 0 and self.parameter_per_employee[employee_id_2] == 0:
-            return 0
-        else:
-            return self.count_change_incomplete_weekends_swap(solution,
-                                                              employee_id_1,
-                                                              employee_id_2,
-                                                              start_index=swap_info['start_index'],
-                                                              end_index=swap_info['end_index'])
-
-    def count_change_incomplete_weekends_swap(self, solution, employee_id_1, employee_id_2, start_index, end_index):
-        # get incomplete weekends within the swap
-        incomplete_weekends_1 = count_incomplete_weekends_in_swap(solution, employee_id_1, start_index, end_index)
-        incomplete_weekends_2 = count_incomplete_weekends_in_swap(solution, employee_id_2, start_index, end_index)
-
-        change_in_incomplete_weekends_1 = self.count_incremental_incomplete_weekends_employee(
-            solution, employee_id_1, employee_id_2,
-            start_index, end_index, incomplete_weekends_1, incomplete_weekends_2)
-
-        change_in_incomplete_weekends_2 = self.count_incremental_incomplete_weekends_employee(
-            solution, employee_id_2, employee_id_1,
-            start_index, end_index, incomplete_weekends_2, incomplete_weekends_1)
-
-        # sum total change in incomplete weekends as violation
-        return change_in_incomplete_weekends_1 + change_in_incomplete_weekends_2
-
-    def count_incremental_incomplete_weekends_employee(self, solution, employee_id, other_employee_id,
-                                                       start_index, end_index, incomplete_weekends,
-                                                       other_incomplete_weekends):
-        if self.parameter_per_employee[employee_id]:
-            # count change in incomplete weekends within swaps
-            change_in_incomplete_weekends = other_incomplete_weekends - incomplete_weekends
-
-            # add change in working weekends on the edges of the swaps
-            change_in_incomplete_weekends += get_change_incomplete_weekends_start(solution, employee_id,
-                                                                                  other_employee_id,
-                                                                                  start_index) \
-                                             + get_change_incomplete_weekends_end(solution, employee_id,
-                                                                                  other_employee_id, end_index)
-        else:
-            change_in_incomplete_weekends = 0
-
-        return change_in_incomplete_weekends
-
-
-def get_change_incomplete_weekends_start(solution, employee_id,
-                                         other_employee_id,
-                                         start_index):
-    if not solution.day_collection.if_week_day[start_index - 1] and \
-            not solution.day_collection.if_week_day[start_index]:
-        # check if going from incomplete to complete
-        if solution.check_if_working_day(employee_id, start_index - 1) \
-                != solution.check_if_working_day(employee_id, start_index) \
-            and solution.check_if_working_day(employee_id, start_index - 1) \
-                == solution.check_if_working_day(other_employee_id, start_index):
-            return -1
-        # check if going form complete to incomplete
-        elif solution.check_if_working_day(employee_id, start_index - 1) \
-                == solution.check_if_working_day(employee_id, start_index) \
-            and solution.check_if_working_day(employee_id, start_index - 1) \
-                != solution.check_if_working_day(other_employee_id, start_index):
+    def check_violation(self, solution, employee_id, d_index, s_type):
+        if solution.employee_preferences[employee_id][d_index] == -1:
             return 1
         else:
-            return 0
-    else:
-        return 0
+            if solution.employee_preferences[employee_id][d_index] == s_type:
+                return 1
+            else:
+                return 0
 
-
-def get_change_incomplete_weekends_end(solution, employee_id,
-                                       other_employee_id, end_index):
-    if not solution.day_collection.if_week_day[end_index] and \
-            not solution.day_collection.if_week_day[end_index + 1]:
-        # check if going from incomplete to complete
-        if solution.check_if_working_day(employee_id, end_index) \
-                != solution.check_if_working_day(employee_id, end_index + 1) \
-                and solution.check_if_working_day(employee_id, end_index + 1) \
-                    == solution.check_if_working_day(other_employee_id, end_index):
-            return -1
-        # check if going form complete to incomplete
-        if solution.check_if_working_day(employee_id, end_index) \
-                == solution.check_if_working_day(employee_id, end_index + 1) \
-                and solution.check_if_working_day(employee_id, end_index + 1) \
-                != solution.check_if_working_day(other_employee_id, end_index):
-            return +1
+    def incremental_violations_off_to_assigned(self, solution, employee_id, d_index, new_s_type):
+        if d_index in solution.employee_preferences[employee_id]:
+            if solution.employee_preferences[employee_id][d_index] == -1:
+                return 1
+            else:
+                if solution.employee_preferences[employee_id][d_index] == new_s_type:
+                    return 1
+                else:
+                    return 0
         else:
             return 0
-    else:
-        return 0
 
-def count_incomplete_weekends_in_swap(solution, employee_id, start_index, end_index):
-    incomplete_weekends = 0
-    for weekend in solution.day_collection.weekends.values():
-        if weekend[0] in range(start_index, end_index + 1) and weekend[1] in range(start_index, end_index + 1) \
-                and solution.check_if_working_day(employee_id, weekend[0]) != solution.check_if_working_day(
-            employee_id, weekend[1]):
-            incomplete_weekends += 1
+    def incremental_violations_assigned_to_off(self, solution, employee_id, d_index, prev_s_type):
+        if d_index in solution.employee_preferences[employee_id]:
+            if solution.employee_preferences[employee_id][d_index] == -1:
+                return -1
+            else:
+                if solution.employee_preferences[employee_id][d_index] == prev_s_type:
+                    return -1
+                else:
+                    return 0
+        else:
+            return 0
 
-    return incomplete_weekends
+    def incremental_violations_assigned_to_assigned(self, solution, employee_id, d_index, new_s_type, prev_s_type):
+        return self.incremental_violations_off_to_assigned(solution, employee_id, d_index, new_s_type) \
+                + self.incremental_violations_assigned_to_off(solution, employee_id, d_index, prev_s_type)
+
+    def incremental_violations_swap(self, solution, swap_info, rule_id=None):
+        incremental_violations = 0
+        for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
+            other_employee_id = swap_info['employee_id_{}'.format(2-i)]
+            if employee_id in solution.employee_preferences:
+                incremental_violations += self.incremental_violations_swap_per_employee(solution, employee_id, other_employee_id,
+                                                                                        swap_info['start_index'], swap_info['end_index'])
+
+        return incremental_violations
+
+    def incremental_violations_swap_per_employee(self, solution, employee_id, other_employee_id, start_index, end_index):
+        violations = 0
+        relevant_d_indices = list(set(solution.employee_preferences[employee_id]) & set(
+            range(start_index, end_index + 1)))
+
+        for d_index in relevant_d_indices:
+            if solution.check_if_working_day(employee_id, d_index) \
+                    and solution.check_if_working_day(other_employee_id, d_index):
+                violations += self.incremental_violations_assigned_to_assigned(solution, employee_id, d_index,
+                                                                              new_s_type=solution.shift_assignments[other_employee_id][d_index, 0],
+                                                                              prev_s_type=solution.shift_assignments[employee_id][d_index, 0])
+            elif solution.check_if_working_day(employee_id, d_index) and not solution.check_if_working_day(other_employee_id, d_index):
+                violations += self.incremental_violations_assigned_to_off(solution, employee_id, d_index,
+                                                                              prev_s_type=
+                                                                              solution.shift_assignments[employee_id][
+                                                                                  d_index, 0])
+            elif not solution.check_if_working_day(employee_id, d_index) and solution.check_if_working_day(other_employee_id, d_index):
+                violations += self.incremental_violations_off_to_assigned(solution, employee_id, d_index,
+                                                                              new_s_type=solution.shift_assignments[
+                                                                                  other_employee_id][d_index, 0])
+        return violations
