@@ -10,10 +10,10 @@
     "plots": false,
     "heuristic_settings": {
         "max_time": 5,
-        "max_iter":100,
+        "max_iter":500000,
         "initial_temp": 50,
         "final_temp": 2,
-        "cut_off_ratio": 0.02,
+        "cut_off_ratio": 0.08,
         "cooling_rate": 0.99,
         "no_improve_max": 250,
         "operators": ["swap", "change"],

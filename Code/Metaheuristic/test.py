@@ -26,7 +26,7 @@ else:
 #     pickle.dump(stage_two_solution.shift_assignments, ref_shift_assignments_file)
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")
 # run_multiple_files("C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions", settings_file_path)
-run_parameter_tuning_random(1000)
+run_parameter_tuning_random(1)
 settings = Settings(settings_file_path)
 instance = Instance(settings)
 scenario = Scenario(settings.stage_2_settings, instance)
@@ -36,5 +36,3 @@ heuristic = Heuristic(scenario, stage_settings=settings.stage_2_settings)
 best_solution = heuristic.run_heuristic(
     starting_solution=deepcopy(init_solution))
 
-plot.objective_value_plot(heuristic)
-plot.operator_weight_plot(heuristic)

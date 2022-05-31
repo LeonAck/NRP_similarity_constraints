@@ -47,7 +47,6 @@ class Heuristic:
         # updating functions
         self.updating_functions = {"change": Solution().update_solution_change}
 
-
         self.frequency_operator_improvement = self.create_object_improvement()
 
         # Create objects to save information for plots
@@ -93,9 +92,9 @@ class Heuristic:
             n_accepted = 0
             while n_sampled < self.max_sampled and n_accepted < self.max_accepted:
                 # print("\nIteration: ", n_iter)
-                if n_iter % 100 == 0:
-                    # print(current_solution.violation_array)
-                    print("\nIteration: ", n_iter)
+                # if n_iter % 100 == 0:
+                #     # print(current_solution.violation_array)
+                #     print("\nIteration: ", n_iter)
                 # print(current_solution.violation_array)
 
                 # choose operator
@@ -164,6 +163,7 @@ class Heuristic:
         best_solution.change_counters = change_counters
         self.run_time = time.time() - self.start_time
         self.n_iter = n_iter
+        self.final_violation_array = best_solution.violation_array
         return best_solution
 
     def update_change_counter(self, change_counters, change_info):

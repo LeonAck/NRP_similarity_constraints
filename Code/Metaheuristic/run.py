@@ -8,7 +8,9 @@ from Heuristic import Heuristic
 from Input.input_NRC import Instance
 import create_plots as plot
 import os
+import numpy as np
 import random
+from output import write_output_instance, collect_total_output, create_output_folder, create_json
 
 similarity = False
 if similarity:
@@ -29,7 +31,7 @@ def run_stage(instance, stage_settings, previous_solution=None):
     return heuristic, best_solution
 
 
-def run_two_stage(settings_file_path, folder_name=None, instance_info=None):
+def run_two_stage(settings_file_path, folder_name=None, instance_info=None, output_folder=None):
     """
     Function to execute heuristic
     """
@@ -42,18 +44,17 @@ def run_two_stage(settings_file_path, folder_name=None, instance_info=None):
     # run stage_1
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
 
-    # run stage 2
-    # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
-    heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
+    if not np.array_equal(stage_1_solution.violation_array, np.array([0,0])):
+        return write_output_instance(heuristic_1, feasible=False)
+    else:
+        # run stage 2
+        # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
+        heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
 
-    plot.objective_value_plot(heuristic_2, suppress=True)
-    print(stage_1_solution.violation_array)
-    print(stage_1_solution.change_counters)
-    print(stage_2_solution.obj_value)
-    print(stage_2_solution.violation_array)
-    print(stage_2_solution.change_counters)
-    return stage_2_solution
+        plot.objective_value_plot(heuristic_2, instance.instance_name, suppress=True, output_folder=output_folder)
+        plot.operator_weight_plot(heuristic_2, instance.instance_name, suppress=True, output_folder=output_folder)
 
+        return write_output_instance(heuristic_2, feasible=True)
 
 def run_one_stage(settings_file_path, stage_number=2):
     settings = Settings(settings_file_path)
@@ -71,17 +72,20 @@ def run_one_stage(settings_file_path, stage_number=2):
 
 
 def run_multiple_files(file_path, settings_file_path, similarity=False):
+    output = {}
     folders_list = os.listdir(file_path)
     if similarity:
         folders_list = keep_files_with_8_weeks(folders_list)
 
     for folder_name in folders_list:
-        run_two_stage(settings_file_path, folder_name=folder_name)
+        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name)
 
 
 def run_parameter_tuning_random(number_of_instances, week_range=(4, 10), nurse_range=(30, 80),
                                 file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
                                 settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/tuning_settings.json"):
+    output_folder = create_output_folder()
+    output = {}
     folders_list = os.listdir(file_path)
     # make selection of folders
     folders_list = keep_files_within_selection(folders_list, week_range, nurse_range)
@@ -91,9 +95,14 @@ def run_parameter_tuning_random(number_of_instances, week_range=(4, 10), nurse_r
         history_file = random.choice(range(0, 2))
         weeks = pick_random_weeks(file_path, instance_folder)
         instance_info = {"name": instance_folder, "history": history_file, "weeks": weeks}
+        json_header = transform_instance_name(instance_folder, history_file, weeks)
+        output[json_header] = run_two_stage(settings_file_path, instance_info=instance_info, output_folder=output_folder)
 
-        # run_two_stage(settings_file_path, instance_info=instance_info)
+    output['totals'] = collect_total_output(output)
 
+    # save json in output folder
+    create_json(output_folder, output)
+    return output
 
 def pick_random_weeks(file_path, instance_folder):
     num_week_files = len(os.listdir(file_path + "/" + instance_folder)) - 4
@@ -108,6 +117,10 @@ def keep_files_within_selection(folders_list, week_range, nurse_range):
 
 def keep_files_with_8_weeks(folders_list):
     return [folder_name for folder_name in folders_list if folder_name[4] == '8']
+
+def transform_instance_name(instance_name, history, weeks):
+    list_of_items = [instance_name[1:4], instance_name[5:], str(history)] + [str(week) for week in weeks]
+    return "-".join(list_of_items)
 
 
 if __name__ == '__main__':
