@@ -1,5 +1,5 @@
 
-def return_output(scenario, solution):
+def write_output(scenario, solution):
     """
     Function to return the output
     """

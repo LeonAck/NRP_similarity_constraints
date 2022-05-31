@@ -24,8 +24,10 @@ class Heuristic:
         self.max_time = heuristic_settings['max_time']
         self.max_iter = heuristic_settings['max_iter']
         self.initial_temp = heuristic_settings['initial_temp']
+        self.final_temp = heuristic_settings['final_temp']
         self.cooling_rate = heuristic_settings['cooling_rate']
         self.no_improve_max = heuristic_settings['no_improve_max']
+        self.cut_off_ratio = heuristic_settings['cut_off_ratio']
 
         # introduce objects necessary for algorithm
         self.operator_collection = {"change": change_operator, "swap": swap_operator,
@@ -52,6 +54,10 @@ class Heuristic:
         self.obj_values = []
         self.best_obj_values = []
         self.oper_vars = self.create_oper_vars()
+
+        # calculate max_sampled and max accepted
+        self.max_sampled = self.max_iter/(np.log(self.final_temp/self.initial_temp)/np.log(self.cooling_rate))
+        self.max_accepted = self.max_sampled * self.cut_off_ratio
 
     def run_heuristic(self, starting_solution):
         """
@@ -82,70 +88,77 @@ class Heuristic:
 
         n_iter = 1
         no_improve_iter = 0
-        while self.stopping_criterion(current_solution, n_iter):
-
-            # print("\nIteration: ", n_iter)
-            if n_iter % 100 == 0:
+        while self.temperature >= self.final_temp:
+            n_sampled = 0
+            n_accepted = 0
+            while n_sampled < self.max_sampled and n_accepted < self.max_accepted:
+                # print("\nIteration: ", n_iter)
+                if n_iter % 100 == 0:
+                    # print(current_solution.violation_array)
+                    print("\nIteration: ", n_iter)
                 # print(current_solution.violation_array)
-                print("\nIteration: ", n_iter)
-            # print(current_solution.violation_array)
 
-            # choose operator
-            operator_name = self.roulette_wheel_selection(self.operators_to_use)
-            # self.update_frequency_operator(operator_name)
+                # choose operator
+                operator_name = self.roulette_wheel_selection(self.operators_to_use)
+                # self.update_frequency_operator(operator_name)
 
-            operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
+                operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
 
-            if not operator_info['feasible']:
-                print("no feasible change")
-                break
-            # print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
+                if not operator_info['feasible']:
+                    print("no feasible change")
+                    break
+                # print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
 
-            if operator_name == "change":
-                change_counters = self.update_change_counter(change_counters, operator_info)
-            no_improve_iter += 1
-            if operator_info['cost_increment'] <= 0:
-                # update solutions accordingly
-                current_solution.update_solution_operator(operator_name, operator_info)
-                # check if best. Then current solution, becomes the best solution
-                if current_solution.obj_value < best_solution.obj_value:
-                    best_solution = Solution(deepcopy(current_solution))
-                    # print("new best_solution: {}".format(best_solution.obj_value))
-                    no_improve_iter = 0
-
-            else:
-                # check if solution is accepted
-                accepted = self.acceptance_simulated_annealing(operator_info)
-                if accepted:
+                if operator_name == "change":
+                    change_counters = self.update_change_counter(change_counters, operator_info)
+                no_improve_iter += 1
+                if operator_info['cost_increment'] <= 0:
                     # update solutions accordingly
                     current_solution.update_solution_operator(operator_name, operator_info)
-            # print("current: {}".format(current_solution.obj_value))
-            if no_improve_iter > self.no_improve_max:
-                current_solution = Solution(deepcopy(best_solution))
-                no_improve_iter = 0
+                    n_accepted += 1
+                    # check if best. Then current solution, becomes the best solution
+                    if current_solution.obj_value < best_solution.obj_value:
+                        best_solution = Solution(deepcopy(current_solution))
+                        # print("new best_solution: {}".format(best_solution.obj_value))
+                        no_improve_iter = 0
 
-            # adjust weight
+                else:
+                    # check if solution is accepted
+                    accepted = self.acceptance_simulated_annealing(operator_info)
+                    if accepted:
+                        # update solutions accordingly
+                        current_solution.update_solution_operator(operator_name, operator_info)
+
+                        n_accepted += 1
+                # # print("current: {}".format(current_solution.obj_value))
+                # if no_improve_iter > self.no_improve_max:
+                #     current_solution = Solution(deepcopy(best_solution))
+                #     no_improve_iter = 0
+                n_sampled += 1
+
+                # FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
+                # if "S2Max" in current_solution.rules:
+                #     FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
+                # if "S3Max" in current_solution.rules:
+                #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
+                # if "S2ShiftMax" in current_solution.rules:
+                #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, operator_info, operator_name)
+                # # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
+                # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
+                # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+                # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
+                # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+                # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
+
+                # adjust weight
+                self.update_operator_weights(operator_name, operator_info)
+
+                previous_operator_info = operator_info
+                n_iter += 1
+
+                self.gather_plot_information(current_solution, best_solution)
 
             self.update_temperature()
-            self.update_operator_weights(operator_name, operator_info)
-            #FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-            # if "S2Max" in current_solution.rules:
-            #     FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
-            # if "S3Max" in current_solution.rules:
-            #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
-            # if "S2ShiftMax" in current_solution.rules:
-            #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, operator_info, operator_name)
-            # # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
-            # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
-            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
-            # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-            # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
-            #FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-
-            previous_operator_info = operator_info
-            n_iter += 1
-
-            self.gather_plot_information(current_solution, best_solution)
 
         # best solution
         best_solution.change_counters = change_counters
@@ -163,11 +176,12 @@ class Heuristic:
         return change_counters
 
     def stopping_criterion(self, current_solution, n_iter):
-        if self.stage_number == 1:
-            return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
-                    and not np.array_equal(current_solution.violation_array, np.zeros(2))
-        else:
-            return time.time() < self.start_time + self.max_time and n_iter < self.max_iter
+        # if self.stage_number == 1:
+        #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
+        #             and not np.array_equal(current_solution.violation_array, np.zeros(2))
+        # else:
+        #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter
+        return self.temperature >= self.final_temp
 
 
 
