@@ -45,7 +45,10 @@ def run_two_stage(settings_file_path, folder_name=None, instance_info=None, outp
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
 
     if not np.array_equal(stage_1_solution.violation_array, np.array([0,0])):
+        plot.objective_value_plot(heuristic_1, instance.instance_name, suppress=True, output_folder=output_folder)
+        plot.operator_weight_plot(heuristic_1, instance.instance_name, suppress=True, output_folder=output_folder)
         return write_output_instance(heuristic_1, feasible=False)
+
     else:
         # run stage 2
         # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
@@ -71,15 +74,21 @@ def run_one_stage(settings_file_path, stage_number=2):
     return stage_2_solution
 
 
-def run_multiple_files(file_path, settings_file_path, similarity=False):
+def run_multiple_files(file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
+                       settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json", similarity=False):
+    output_folder = create_output_folder()
     output = {}
     folders_list = os.listdir(file_path)
     if similarity:
         folders_list = keep_files_with_8_weeks(folders_list)
 
-    for folder_name in folders_list:
-        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name)
+    for folder_name in folders_list[2:4]:
+        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name, output_folder=output_folder)
 
+    output['totals'] = collect_total_output(output)
+
+    # save json in output folder
+    create_json(output_folder, output)
 
 def run_parameter_tuning_random(number_of_instances, week_range=(4, 10), nurse_range=(30, 80),
                                 file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",

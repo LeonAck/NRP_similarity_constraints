@@ -14,9 +14,9 @@ from run import run_two_stage, run_stage, run_multiple_files, run_parameter_tuni
 import marshal, pickle
 import create_plots as plot
 
-similarity = False
+similarity = True
 if similarity:
-    settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_similarity.json"
+    settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json"
 else:
     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 # cProfile.run("run_two_stage(settings_file_path)", sort=1)
@@ -25,14 +25,6 @@ else:
 # with open("C:/Master_thesis/Code/Metaheuristic/Input/ref_assignments_12.txt", "wb") as ref_shift_assignments_file:
 #     pickle.dump(stage_two_solution.shift_assignments, ref_shift_assignments_file)
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")
-# run_multiple_files("C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions", settings_file_path)
-run_parameter_tuning_random(1)
-settings = Settings(settings_file_path)
-instance = Instance(settings)
-scenario = Scenario(settings.stage_2_settings, instance)
-init_solution = BuildSolution(scenario, previous_solution=None)
+run_multiple_files("C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions", settings_file_path, similarity=similarity)
 
-heuristic = Heuristic(scenario, stage_settings=settings.stage_2_settings)
-best_solution = heuristic.run_heuristic(
-    starting_solution=deepcopy(init_solution))
 

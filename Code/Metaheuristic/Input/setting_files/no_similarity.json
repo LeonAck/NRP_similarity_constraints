@@ -7,6 +7,7 @@
   {
     "stage_number": 1,
     "plots": false,
+     "ref_as_initial": true,
     "heuristic_settings": {
         "max_time": 10,
         "max_iter":100000,

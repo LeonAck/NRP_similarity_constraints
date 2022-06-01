@@ -95,8 +95,7 @@ class Scenario:
         self.rule_collection = RuleCollection().initialize_rules(self.rules_specs, self.employees)
 
         # S8ref
-        if self.similarity and self.stage_number == 2:
-            self.ref_assignments = instance.ref_assignments
+        self.ref_assignments = instance.ref_assignments
 
     # TODO remove function
     def get_unique_skill_sets(self):

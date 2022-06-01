@@ -5,7 +5,7 @@ from solution import Solution
 from Domain.employee import EmployeeCollection
 from Invoke.Constraints.Rules.RuleS7 import RuleS7
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
-
+from copy import deepcopy
 
 class BuildSolution(Solution):
     """
@@ -32,11 +32,14 @@ class BuildSolution(Solution):
             self.working_days = previous_solution.working_days
 
         else:
-            # initialize shift assignment objects
-            self.shift_assignments = self.create_shift_assignments()
+            if scenario.stage_settings['stage_number'] == 1 and scenario.stage_settings['ref_as_initial']:
+                self.shift_assignments = deepcopy(scenario.ref_assignments)
+            else:
+                # initialize shift assignment objects
+                self.shift_assignments = self.create_shift_assignments()
 
-            # assign skill requests based on H1, H2 and H4
-            self.assign_skill_requests()
+                # assign skill requests based on H1, H2 and H4
+                self.assign_skill_requests()
             # ALWAYS
             #H2 create array to keep track of difference between optimal skill_requests and actual skill assignment
             self.diff_min_request = self.initialize_diff_min_request(self.scenario)

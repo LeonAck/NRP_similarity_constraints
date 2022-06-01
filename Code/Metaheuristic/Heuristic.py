@@ -130,9 +130,9 @@ class Heuristic:
 
                         n_accepted += 1
                 # # print("current: {}".format(current_solution.obj_value))
-                # if no_improve_iter > self.no_improve_max:
-                #     current_solution = Solution(deepcopy(best_solution))
-                #     no_improve_iter = 0
+                if no_improve_iter > self.no_improve_max:
+                    current_solution = Solution(deepcopy(best_solution))
+                    no_improve_iter = 0
                 n_sampled += 1
 
                 # FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
@@ -176,12 +176,14 @@ class Heuristic:
         return change_counters
 
     def stopping_criterion(self, current_solution, n_iter):
-        # if self.stage_number == 1:
+        if self.stage_number == 1:
+            return self.temperature >= self.final_temp and not np.array_equal(current_solution.violation_array, np.zeros(2))
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
         #             and not np.array_equal(current_solution.violation_array, np.zeros(2))
         # else:
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter
-        return self.temperature >= self.final_temp
+        else:
+            return self.temperature >= self.final_temp
 
 
 

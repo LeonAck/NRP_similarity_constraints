@@ -3,6 +3,7 @@ import os
 import numpy as np
 import json
 from statistics import mean
+from collections import Counter
 os.chdir("C:/Master_thesis/Code/Metaheuristic/output")
 
 def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None):
@@ -23,17 +24,13 @@ def collect_total_output(output):
     total_output['avg_run_time'] = mean([instance['run_time'] for instance in output.values()])
     total_output['avg_iterations'] = mean([instance['iterations'] for instance in output.values()])
     total_output['avg_obj_value'] = mean([instance['best_solution'] for instance in output.values()])
-    total_output['avg_violations'] = list(np.mean(np.array([instance['violations_array'] for instance in output.values()]), axis=0))
-
+    total_output['avg_violations'] = mean_violation_array(list(output.values())[0]['violations_array'], output)
     return total_output
 
 
 def create_json(output_folder, output):
     with open("C:/Master_thesis/Code/Metaheuristic/output/" + output_folder+"/output.json", "w") as output_obj:
         json.dump(output, output_obj)
-
-def format_violation_array(soft_rule_collection, violation_array):
-    pass
 
 def create_date_time_for_folder():
     now = datetime.now()
@@ -51,7 +48,13 @@ def create_output_folder():
 def beautify_violation_array(heuristic_run):
     violation_dict = {}
     for i, rule_name in enumerate(heuristic_run.rule_collection.soft_rule_collection.collection.keys()):
-        violation_dict[rule_name] = heuristic_run.violation_array[i]
+        violation_dict[rule_name] = heuristic_run.final_violation_array[i]
 
     return violation_dict
 
+def mean_violation_array(violation_array, output):
+    violation_dict = {}
+    violation_sums = {key: sum([instance_output['violations_array'][key] for instance_output
+                           in output.values()]) for key in violation_array.keys()}
+    violations_sums = {k: value/len(output) for k, value in violation_sums.items()}
+    return violations_sums
