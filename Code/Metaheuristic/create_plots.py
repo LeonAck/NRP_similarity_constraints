@@ -12,7 +12,7 @@ def objective_value_plot(Heuristic, instance_name, suppress=True, output_folder=
     if suppress:
         x_axis = np.linspace(0, Heuristic.max_time, Heuristic.n_iter)[0:-1]
         plt.plot(x_axis, Heuristic.obj_values, x_axis, Heuristic.best_obj_values, linewidth=0.5)
-        plt.ylim(0, 15000)
+        plt.ylim(0, 20000)
 
         if output_folder:
             plt.savefig('C:/Master_thesis/Code/Metaheuristic/output/' + output_folder + '/obj_plots/obj_{}.png'.format(instance_name))
@@ -32,7 +32,6 @@ def operator_weight_plot(heuristic, instance_name, output_folder, suppress=True)
         # Operator weight plot
         operator_data_perc.plot.area(title='100 % stacked area chart for operator weights')
         plt.legend(loc='best')
-        plt.show()
 
         if output_folder:
             plt.savefig('C:/Master_thesis/Code/Metaheuristic/output/' + output_folder + '/weight_plots/weight_{}.png'.format(instance_name))

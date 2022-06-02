@@ -25,6 +25,6 @@ else:
 # with open("C:/Master_thesis/Code/Metaheuristic/Input/ref_assignments_12.txt", "wb") as ref_shift_assignments_file:
 #     pickle.dump(stage_two_solution.shift_assignments, ref_shift_assignments_file)
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")
-run_multiple_files("C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions", settings_file_path, similarity=similarity)
 
 
+cProfile.run("run_multiple_files('C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path, similarity=similarity)", sort=1)

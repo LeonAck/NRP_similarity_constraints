@@ -120,11 +120,12 @@ def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
     list of feasible days
     """
 
-    working_days = [d_index for d_index in feasible_days if solution.check_if_working_day(employee_id, d_index)]
+    feasible_working_days = set(feasible_days).intersection(set(solution.working_days[employee_id]))
+    # [d_index for d_index in feasible_days if solution.check_if_working_day(employee_id, d_index)]
 
     feasible_removals = solution.diff_min_request > 1
 
-    return [d_index for d_index in feasible_days if d_index not in working_days or (d_index in working_days
+    return [d_index for d_index in feasible_days if d_index not in feasible_working_days or (d_index in feasible_working_days
                 and feasible_removals[
                     tuple([d_index,
                    solution.shift_assignments[employee_id][d_index][1],

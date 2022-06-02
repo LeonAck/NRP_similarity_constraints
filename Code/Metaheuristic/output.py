@@ -24,7 +24,7 @@ def collect_total_output(output):
     total_output['avg_run_time'] = mean([instance['run_time'] for instance in output.values()])
     total_output['avg_iterations'] = mean([instance['iterations'] for instance in output.values()])
     total_output['avg_obj_value'] = mean([instance['best_solution'] for instance in output.values()])
-    total_output['avg_violations'] = mean_violation_array(list(output.values())[0]['violations_array'], output)
+    # total_output['avg_violations'] = mean_violation_array(list(output.values())[0]['violations_array'], output)
     return total_output
 
 
@@ -54,6 +54,7 @@ def beautify_violation_array(heuristic_run):
 
 def mean_violation_array(violation_array, output):
     violation_dict = {}
+
     violation_sums = {key: sum([instance_output['violations_array'][key] for instance_output
                            in output.values()]) for key in violation_array.keys()}
     violations_sums = {k: value/len(output) for k, value in violation_sums.items()}

@@ -27,6 +27,7 @@ class Instance:
             self.instance_name = instance_info['name']
             self.history_file = instance_info['history']
             self.weeks = instance_info['weeks']
+            self.folder_name = ""
 
         # scenario information
         self.problem_size = self.set_problem_size()

@@ -118,7 +118,7 @@ class Heuristic:
                     # check if best. Then current solution, becomes the best solution
                     if current_solution.obj_value < best_solution.obj_value:
                         best_solution = Solution(deepcopy(current_solution))
-                        # print("new best_solution: {}".format(best_solution.obj_value))
+                        print("new best_solution: {}".format(best_solution.obj_value))
                         no_improve_iter = 0
 
                 else:
@@ -131,6 +131,7 @@ class Heuristic:
                         n_accepted += 1
                 # # print("current: {}".format(current_solution.obj_value))
                 if no_improve_iter > self.no_improve_max:
+                    # print("no improvement")
                     current_solution = Solution(deepcopy(best_solution))
                     no_improve_iter = 0
                 n_sampled += 1

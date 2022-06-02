@@ -45,17 +45,18 @@ def run_two_stage(settings_file_path, folder_name=None, instance_info=None, outp
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
 
     if not np.array_equal(stage_1_solution.violation_array, np.array([0,0])):
-        plot.objective_value_plot(heuristic_1, instance.instance_name, suppress=True, output_folder=output_folder)
-        plot.operator_weight_plot(heuristic_1, instance.instance_name, suppress=True, output_folder=output_folder)
+        folder_name = transform_instance_name(instance.instance_name, instance.history_file, instance.weeks)
+        plot.objective_value_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
+        plot.operator_weight_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
         return write_output_instance(heuristic_1, feasible=False)
 
     else:
         # run stage 2
         # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
         heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
-
-        plot.objective_value_plot(heuristic_2, instance.instance_name, suppress=True, output_folder=output_folder)
-        plot.operator_weight_plot(heuristic_2, instance.instance_name, suppress=True, output_folder=output_folder)
+        folder_name = transform_instance_name(instance.instance_name, instance.history_file, instance.weeks)
+        plot.objective_value_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
+        plot.operator_weight_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
 
         return write_output_instance(heuristic_2, feasible=True)
 
