@@ -1,6 +1,6 @@
 {"instance_settings": {
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
-  "solution_path": null,
+  "solution_path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
   "similarity": false
 },
   "stage_1_settings":
@@ -10,8 +10,8 @@
      "ref_as_initial": true,
     "heuristic_settings": {
         "max_time": 10,
-        "max_iter":100000,
-        "initial_temp": 50,
+        "max_iter":500000,
+        "initial_temp": 22,
         "final_temp": 2,
         "cut_off_ratio": 0.02,
         "cooling_rate": 0.99,
@@ -59,8 +59,8 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 1000,
-        "max_iter":50,
-        "initial_temp": 50,
+        "max_iter":5000,
+        "initial_temp": 22,
       "final_temp": 2,
       "cut_off_ratio": 0.02,
         "cooling_rate": 0.99,

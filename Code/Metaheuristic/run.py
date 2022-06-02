@@ -4,6 +4,7 @@ from Domain.settings import Settings
 from Domain.scenario import Scenario
 from Invoke.Initial_solution.initial_solution import BuildSolution
 from Check.check_function_feasibility import FeasibilityCheck
+from Invoke.Initial_solution.end_solution import EndSolution
 from Heuristic import Heuristic
 from Input.input_NRC import Instance
 import create_plots as plot
@@ -30,8 +31,17 @@ def run_stage(instance, stage_settings, previous_solution=None):
 
     return heuristic, best_solution
 
+def run_stage_add_similarity(instance, stage_settings, previous_solution=None):
+    scenario = Scenario(stage_settings, instance)
 
-def run_two_stage(settings_file_path, folder_name=None, instance_info=None, output_folder=None):
+    init_solution = BuildSolution(scenario, previous_solution)
+    heuristic = Heuristic(scenario, stage_settings=stage_settings)
+    best_solution = heuristic.run_heuristic(starting_solution=deepcopy(init_solution))
+    heuristic.final_violation_array = EndSolution(scenario, previous_solution=best_solution)
+    return heuristic, best_solution
+
+
+def run_two_stage(settings_file_path, folder_name=None, instance_info=None, output_folder=None, similarity=False):
     """
     Function to execute heuristic
     """
@@ -44,7 +54,7 @@ def run_two_stage(settings_file_path, folder_name=None, instance_info=None, outp
     # run stage_1
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
 
-    if not np.array_equal(stage_1_solution.violation_array, np.array([0,0])):
+    if not np.array_equal(stage_1_solution.violation_array, np.zeros(2)):
         folder_name = transform_instance_name(instance.instance_name, instance.history_file, instance.weeks)
         plot.objective_value_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
         plot.operator_weight_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
@@ -53,7 +63,11 @@ def run_two_stage(settings_file_path, folder_name=None, instance_info=None, outp
     else:
         # run stage 2
         # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
-        heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
+        if not similarity:
+            heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
+        else:
+            heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings,
+                                                                     previous_solution=stage_1_solution)
         folder_name = transform_instance_name(instance.instance_name, instance.history_file, instance.weeks)
         plot.objective_value_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
         plot.operator_weight_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
@@ -84,7 +98,7 @@ def run_multiple_files(file_path="C:/Master_thesis/Code/Metaheuristic/Input/sces
         folders_list = keep_files_with_8_weeks(folders_list)
 
     for folder_name in folders_list[2:4]:
-        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name, output_folder=output_folder)
+        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name, output_folder=output_folder, similarity=similarity)
 
     output['totals'] = collect_total_output(output)
 
@@ -106,7 +120,7 @@ def run_parameter_tuning_random(number_of_instances, week_range=(4, 10), nurse_r
         weeks = pick_random_weeks(file_path, instance_folder)
         instance_info = {"name": instance_folder, "history": history_file, "weeks": weeks}
         json_header = transform_instance_name(instance_folder, history_file, weeks)
-        output[json_header] = run_two_stage(settings_file_path, instance_info=instance_info, output_folder=output_folder)
+        output[json_header] = run_two_stage(settings_file_path, instance_info=instance_info, output_folder=output_folder, similarity=similarity)
 
     output['totals'] = collect_total_output(output)
 
@@ -132,11 +146,3 @@ def transform_instance_name(instance_name, history, weeks):
     list_of_items = [instance_name[1:4], instance_name[5:], str(history)] + [str(week) for week in weeks]
     return "-".join(list_of_items)
 
-
-if __name__ == '__main__':
-    if two_stage:
-        run_two_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
-    else:
-        run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
-
-# cProfile.run("Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))", sort=1)

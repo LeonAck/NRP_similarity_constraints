@@ -14,7 +14,7 @@ from run import run_two_stage, run_stage, run_multiple_files, run_parameter_tuni
 import marshal, pickle
 import create_plots as plot
 
-similarity = True
+similarity = False
 if similarity:
     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json"
 else:
@@ -27,4 +27,4 @@ else:
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")
 
 
-cProfile.run("run_multiple_files('C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path, similarity=similarity)", sort=1)
+run_multiple_files('C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path, similarity=similarity)

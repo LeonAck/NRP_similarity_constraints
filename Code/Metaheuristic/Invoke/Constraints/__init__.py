@@ -1,1 +1,1 @@
-from Invoke.Constraints import Rules, initialize_rules, SoftConstraints
+from Invoke.Constraints import Rules, initialize_rules

@@ -1,6 +1,5 @@
 import numpy as np
 import itertools
-from pprint import pprint
 from solution import Solution
 from Domain.employee import EmployeeCollection
 from Invoke.Constraints.Rules.RuleS7 import RuleS7

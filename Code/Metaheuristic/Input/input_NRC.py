@@ -27,7 +27,7 @@ class Instance:
             self.instance_name = instance_info['name']
             self.history_file = instance_info['history']
             self.weeks = instance_info['weeks']
-            self.folder_name = ""
+            self.folder_name = self.transform_instance_name()
 
         # scenario information
         self.problem_size = self.set_problem_size()
@@ -46,8 +46,8 @@ class Instance:
         self.history_data = self.simplify_history_data()
 
         # get reference period
-        if self.similarity:
-            self.ref_assignments = self.prev_solution_to_ref_assignments()
+
+        self.ref_assignments = self.prev_solution_to_ref_assignments()
 
         # get history data per employee
         if not self.similarity:
@@ -470,3 +470,8 @@ class Instance:
                 historical_shift_stretch[employee_id] = 0
 
         return historical_work_stretch, last_assigned_shift, historical_shift_stretch, historical_off_stretch
+
+    def transform_instance_name(self):
+        list_of_items = [self.instance_name[1:4], self.instance_name[5:], str(self.history_file)] + [str(week) for week in self.weeks]
+        return "-".join(list_of_items)
+
