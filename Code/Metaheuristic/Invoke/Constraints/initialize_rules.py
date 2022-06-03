@@ -13,7 +13,6 @@ class RuleCollection:
             rules=None
     ):
         self.collection = {}
-        #self._initialize_rules(rules_specs)
         if rules is not None:
             rules = EmployeeCollection().create_dict_from_list(rules)
         else:

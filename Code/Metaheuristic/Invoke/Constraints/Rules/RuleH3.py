@@ -1,6 +1,6 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
-
+from general_functions import check_if_working_day
 
 class RuleH3(Rule):
     """
@@ -200,39 +200,42 @@ class RuleH3(Rule):
 
         return flag
 
-    def get_allowed_shift_types(self, solution, scenario, employee_id, d_index):
+    def get_allowed_shift_types(self, shift_assignments, allowed_shift_types, num_days_in_horizon,
+                                forbidden_shift_type_successions,
+                                last_assigned_shift, employee_id, d_index):
         """
         For a given day get the shift types that are not allowed given
         the assignment the day before and the day after
         """
-        allowed_shift_types = scenario.shift_collection.shift_types_indices
 
         if d_index > 0:
             # check if working the day before
-            if solution.check_if_working_day(employee_id, d_index - 1):
+            if check_if_working_day(shift_assignments, employee_id, d_index - 1):
                 # get shift type of the day before
-                shift_type_day_before = solution.shift_assignments[employee_id][d_index - 1][0]
+                shift_type_day_before = shift_assignments[employee_id][d_index - 1][0]
 
-                for s_type in scenario.forbidden_shift_type_successions[shift_type_day_before][1]:
-                    # delete forbidden shifts
-                    allowed_shift_types = np.delete(allowed_shift_types, np.in1d(allowed_shift_types, s_type))
-        elif d_index == 0 and solution.last_assigned_shift[employee_id] != -1:
-            for s_type in scenario.forbidden_shift_type_successions[solution.last_assigned_shift[employee_id]][1]:
+
                 # delete forbidden shifts
-                allowed_shift_types = np.delete(allowed_shift_types, np.in1d(allowed_shift_types, s_type))
+                allowed_shift_types = [s_type for s_type in allowed_shift_types if s_type in set(forbidden_shift_type_successions[shift_type_day_before][1])]
+
+        elif d_index == 0 and last_assigned_shift[employee_id] != -1:
+
+            # delete forbidden shifts
+            allowed_shift_types = [s_type for s_type in allowed_shift_types if
+                                   s_type in set(forbidden_shift_type_successions[last_assigned_shift[employee_id]][1])]
 
         # check if there is a day after
-        if d_index < scenario.num_days_in_horizon - 1:
+        if d_index < num_days_in_horizon - 1:
             # check if working the day after
-            if solution.check_if_working_day(employee_id, d_index + 1):
+            if check_if_working_day(shift_assignments, employee_id, d_index + 1):
                 # get shift type of day after
-                shift_type_day_after = solution.shift_assignments[employee_id][d_index + 1][0]
-
-                for succession in scenario.forbidden_shift_type_successions:
-                    if shift_type_day_after in succession[1]:
-                        # delete forbidden shifts
-                        allowed_shift_types = np.delete(allowed_shift_types,
-                                                        np.in1d(allowed_shift_types, succession[0]))
+                shift_type_day_after = shift_assignments[employee_id][d_index + 1][0]
+                allowed_shift_types = [s_type for s_type in allowed_shift_types if shift_type_day_after not in forbidden_shift_type_successions[s_type][1]]
+                # for succession in forbidden_shift_type_successions:
+                #     if shift_type_day_after in succession[1]:
+                #         # delete forbidden shifts
+                #         allowed_shift_types = np.delete(allowed_shift_types,
+                #                                         np.in1d(allowed_shift_types, succession[0]))
 
         return allowed_shift_types
 
@@ -261,7 +264,7 @@ class RuleH3(Rule):
                 if solution.shift_assignments[employee_id_1][d_index - 1][0] != -1 \
                    and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
                 else False
-
+    # TODO skip function call
     def check_one_way_swap_start_day(self, solution, employee_id_1, employee_id_2, d_index):
         # collect whether start index is infeasible
        return self.check_forbidden_before_day(solution, solution.forbidden_shift_type_successions,

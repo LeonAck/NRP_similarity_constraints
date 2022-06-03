@@ -9,7 +9,7 @@ class Instance:
     Class to store the instance data
     """
 
-    def __init__(self, settings, folder_name="030-4-1-6-2-9-1", instance_info=None):
+    def __init__(self, settings, folder_name="030-4-1-6-2-9-1"):
         """initialize instance parameters"""
 
         self.similarity = settings.similarity
@@ -17,17 +17,17 @@ class Instance:
         # information for loading instance
         self.path = settings.path
         self.solution_path = settings.solution_path
-        if instance_info is None:
-            self.folder_name = folder_name
-            self.instance_name = self.deduce_folder_name()
-            self.history_file = int(self.folder_name[6])
-            self.weeks = self.get_weeks_from_folder_name()
 
-        else:
-            self.instance_name = instance_info['name']
-            self.history_file = instance_info['history']
-            self.weeks = instance_info['weeks']
-            self.folder_name = self.transform_instance_name()
+        self.folder_name = folder_name
+        self.instance_name = self.deduce_folder_name()
+        self.history_file = int(self.folder_name[6])
+        self.weeks = self.get_weeks_from_folder_name()
+
+        # else:
+        #     self.instance_name = instance_info['name']
+        #     self.history_file = instance_info['history']
+        #     self.weeks = instance_info['weeks']
+        #     self.folder_name = self.transform_instance_name()
 
         # scenario information
         self.problem_size = self.set_problem_size()
@@ -59,6 +59,7 @@ class Instance:
                 feature='numberOfConsecutiveAssignments')
         else:
             self.historical_work_stretch, self.last_assigned_shift, self.historical_shift_stretch, self.historical_off_stretch = self.get_history_from_reference()
+
         # get employee preferences
         self.employee_preferences = self.collect_employee_preferences()
 

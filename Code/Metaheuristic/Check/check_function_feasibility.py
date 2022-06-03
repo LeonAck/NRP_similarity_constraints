@@ -21,7 +21,7 @@ class FeasibilityCheck:
         for d_index, request_per_day in enumerate(scenario.skill_requests):
             for sk_index, request_per_day_per_skill in enumerate(request_per_day):
                 for s_type_index, request_per_day_per_skill_per_s_type in enumerate(request_per_day_per_skill):
-                    flag = self.check_understaffing(solution, scenario,
+                    flag = self.check_understaffing(solution.shift_assignments,
                                                     d_index, s_type_index, sk_index,
                                                     request_per_day_per_skill_per_s_type)
 
@@ -32,30 +32,32 @@ class FeasibilityCheck:
         Function to check the number of forbidden shift type successions
         """
         violation_counter = 0
+        shift_assignments = solution.shift_assignments
+        num_days_in_horizon = scenario.num_days_in_horizon
+        shift_type_indices = scenario.shift_type_indicies
+        forbidden_shift_type_successions = scenario.forbidden_shift_type_successions
+        last_assigned_shifts = solution.last_assigned_shift
         for employee_id in scenario.employees._collection.keys():
-            for d_index in range(0, scenario.num_days_in_horizon):
-                allowed_shift_types = RuleH3().get_allowed_shift_types(solution, scenario, employee_id, d_index)
-                if solution.shift_assignments[employee_id][d_index][0] != - 1 \
-                        and solution.shift_assignments[employee_id][d_index][0] not in allowed_shift_types:
+            for d_index in range(0, num_days_in_horizon):
+                allowed_shift_types = RuleH3().get_allowed_shift_types(shift_assignments, shift_type_indices, num_days_in_horizon,
+                                                                       forbidden_shift_type_successions,
+                                                                       last_assigned_shifts,
+                                                                       employee_id, d_index)
+                if shift_assignments[employee_id][d_index][0] != - 1 \
+                        and shift_assignments[employee_id][d_index][0] not in allowed_shift_types:
                     violation_counter += 1
 
         return violation_counter
 
-    def check_understaffing(self, solution, scenario, d_index, s_index, sk_index, skill_request):
+    def check_understaffing(self, shift_assignments, d_index, s_index, sk_index, skill_request):
         """
         Function to check understaffing in skill counter for one skill request
         :return:
         True or False
         """
         flag = 0
-        #skill_id = scenario.skill_collection.index_to_id(skill_index)
-        # sum assigned number of assigned nurse for day, skill and shift_type
-        # total_skill_counter = np.sum(solution.skill_counter[day_index,
-        #                                                     s_type_index,
-        #                                                     scenario.skill_collection.collection[
-        #                                                         skill_id].indices_in_skill_counter])
 
-        total_assigned = sum([np.array_equal(shift_assignment[d_index], np.array([s_index, sk_index])) for shift_assignment in solution.shift_assignments.values()])
+        total_assigned = sum([np.array_equal(shift_assignment[d_index], np.array([s_index, sk_index])) for shift_assignment in shift_assignments.values()])
         # compare if equal to skill request
         if skill_request > total_assigned:
             flag = False

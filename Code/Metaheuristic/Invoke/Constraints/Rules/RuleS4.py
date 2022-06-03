@@ -38,12 +38,13 @@ class RuleS4(Rule):
         if change_info['employee_id'] in solution.employee_preferences:
             # check if moving from off to assigned
             if not change_info['current_working']:
-                return self.incremental_violations_off_to_assigned(solution, change_info['employee_id'], change_info['d_index'], change_info['new_s_type'])
+                return self.incremental_violations_off_to_assigned(solution.employee_preferences, change_info['employee_id'], change_info['d_index'], change_info['new_s_type'])
             # check if moving from assigned to off
             elif not change_info['new_working']:
-                return self.incremental_violations_assigned_to_off(solution, change_info['employee_id'], change_info['d_index'], change_info['new_s_type'])
+                return self.incremental_violations_assigned_to_off(solution.employee_preferences, change_info['employee_id'], change_info['d_index'], change_info['new_s_type'])
             else:
-                return self.incremental_violations_assigned_to_assigned(solution, change_info['employee_id'], change_info['d_index'], change_info['new_s_type'], change_info['curr_s_type'])
+                return self.incremental_violations_off_to_assigned(solution.employee_preferences, change_info['employee_id'], change_info['d_index'], change_info['new_s_type']) \
+                + self.incremental_violations_assigned_to_off(solution.employee_preferences, change_info['employee_id'], change_info['d_index'], change_info['curr_s_type'])
         else:
             return 0
 
@@ -56,33 +57,33 @@ class RuleS4(Rule):
             else:
                 return 0
 
-    def incremental_violations_off_to_assigned(self, solution, employee_id, d_index, new_s_type):
-        if d_index in solution.employee_preferences[employee_id]:
-            if solution.employee_preferences[employee_id][d_index] == -1:
+    def incremental_violations_off_to_assigned(self, employee_preferences, employee_id, d_index, new_s_type):
+        if d_index in employee_preferences[employee_id]:
+            if employee_preferences[employee_id][d_index] == -1:
                 return 1
             else:
-                if solution.employee_preferences[employee_id][d_index] == new_s_type:
+                if employee_preferences[employee_id][d_index] == new_s_type:
                     return 1
                 else:
                     return 0
         else:
             return 0
 
-    def incremental_violations_assigned_to_off(self, solution, employee_id, d_index, prev_s_type):
-        if d_index in solution.employee_preferences[employee_id]:
-            if solution.employee_preferences[employee_id][d_index] == -1:
+    def incremental_violations_assigned_to_off(self, employee_preferences, employee_id, d_index, prev_s_type):
+        if d_index in employee_preferences[employee_id]:
+            if employee_preferences[employee_id][d_index] == -1:
                 return -1
             else:
-                if solution.employee_preferences[employee_id][d_index] == prev_s_type:
+                if employee_preferences[employee_id][d_index] == prev_s_type:
                     return -1
                 else:
                     return 0
         else:
             return 0
 
-    def incremental_violations_assigned_to_assigned(self, solution, employee_id, d_index, new_s_type, prev_s_type):
-        return self.incremental_violations_off_to_assigned(solution, employee_id, d_index, new_s_type) \
-                + self.incremental_violations_assigned_to_off(solution, employee_id, d_index, prev_s_type)
+    def incremental_violations_assigned_to_assigned(self, employee_preferences, employee_id, d_index, new_s_type, prev_s_type):
+        return self.incremental_violations_off_to_assigned(employee_preferences, employee_id, d_index, new_s_type) \
+                + self.incremental_violations_assigned_to_off(employee_preferences, employee_id, d_index, prev_s_type)
 
     def incremental_violations_swap(self, solution, swap_info, rule_id=None):
         incremental_violations = 0
@@ -96,22 +97,24 @@ class RuleS4(Rule):
 
     def incremental_violations_swap_per_employee(self, solution, employee_id, other_employee_id, start_index, end_index):
         violations = 0
-        relevant_d_indices = list(set(solution.employee_preferences[employee_id]) & set(
+        employee_preferences = solution.employee_preferences
+        relevant_d_indices = list(set(employee_preferences[employee_id]) & set(
             range(start_index, end_index + 1)))
 
+        shift_assignments = solution.shift_assignments
         for d_index in relevant_d_indices:
             if solution.check_if_working_day(employee_id, d_index) \
                     and solution.check_if_working_day(other_employee_id, d_index):
-                violations += self.incremental_violations_assigned_to_assigned(solution, employee_id, d_index,
-                                                                              new_s_type=solution.shift_assignments[other_employee_id][d_index, 0],
-                                                                              prev_s_type=solution.shift_assignments[employee_id][d_index, 0])
+                violations += self.incremental_violations_assigned_to_assigned(employee_preferences, employee_id, d_index,
+                                                                              new_s_type=shift_assignments[other_employee_id][d_index, 0],
+                                                                              prev_s_type=shift_assignments[employee_id][d_index, 0])
             elif solution.check_if_working_day(employee_id, d_index) and not solution.check_if_working_day(other_employee_id, d_index):
-                violations += self.incremental_violations_assigned_to_off(solution, employee_id, d_index,
+                violations += self.incremental_violations_assigned_to_off(employee_preferences, employee_id, d_index,
                                                                               prev_s_type=
-                                                                              solution.shift_assignments[employee_id][
+                                                                              shift_assignments[employee_id][
                                                                                   d_index, 0])
             elif not solution.check_if_working_day(employee_id, d_index) and solution.check_if_working_day(other_employee_id, d_index):
-                violations += self.incremental_violations_off_to_assigned(solution, employee_id, d_index,
-                                                                              new_s_type=solution.shift_assignments[
+                violations += self.incremental_violations_off_to_assigned(employee_preferences, employee_id, d_index,
+                                                                              new_s_type=shift_assignments[
                                                                                   other_employee_id][d_index, 0])
         return violations

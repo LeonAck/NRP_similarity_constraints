@@ -3,6 +3,9 @@ from Invoke.Constraints.Rules import RuleH3
 import numpy as np
 from Check.check_function_feasibility import FeasibilityCheck
 from Invoke.Constraints.Rules.RuleS1 import RuleS1
+from general_functions import check_if_working_day
+from copy import copy
+
 
 def change_operator(solution, scenario):
     """
@@ -52,10 +55,11 @@ def get_feasible_change(solution, scenario):
     feasible_employees = list((scenario.employees._collection.keys()))
 
     change_info = dict()
+
     while len(feasible_employees) > 0 and not feasible:
         # pick random nurse
         change_info["employee_id"] = random.choice(feasible_employees)  # remove nurse if picked before
-
+        skill_indices = scenario.employees._collection[change_info["employee_id"]].skill_indices
         # get feasible days for given employee
         feasible_days = list(range(0, scenario.num_days_in_horizon))
 
@@ -67,7 +71,7 @@ def get_feasible_change(solution, scenario):
         while len(feasible_days) > 0 and not feasible:
             # choose day
             change_info["d_index"] = random.choice(feasible_days)
-            change_info = fill_change_info_curr_ass(solution, change_info)
+            change_info = fill_change_info_curr_ass(solution.shift_assignments, change_info)
 
             # get allowed shifts for insertion for given day
             allowed_shift_types = get_allowed_s_type(solution, scenario, change_info["employee_id"],
@@ -75,7 +79,7 @@ def get_feasible_change(solution, scenario):
 
             # add off day to options if employee currently not working
             if change_info["current_working"]:
-                allowed_shift_types = np.append(allowed_shift_types, "off")
+                allowed_shift_types.append("off")
 
             while len(allowed_shift_types) > 0 and not feasible:
                 # pick random shift type
@@ -85,14 +89,18 @@ def get_feasible_change(solution, scenario):
                     feasible = True
                     change_info["new_working"] = False
                 else:
+                    change_info['new_s_type'] = int(change_info['new_s_type'])
                     # get allowed shifts for this shift type
-                    allowed_skills = get_allowed_skills(scenario, change_info)
+                    allowed_skills = get_allowed_skills(skill_indices, change_info)
 
                     # check if there are allowed shift types
                     if len(allowed_skills) == 0:
-
-                        allowed_shift_types = np.delete(allowed_shift_types,
-                                                        np.where(allowed_shift_types==change_info["new_s_type"]))
+                        try:
+                            allowed_shift_types.remove(change_info['new_s_type'])
+                        except ValueError:
+                            print("erorr")
+                    # = np.delete(allowed_shift_types,
+                        #                                 np.where(allowed_shift_types==change_info["new_s_type"]))
                     else:
                         change_info["new_sk_type"] = random.choice(allowed_skills)
                         change_info["new_working"] = True
@@ -123,13 +131,11 @@ def remove_infeasible_days_understaffing(solution, employee_id, feasible_days):
     feasible_working_days = set(feasible_days).intersection(set(solution.working_days[employee_id]))
     # [d_index for d_index in feasible_days if solution.check_if_working_day(employee_id, d_index)]
 
-    feasible_removals = solution.diff_min_request > 1
-
     return [d_index for d_index in feasible_days if d_index not in feasible_working_days or (d_index in feasible_working_days
-                and feasible_removals[
+                and solution.diff_min_request[
                     tuple([d_index,
                    solution.shift_assignments[employee_id][d_index][1],
-                   solution.shift_assignments[employee_id][d_index][0]])] > 0)
+                   solution.shift_assignments[employee_id][d_index][0]])] > 1)
             ]
 
 
@@ -140,23 +146,26 @@ def get_allowed_s_type(solution, scenario, employee_id, d_index):
     # create allowed shifts to choose from
     # check if shift type succession rule is mandatory
     if scenario.rule_collection.collection['H3'].is_mandatory:
-        allowed_shift_types = RuleH3().get_allowed_shift_types(solution=solution,
-                                                               scenario=scenario,
+        allowed_shift_types = RuleH3().get_allowed_shift_types(solution.shift_assignments,
+                                                               allowed_shift_types=copy(scenario.shift_collection.shift_types_indices),
+                                                               num_days_in_horizon=scenario.num_days_in_horizon,
+                                                               forbidden_shift_type_successions=scenario.forbidden_shift_type_successions,
+                                                               last_assigned_shift=solution.last_assigned_shift,
                                                                employee_id=employee_id,
                                                                d_index=d_index)
     else:
-        allowed_shift_types = scenario.shift_collection.shift_types_indices
+        allowed_shift_types = copy(scenario.shift_collection.shift_types_indices)
 
     return allowed_shift_types
 
 
-def get_allowed_skills(scenario, change_info):
+def get_allowed_skills(skill_indices, change_info):
     """
     Get skills that the employee has
     and exclude skills that will lead to the current shift-skill combination
     """
 
-    allowed_skills = scenario.employees._collection[change_info["employee_id"]].skill_indices
+    allowed_skills = copy(skill_indices)
     if change_info["current_working"]:
         if change_info["new_s_type"] == change_info["curr_s_type"]:
             allowed_skills = np.delete(allowed_skills, np.in1d(allowed_skills, change_info["curr_sk_type"]))
@@ -164,25 +173,25 @@ def get_allowed_skills(scenario, change_info):
     return allowed_skills
 
 
-def fill_change_info_curr_ass(solution, change_info):
+def fill_change_info_curr_ass(shift_assignments, change_info):
     """
     Create object to store information about the change
     :return:
     dict with d_index, old_assignment, new_assignment
     """
 
-    change_info["current_working"] = solution.check_if_working_day(
+    change_info["current_working"] = check_if_working_day(shift_assignments,
         change_info["employee_id"],
         change_info["d_index"])
 
     # add new s type
-    change_info["curr_s_type"] = solution.shift_assignments[
+    change_info["curr_s_type"] = shift_assignments[
                     change_info["employee_id"]][
                     change_info["d_index"]][
                     0] \
         if change_info["current_working"] else None
     # add new sk type
-    change_info["curr_sk_type"] = solution.shift_assignments[
+    change_info["curr_sk_type"] = shift_assignments[
                                          change_info["employee_id"]][
                                          change_info["d_index"]][
                                          1] \

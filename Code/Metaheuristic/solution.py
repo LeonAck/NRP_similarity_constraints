@@ -9,6 +9,7 @@ from Invoke.Constraints.Rules.RuleS7 import RuleS7
 from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
 from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
 from Invoke.Constraints.Rules.RuleS8RefSkill import RuleS8RefSkill
+from copy import deepcopy, copy
 
 class Solution:
     """
@@ -27,10 +28,10 @@ class Solution:
             self.num_shift_types = other_solution.num_shift_types
 
             # employee shift assignments
-            self.shift_assignments = other_solution.shift_assignments
+            self.shift_assignments = deepcopy(other_solution.shift_assignments)
 
             # H2
-            self.diff_min_request = other_solution.diff_min_request
+            self.diff_min_request = deepcopy(other_solution.diff_min_request)
 
             # H3
             self.forbidden_shift_type_successions = other_solution.forbidden_shift_type_successions
@@ -38,22 +39,22 @@ class Solution:
 
             # S1
             if 'S1' in self.rules:
-                self.diff_opt_request = other_solution.diff_opt_request
+                self.diff_opt_request = deepcopy(other_solution.diff_opt_request)
 
             # S2
             if 'S2Max' in self.rules:
-                self.work_stretches = other_solution.work_stretches
+                self.work_stretches = deepcopy(other_solution.work_stretches)
                 self.historical_work_stretch = other_solution.historical_work_stretch
 
             # S2Shift
             if 'S2ShiftMax' in self.rules:
                 self.historical_shift_stretch = other_solution.historical_shift_stretch
-                self.shift_stretches = other_solution.shift_stretches
+                self.shift_stretches = deepcopy(other_solution.shift_stretches)
 
             # S3
             if 'S3Max' in self.rules:
                 self.historical_off_stretch = other_solution.historical_off_stretch
-                self.day_off_stretches = other_solution.day_off_stretches
+                self.day_off_stretches = deepcopy(other_solution.day_off_stretches)
 
             # S6 number of assignments
             if 'S6Max' in self.rules:
@@ -65,29 +66,29 @@ class Solution:
 
             # S7 similarity
             if 'S7Day' in self.rules:
-                self.day_comparison = other_solution.day_comparison
+                self.day_comparison = deepcopy(other_solution.day_comparison)
             if 'S7Shift' in self.rules:
-                self.shift_comparison = other_solution.shift_comparison
+                self.shift_comparison = deepcopy(other_solution.shift_comparison)
             # S8ref
             if 'S8RefDay' in self.rules or 'S8RefShift' in self.rules or 'S8RefSkill' in self.rules:
                 self.ref_assignments = other_solution.ref_assignments
 
             if 'S8RefDay' in self.rules:
-                self.ref_comparison_day_level = other_solution.ref_comparison_day_level
+                self.ref_comparison_day_level = deepcopy(other_solution.ref_comparison_day_level)
 
             if 'S8RefShift' in self.rules:
-                self.ref_comparison_shift_level = other_solution.ref_comparison_shift_level
+                self.ref_comparison_shift_level = deepcopy(other_solution.ref_comparison_shift_level)
 
             if 'S8RefSkill' in self.rules:
                 self.multi_skill = other_solution.multi_skill
-                self.ref_comparison_skill_level = other_solution.ref_comparison_skill_level
+                self.ref_comparison_skill_level = deepcopy(other_solution.ref_comparison_skill_level)
 
             # objective value
-            self.obj_value = other_solution.obj_value
+            self.obj_value = copy(other_solution.obj_value)
 
-            self.violation_array = other_solution.violation_array
+            self.violation_array = deepcopy(other_solution.violation_array)
             # information to keep track of solution per nurse
-            self.working_days = other_solution.working_days
+            self.working_days = deepcopy(other_solution.working_days)
 
     def replace_shift_assignment(self, employee_id, d_index, s_index, sk_index):
         """
@@ -427,3 +428,4 @@ class Solution:
 
     def check_if_same_skill_type_ref(self, employee_id, d_index):
         return self.ref_assignments[employee_id][d_index][1] == self.shift_assignments[employee_id][d_index][1]
+

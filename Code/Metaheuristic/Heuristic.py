@@ -87,7 +87,7 @@ class Heuristic:
 
         n_iter = 1
         no_improve_iter = 0
-        while self.temperature >= self.final_temp:
+        while self.stopping_criterion(current_solution.violation_array, n_iter):
             n_sampled = 0
             n_accepted = 0
             while n_sampled < self.max_sampled and n_accepted < self.max_accepted:
@@ -117,7 +117,7 @@ class Heuristic:
                     n_accepted += 1
                     # check if best. Then current solution, becomes the best solution
                     if current_solution.obj_value < best_solution.obj_value:
-                        best_solution = Solution(deepcopy(current_solution))
+                        best_solution = Solution(current_solution)
                         print("new best_solution: {}".format(best_solution.obj_value))
                         no_improve_iter = 0
 
@@ -132,7 +132,7 @@ class Heuristic:
                 # # print("current: {}".format(current_solution.obj_value))
                 if no_improve_iter > self.no_improve_max:
                     # print("no improvement")
-                    current_solution = Solution(deepcopy(best_solution))
+                    current_solution = Solution(best_solution)
                     no_improve_iter = 0
                 n_sampled += 1
 
@@ -165,6 +165,7 @@ class Heuristic:
         self.run_time = time.time() - self.start_time
         self.n_iter = n_iter
         self.final_violation_array = best_solution.violation_array
+        self.stage_1_feasible = self.check_stage_1_feasibility()
         return best_solution
 
     def update_change_counter(self, change_counters, change_info):
@@ -176,9 +177,9 @@ class Heuristic:
             change_counters["off_work"] += 1
         return change_counters
 
-    def stopping_criterion(self, current_solution, n_iter):
+    def stopping_criterion(self, violation_array, n_iter):
         if self.stage_number == 1:
-            return self.temperature >= self.final_temp and not np.array_equal(current_solution.violation_array, np.zeros(2))
+            return not np.array_equal(violation_array, np.zeros(2)) and n_iter < 200000
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
         #             and not np.array_equal(current_solution.violation_array, np.zeros(2))
         # else:
@@ -364,4 +365,16 @@ class Heuristic:
         # Operator plot. For every iteration, append weights
         for key, value in self.operator_weights.items():
             self.oper_vars[key].append(value)
+
+    def check_stage_1_feasibility(self):
+        """
+        Function to check whether solution is feasible in stage 1
+        """
+        if self.stage_number == 1:
+            if np.array_equal(self.final_violation_array, np.zeros(2)):
+                return True
+            else:
+                return False
+        else:
+            return None
 

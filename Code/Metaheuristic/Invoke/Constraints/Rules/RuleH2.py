@@ -68,7 +68,10 @@ class RuleH2(Rule):
         """
         # check if there is a shortage compared to optimal level
         if insertion:
-            return -1 if solution.diff_min_request[(d_index, sk_index, s_index)] < 0 else 0
+            try:
+                return -1 if solution.diff_min_request[(d_index, sk_index, s_index)] < 0 else 0
+            except IndexError:
+                print("index")
         else:
             return 1 if solution.diff_min_request[(d_index, sk_index, s_index)] <= 0 else 0
 

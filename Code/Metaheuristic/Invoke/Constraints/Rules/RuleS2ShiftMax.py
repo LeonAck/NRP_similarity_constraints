@@ -1,7 +1,7 @@
 from Invoke.Constraints.initialize_rules import Rule
 import numpy as np
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
-
+from general_functions import check_if_working_day, check_if_working_s_type_on_day, check_if_middle_day, check_if_last_day, check_if_first_day
 class RuleS2ShiftMax(Rule):
     """
         Rule that checks for optimal coverage per skill request
@@ -15,14 +15,14 @@ class RuleS2ShiftMax(Rule):
         """
         Function to count violations in the entire solution
         """
-        return sum([self.count_violations_shift(solution, scenario, s_index)
+        return sum([self.count_violations_shift(solution.shift_stretches, scenario, s_index)
                     for s_index in scenario.shift_collection.shift_types_indices])
 
-    def count_violations_shift(self, solution, scenario, s_index):
+    def count_violations_shift(self, shift_stretches, scenario, s_index):
         """
         Function to count violations for an employee
         """
-        return sum([self.count_violations_shift_employee(solution.shift_stretches[s_index][employee_id], s_index, employee_id)
+        return sum([self.count_violations_shift_employee(shift_stretches[s_index][employee_id], s_index, employee_id)
                     for employee_id in scenario.employees._collection.keys()])
 
     def count_violations_shift_employee(self, work_stretch_employee_shift, s_index, employee_id):

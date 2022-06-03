@@ -1,5 +1,5 @@
 from Invoke.Operators.change_operator import calc_new_costs_after_change, \
-    remove_infeasible_days_understaffing, get_allowed_skills, get_allowed_s_type, \
+    remove_infeasible_days_understaffing, get_allowed_s_type, \
     fill_change_info_curr_ass
 import random
 import numpy as np
@@ -58,7 +58,7 @@ def get_feasible_change_improving_similarity(solution, scenario):
             if change_info["d_index"] is None:
                 break
 
-            change_info = fill_change_info_curr_ass(solution, change_info)
+            change_info = fill_change_info_curr_ass(solution.shift_assignments, change_info)
 
             # add off day to options if employee currently not working
             if change_info["current_working"]:

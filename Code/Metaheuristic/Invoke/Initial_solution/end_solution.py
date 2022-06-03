@@ -11,13 +11,13 @@ class EndSolution:
         self.best_solution = previous_solution
         self.scenario = scenario
         self.ref_assignments = scenario.ref_assignments
+        self.best_solution.ref_assignments = scenario.ref_assignments
+        self.best_solution.ref_comparison_day_level = self.collect_day_comparison_ref(solution=self.best_solution)
 
-        self.ref_comparison_day_level = self.collect_day_comparison_ref(solution=self.best_solution)
-
-        self.ref_comparison_shift_level = self.collect_shift_comparison_ref(solution=self.best_solution)
+        self.best_solution.ref_comparison_shift_level = self.collect_shift_comparison_ref(solution=self.best_solution)
 
         self.multi_skill = scenario.multi_skill
-        self.ref_comparison_skill_level = self.collect_skill_comparison_ref(solution=self.best_solution)
+        self.best_solution.ref_comparison_skill_level = self.collect_skill_comparison_ref(solution=self.best_solution)
 
         # get violations
         self.violation_array = self.add_similarity_violations()
