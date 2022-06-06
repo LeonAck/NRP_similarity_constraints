@@ -1,5 +1,6 @@
 import numpy as np
 from Invoke.Constraints.Rules import RuleS8RefSkill, RuleS8RefDay, RuleS8RefShift
+from copy import copy
 class EndSolution:
     """
        Class to add similarity violations to best solution
@@ -105,9 +106,11 @@ class EndSolution:
         return skill_assignment_comparison
 
     def add_similarity_violations(self):
-        self.best_solution.violation_array.append(RuleS8RefDay().count_violations(self.best_solution, self.scenario))
-        self.best_solution.violation_array.append(RuleS8RefShift().count_violations(self.best_solution, self.scenario))
-        self.best_solution.violation_array.append(RuleS8RefSkill().count_violations(self.best_solution, self.scenario))
-
+        similarity_violations = np.array([
+            RuleS8RefDay().count_violations(self.best_solution, self.scenario),
+            RuleS8RefShift().count_violations(self.best_solution, self.scenario),
+            RuleS8RefSkill().count_violations(self.best_solution, self.scenario)
+        ])
+        self.best_solution.violation_array = np.append(copy(self.best_solution.violation_array), similarity_violations)
         return self.best_solution.violation_array
 

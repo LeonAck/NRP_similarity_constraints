@@ -52,6 +52,7 @@ class Heuristic:
         # Create objects to save information for plots
         self.obj_values = []
         self.best_obj_values = []
+        self.temperatures = []
         self.oper_vars = self.create_oper_vars()
 
         # calculate max_sampled and max accepted
@@ -252,7 +253,7 @@ class Heuristic:
         # Obtain the total sum of the weights
         total_weights = sum([
             value for key, value in self.operator_weights.items()
-            if key in operators])
+            ])
 
         # Pick a random number
         pick = random.uniform(0, total_weights)
@@ -358,6 +359,7 @@ class Heuristic:
         """
 
         # information for objective plot
+        self.temperatures.append(self.temperature)
         self.obj_values.append(current_solution.obj_value)
         self.best_obj_values.append(best_solution.obj_value)
 

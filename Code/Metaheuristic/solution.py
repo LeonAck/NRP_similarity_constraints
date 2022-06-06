@@ -362,14 +362,16 @@ class Solution:
         new_working_days = {}
         for i, employee_id in enumerate([swap_info['employee_id_1'], swap_info['employee_id_2']]):
             other_employee_id = swap_info['employee_id_{}'.format(2 - i)]
+            working_days_in_swap_employee = self.get_working_days_in_range(employee_id, swap_info['start_index'],
+                                                                swap_info['end_index'])
+            working_days_in_swap_other_employee = self.get_working_days_in_range(other_employee_id, swap_info['start_index'],
+                                                                         swap_info['end_index'])
 
             new_working_days[employee_id] \
                 = [d_index for d_index in range(0, self.day_collection.num_days_in_horizon)
-                   if d_index in self.get_working_days_in_range(other_employee_id, swap_info['start_index'],
-                                                                swap_info['end_index'])
+                   if d_index in working_days_in_swap_other_employee
                    or (d_index in self.working_days[employee_id]
-                       and d_index not in self.get_working_days_in_range(employee_id, swap_info['start_index'],
-                                                                         swap_info['end_index']))]
+                       and d_index not in working_days_in_swap_employee)]
 
         self.working_days[swap_info['employee_id_1']] = new_working_days[swap_info['employee_id_1']]
         self.working_days[swap_info['employee_id_2']] = new_working_days[swap_info['employee_id_2']]

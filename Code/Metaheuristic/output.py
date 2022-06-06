@@ -43,6 +43,8 @@ def create_output_folder():
     # create plots folder
     os.mkdir("C:/Master_thesis/Code/Metaheuristic/output"+"/"+folder_name+"/obj_plots")
     os.mkdir("C:/Master_thesis/Code/Metaheuristic/output" + "/" + folder_name + "/weight_plots")
+    os.mkdir("C:/Master_thesis/Code/Metaheuristic/output"+"/"+folder_name+"/temp_plots")
+
     return folder_name
 
 def beautify_violation_array(heuristic_run):

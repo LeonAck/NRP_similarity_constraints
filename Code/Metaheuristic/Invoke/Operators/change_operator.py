@@ -1,8 +1,5 @@
 import random
-from Invoke.Constraints.Rules import RuleH3
 import numpy as np
-from Check.check_function_feasibility import FeasibilityCheck
-from Invoke.Constraints.Rules.RuleS1 import RuleS1
 from general_functions import check_if_working_day
 from copy import copy
 
@@ -146,7 +143,7 @@ def get_allowed_s_type(solution, scenario, employee_id, d_index):
     # create allowed shifts to choose from
     # check if shift type succession rule is mandatory
     if scenario.rule_collection.collection['H3'].is_mandatory:
-        allowed_shift_types = RuleH3().get_allowed_shift_types(solution.shift_assignments,
+        allowed_shift_types = get_allowed_shift_types(solution.shift_assignments,
                                                                allowed_shift_types=copy(scenario.shift_collection.shift_types_indices),
                                                                num_days_in_horizon=scenario.num_days_in_horizon,
                                                                forbidden_shift_type_successions=scenario.forbidden_shift_type_successions,
@@ -203,6 +200,42 @@ def fill_change_info_curr_ass(shift_assignments, change_info):
 
 def find_difference_dict(first_dict, second_dict):
     return { k : second_dict[k] for k in set(second_dict) - set(first_dict) }
+
+def get_allowed_shift_types(shift_assignments, allowed_shift_types, num_days_in_horizon,
+                            forbidden_shift_type_successions,
+                            last_assigned_shift, employee_id, d_index):
+    """
+    For a given day get the shift types that are not allowed given
+    the assignment the day before and the day after
+    """
+
+    if d_index > 0:
+        # check if working the day before
+        if check_if_working_day(shift_assignments, employee_id, d_index - 1):
+            # get shift type of the day before
+            shift_type_day_before = shift_assignments[employee_id][d_index - 1][0]
+
+            # delete forbidden shifts
+            allowed_shift_types = [s_type for s_type in allowed_shift_types if
+                                   s_type not in set(forbidden_shift_type_successions[shift_type_day_before][1])]
+
+    elif d_index == 0 and last_assigned_shift[employee_id] != -1:
+
+        # delete forbidden shifts
+        allowed_shift_types = [s_type for s_type in allowed_shift_types if
+                               s_type not in set(
+                                   forbidden_shift_type_successions[last_assigned_shift[employee_id]][1])]
+
+    # check if there is a day after
+    if d_index < num_days_in_horizon - 1:
+        # check if working the day after
+        if check_if_working_day(shift_assignments, employee_id, d_index + 1):
+            # get shift type of day after
+            shift_type_day_after = shift_assignments[employee_id][d_index + 1][0]
+            allowed_shift_types = [s_type for s_type in allowed_shift_types if
+                                   shift_type_day_after not in forbidden_shift_type_successions[s_type][1]]
+
+    return allowed_shift_types
 
 
 

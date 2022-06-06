@@ -37,9 +37,9 @@ def run_stage_add_similarity(instance, stage_settings, previous_solution=None):
     init_solution = BuildSolution(scenario, previous_solution)
     heuristic = Heuristic(scenario, stage_settings=stage_settings)
     best_solution = heuristic.run_heuristic(starting_solution=deepcopy(init_solution))
-    heuristic.final_violation_array = EndSolution(scenario, previous_solution=best_solution)
+    
+    heuristic.final_violation_array = EndSolution(scenario, previous_solution=best_solution).violation_array
     return heuristic, best_solution
-
 
 def run_two_stage(settings_file_path, folder_name, output_folder=None, similarity=False):
     """
@@ -71,9 +71,6 @@ def run_two_stage(settings_file_path, folder_name, output_folder=None, similarit
         plot.operator_weight_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
 
         return write_output_instance(heuristic_2, feasible=True)
-
-
-
 
 def run_multiple_files(file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
                        settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json", similarity=False):

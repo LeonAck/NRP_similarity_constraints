@@ -1,4 +1,4 @@
-from Invoke.Constraints.Rules.RuleH3 import RuleH3
+from Invoke.Constraints.Rules.RuleH3 import check_forbidden_before_day
 from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 from Invoke.Constraints.Rules.RuleS7 import RuleS7
 from Invoke.Constraints.Rules.RuleS8RefDay import RuleS8RefDay
@@ -20,9 +20,6 @@ def swap_operator(solution, scenario):
     """
     # get a change that is allowed by hard constraints
     swap_info = get_feasible_swap(solution, scenario, solution.k_swap)
-    # print("\nTimeline__", np.array(range(0, 14)))
-    # print("employee_1", solution.shift_assignments[swap_info['employee_id_1']][:, 0])
-    # print("employee_2", solution.shift_assignments[swap_info['employee_id_2']][:, 0])
 
     # get stretch information for swap
     swap_info = get_stretch_information_swap(solution, swap_info)
@@ -68,17 +65,16 @@ def get_feasible_swap(solution, scenario, k):
     """
     feasible = False
     # create object to store information
-    swap_info = {}
     infeasible_combinations = []
     feasible_employees = list((scenario.employees._collection.keys()))
-    swap_info["employee_id"] = random.choice(feasible_employees)
+    k_chosen = random.randrange(1, k+1)
     while not feasible:
         employee_id_1, employee_id_2, compatible = find_skill_compatible_employees(feasible_employees,
                                                                                    scenario.employees,
                                                                                    infeasible_combinations)
 
         if compatible:
-            feasible_days = find_feasible_days_swap(solution, scenario, k, employee_id_1, employee_id_2)
+            feasible_days = find_feasible_days_swap(solution, scenario, k_chosen, employee_id_1, employee_id_2)
 
             if feasible_days:
                 swap_d_index = random.choice(feasible_days)
@@ -89,7 +85,7 @@ def get_feasible_swap(solution, scenario, k):
 
     if feasible:
         # create information object
-        swap_info = create_swap_info(employee_id_1, employee_id_2, swap_d_index, k)
+        swap_info = create_swap_info(employee_id_1, employee_id_2, swap_d_index, k_chosen)
         swap_info['feasible'] = True
     else:
         swap_info = {}
@@ -129,7 +125,7 @@ def create_swap_info(employee_id_1, employee_id_2, start_index, k):
     swap_info['employee_id_2'] = employee_id_2
     swap_info['start_index'] = start_index
     swap_info['end_index'] = start_index + k - 1
-    swap_info['k'] = k
+    swap_info['k_swap'] = k
 
     return swap_info
 
@@ -142,9 +138,16 @@ def check_one_way_swap(solution, k, feasible_days, employee_id_1, employee_id_2)
 
     for d_index in feasible_days:
         # collect whether start index is infeasible
-        start_index_check = RuleH3().check_one_way_swap_start_day(solution, employee_id_1, employee_id_2, d_index)
+        start_index_check = check_forbidden_before_day(solution, solution.forbidden_shift_type_successions,
+                                               employee_id_1,
+                                               employee_id_2,
+                                               d_index)
 
-        end_index_check = RuleH3().check_one_way_swap_end_day(solution, k, employee_id_1, employee_id_2, d_index)
+        end_index_check = check_forbidden_before_day(solution, solution.forbidden_shift_type_successions,
+                                               employee_id_2,
+                                               employee_id_1,
+                                               d_index + k)
+
         if start_index_check or end_index_check:
             feasible_days.remove(d_index)
 
