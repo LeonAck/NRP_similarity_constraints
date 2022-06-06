@@ -11,6 +11,7 @@ from Invoke.Constraints.Rules.RuleS8RefShift import RuleS8RefShift
 from Invoke.Constraints.Rules.RuleS8RefSkill import RuleS8RefSkill
 from copy import deepcopy, copy
 
+
 class Solution:
     """
     Class to store solutions of the problem
@@ -58,11 +59,11 @@ class Solution:
 
             # S6 number of assignments
             if 'S6Max' in self.rules:
-                self.num_assignments_per_nurse = other_solution.num_assignments_per_nurse
+                self.num_assignments_per_nurse = deepcopy(other_solution.num_assignments_per_nurse)
 
             # S7 number of working weekends
             if 'S7' in self.rules:
-                self.num_working_weekends = other_solution.num_working_weekends
+                self.num_working_weekends = deepcopy(other_solution.num_working_weekends)
 
             # S7 similarity
             if 'S7Day' in self.rules:

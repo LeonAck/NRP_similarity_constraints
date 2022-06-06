@@ -8,7 +8,6 @@ class EndSolution:
 
     def __init__(self, scenario, previous_solution=None):
 
-
         self.best_solution = previous_solution
         self.scenario = scenario
         self.ref_assignments = scenario.ref_assignments
@@ -106,11 +105,12 @@ class EndSolution:
         return skill_assignment_comparison
 
     def add_similarity_violations(self):
+        violation_array = copy(self.best_solution.violation_array)
         similarity_violations = np.array([
             RuleS8RefDay().count_violations(self.best_solution, self.scenario),
             RuleS8RefShift().count_violations(self.best_solution, self.scenario),
             RuleS8RefSkill().count_violations(self.best_solution, self.scenario)
         ])
-        self.best_solution.violation_array = np.append(copy(self.best_solution.violation_array), similarity_violations)
-        return self.best_solution.violation_array
+        violation_array = np.append(violation_array, similarity_violations)
+        return violation_array
 

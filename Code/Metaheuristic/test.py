@@ -10,9 +10,10 @@ from Invoke.Initial_solution.initial_solution import BuildSolution
 from Check.check_function_feasibility import FeasibilityCheck
 from Heuristic import Heuristic
 from Input.input_NRC import Instance
-from run import run_two_stage, run_stage, run_multiple_files, run_parameter_tuning_random
+from run import run_two_stage, run_stage, run_multiple_files
 import marshal, pickle
 import create_plots as plot
+from tuning import run_parameter_tuning_random
 
 similarity = False
 if similarity:
@@ -26,5 +27,6 @@ else:
 #     pickle.dump(stage_two_solution.shift_assignments, ref_shift_assignments_file)
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")
 
-
-cProfile.run("run_multiple_files('C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path=settings_file_path, similarity=similarity)", sort=1)
+# run_one_stage(settings_file_path, stage_number=2)
+# cProfile.run("run_multiple_files('C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path=settings_file_path, similarity=similarity)", sort=1)
+run_parameter_tuning_random(number_of_instances=3)

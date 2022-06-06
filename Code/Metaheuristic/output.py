@@ -36,14 +36,14 @@ def create_date_time_for_folder():
     now = datetime.now()
     return now.strftime("%d_%m_%Y__%H_%M_%S")
 
-def create_output_folder():
+def create_output_folder(path="C:/Master_thesis/Code/Metaheuristic/output"):
     folder_name = create_date_time_for_folder()
-    os.mkdir("C:/Master_thesis/Code/Metaheuristic/output"+"/"+folder_name)
+    os.mkdir(path+"/"+folder_name)
 
     # create plots folder
-    os.mkdir("C:/Master_thesis/Code/Metaheuristic/output"+"/"+folder_name+"/obj_plots")
-    os.mkdir("C:/Master_thesis/Code/Metaheuristic/output" + "/" + folder_name + "/weight_plots")
-    os.mkdir("C:/Master_thesis/Code/Metaheuristic/output"+"/"+folder_name+"/temp_plots")
+    os.mkdir(path+"/"+folder_name+"/obj_plots")
+    os.mkdir(path + "/" + folder_name + "/weight_plots")
+    os.mkdir(path+"/"+folder_name+"/temp_plots")
 
     return folder_name
 

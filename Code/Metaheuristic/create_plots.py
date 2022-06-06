@@ -8,7 +8,7 @@ def objective_value_plot(heuristic, instance_name, suppress=True, output_folder=
     """
 
     if suppress:
-        x_axis = np.linspace(0, heuristic.max_time, heuristic.n_iter)[0:-1]
+        x_axis = np.linspace(0, heuristic.n_iter, heuristic.n_iter)[0:-1]
         plt.plot(x_axis, heuristic.obj_values, x_axis, heuristic.best_obj_values, linewidth=0.5)
         if heuristic.stage_number == 2:
             plt.ylim(0, 20000)
@@ -39,11 +39,11 @@ def operator_weight_plot(heuristic, instance_name, output_folder, suppress=True)
 def temperature_plot(heuristic, instance_name, output_folder, suppress=True):
     """Function to see temperature over the run time"""
     if suppress:
-
-        plt.plot(range(0, heuristic.initial_temp), heuristic.temperatures, linewidth=0.5)
+        x_axis = np.linspace(0, heuristic.initial_temp, heuristic.n_iter)[0:-1]
+        plt.plot(x_axis, heuristic.temperatures, linewidth=0.5)
 
         if output_folder:
-            plt.savefig('C:/Master_thesis/Code/Metaheuristic/output/' + output_folder + 'temp_plots/obj_{}.png'.format(
+            plt.savefig('C:/Master_thesis/Code/Metaheuristic/output/' + output_folder + '/temp_plots/temp_{}.png'.format(
                 instance_name))
         plt.close()
 

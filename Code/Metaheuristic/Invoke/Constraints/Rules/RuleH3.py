@@ -265,7 +265,6 @@ def check_forbidden_before_day(solution, forbidden_successions, employee_id_1, e
                and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
             else False
     if d_index > 0:
-        try:
             return check_forbidden_given_shifts(forbidden_successions,
                                                 solution.shift_assignments[employee_id_1][d_index - 1][0],
                                                 solution.shift_assignments[employee_id_2][d_index][0],
@@ -273,5 +272,4 @@ def check_forbidden_before_day(solution, forbidden_successions, employee_id_1, e
                 if solution.shift_assignments[employee_id_1][d_index - 1][0] != -1 \
                    and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
                 else False
-        except IndexError:
-            print("hi")
+

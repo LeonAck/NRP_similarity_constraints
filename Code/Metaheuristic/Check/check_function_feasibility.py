@@ -78,7 +78,6 @@ class FeasibilityCheck:
         real_assignments = scenario.skill_requests + solution.diff_min_request
 
         # create dict with total numbers of assignments
-        cumulative_assignments = []
         for d_index in range(scenario.num_days_in_horizon):
             for s_index in scenario.shift_collection.shift_types_indices:
                 for sk_index in scenario.skill_collection.skill_indices:

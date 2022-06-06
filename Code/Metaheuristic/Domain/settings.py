@@ -5,7 +5,7 @@ class Settings:
     Class to save all problem settings
     """
 
-    def __init__(self, settings_file_path=None):
+    def __init__(self, settings_file_path=None, param=None):
         """Initialize settings"""
 
         if settings_file_path:
@@ -19,6 +19,7 @@ class Settings:
             # self.history_file = settings_json['instance_settings']['history_file']
             # self.weeks = settings_json['instance_settings']['weeks']
             self.similarity = settings_json['instance_settings']['similarity']
+            self.tuning = settings_json['instance_settings']['tuning']
 
             # load stage_1_settings
             self.stage_1_settings = settings_json['stage_1_settings']
@@ -26,5 +27,7 @@ class Settings:
             # load stage_2_settings
             self.stage_2_settings = settings_json['stage_2_settings']
 
-            # history
-            # self.history = settings_json['instance_settings']['history']
+            # tuning
+            if param:
+                self.stage_1_settings['heuristic_settings']['initial_temp'] = param
+                self.stage_2_settings['heuristic_settings']['initial_temp'] = param

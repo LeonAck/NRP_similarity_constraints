@@ -1,7 +1,8 @@
 {"instance_settings": {
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
   "solution_path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
-  "similarity": true
+  "similarity": true,
+  "tuning": true
 },
   "stage_1_settings":
   {

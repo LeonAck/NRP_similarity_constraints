@@ -31,25 +31,25 @@ def run_stage(instance, stage_settings, previous_solution=None):
 
     return heuristic, best_solution
 
+
 def run_stage_add_similarity(instance, stage_settings, previous_solution=None):
     scenario = Scenario(stage_settings, instance)
 
     init_solution = BuildSolution(scenario, previous_solution)
     heuristic = Heuristic(scenario, stage_settings=stage_settings)
     best_solution = heuristic.run_heuristic(starting_solution=deepcopy(init_solution))
-    
+
     heuristic.final_violation_array = EndSolution(scenario, previous_solution=best_solution).violation_array
     return heuristic, best_solution
+
 
 def run_two_stage(settings_file_path, folder_name, output_folder=None, similarity=False):
     """
     Function to execute heuristic
     """
     settings = Settings(settings_file_path)
-    if folder_name:
-        instance = Instance(settings, folder_name)
-    else:
-        instance = Instance(settings=settings, folder_name=folder_name)
+
+    instance = Instance(settings, folder_name)
 
     # run stage_1
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
@@ -57,23 +57,29 @@ def run_two_stage(settings_file_path, folder_name, output_folder=None, similarit
     if not heuristic_1.stage_1_feasible:
         plot.objective_value_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
         plot.operator_weight_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
+        plot.temperature_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
+
         return write_output_instance(heuristic_1, feasible=False)
 
     else:
         # run stage 2
         # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
         if not similarity:
-            heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
+            heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings,
+                                                                     previous_solution=stage_1_solution)
         else:
             heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings,
-                                                                     previous_solution=stage_1_solution)
+                                                      previous_solution=stage_1_solution)
         plot.objective_value_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
         plot.operator_weight_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
+        plot.temperature_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
 
         return write_output_instance(heuristic_2, feasible=True)
 
+
 def run_multiple_files(file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
-                       settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json", similarity=False):
+                       settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json",
+                       similarity=False):
     output_folder = create_output_folder()
     output = {}
     folders_list = os.listdir(file_path)
@@ -81,57 +87,18 @@ def run_multiple_files(file_path="C:/Master_thesis/Code/Metaheuristic/Input/sces
         folders_list = keep_files_with_8_weeks(folders_list)
 
     for folder_name in [folders_list[0]]:
-        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name, output_folder=output_folder, similarity=similarity)
+        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name, output_folder=output_folder,
+                                            similarity=similarity)
 
     output['totals'] = collect_total_output(output)
 
     # save json in output folder
     create_json(output_folder, output)
 
-def run_parameter_tuning_random(number_of_instances, week_range=(4, 10), nurse_range=(30, 80),
-                                similarity=False,
-                                file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
-                                settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/tuning_settings.json"):
-    output_folder = create_output_folder()
-    output = {}
-    folders_list = os.listdir(file_path)
-    # make selection of folders
-    folders_list = keep_files_within_selection(folders_list, week_range, nurse_range)
-
-    for i in range(0, number_of_instances):
-        folder_name = get_random_folder(folders_list, file_path)
-        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name, output_folder=output_folder, similarity=similarity)
-
-    output['totals'] = collect_total_output(output)
-
-    # save json in output folder
-    create_json(output_folder, output)
-    return output
-
-def pick_random_weeks(file_path, instance_folder):
-    num_week_files = len(os.listdir(file_path + "/" + instance_folder)) - 4
-
-    num_weeks = int(instance_folder[5:])
-
-    return random.choices(range(0, num_week_files), k=num_weeks)
-
-def keep_files_within_selection(folders_list, week_range, nurse_range):
-    return [folder_name for folder_name in folders_list if week_range[0] <= int(folder_name[5:]) <= week_range[1]
-            and nurse_range[0] <= int(folder_name[1:4]) <= nurse_range[1]]
 
 def keep_files_with_8_weeks(folders_list):
     return [folder_name for folder_name in folders_list if folder_name[4] == '8']
 
-def transform_instance_name(instance_name, history, weeks):
-    list_of_items = [instance_name[1:4], instance_name[5:], str(history)] + [str(week) for week in weeks]
-    return "-".join(list_of_items)
-
-def get_random_folder(folders_list, file_path):
-    instance_folder = random.choice(folders_list)
-    history_file = random.choice(range(0, 2))
-    weeks = pick_random_weeks(file_path, instance_folder)
-
-    return transform_instance_name(instance_folder, history_file, weeks)
 
 def run_one_stage(settings_file_path, stage_number=2):
     settings = Settings(settings_file_path)
@@ -143,6 +110,5 @@ def run_one_stage(settings_file_path, stage_number=2):
 
     print(stage_2_solution.obj_value)
     print(stage_2_solution.violation_array)
-    print(stage_2_solution.change_counters)
-
+    print(heuristic_2.n_iter)
     return stage_2_solution

@@ -46,8 +46,10 @@ class Instance:
         self.history_data = self.simplify_history_data()
 
         # get reference period
-
-        self.ref_assignments = self.prev_solution_to_ref_assignments()
+        if not settings.tuning:
+             self.ref_assignments = self.prev_solution_to_ref_assignments()
+        else:
+            self.ref_assignments = None
 
         # get history data per employee
         if not self.similarity:

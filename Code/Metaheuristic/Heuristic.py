@@ -109,8 +109,8 @@ class Heuristic:
                     break
                 # print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
 
-                if operator_name == "change":
-                    change_counters = self.update_change_counter(change_counters, operator_info)
+                # if operator_name == "change":
+                #     change_counters = self.update_change_counter(change_counters, operator_info)
                 no_improve_iter += 1
                 if operator_info['cost_increment'] <= 0:
                     # update solutions accordingly
@@ -144,17 +144,17 @@ class Heuristic:
                 #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
                 # if "S2ShiftMax" in current_solution.rules:
                 #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, operator_info, operator_name)
-                # # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
+                # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
                 # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
                 # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
                 # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
                 # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
                 # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
 
+
                 # adjust weight
                 self.update_operator_weights(operator_name, operator_info)
 
-                previous_operator_info = operator_info
                 n_iter += 1
 
                 self.gather_plot_information(current_solution, best_solution)
@@ -180,7 +180,7 @@ class Heuristic:
 
     def stopping_criterion(self, violation_array, n_iter):
         if self.stage_number == 1:
-            return not np.array_equal(violation_array, np.zeros(2)) and n_iter < 200000
+            return not np.array_equal(violation_array, np.zeros(2)) and n_iter < 10000
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
         #             and not np.array_equal(current_solution.violation_array, np.zeros(2))
         # else:
