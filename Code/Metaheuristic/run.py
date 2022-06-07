@@ -11,7 +11,7 @@ import create_plots as plot
 import os
 import numpy as np
 import random
-from output import write_output_instance, collect_total_output, create_output_folder, create_json
+from output_files import write_output_instance, collect_total_output, create_output_folder, create_json
 
 similarity = False
 if similarity:
@@ -92,7 +92,7 @@ def run_multiple_files(file_path="C:/Master_thesis/Code/Metaheuristic/Input/sces
 
     output['totals'] = collect_total_output(output)
 
-    # save json in output folder
+    # save json in output_files folder
     create_json(output_folder, output)
 
 

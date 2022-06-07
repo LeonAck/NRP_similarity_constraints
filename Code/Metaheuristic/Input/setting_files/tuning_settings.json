@@ -11,14 +11,14 @@
      "ref_as_initial": false,
     "heuristic_settings": {
         "max_time": 5,
-        "max_iter":500,
+        "max_iter":100000,
         "initial_temp": 50,
         "final_temp": 2,
         "cut_off_ratio": 0.08,
         "cooling_rate": 0.99,
-        "no_improve_max": 250,
+        "no_improve_max": 200,
         "operators": ["swap", "change"],
-        "k_swap": 10,
+        "k_swap": 20,
         "greedy_number": 5,
         "reaction_factor": 0.9,
         "score_event_1": 33,
@@ -60,14 +60,14 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 1000,
-        "max_iter":500,
-        "initial_temp": 50,
+        "max_iter":500000,
+        "initial_temp": 22,
       "final_temp": 2,
-      "cut_off_ratio": 0.02,
+      "cut_off_ratio": 0.08,
         "cooling_rate": 0.99,
-        "no_improve_max": 100,
+        "no_improve_max": 200,
         "operators": ["swap", "change"],
-         "k_swap": 10,
+         "k_swap": 20,
       "greedy_number": 5,
         "reaction_factor": 0.9,
         "score_event_1": 33,
@@ -184,8 +184,7 @@
                        "parameter_per_employee": true,
                       "penalty": 10,
                       "parameter_1": null,
-            "swap": true}
-    },
+            "swap": true},
             "S5":{"id":  "S5",
              "is_mandatory": false,
              "is_active": true,
@@ -230,4 +229,4 @@
              "parameter_1": 2,
               "swap": true
              }}
-}
+}}

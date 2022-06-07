@@ -9,7 +9,7 @@ class Instance:
     Class to store the instance data
     """
 
-    def __init__(self, settings, folder_name="030-4-1-6-2-9-1"):
+    def __init__(self, settings, folder_name="100-8-1-2-4-7-9-3-9-2-8"):
         """initialize instance parameters"""
 
         self.similarity = settings.similarity

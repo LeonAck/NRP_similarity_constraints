@@ -1,23 +1,18 @@
 from run import run_one_stage
 from Input.load_instances import getListOfDirs
 settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
-from Invoke.Operators.swap_operator import check_one_way_swap, get_feasible_swap
-from copy import deepcopy
 import cProfile
-from Domain.settings import Settings
-from Domain.scenario import Scenario
 from Invoke.Initial_solution.initial_solution import BuildSolution
-from Check.check_function_feasibility import FeasibilityCheck
-from Heuristic import Heuristic
 from Input.input_NRC import Instance
-from run import run_two_stage, run_stage, run_multiple_files
-import marshal, pickle
 import create_plots as plot
 from tuning import run_parameter_tuning_random
 
 similarity = False
+tuning = True
 if similarity:
     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json"
+elif tuning:
+    settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/tuning_settings.json"
 else:
     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 # cProfile.run("run_two_stage(settings_file_path)", sort=1)
@@ -29,4 +24,4 @@ else:
 
 # run_one_stage(settings_file_path, stage_number=2)
 # cProfile.run("run_multiple_files('C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path=settings_file_path, similarity=similarity)", sort=1)
-run_parameter_tuning_random(number_of_instances=3)
+run_parameter_tuning_random(number_of_instances=15)
