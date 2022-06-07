@@ -1,5 +1,4 @@
 from run import run_one_stage
-from Input.prepare_input import getListOfDirs
 settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 import cProfile
 
@@ -14,6 +13,6 @@ elif tuning:
 else:
     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 
-run_one_stage(settings_file_path, stage_number=2)
+# run_one_stage(settings_file_path, stage_number=2)
 # cProfile.run("run_multiple_files('C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path=settings_file_path, similarity=similarity)", sort=1)
-# run_parameter_tuning_random(number_of_instances=15)
+run_parameter_tuning_random(number_of_instances=15)

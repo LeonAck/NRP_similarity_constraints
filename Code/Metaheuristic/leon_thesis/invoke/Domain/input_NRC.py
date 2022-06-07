@@ -1,7 +1,3 @@
-import json
-import os
-from copy import copy
-import numpy as np
 
 
 class Instance:
@@ -33,7 +29,7 @@ class Instance:
         self.scenario_data = input_json['scenario_data']
         self.weeks_data = input_json['weeks_data']
         self.skills = self.scenario_data['skills']
-
+        self.weeks = input_json['weeks']
         # simplify notation
         self.simplify_week_data()
         self.simplify_scenario_data()

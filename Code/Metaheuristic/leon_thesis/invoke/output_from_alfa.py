@@ -1,8 +1,6 @@
+
 def create_output_dict(instance_name, heuristic_1, heuristic_2=None):
-    output_dict = {"instance_name": instance_name,
-                  "stage_1": {},
-                   "stage_2": {}
-    }
+    output_dict = {"instance_name": instance_name}
 
     output_dict["stage_1"] = {"iterations": heuristic_1.n_iter,
                               "run_time": heuristic_1.run_time,
