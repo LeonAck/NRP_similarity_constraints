@@ -10,14 +10,16 @@ import Output.create_plots as plot
 import os
 import json
 from Output.output import write_output_instance, collect_total_output, create_output_folder, create_json
+from leon_thesis.invoke.output_from_alfa import create_output_dict
 
-similarity = False
-if similarity:
-    settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_similarity.json"
-else:
-    settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 
-two_stage = True
+# similarity = False
+# if similarity:
+#     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_similarity.json"
+# else:
+#     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
+#
+# two_stage = True
 
 
 def run_stage(instance, stage_settings, previous_solution=None):
@@ -76,6 +78,35 @@ def run_two_stage(settings_file_path, folder_name, output_folder=None, similarit
         plot.temperature_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
 
         return write_output_instance(heuristic_2, feasible=True)
+
+
+def run_two_stage_one_input_one_output(input_dict):
+    """
+    Function to execute heuristic
+    """
+
+    settings = Settings(input_dict['settings'])
+
+    instance = Instance(settings, input_dict)
+
+    # run stage_1
+    heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
+    # check if first stage feasible
+
+    if heuristic_1.stage_1_feasible:
+        # run stage 2
+        if not settings.similarity:
+            heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings,
+                                                                     previous_solution=stage_1_solution)
+        else:
+            heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings,
+                                                      previous_solution=stage_1_solution)
+
+    else:
+        heuristic_2 = None
+
+    output_dict = create_output_dict(instance.instance_name, heuristic_1, heuristic_2)
+    return output_dict
 
 
 def run_multiple_files(file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",

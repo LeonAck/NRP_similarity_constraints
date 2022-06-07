@@ -23,7 +23,4 @@ class Settings:
         # load stage_2_settings
         self.stage_2_settings = settings_json['stage_2_settings']
 
-        # tuning
-        if param:
-            self.stage_1_settings['heuristic_settings']['initial_temp'] = param
-            self.stage_2_settings['heuristic_settings']['initial_temp'] = param
+

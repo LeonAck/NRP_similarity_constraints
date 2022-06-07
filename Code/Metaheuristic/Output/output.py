@@ -21,10 +21,10 @@ def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None)
 
 def collect_total_output(output):
     total_output = {}
-    total_output['avg_feasible'] = mean([instance['feasible'] for instance in output.values()])
-    total_output['avg_run_time'] = mean([instance['run_time'] for instance in output.values() if instance['feasible']])
-    total_output['avg_iterations'] = mean([instance['iterations'] for instance in output.values() if instance['feasible']])
-    total_output['avg_obj_value'] = mean([instance['best_solution'] for instance in output.values() if instance['feasible']])
+    total_output['avg_feasible'] = mean([instance["stage_1"]['feasible'] for instance in output.values()])
+    total_output['avg_run_time'] = mean([instance['stage_2']['run_time'] for instance in output.values() if instance["stage_1"]['feasible']])
+    total_output['avg_iterations'] = mean([instance['stage_2']['iterations'] for instance in output.values() if instance['feasible']])
+    total_output['avg_obj_value'] = mean([instance['stage_2']['best_solution'] for instance in output.values() if instance['feasible']])
     # total_output['avg_violations'] = mean_violation_array(list(output_files.values())[0]['violations_array'], output_files)
     return total_output
 

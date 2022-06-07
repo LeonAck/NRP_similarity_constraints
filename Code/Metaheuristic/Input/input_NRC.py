@@ -9,28 +9,29 @@ class Instance:
     Class to store the instance data
     """
 
-    def __init__(self, settings, folder_name="100-8-1-2-4-7-9-3-9-2-8"):
+    def __init__(self, settings, input_json):
         """initialize instance parameters"""
+
+        # TODO put text to take in json
 
         self.similarity = settings.similarity
 
-        # information for loading instance
-        self.path = settings.path
-        self.solution_path = settings.solution_path
-
-        self.folder_name = folder_name
-        self.instance_name = self.deduce_folder_name()
-        self.history_file = int(self.folder_name[6])
-        self.weeks = self.get_weeks_from_folder_name()
+        # # information for loading instance
+        # self.path = settings.path
+        # self.solution_path = settings.solution_path
+        #
+        # self.folder_name = folder_name
+        # self.instance_name = self.deduce_folder_name()
+        # self.history_file = int(self.folder_name[6])
+        # self.weeks = self.get_weeks_from_folder_name()
 
         # scenario information
-        self.problem_horizon = self.set_problem_horizon()
-
-        # create dict to store json files
-        self.history_data = dict()
-        self.scenario_data = dict()
-        self.weeks_data = dict()
-        self.load_instance()
+        self.problem_horizon = len(input_json['weeks'])
+        self.instance_name = input_json['instance_name']
+        # # create dict to store json files
+        self.history_data = input_json['history_data']
+        self.scenario_data = input_json['scenario_data']
+        self.weeks_data = input_json['weeks_data']
         self.skills = self.scenario_data['skills']
 
         # simplify notation
@@ -38,11 +39,13 @@ class Instance:
         self.simplify_scenario_data()
         self.history_data = self.simplify_history_data()
 
-        # get reference period
-        if not settings.tuning:
-             self.ref_assignments = self.prev_solution_to_ref_assignments()
-        else:
-            self.ref_assignments = None
+        self.ref_assignments = input_json['ref_assignments']
+
+        # # get reference period
+        # if not settings.tuning:
+        #      self.ref_assignments = self.prev_solution_to_ref_assignments()
+        # else:
+        #     self.ref_assignments = None
 
         # get history data per employee
         if not self.similarity:
@@ -113,114 +116,114 @@ class Instance:
         """
         return int(self.instance_name[1:4])
 
-    def set_problem_horizon(self):
-        """
-        Function to get number of weeks from instance string
-        :return:
-        number of weeks (int)
-        """
-        return len(self.weeks)
+    # def set_problem_horizon(self):
+    #     """
+    #     Function to get number of weeks from instance string
+    #     :return:
+    #     number of weeks (int)
+    #     """
+    #     return len(self.weeks)
 
-    def instance_to_path(self):
-        """
-        Function to create a path from the name of the instance
-        :return:
-        string stating the path of the folder
-        """
-        return self.path + "/{}".format(self.instance_name)
+    # def instance_to_path(self):
+    #     """
+    #     Function to create a path from the name of the instance
+    #     :return:
+    #     string stating the path of the folder
+    #     """
+    #     return self.path + "/{}".format(self.instance_name)
 
-    def get_json_files(self, path_to_json):
-        """Function to get list of json files in folder
-        :return:
-        list of json files
-        """
-
-        return [pos_json.removesuffix(".json") for pos_json
-                in os.listdir(path_to_json) if pos_json.endswith('.json')]
-
-    def load_json_file(self, file_path):
-        """
-        Function to load json file
-        :param file_path:
-        :return:
-        json_file in dictionary format
-        """
-        f = open(file_path)
-        json_value = json.load(f)
-
-        return json_value
-
-    def get_history_file(self, list_of_files):
-        """
-        Function to get name of right history file
-        """
-        return [file for file in list_of_files if file.startswith("H0")
-                and file.endswith(str(self.history_file))]
-
-    def get_scenario_file(self, list_of_files):
-        """
-        Function to get scenario file
-        """
-        scenario_file = [file for file in list_of_files if file.startswith("Sc")]
-
-        if not scenario_file:
-            raise Exception("Folder does not contain a scenario file")
-
-        else:
-            return scenario_file
-
-    def get_week_files(self, list_of_files):
-        """
-        Function to get selection of week files chosen in settings
-        """
-        # TODO must still add way to keep the order of the week files
-        weeks_strings = ["-" + str(i) for i in self.weeks]
-        week_files = []
-        for string in weeks_strings:
-            for file in list_of_files:
-                if file.startswith("WD") \
-                        and file.endswith(string):
-                    week_files.append(file)
-        return week_files
+    # def get_json_files(self, path_to_json):
+    #     """Function to get list of json files in folder
+    #     :return:
+    #     list of json files
+    #     """
+    #
+    #     return [pos_json.removesuffix(".json") for pos_json
+    #             in os.listdir(path_to_json) if pos_json.endswith('.json')]
+    #
+    # def load_json_file(self, file_path):
+    #     """
+    #     Function to load json file
+    #     :param file_path:
+    #     :return:
+    #     json_file in dictionary format
+    #     """
+    #     f = open(file_path)
+    #     json_value = json.load(f)
+    #
+    #     return json_value
+    #
+    # def get_history_file(self, list_of_files):
+    #     """
+    #     Function to get name of right history file
+    #     """
+    #     return [file for file in list_of_files if file.startswith("H0")
+    #             and file.endswith(str(self.history_file))]
+    #
+    # def get_scenario_file(self, list_of_files):
+    #     """
+    #     Function to get scenario file
+    #     """
+    #     scenario_file = [file for file in list_of_files if file.startswith("Sc")]
+    #
+    #     if not scenario_file:
+    #         raise Exception("Folder does not contain a scenario file")
+    #
+    #     else:
+    #         return scenario_file
+    #
+    # def get_week_files(self, list_of_files):
+    #     """
+    #     Function to get selection of week files chosen in settings
+    #     """
+    #     # TODO must still add way to keep the order of the week files
+    #     weeks_strings = ["-" + str(i) for i in self.weeks]
+    #     week_files = []
+    #     for string in weeks_strings:
+    #         for file in list_of_files:
+    #             if file.startswith("WD") \
+    #                     and file.endswith(string):
+    #                 week_files.append(file)
+    #     return week_files
 
     def load_files(self, list_of_files):
         """
         Function to load files into dict
         """
 
-    def load_instance(self):
-        """
-        Function to load instances and save into dicitonary
-        :return:
-        dictionary with files
-        keys as filenames and value are dictionaries
-        """
-
-        # get list of json files
-        path_to_json = self.instance_to_path()
-
-        all_json_files = self.get_json_files(path_to_json)
-
-        for file in self.get_history_file(all_json_files):
-            # create path for each json file
-            file_path = path_to_json + "/{}".format(file + ".json")
-
-            # add json file to dictionary
-            self.history_data = self.load_json_file(file_path)
-
-        for file in self.get_scenario_file(all_json_files):
-            # create path for each json file
-            file_path = path_to_json + "/{}".format(file + ".json")
-
-            # add json file to dictionary
-            self.scenario_data = self.load_json_file(file_path)
-
-        for file in self.get_week_files(all_json_files):
-            # create path for each json file
-            file_path = path_to_json + "/{}".format(file + ".json")
-
-            # add json file to dictionary
-            self.weeks_data[file] = self.load_json_file(file_path)
+    # def load_instance(self):
+    #     """
+    #     Function to load instances and save into dicitonary
+    #     :return:
+    #     dictionary with files
+    #     keys as filenames and value are dictionaries
+    #     """
+    #
+    #     # get list of json files
+    #     path_to_json = self.instance_to_path()
+    #
+    #     all_json_files = self.get_json_files(path_to_json)
+    #
+    #     for file in self.get_history_file(all_json_files):
+    #         # create path for each json file
+    #         file_path = path_to_json + "/{}".format(file + ".json")
+    #
+    #         # add json file to dictionary
+    #         self.history_data = self.load_json_file(file_path)
+    #
+    #     for file in self.get_scenario_file(all_json_files):
+    #         # create path for each json file
+    #         file_path = path_to_json + "/{}".format(file + ".json")
+    #
+    #         # add json file to dictionary
+    #         self.scenario_data = self.load_json_file(file_path)
+    #
+    #     for file in self.get_week_files(all_json_files):
+    #         # create path for each json file
+    #         file_path = path_to_json + "/{}".format(file + ".json")
+    #
+    #         # add json file to dictionary
+    #         self.weeks_data[file] = self.load_json_file(file_path)
 
     def abbreviate_skills(self, skill_string):
         """
@@ -376,43 +379,37 @@ class Instance:
                in self.scenario_data['forbiddenShiftTypeSuccessions']
                ]
 
-    def deduce_folder_name(self):
-        num_nurses = self.folder_name[0:3]
-        num_weeks = self.folder_name[4]
+    # def deduce_folder_name(self):
+    #     num_nurses = self.folder_name[0:3]
+    #     num_weeks = self.folder_name[4]
+    #
+    #     return "n{}w{}".format(num_nurses, num_weeks)
 
-        return "n{}w{}".format(num_nurses, num_weeks)
+    # def prev_solution_to_ref_assignments(self):
+    #     solution_path = self.solution_path + "/{}/solution.txt".format(self.folder_name)
+    #     # create object for ref_assignments
+    #     ref_assignments = {}
+    #     for nurse in self.scenario_data['nurses']:
+    #         ref_assignments[nurse['id']] = np.full((len(self.weeks) * 7, 2), -1, dtype=int)
+    #
+    #     with open(solution_path, "rb") as s_file:
+    #         lines = s_file.readlines()
+    #     for line in lines[1:-4]:
+    #         split_line = self.prepare_line_for_assignment(line)
+    #         if split_line[1] <= 27:
+    #             ref_assignments[split_line[0]][split_line[1]] = np.array([split_line[2], split_line[3]])
+    #     return ref_assignments
 
-    def prev_solution_to_ref_assignments(self):
-        solution_path = self.solution_path + "/{}/solution.txt".format(self.folder_name)
-        # create object for ref_assignments
-        ref_assignments = {}
-        for nurse in self.scenario_data['nurses']:
-            ref_assignments[nurse['id']] = np.full((len(self.weeks) * 7, 2), -1, dtype=int)
 
-        with open(solution_path, "rb") as s_file:
-            lines = s_file.readlines()
-        for line in lines[1:-4]:
-            split_line = self.prepare_line_for_assignment(line)
-            if split_line[1] <= 27:
-                ref_assignments[split_line[0]][split_line[1]] = np.array([split_line[2], split_line[3]])
-        return ref_assignments
 
-    def prepare_line_for_assignment(self, line):
-        split_line = str(line).split(" ")
-        split_line[0] = split_line[0][2:]
-        split_line[1] = int(split_line[1][:-4])
-        split_line[2] = self.get_index_of_shift_type(split_line[2])
-        split_line[3] = self.get_index_of_skill_type(split_line[3][:-5])
-        return split_line
-
-    def get_weeks_from_folder_name(self):
-        folder_name = copy(self.folder_name)
-        week_string = folder_name[7:]
-        weeks = []
-        while len(week_string) > 0:
-            weeks.append(int(week_string[1]))
-            week_string = week_string[2:]
-        return weeks[4:] if self.similarity else weeks
+    # def get_weeks_from_folder_name(self):
+    #     folder_name = copy(self.folder_name)
+    #     week_string = folder_name[7:]
+    #     weeks = []
+    #     while len(week_string) > 0:
+    #         weeks.append(int(week_string[1]))
+    #         week_string = week_string[2:]
+    #     return weeks[4:] if self.similarity else weeks
 
     def get_history_from_reference(self):
         # historical_work_stretch
@@ -465,7 +462,7 @@ class Instance:
 
         return historical_work_stretch, last_assigned_shift, historical_shift_stretch, historical_off_stretch
 
-    def transform_instance_name(self):
-        list_of_items = [self.instance_name[1:4], self.instance_name[5:], str(self.history_file)] + [str(week) for week in self.weeks]
-        return "-".join(list_of_items)
+    # def transform_instance_name(self):
+    #     list_of_items = [self.instance_name[1:4], self.instance_name[5:], str(self.history_file)] + [str(week) for week in self.weeks]
+    #     return "-".join(list_of_items)
 

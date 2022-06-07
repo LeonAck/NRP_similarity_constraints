@@ -1,14 +1,15 @@
-from run import run_two_stage
+from run import run_two_stage, run_two_stage_one_input_one_output
 from Output.output import create_json, collect_total_output, create_date_time_for_folder, write_output_instance
 from leon_thesis.invoke.Domain.settings import Settings
 from Input.input_NRC import Instance
+from Input.prepare_input import folder_to_json
 from run import run_stage
 import Output.create_plots as plot
 import os
 import random
 
 
-def run_parameter_tuning_random(number_of_instances, params=18,
+def run_parameter_tuning_random(number_of_instances, params=(18, 24), param_to_change="initial_temp",
                                 week_range=(4, 10), nurse_range=(30, 120),
                                 similarity=False,
                                 file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
@@ -23,14 +24,17 @@ def run_parameter_tuning_random(number_of_instances, params=18,
     for i in range(0, number_of_instances):
         tuning_list.append(get_random_folder(folders_list, file_path))
 
-    for param in [params]:
+    for param in params:
         output_folder = "tuning/" + tuning_folder + "/" + str(param)
         create_output_folder_no_date("C:/Master_thesis/Code/Metaheuristic/output_files/tuning/" + tuning_folder + "/" + str(param))
         output = {}
+        # TODO parallel
+
         for folder_name in tuning_list:
-            output[folder_name] = run_two_stage_tuning(settings_file_path,
-                                                       folder_name=folder_name,  output_folder=output_folder,
-                                                 similarity=similarity, param=param)
+            input_dict = folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)
+            output[folder_name] = run_two_stage_one_input_one_output(input_dict)
+
+        plot.all_plots(output, output_folder, input_dict)
 
         output['totals'] = collect_total_output(output)
 
