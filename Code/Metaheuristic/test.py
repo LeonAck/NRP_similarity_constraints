@@ -1,5 +1,5 @@
 from run import run_one_stage
-from Input.load_instances import getListOfDirs
+from Input.prepare_input import getListOfDirs
 settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 import cProfile
 

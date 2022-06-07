@@ -23,14 +23,7 @@ class Instance:
         self.history_file = int(self.folder_name[6])
         self.weeks = self.get_weeks_from_folder_name()
 
-        # else:
-        #     self.instance_name = instance_info['name']
-        #     self.history_file = instance_info['history']
-        #     self.weeks = instance_info['weeks']
-        #     self.folder_name = self.transform_instance_name()
-
         # scenario information
-        self.problem_size = self.set_problem_size()
         self.problem_horizon = self.set_problem_horizon()
 
         # create dict to store json files
@@ -228,8 +221,6 @@ class Instance:
 
             # add json file to dictionary
             self.weeks_data[file] = self.load_json_file(file_path)
-
-        return None
 
     def abbreviate_skills(self, skill_string):
         """

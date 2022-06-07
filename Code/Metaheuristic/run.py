@@ -3,12 +3,12 @@ import cProfile
 from leon_thesis.invoke.Domain.settings import Settings
 from leon_thesis.invoke.Domain.scenario import Scenario
 from leon_thesis.invoke.Solutions.initial_solution import BuildSolution
-from leon_thesis.invoke.Check.check_function_feasibility import FeasibilityCheck
 from leon_thesis.invoke.Solutions.end_solution import EndSolution
 from leon_thesis.invoke.Heuristic import Heuristic
 from Input.input_NRC import Instance
 import Output.create_plots as plot
 import os
+import json
 from Output.output import write_output_instance, collect_total_output, create_output_folder, create_json
 
 similarity = False
@@ -45,7 +45,10 @@ def run_two_stage(settings_file_path, folder_name, output_folder=None, similarit
     """
     Function to execute heuristic
     """
-    settings = Settings(settings_file_path)
+    f = open(settings_file_path)
+    settings_json = json.load(f)
+
+    settings = Settings(settings_json)
 
     instance = Instance(settings, folder_name)
 
