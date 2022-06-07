@@ -1,2 +1,2 @@
-from Invoke.Initial_solution.initial_solution import BuildSolution
-from Invoke.Initial_solution.end_solution import EndSolution
+from leon_thesis.invoke.Solutions.initial_solution import BuildSolution
+from leon_thesis.invoke.Solutions.end_solution import EndSolution

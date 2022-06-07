@@ -1,4 +1,4 @@
-from leon_thesis.invoke.Constraints.initialize_rules import Rule
+from leon_thesis.invoke.Domain.RuleCollection import Rule
 from general_functions import check_if_working_day
 
 class RuleS5(Rule):

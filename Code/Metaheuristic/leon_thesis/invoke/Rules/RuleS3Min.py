@@ -1,5 +1,5 @@
-from leon_thesis.invoke.Constraints.initialize_rules import Rule
-from leon_thesis.invoke.Constraints.Rules.RuleS2Min import RuleS2Min
+from leon_thesis.invoke.Domain.RuleCollection import Rule
+from leon_thesis.invoke.Rules.RuleS2Min import RuleS2Min
 import numpy as np
 
 class RuleS3Min(Rule):

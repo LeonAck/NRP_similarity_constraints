@@ -1,10 +1,10 @@
 import numpy as np
-from Domain.employee import EmployeeCollection
-from Domain.skills import SkillCollection
-from Domain.skill_set import SkillSetCollection
-from Domain.shifts import ShiftTypeCollection
-from leon_thesis.invoke.Constraints import RuleCollection
-from Domain.days import DayCollection
+from leon_thesis.invoke.Domain.employee import EmployeeCollection
+from leon_thesis.invoke.Domain.skills import SkillCollection
+from leon_thesis.invoke.Domain.skill_set import SkillSetCollection
+from leon_thesis.invoke.Domain.shifts import ShiftTypeCollection
+from leon_thesis.invoke.Domain.RuleCollection import RuleCollection
+from leon_thesis.invoke.Domain.days import DayCollection
 import pickle
 
 class Scenario:

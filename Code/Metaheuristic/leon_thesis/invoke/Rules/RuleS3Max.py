@@ -1,5 +1,5 @@
-from leon_thesis.invoke.Constraints.initialize_rules import Rule
-from leon_thesis.invoke.Constraints.Rules.RuleS2Max import RuleS2Max
+from leon_thesis.invoke.Domain.RuleCollection import Rule
+from leon_thesis.invoke.Rules.RuleS2Max import RuleS2Max
 import numpy as np
 
 

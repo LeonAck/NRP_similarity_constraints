@@ -1,4 +1,4 @@
-from leon_thesis.invoke.Constraints.initialize_rules import Rule
+from leon_thesis.invoke.Domain.RuleCollection import Rule
 import numpy as np
 
 class RuleS8RefShift(Rule):

@@ -1,4 +1,4 @@
-from leon_thesis.invoke.Operators import get_feasible_change, calc_new_costs_after_change
+from leon_thesis.invoke.Operators.change_operator import get_feasible_change, calc_new_costs_after_change
 
 def greedy_change(solution, scenario):
     """

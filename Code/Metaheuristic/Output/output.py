@@ -4,7 +4,7 @@ import numpy as np
 import json
 from statistics import mean
 from collections import Counter
-os.chdir("/output_files")
+# os.chdir("/output_files")
 
 def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None):
     """

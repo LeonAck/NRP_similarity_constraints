@@ -3,7 +3,7 @@ import random
 import numpy as np
 from leon_thesis.invoke.Operators import change_operator, swap_operator, greedy_change, similarity_operator
 
-from solution import Solution
+from leon_thesis.invoke.Solutions.solution import Solution
 from copy import deepcopy
 
 

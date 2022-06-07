@@ -1,9 +1,9 @@
 from run import run_two_stage
-from output_files import create_json, collect_total_output, create_date_time_for_folder, write_output_instance
-from Domain.settings import Settings
+from Output.output import create_json, collect_total_output, create_date_time_for_folder, write_output_instance
+from leon_thesis.invoke.Domain.settings import Settings
 from Input.input_NRC import Instance
 from run import run_stage
-import create_plots as plot
+import Output.create_plots as plot
 import os
 import random
 

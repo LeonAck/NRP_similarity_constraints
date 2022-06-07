@@ -1,5 +1,5 @@
-from Domain.employee import EmployeeCollection
-from leon_thesis.invoke.Constraints import Rules
+from leon_thesis.invoke.Domain.employee import EmployeeCollection
+from leon_thesis.invoke import Rules
 import numpy as np
 
 

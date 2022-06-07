@@ -1,5 +1,5 @@
 import numpy as np
-from leon_thesis.invoke.Constraints.Rules import RuleS8RefSkill, RuleS8RefDay, RuleS8RefShift
+from leon_thesis.invoke.Rules import RuleS8RefSkill, RuleS8RefDay, RuleS8RefShift
 from copy import copy
 class EndSolution:
     """

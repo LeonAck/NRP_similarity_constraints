@@ -1,17 +1,15 @@
 from copy import deepcopy
 import cProfile
-from Domain.settings import Settings
-from Domain.scenario import Scenario
-from Invoke.Initial_solution.initial_solution import BuildSolution
-from Check.check_function_feasibility import FeasibilityCheck
-from Invoke.Initial_solution.end_solution import EndSolution
-from Heuristic import Heuristic
+from leon_thesis.invoke.Domain.settings import Settings
+from leon_thesis.invoke.Domain.scenario import Scenario
+from leon_thesis.invoke.Solutions.initial_solution import BuildSolution
+from leon_thesis.invoke.Check.check_function_feasibility import FeasibilityCheck
+from leon_thesis.invoke.Solutions.end_solution import EndSolution
+from leon_thesis.invoke.Heuristic import Heuristic
 from Input.input_NRC import Instance
-import create_plots as plot
+import Output.create_plots as plot
 import os
-import numpy as np
-import random
-from output_files import write_output_instance, collect_total_output, create_output_folder, create_json
+from Output.output import write_output_instance, collect_total_output, create_output_folder, create_json
 
 similarity = False
 if similarity:
