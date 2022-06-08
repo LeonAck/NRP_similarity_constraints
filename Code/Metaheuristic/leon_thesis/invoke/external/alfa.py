@@ -7,7 +7,7 @@ from copy import deepcopy
 
 
 def execute_heuristic(problem, algorithm_id="fde9e297-7579-4ac3-ab2a-078fb74e4040",
-                      environment="9ffa1185-654c-4ce9-b9fa-1929ad8bc318:fde9e297-7579-4ac3-ab2a-078fb74e4040:thesis_env"):
+                      environment="thesis_env"):
     session = Session()
     result = session.invoke_algorithm(
         algorithm_id,

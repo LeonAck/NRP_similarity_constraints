@@ -1,10 +1,10 @@
 import numpy as np
-from leon_thesis.invoke.Domain.employee import EmployeeCollection
-from leon_thesis.invoke.Domain.skills import SkillCollection
-from leon_thesis.invoke.Domain.skill_set import SkillSetCollection
-from leon_thesis.invoke.Domain.shifts import ShiftTypeCollection
-from leon_thesis.invoke.Domain.RuleCollection import RuleCollection
-from leon_thesis.invoke.Domain.days import DayCollection
+from invoke.Domain.employee import EmployeeCollection
+from invoke.Domain.skills import SkillCollection
+from invoke.Domain.skill_set import SkillSetCollection
+from invoke.Domain.shifts import ShiftTypeCollection
+from invoke.Domain.RuleCollection import RuleCollection
+from invoke.Domain.days import DayCollection
 
 
 class Scenario:

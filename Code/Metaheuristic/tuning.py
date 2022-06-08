@@ -30,21 +30,23 @@ def run_parameter_tuning_random(number_of_instances, params=(18, 24), param_to_c
         output_folder = "tuning/" + tuning_folder + "/" + str(param)
         create_output_folder_no_date("C:/Master_thesis/Code/Metaheuristic/output_files/tuning/" + tuning_folder + "/" + str(param))
         output = {}
-
+        input_dicts = []
+        for folder_name in tuning_list:
+            input_dicts.append([folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)])
         # TODO parallel
-        # arguments = [[folder_name, output_folder, param] for folder_name in folder_list]
-        # results = parallel(run_two_stage_one_input_one_output, arguments, max_workers=2)
+        # arguments = [[input_dict, param] for input_dict in input_dicts]
+        # results = parallel(run, input_dicts, max_workers=5)
         # results = {key: value for key, value in results}
 
 
         for folder_name in tuning_list:
             input_dict = folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)
-
+        #
             output = execute_heuristic(input_dict)
-            # output[folder_name] = run_two_stage_one_input_one_output(input_dict)
-            print("hi")
+            # output[folder_name] = run(input_dict)
+        #     print("hi")
 
-        plot.all_plots(output, output_folder, input_dict)
+        # plot.all_plots(output, output_folder, input_dict)
 
         output['totals'] = collect_total_output(output)
 
