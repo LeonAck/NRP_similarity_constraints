@@ -8,7 +8,7 @@ functions:
     provider:
       architecture: serverless
       runtime: python
-      timeout: 800
+      timeout: 30
       instance:
         memory: 256
     function:

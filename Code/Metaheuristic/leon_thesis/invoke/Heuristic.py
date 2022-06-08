@@ -219,17 +219,17 @@ class Heuristic:
         # )
         self.temperature *= self.cooling_rate
 
-    def update_frequency_operator(self, operator_name):
-        """
-        Add 1 to the frequency of the operator used if the operator is chosen
-        """
-
-        try:
-            # if operator was used before add 1 to its frequency
-            self.frequency_operator[operator_name] += 1
-        except KeyError:
-            # if not, now it is used for the first time
-            self.frequency_operator[operator_name] = 1
+    # def update_frequency_operator(self, operator_name):
+    #     """
+    #     Add 1 to the frequency of the operator used if the operator is chosen
+    #     """
+    #
+    #     try:
+    #         # if operator was used before add 1 to its frequency
+    #         self.frequency_operator[operator_name] += 1
+    #     except KeyError:
+    #         # if not, now it is used for the first time
+    #         self.frequency_operator[operator_name] = 1
 
     def update_frequency_operator_improvement(self, operator_name, operator_info):
         if operator_info['cost_increment'] < 0:
