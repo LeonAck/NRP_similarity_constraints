@@ -1,4 +1,4 @@
-from leon_thesis.invoke.Operators.change_operator import calc_new_costs_after_change, \
+from invoke.Operators.change_operator import calc_new_costs_after_change, \
     remove_infeasible_days_understaffing, get_allowed_s_type, \
     fill_change_info_curr_ass
 import random

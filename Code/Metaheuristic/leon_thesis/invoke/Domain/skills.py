@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class SkillCollection:
     """
     Class to collect the skills in the scenario

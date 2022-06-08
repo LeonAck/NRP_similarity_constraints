@@ -60,7 +60,7 @@ class Instance:
     def collect_employee_preferences(self):
         employee_preferences = {}
 
-        for i, value in enumerate(self.weeks_data.values()):
+        for i, value in enumerate(self.weeks_data):
             for shift_off_request in value["shiftOffRequests"]:
                 if shift_off_request['nurse'] in employee_preferences:
 
@@ -276,7 +276,7 @@ class Instance:
         # Monday --> 0
         # Tuesday --> 1
         # etc.
-        for value in self.weeks_data.values():
+        for value in self.weeks_data:
             for requirements in value['requirements']:
                 translate_req = {}
                 for key in requirements.keys():
@@ -302,7 +302,7 @@ class Instance:
         """
         Abbreviate shift type and skills in week data dicts
         """
-        for value in self.weeks_data.values():
+        for value in self.weeks_data:
             for requirements in value['requirements']:
                 for key, value in requirements.items():
                     if key == 'shiftType':
@@ -323,15 +323,15 @@ class Instance:
         Function to simplify scenario
         """
 
-        # change week key into integer
-        translate = {}
-        # save new keys
-        for key in self.weeks_data.keys():
-            translate[key] = self.simplify_week_key(key)
-
-        # replace old keys by new keys
-        for old, new in translate.items():
-            self.weeks_data[new] = self.weeks_data.pop(old)
+        # # change week key into integer
+        # translate = {}
+        # # save new keys
+        # for key in self.weeks_data.keys():
+        #     translate[key] = self.simplify_week_key(key)
+        #
+        # # replace old keys by new keys
+        # for old, new in translate.items():
+        #     self.weeks_data[new] = self.weeks_data.pop(old)
 
         # changes keys of weekly requirements
         self.requirement_key_to_index()

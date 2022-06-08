@@ -1,6 +1,6 @@
-from leon_thesis.invoke.Domain.RuleCollection import Rule
+from invoke.Domain.RuleCollection import Rule
 import numpy as np
-from leon_thesis.invoke.Rules.RuleS2Max import RuleS2Max
+from invoke.Rules.RuleS2Max import RuleS2Max
 
 
 class RuleS2ShiftMax(Rule):

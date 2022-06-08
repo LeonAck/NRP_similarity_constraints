@@ -1,5 +1,5 @@
-from leon_thesis.invoke.Domain.employee import EmployeeCollection
-from leon_thesis.invoke import Rules
+from invoke.Domain.employee import EmployeeCollection
+from invoke import Rules
 import numpy as np
 
 

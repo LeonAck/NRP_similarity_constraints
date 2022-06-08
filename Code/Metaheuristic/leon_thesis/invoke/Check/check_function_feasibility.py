@@ -1,9 +1,9 @@
 import numpy as np
 from deepdiff import DeepDiff
 import pprint
-from leon_thesis.invoke.Solutions.initial_solution import BuildSolution
-from leon_thesis.invoke.Rules.RuleH3 import RuleH3
-from leon_thesis.invoke.Rules import RuleS6Max
+from invoke.Solutions.initial_solution import BuildSolution
+from invoke.Rules.RuleH3 import RuleH3
+from invoke.Rules import RuleS6Max
 
 
 class FeasibilityCheck:

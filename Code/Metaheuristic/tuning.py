@@ -1,13 +1,14 @@
 from run import run_two_stage, run_two_stage_one_input_one_output
 from Output.output import create_json, collect_total_output, create_date_time_for_folder, write_output_instance
 from leon_thesis.invoke.Domain.settings import Settings
-from Input.input_NRC import Instance
+from leon_thesis.invoke.Domain.input_NRC import Instance
+from leon_thesis.invoke.utils.concurrency import parallel
 from Input.prepare_input import folder_to_json
 from run import run_stage
 import Output.create_plots as plot
 import os
 import random
-
+import json
 
 def run_parameter_tuning_random(number_of_instances, params=(18, 24), param_to_change="initial_temp",
                                 week_range=(4, 10), nurse_range=(30, 120),
@@ -28,10 +29,18 @@ def run_parameter_tuning_random(number_of_instances, params=(18, 24), param_to_c
         output_folder = "tuning/" + tuning_folder + "/" + str(param)
         create_output_folder_no_date("C:/Master_thesis/Code/Metaheuristic/output_files/tuning/" + tuning_folder + "/" + str(param))
         output = {}
+
         # TODO parallel
+        # arguments = [[folder_name, output_folder, param] for folder_name in folder_list]
+        # results = parallel(run_two_stage_one_input_one_output, arguments, max_workers=2)
+        # results = {key: value for key, value in results}
+
 
         for folder_name in tuning_list:
             input_dict = folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)
+            with open("C:/Master_thesis/Code/Metaheuristic/leon_thesis/input.json",
+                      "w") as output_obj:
+                json.dump(input_dict, output_obj)
             output[folder_name] = run_two_stage_one_input_one_output(input_dict)
 
         plot.all_plots(output, output_folder, input_dict)

@@ -1,5 +1,5 @@
-from leon_thesis.invoke.Domain.RuleCollection import Rule
-from leon_thesis.invoke.Rules.RuleS6Max import RuleS6Max
+from invoke.Domain.RuleCollection import Rule
+from invoke.Rules.RuleS6Max import RuleS6Max
 import numpy as np
 
 

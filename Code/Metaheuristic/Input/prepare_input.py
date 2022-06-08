@@ -92,14 +92,14 @@ def load_instance(path, instance_name, weeks, history_file):
     # add json file to dictionary
     scenario_data = load_json_file(file_path)
 
-    weeks_data = {}
+    weeks_data = []
 
     for file in get_week_files(all_json_files, weeks):
         # create path for each json file
         file_path = path_to_json + "/{}".format(file + ".json")
 
         # add json file to dictionary
-        weeks_data[file] = load_json_file(file_path)
+        weeks_data.append(load_json_file(file_path))
 
     return history_data, scenario_data, weeks_data
 

@@ -1,2 +1,2 @@
-from leon_thesis.invoke.Check.check_function_feasibility import FeasibilityCheck
+from invoke.Check.check_function_feasibility import FeasibilityCheck
 

@@ -1,14 +1,14 @@
 import numpy as np
-from leon_thesis.invoke.Rules.RuleS2Max import RuleS2Max
-from leon_thesis.invoke.Rules import RuleS3Max
-from leon_thesis.invoke.Rules import RuleS6Max
-from leon_thesis.invoke.Rules.RuleS2ShiftMax import RuleS2ShiftMax
-from leon_thesis.invoke.Rules import RuleS7Day
-from leon_thesis.invoke.Rules.RuleS7Shift import RuleS7Shift
-from leon_thesis.invoke.Rules.RuleS7 import RuleS7
-from leon_thesis.invoke.Rules import RuleS8RefDay
-from leon_thesis.invoke.Rules.RuleS8RefShift import RuleS8RefShift
-from leon_thesis.invoke.Rules import RuleS8RefSkill
+from invoke.Rules.RuleS2Max import RuleS2Max
+from invoke.Rules import RuleS3Max
+from invoke.Rules import RuleS6Max
+from invoke.Rules.RuleS2ShiftMax import RuleS2ShiftMax
+from invoke.Rules import RuleS7Day
+from invoke.Rules.RuleS7Shift import RuleS7Shift
+from invoke.Rules.RuleS7 import RuleS7
+from invoke.Rules import RuleS8RefDay
+from invoke.Rules.RuleS8RefShift import RuleS8RefShift
+from invoke.Rules import RuleS8RefSkill
 from copy import deepcopy, copy
 
 

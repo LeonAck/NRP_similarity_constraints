@@ -5,7 +5,7 @@ from leon_thesis.invoke.Domain.skill_set import SkillSetCollection
 from leon_thesis.invoke.Domain.shifts import ShiftTypeCollection
 from leon_thesis.invoke.Domain.RuleCollection import RuleCollection
 from leon_thesis.invoke.Domain.days import DayCollection
-import pickle
+
 
 class Scenario:
     """
@@ -177,7 +177,7 @@ class Scenario:
         s_type_indices = self.list_to_index(self.shift_collection.shift_types)
         skill_indices = self.list_to_index(self.skill_collection.skills)
 
-        for i, value in enumerate(self.weeks_data.values()):
+        for i, value in enumerate(self.weeks_data):
             for req_dict in value['requirements']:
                 for k, v in req_dict.items():
                     if k == "shiftType":
@@ -192,10 +192,10 @@ class Scenario:
 
         return request_array
 
-    def get_ref_assignments(self):
-        with open(self.stage_settings['ref_period_path'], "rb") as ref_shift_assignments_file:
-            ref_assignments = pickle.load(ref_shift_assignments_file)
-        return ref_assignments
+    # def get_ref_assignments(self):
+    #     with open(self.stage_settings['ref_period_path'], "rb") as ref_shift_assignments_file:
+    #         ref_assignments = pickle.load(ref_shift_assignments_file)
+    #     return ref_assignments
 
     def initialize_optimal_coverage(self):
         """
@@ -211,7 +211,7 @@ class Scenario:
         s_type_indices = self.list_to_index(self.shift_collection.shift_types)
         skill_indices = self.list_to_index(self.skill_collection.skills)
 
-        for i, value in enumerate(self.weeks_data.values()):
+        for i, value in enumerate(self.weeks_data):
             for req_dict in value['requirements']:
                 for k, v in req_dict.items():
                     if k == "shiftType":

@@ -1,4 +1,4 @@
-from leon_thesis.invoke.Domain.RuleCollection import Rule
+from invoke.Domain.RuleCollection import Rule
 import numpy as np
 
 class RuleH2(Rule):

@@ -1,9 +1,9 @@
 import time
 import random
 import numpy as np
-from leon_thesis.invoke.Operators import change_operator, swap_operator, greedy_change, similarity_operator
+from invoke.Operators import change_operator, swap_operator, greedy_change, similarity_operator
 
-from leon_thesis.invoke.Solutions.solution import Solution
+from invoke.Solutions.solution import Solution
 from copy import deepcopy
 
 
@@ -179,7 +179,7 @@ class Heuristic:
 
     def stopping_criterion(self, violation_array, n_iter):
         if self.stage_number == 1:
-            return not np.array_equal(violation_array, np.zeros(2)) and n_iter < 120000
+            return not np.array_equal(violation_array, np.zeros(2)) and n_iter < self.max_iter
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
         #             and not np.array_equal(current_solution.violation_array, np.zeros(2))
         # else:

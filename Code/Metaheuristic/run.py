@@ -1,11 +1,8 @@
 from copy import deepcopy
 import cProfile
 from leon_thesis.invoke.Domain.settings import Settings
-from leon_thesis.invoke.Domain.scenario import Scenario
-from leon_thesis.invoke.Solutions.initial_solution import BuildSolution
-from leon_thesis.invoke.Solutions.end_solution import EndSolution
-from leon_thesis.invoke.Heuristic import Heuristic
-from Input.input_NRC import Instance
+from leon_thesis.invoke.external.alfa import run_stage, run_stage_add_similarity
+from leon_thesis.invoke.Domain.input_NRC import Instance
 import Output.create_plots as plot
 import os
 import json
@@ -20,28 +17,6 @@ from leon_thesis.invoke.output_from_alfa import create_output_dict
 #     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 #
 # two_stage = True
-
-
-def run_stage(instance, stage_settings, previous_solution=None):
-    scenario = Scenario(stage_settings, instance)
-
-    init_solution = BuildSolution(scenario, previous_solution)
-    heuristic = Heuristic(scenario, stage_settings=stage_settings)
-    best_solution = heuristic.run_heuristic(starting_solution=deepcopy(init_solution))
-
-    return heuristic, best_solution
-
-
-def run_stage_add_similarity(instance, stage_settings, previous_solution=None):
-    scenario = Scenario(stage_settings, instance)
-
-    init_solution = BuildSolution(scenario, previous_solution)
-    heuristic = Heuristic(scenario, stage_settings=stage_settings)
-    best_solution = heuristic.run_heuristic(starting_solution=deepcopy(init_solution))
-
-    heuristic.final_violation_array = EndSolution(scenario, previous_solution=best_solution).violation_array
-    return heuristic, best_solution
-
 
 def run_two_stage(settings_file_path, folder_name, output_folder=None, similarity=False):
     """

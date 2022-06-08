@@ -1,4 +1,4 @@
-from leon_thesis.invoke.Constraints.RuleCollection import Rule
+from leon_thesis.invoke.Domain.RuleCollection import Rule
 
 class RuleH1(Rule):
     """
