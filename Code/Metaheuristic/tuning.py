@@ -1,9 +1,9 @@
-from run import run_two_stage, run_two_stage_one_input_one_output
 from Output.output import create_json, collect_total_output, create_date_time_for_folder, write_output_instance
 from leon_thesis.invoke.Domain.settings import Settings
 from leon_thesis.invoke.Domain.input_NRC import Instance
 from leon_thesis.invoke.utils.concurrency import parallel
 from leon_thesis.invoke.external.alfa import execute_heuristic
+from leon_thesis.invoke.main import run
 from Input.prepare_input import folder_to_json
 from run import run_stage
 import Output.create_plots as plot

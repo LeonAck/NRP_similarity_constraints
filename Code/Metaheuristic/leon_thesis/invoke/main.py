@@ -4,7 +4,7 @@ from external.alfa import run_stage, run_stage_add_similarity
 from invoke.output_from_alfa import create_output_dict
 
 
-def run_two_stage_one_input_one_output(input_dict):
+def run(input_dict):
     """
     Function to execute heuristic
     """
