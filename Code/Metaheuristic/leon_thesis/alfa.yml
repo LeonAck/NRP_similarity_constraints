@@ -10,7 +10,7 @@ functions:
       runtime: python
       timeout: 800
       instance:
-        memory: 192
+        memory: 256
     function:
       handler: main.run
     package:

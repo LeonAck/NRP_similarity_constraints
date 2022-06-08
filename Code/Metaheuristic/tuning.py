@@ -3,6 +3,7 @@ from Output.output import create_json, collect_total_output, create_date_time_fo
 from leon_thesis.invoke.Domain.settings import Settings
 from leon_thesis.invoke.Domain.input_NRC import Instance
 from leon_thesis.invoke.utils.concurrency import parallel
+from leon_thesis.invoke.external.alfa import execute_heuristic
 from Input.prepare_input import folder_to_json
 from run import run_stage
 import Output.create_plots as plot
@@ -38,10 +39,10 @@ def run_parameter_tuning_random(number_of_instances, params=(18, 24), param_to_c
 
         for folder_name in tuning_list:
             input_dict = folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)
-            with open("C:/Master_thesis/Code/Metaheuristic/leon_thesis/input.json",
-                      "w") as output_obj:
-                json.dump(input_dict, output_obj)
-            output[folder_name] = run_two_stage_one_input_one_output(input_dict)
+
+            output = execute_heuristic(input_dict)
+            # output[folder_name] = run_two_stage_one_input_one_output(input_dict)
+            print("hi")
 
         plot.all_plots(output, output_folder, input_dict)
 
