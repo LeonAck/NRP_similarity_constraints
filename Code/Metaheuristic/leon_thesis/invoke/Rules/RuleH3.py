@@ -1,5 +1,5 @@
-from invoke.Domain.RuleCollection import Rule
-from invoke.general_functions import check_if_working_day
+from Domain.RuleCollection import Rule
+from general_functions import check_if_working_day
 
 
 class RuleH3(Rule):

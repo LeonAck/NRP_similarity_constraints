@@ -1,4 +1,4 @@
-from invoke.Operators.change_operator import get_feasible_change, calc_new_costs_after_change
+from Operators.change_operator import get_feasible_change, calc_new_costs_after_change
 
 def greedy_change(solution, scenario):
     """

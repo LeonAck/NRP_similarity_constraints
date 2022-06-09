@@ -1,6 +1,6 @@
-from invoke.Domain.RuleCollection import Rule
+from Domain.RuleCollection import Rule
 import numpy as np
-from invoke.Rules.RuleS2Max import RuleS2Max
+from Rules.RuleS2Max import RuleS2Max
 
 
 class RuleS2ShiftMax(Rule):

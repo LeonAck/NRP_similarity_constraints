@@ -1,3 +1,6 @@
+
+
+
 def check_if_working_day(shift_assignments, employee_id, d_index):
     """
     Check if nurse works on specific day

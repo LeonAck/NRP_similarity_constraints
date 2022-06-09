@@ -1,4 +1,4 @@
-from invoke.Domain.RuleCollection import Rule
+from Domain.RuleCollection import Rule
 import numpy as np
 
 class RuleS8RefShift(Rule):

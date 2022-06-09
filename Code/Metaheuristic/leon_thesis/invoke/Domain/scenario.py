@@ -1,11 +1,11 @@
 import numpy as np
-from invoke.Domain.employee import EmployeeCollection
-from invoke.Domain.skills import SkillCollection
-from invoke.Domain.skill_set import SkillSetCollection
-from invoke.Domain.shifts import ShiftTypeCollection
-from invoke.Domain.RuleCollection import RuleCollection
-from invoke.Domain.days import DayCollection
-from invoke import Rules
+from Domain.employee import EmployeeCollection
+from Domain.skills import SkillCollection
+from Domain.skill_set import SkillSetCollection
+from Domain.shifts import ShiftTypeCollection
+from Domain.RuleCollection import RuleCollection
+from Domain.days import DayCollection
+import Rules
 
 class Scenario:
     """

@@ -1,9 +1,9 @@
 import numpy as np
 import itertools
-from invoke.Solutions.solution import Solution
-from invoke.Domain.employee import EmployeeCollection
-from invoke.Rules.RuleS7 import RuleS7
-from invoke.Rules.RuleS2Max import RuleS2Max
+from Solutions.solution import Solution
+from Domain.employee import EmployeeCollection
+from Rules.RuleS7 import RuleS7
+from Rules.RuleS2Max import RuleS2Max
 from copy import deepcopy
 
 class BuildSolution(Solution):

@@ -1,14 +1,14 @@
 import numpy as np
-from invoke.Rules.RuleS2Max import RuleS2Max
-from invoke.Rules import RuleS3Max
-from invoke.Rules import RuleS6Max
-from invoke.Rules.RuleS2ShiftMax import RuleS2ShiftMax
-from invoke.Rules import RuleS7Day
-from invoke.Rules.RuleS7Shift import RuleS7Shift
-from invoke.Rules.RuleS7 import RuleS7
-from invoke.Rules import RuleS8RefDay
-from invoke.Rules.RuleS8RefShift import RuleS8RefShift
-from invoke.Rules import RuleS8RefSkill
+from Rules.RuleS2Max import RuleS2Max
+from Rules import RuleS3Max
+from Rules import RuleS6Max
+from Rules.RuleS2ShiftMax import RuleS2ShiftMax
+from Rules import RuleS7Day
+from Rules.RuleS7Shift import RuleS7Shift
+from Rules.RuleS7 import RuleS7
+from Rules import RuleS8RefDay
+from Rules.RuleS8RefShift import RuleS8RefShift
+from Rules import RuleS8RefSkill
 from copy import deepcopy, copy
 
 

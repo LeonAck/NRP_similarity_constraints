@@ -1,7 +1,8 @@
-from invoke.Domain.RuleCollection import Rule
+from Domain.RuleCollection import Rule
 import numpy as np
 import marshal
-from invoke.general_functions import check_if_working_day
+from general_functions import check_if_working_day
+
 class RuleS2Max(Rule):
     """
         Rule that checks for optimal coverage per skill request

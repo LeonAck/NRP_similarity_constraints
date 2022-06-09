@@ -1,5 +1,5 @@
 from invoke.Domain.RuleCollection import Rule
-from invoke.Rules.RuleS2Min import RuleS2Min
+from Rules.RuleS2Min import RuleS2Min
 import numpy as np
 
 

@@ -1,8 +1,7 @@
 from Domain.settings import Settings
 from Domain.input_NRC import Instance
-from external.alfa import run_stage, run_stage_add_similarity
 from output_from_alfa import create_output_dict
-
+from run_stage_functions import run_stage, run_stage_add_similarity
 
 def run(input_dict):
     """
@@ -31,3 +30,6 @@ def run(input_dict):
 
     output_dict = create_output_dict(instance.instance_name, heuristic_1, heuristic_2)
     return output_dict
+
+
+

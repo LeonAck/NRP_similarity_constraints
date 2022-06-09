@@ -1,5 +1,5 @@
 import numpy as np
-from invoke.Rules import RuleS8RefSkill, RuleS8RefDay, RuleS8RefShift
+from Rules import RuleS8RefSkill, RuleS8RefDay, RuleS8RefShift
 from copy import copy
 class EndSolution:
     """

@@ -1,4 +1,4 @@
-from invoke.Domain.employee import EmployeeCollection
+from Domain.employee import EmployeeCollection
 import numpy as np
 
 
