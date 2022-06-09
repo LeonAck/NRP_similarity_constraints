@@ -1,7 +1,7 @@
-from invoke.Domain.settings import Settings
-from invoke.Domain.input_NRC import Instance
-from invoke.external.alfa import run_stage, run_stage_add_similarity
-from invoke.output_from_alfa import create_output_dict
+from Domain.settings import Settings
+from Domain.input_NRC import Instance
+from external.alfa import run_stage, run_stage_add_similarity
+from output_from_alfa import create_output_dict
 
 
 def run(input_dict):

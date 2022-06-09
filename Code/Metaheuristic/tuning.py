@@ -42,9 +42,9 @@ def run_parameter_tuning_random(number_of_instances, params=(18, 24), param_to_c
         for folder_name in tuning_list:
             input_dict = folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)
 
-            with open("C:/Master_thesis/Code/Metaheuristic/leon_thesis/input.json",
-                      "w") as output_obj:
-                json.dump(input_dict, output_obj)
+            # with open("C:/Master_thesis/Code/Metaheuristic/leon_thesis/input.json",
+            #           "w") as output_obj:
+            #     json.dump(input_dict, output_obj)
             # output = execute_heuristic(input_dict)
             output[folder_name] = run(input_dict)
         #     print("hi")

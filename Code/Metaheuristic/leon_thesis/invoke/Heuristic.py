@@ -1,9 +1,9 @@
 import time
 import random
 import numpy as np
-from invoke.Operators import change_operator, swap_operator, greedy_change, similarity_operator
+from Operators import change_operator, swap_operator, greedy_change, similarity_operator
 
-from invoke.Solutions.solution import Solution
+from Solutions.solution import Solution
 from copy import deepcopy
 
 

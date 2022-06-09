@@ -1,6 +1,6 @@
 import random
 import numpy as np
-from invoke.general_functions import check_if_working_day
+from general_functions import check_if_working_day
 from copy import copy
 
 

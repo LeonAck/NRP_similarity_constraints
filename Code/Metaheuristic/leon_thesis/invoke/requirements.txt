@@ -3,3 +3,5 @@ numpy>=1.19.5
 # deepdiff>=5.8.0
 requests>=2.25.1
 msrest>=0.6.21
+wb-python-utils>=0.1.23
+wb-parameter-handler>=0.2.11
