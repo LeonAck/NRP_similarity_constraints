@@ -5,7 +5,7 @@ from invoke.Domain.skill_set import SkillSetCollection
 from invoke.Domain.shifts import ShiftTypeCollection
 from invoke.Domain.RuleCollection import RuleCollection
 from invoke.Domain.days import DayCollection
-
+from invoke import Rules
 
 class Scenario:
     """
@@ -92,7 +92,7 @@ class Scenario:
 
         # collect rules
         self.rules_specs = self.add_differentiate_rule_parameters(self.rules_specs)
-        self.rule_collection = RuleCollection().initialize_rules(self.rules_specs, self.employees)
+        self.rule_collection = RuleCollection().initialize_rules(Rules, self.rules_specs, self.employees)
 
         # S8ref
         self.ref_assignments = instance.ref_assignments

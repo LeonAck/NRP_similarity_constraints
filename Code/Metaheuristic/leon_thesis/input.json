@@ -1,4 +1,4 @@
-{
+{"input_dict":{
   "instance_name": "n120w4",
   "history_file": 1,
   "weeks": [
@@ -5300,4 +5300,4 @@
       }
     }
   }
-}
+}}

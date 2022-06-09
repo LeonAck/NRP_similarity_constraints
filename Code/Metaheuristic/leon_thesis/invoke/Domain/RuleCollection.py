@@ -1,5 +1,4 @@
 from invoke.Domain.employee import EmployeeCollection
-from invoke import Rules
 import numpy as np
 
 
@@ -23,7 +22,7 @@ class RuleCollection:
     def __len__(self):
         return len(self.collection)
 
-    def initialize_rules(self, rules_specs, employees):
+    def initialize_rules(self, Rules, rules_specs, employees):
         """
         Initializes the rule objects that are to be stored in the RuleCollection.
         """
