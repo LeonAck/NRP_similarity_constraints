@@ -7,7 +7,7 @@ def run(input_dict):
     """
     Function to execute heuristic
     """
-
+    print(input_dict)
     settings = Settings(input_dict['settings'])
 
     instance = Instance(settings, input_dict)
@@ -18,7 +18,7 @@ def run(input_dict):
 
     if heuristic_1.stage_1_feasible:
         # run stage 2
-        if not settings.similarity:
+        if not settings.similarity and not settings.tuning:
             heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings,
                                                                      previous_solution=stage_1_solution)
         else:

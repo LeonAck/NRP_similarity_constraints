@@ -117,7 +117,7 @@ class Heuristic:
                     # check if best. Then current solution, becomes the best solution
                     if current_solution.obj_value < best_solution.obj_value:
                         best_solution = Solution(current_solution)
-                        print("new best_solution: {}".format(best_solution.obj_value))
+                        # print("new best_solution: {}".format(best_solution.obj_value))
                         no_improve_iter = 0
 
                 else:

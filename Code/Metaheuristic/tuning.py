@@ -2,14 +2,14 @@ from Output.output import create_json, collect_total_output, create_date_time_fo
 from leon_thesis.invoke.Domain.settings import Settings
 from leon_thesis.invoke.Domain.input_NRC import Instance
 from leon_thesis.invoke.utils.concurrency import parallel
-from leon_thesis.invoke.external.alfa import execute_heuristic
+from external.alfa import execute_heuristic
 from leon_thesis.invoke.main import run
 from Input.prepare_input import folder_to_json
-from run import run_stage
 import Output.create_plots as plot
 import os
 import random
 import json
+
 
 def run_parameter_tuning_random(number_of_instances, params=(18, 24), param_to_change="initial_temp",
                                 week_range=(4, 10), nurse_range=(30, 120),
@@ -28,29 +28,27 @@ def run_parameter_tuning_random(number_of_instances, params=(18, 24), param_to_c
 
     for param in params:
         output_folder = "tuning/" + tuning_folder + "/" + str(param)
-        create_output_folder_no_date("C:/Master_thesis/Code/Metaheuristic/output_files/tuning/" + tuning_folder + "/" + str(param))
+        create_output_folder_no_date(
+            "C:/Master_thesis/Code/Metaheuristic/output_files/tuning/" + tuning_folder + "/" + str(param))
         output = {}
         input_dicts = []
         for folder_name in tuning_list:
-            input_dicts.append([folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)])
+            input_dicts.append(folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param,
+                                              param_to_change=param_to_change))
         # TODO parallel
-        # arguments = [[input_dict, param] for input_dict in input_dicts]
-        # results = parallel(run, input_dicts, max_workers=5)
+        arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
+        results = parallel(execute_heuristic, arguments, max_workers=10)
+        # results = parallel(run, arguments, max_workers=5)
         # results = {key: value for key, value in results}
-
-
-        for folder_name in tuning_list:
-            input_dict = folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)
-
-            # with open("C:/Master_thesis/Code/Metaheuristic/leon_thesis/input.json",
-            #           "w") as output_obj:
-            #     json.dump(input_dict, output_obj)
-            # output = execute_heuristic(input_dict)
-            output[folder_name] = run(input_dict)
-        #     print("hi")
+        print("hi")
+        print(results)
+        # for folder_name in tuning_list:
+        #     input_dict = {"input_dict": folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param, param_to_change=param_to_change)}
+        #
+        #     output[folder_name] = execute_heuristic(input_dict)
 
         # plot.all_plots(output, output_folder, input_dict)
-
+        output = {tuning_list[i]: results[i] for i in range(len(tuning_list))}
         output['totals'] = collect_total_output(output)
 
         # save json in output_files folder
@@ -92,7 +90,8 @@ def create_output_folder_no_date(path="C:/Master_thesis/Code/Metaheuristic/outpu
     os.mkdir(path + "/temp_plots")
 
 
-def run_two_stage_tuning(folder_name, output_folder, param, similarity=False, settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/tuning_settings.json"):
+def run_two_stage_tuning(folder_name, output_folder, param, similarity=False,
+                         settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/tuning_settings.json"):
     """
     Function to execute heuristic
     """
@@ -118,6 +117,7 @@ def run_two_stage_tuning(folder_name, output_folder, param, similarity=False, se
         plot.temperature_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
 
         return write_output_instance(heuristic_2, feasible=True)
+
 
 def get_list_random_folders(number_of_instances, file_path, week_range, nurse_range):
     folders_list = os.listdir(file_path)

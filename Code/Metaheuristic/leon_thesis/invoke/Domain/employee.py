@@ -1,4 +1,3 @@
-import numpy as np
 import random
 
 # TODO add function to get nurses that work a certain shift per day

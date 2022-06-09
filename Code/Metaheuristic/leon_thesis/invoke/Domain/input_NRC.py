@@ -263,7 +263,9 @@ class Instance:
         Change weekday string to "Wx" where x is week number
         """
         if isinstance(week_key, str):
-            return int(week_key.removeprefix("WD-" + self.instance_name + "-"))
+            return int(week_key.lstrip("WD-" + self.instance_name + "-"))
+        # return int(week_key.removeprefix("WD-" + self.instance_name + "-"))
+
         else:
             return week_key
 
@@ -282,7 +284,8 @@ class Instance:
                 for key in requirements.keys():
                     if key.startswith("requirementOn"):
                         translate_req[key] = self.weekday_to_index(
-                            key.removeprefix("requirementOn"))
+                            key.lstrip("requirementOn"))
+                        # key.removeprefix("requirementOn"))
 
                 for old, new in translate_req.items():
                     requirements[new] = requirements.pop(old)

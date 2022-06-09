@@ -21,6 +21,7 @@ def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None)
 
 def collect_total_output(output):
     total_output = {}
+    print(output)
     total_output['avg_feasible'] = mean([instance["stage_1"]['feasible'] for instance in output.values()])
     try:
         total_output['avg_run_time'] = mean([instance['stage_2']['run_time'] for instance in output.values() if instance["stage_1"]['feasible']])

@@ -1,8 +1,8 @@
 from alfa_sdk.common.session import Session
-from invoke.Domain.scenario import Scenario
-from invoke.Solutions.initial_solution import BuildSolution
-from invoke.Solutions.end_solution import EndSolution
-from invoke.Heuristic import Heuristic
+from leon_thesis.invoke.Domain.scenario import Scenario
+from leon_thesis.invoke.Solutions.initial_solution import BuildSolution
+from leon_thesis.invoke.Solutions.end_solution import EndSolution
+from leon_thesis.invoke.Heuristic import Heuristic
 from copy import deepcopy
 
 

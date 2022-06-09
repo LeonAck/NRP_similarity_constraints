@@ -5060,7 +5060,7 @@
       "ref_as_initial": false,
       "heuristic_settings": {
         "max_time": 5,
-        "max_iter": 100,
+        "max_iter": 1000,
         "initial_temp": 24,
         "final_temp": 2,
         "cut_off_ratio": 0.08,

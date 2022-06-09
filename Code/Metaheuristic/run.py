@@ -1,7 +1,7 @@
 from copy import deepcopy
 import cProfile
 from leon_thesis.invoke.Domain.settings import Settings
-from leon_thesis.invoke.external.alfa import run_stage, run_stage_add_similarity
+from external.alfa import run_stage, run_stage_add_similarity
 from leon_thesis.invoke.Domain.input_NRC import Instance
 import Output.create_plots as plot
 import os
