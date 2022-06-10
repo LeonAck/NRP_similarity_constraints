@@ -1,45 +1,110 @@
 from copy import deepcopy
 import cProfile
-from Domain.settings import Settings
-from Domain.scenario import Scenario
-from Invoke.Initial_solution.initial_solution import BuildSolution
-from Check.check_function_feasibility import FeasibilityCheck
-from Heuristic import Heuristic
-from Input.input_NRC import Instance
-import create_plots as plot
+from leon_thesis.invoke.Domain.settings import Settings
+from external.alfa import run_stage, run_stage_add_similarity
+from leon_thesis.invoke.Domain.input_NRC import Instance
+import Output.create_plots as plot
+import os
+import json
+from Output.output import write_output_instance, collect_total_output, create_output_folder, create_json
+from leon_thesis.invoke.output_from_alfa import create_output_dict
 
-settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json"
-two_stage = True
-def run_stage(instance, stage_settings, previous_solution=None):
-    scenario = Scenario(stage_settings, instance)
 
-    init_solution = BuildSolution(scenario, previous_solution)
-    heuristic = Heuristic(scenario, stage_settings=stage_settings)
-    best_solution = heuristic.run_heuristic(starting_solution=deepcopy(init_solution))
+# similarity = False
+# if similarity:
+#     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_similarity.json"
+# else:
+#     settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
+#
+# two_stage = True
 
-    return heuristic, best_solution
-
-def run_two_stage(settings_file_path):
+def run_two_stage(settings_file_path, folder_name, output_folder=None, similarity=False):
     """
     Function to execute heuristic
     """
-    settings = Settings(settings_file_path)
-    instance = Instance(settings)
+    f = open(settings_file_path)
+    settings_json = json.load(f)
+
+    settings = Settings(settings_json)
+
+    instance = Instance(settings, folder_name)
 
     # run stage_1
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
+    # check if first stage feasible
+    if not heuristic_1.stage_1_feasible:
+        plot.objective_value_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
+        plot.operator_weight_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
+        plot.temperature_plot(heuristic_1, folder_name, suppress=True, output_folder=output_folder)
 
-    # run stage 2
-    # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
-    heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)
+        return write_output_instance(heuristic_1, feasible=False)
 
-    plot.objective_value_plot(heuristic_2)
-    print(stage_1_solution.violation_array)
-    print(stage_1_solution.change_counters)
-    print(stage_2_solution.obj_value)
-    print(stage_2_solution.violation_array)
-    print(stage_2_solution.change_counters)
-    return stage_2_solution
+    else:
+        # run stage 2
+        # cProfile.run("run_stage(instance, settings.stage_2_settings, previous_solution=stage_1_solution)")
+        if not similarity:
+            heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings,
+                                                                     previous_solution=stage_1_solution)
+        else:
+            heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings,
+                                                      previous_solution=stage_1_solution)
+        plot.objective_value_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
+        plot.operator_weight_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
+        plot.temperature_plot(heuristic_2, folder_name, suppress=True, output_folder=output_folder)
+
+        return write_output_instance(heuristic_2, feasible=True)
+
+
+def run_two_stage_one_input_one_output(input_dict):
+    """
+    Function to execute heuristic
+    """
+
+    settings = Settings(input_dict['settings'])
+
+    instance = Instance(settings, input_dict)
+
+    # run stage_1
+    heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
+    # check if first stage feasible
+
+    if heuristic_1.stage_1_feasible:
+        # run stage 2
+        if not settings.similarity:
+            heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings,
+                                                                     previous_solution=stage_1_solution)
+        else:
+            heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings,
+                                                      previous_solution=stage_1_solution)
+
+    else:
+        heuristic_2 = None
+
+    output_dict = create_output_dict(instance.instance_name, heuristic_1, heuristic_2)
+    return output_dict
+
+
+def run_multiple_files(file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
+                       settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json",
+                       similarity=False):
+    output_folder = create_output_folder()
+    output = {}
+    folders_list = os.listdir(file_path)
+    if similarity:
+        folders_list = keep_files_with_8_weeks(folders_list)
+
+    for folder_name in [folders_list[0]]:
+        output[folder_name] = run_two_stage(settings_file_path, folder_name=folder_name, output_folder=output_folder,
+                                            similarity=similarity)
+
+    output['totals'] = collect_total_output(output)
+
+    # save json in output_files folder
+    create_json(output_folder, output)
+
+
+def keep_files_with_8_weeks(folders_list):
+    return [folder_name for folder_name in folders_list if folder_name[4] == '8']
 
 
 def run_one_stage(settings_file_path, stage_number=2):
@@ -52,22 +117,5 @@ def run_one_stage(settings_file_path, stage_number=2):
 
     print(stage_2_solution.obj_value)
     print(stage_2_solution.violation_array)
-    print(stage_2_solution.change_counters)
-
+    print(heuristic_2.n_iter)
     return stage_2_solution
-
-
-# settings = Settings(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
-# instance = Instance(settings)
-# scenario = Scenario(settings.stage_1_settings, instance)
-# init_solution = BuildSolution(scenario)
-# stage_1_solution = Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))
-if __name__ == '__main__':
-    if two_stage:
-        run_two_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
-    else:
-        run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/two_stage_005.json")
-
-#cProfile.run("Heuristic(scenario).run_heuristic(starting_solution=deepcopy(init_solution))", sort=1)
-
-

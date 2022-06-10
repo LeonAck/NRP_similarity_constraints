@@ -1,15 +1,10 @@
-from run import run_one_stage
 settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json"
-from Invoke.Operators.swap_operator import get_feasible_swap, get_stretch_information_swap, stretches_in_range
+from leon_thesis.invoke.Operators import get_feasible_swap, stretches_in_range
 from copy import deepcopy
-import cProfile
 from Domain.settings import Settings
 from Domain.scenario import Scenario
 from Invoke.Initial_solution.initial_solution import BuildSolution
-from Check.check_function_feasibility import FeasibilityCheck
-from Heuristic import Heuristic
 from Input.input_NRC import Instance
-from Invoke.Constraints.Rules.RuleS2Max import RuleS2Max
 
 k = 7
 # sol = run_one_stage(settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/test_swap.json")
