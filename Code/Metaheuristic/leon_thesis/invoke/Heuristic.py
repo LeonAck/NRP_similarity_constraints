@@ -185,7 +185,7 @@ class Heuristic:
         # else:
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter
         else:
-            return self.temperature >= self.final_temp
+            return self.temperature >= self.final_temp and time.time() < self.start_time + self.max_time
 
 
 

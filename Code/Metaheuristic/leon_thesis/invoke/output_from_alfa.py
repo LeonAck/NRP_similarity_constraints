@@ -1,4 +1,3 @@
-
 def create_output_dict(instance_name, heuristic_1, heuristic_2=None):
     output_dict = {"instance_name": instance_name}
 
@@ -19,10 +18,10 @@ def create_output_dict(instance_name, heuristic_1, heuristic_2=None):
 
     return output_dict
 
+
 def beautify_violation_array(heuristic_run):
     violation_dict = {}
     for i, rule_name in enumerate(heuristic_run.rule_collection.soft_rule_collection.collection.keys()):
         violation_dict[rule_name] = heuristic_run.final_violation_array[i]
 
     return violation_dict
-
