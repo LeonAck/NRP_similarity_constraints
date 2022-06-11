@@ -5052,7 +5052,8 @@
       "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
       "solution_path": null,
       "similarity": false,
-      "tuning": true
+      "tuning": true,
+      "total_time": 900
     },
     "stage_1_settings": {
       "stage_number": 1,

@@ -13,9 +13,7 @@ def objective_value_plot(n_iter, obj_values, best_obj_values, stage_number, inst
         x_axis = np.linspace(0, n_iter, n_iter)[0:-1]
         plt.plot(x_axis, obj_values, x_axis, best_obj_values, linewidth=0.5)
         if stage_number == 2:
-            plt.ylim(0, 20000)
-        else:
-            plt.ylim(0, 1000)
+            plt.ylim(0, min(obj_values)+10000)
 
         if output_folder:
             plt.savefig(
@@ -62,7 +60,7 @@ def all_plots(output_dict, output_folder):
             objective_value_plot(output_info['stage_2']['iterations'], output_info['stage_2']["obj_values"],
                                  output_info['stage_2']["best_obj_values"], 2, folder_name, suppress=True,
                                  output_folder=output_folder)
-            operator_weight_plot(output_info['stage_2']["obj_values"], folder_name, suppress=True,
+            operator_weight_plot(output_info['stage_2']["operator_weights"], folder_name, suppress=True,
                                  output_folder=output_folder)
             temperature_plot(output_info['stage_2']['iterations'], output_info['stage_2']['temperatures'], folder_name, suppress=True,
                              output_folder=output_folder)

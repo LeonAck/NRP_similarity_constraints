@@ -17,11 +17,16 @@ def run(input_dict):
     # check if first stage feasible
 
     if heuristic_1.stage_1_feasible:
+        # cap max time
+        settings.stage_2_settings['heuristic_settings'][
+            'max_time'] = settings.max_total_time - heuristic_1.run_time - 20
+
         # run stage 2
         if not settings.similarity and not settings.tuning:
             heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings,
                                                                      previous_solution=stage_1_solution)
         else:
+
             heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings,
                                                       previous_solution=stage_1_solution)
 

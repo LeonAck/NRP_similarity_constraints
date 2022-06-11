@@ -10,8 +10,8 @@ import os
 import random
 import json
 
-
-def run_parameter_tuning_random(number_of_instances, params=(10, 14), param_to_change="initial_temp",
+# params=(10, 14, 18, 22, 26, 30, 34, 38)
+def run_parameter_tuning_random(number_of_instances, params=(0.12, 0.15, 0.17, 0.2, 0.22, 0.24, 0.3), param_to_change="cut_off_ratio",
                                 week_range=(4, 10), nurse_range=(30, 120),
                                 similarity=False,
                                 file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
@@ -33,20 +33,31 @@ def run_parameter_tuning_random(number_of_instances, params=(10, 14), param_to_c
             "C:/Master_thesis/Code/Metaheuristic/output_files/tuning/" + tuning_folder + "/" + str(param))
         output = {}
         input_dicts = []
+
+        # create list of inputs
         for folder_name in tuning_list:
             input_dicts.append(folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param,
                                               param_to_change=param_to_change))
-        # TODO parallel
+        # run parallel
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
-        results = parallel(execute_heuristic, arguments, max_workers=20)
+        try:
+            results = parallel(execute_heuristic, arguments, max_workers=40)
+        except RuntimeError:
+            print("hi")
+            continue
 
+        # create output dict
+        output = {tuning_list[i]: results[i] for i in range(len(tuning_list))}
+        # create plots
         plot.all_plots(output, output_folder)
-        keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array"}
 
+        # remove unnecessary information
+        keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array"}
         for result in results:
             if "stage_2" in result:
                 result["stage_2"] = {k: v for k, v in result["stage_2"].items() if k in keys_to_keep}
-        output = {tuning_list[i]: results[i] for i in range(len(tuning_list))}
+
+        # calc totals
         output['totals'] = collect_total_output(output)
 
         # save json in output_files folder

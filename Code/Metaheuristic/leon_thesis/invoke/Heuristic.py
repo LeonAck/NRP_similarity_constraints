@@ -90,11 +90,6 @@ class Heuristic:
             n_sampled = 0
             n_accepted = 0
             while n_sampled < self.max_sampled and n_accepted < self.max_accepted:
-                # print("\nIteration: ", n_iter)
-                # if n_iter % 100 == 0:
-                #     # print(current_solution.violation_array)
-                #     print("\nIteration: ", n_iter)
-                # print(current_solution.violation_array)
 
                 # choose operator
                 operator_name = self.roulette_wheel_selection(self.operators_to_use)
@@ -105,10 +100,7 @@ class Heuristic:
                 if not operator_info['feasible']:
                     print("no feasible change")
                     break
-                # print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
 
-                # if operator_name == "change":
-                #     change_counters = self.update_change_counter(change_counters, operator_info)
                 no_improve_iter += 1
                 if operator_info['cost_increment'] <= 0:
                     # update solutions accordingly
@@ -143,13 +135,6 @@ class Heuristic:
                 #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
                 # if "S2ShiftMax" in current_solution.rules:
                 #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, operator_info, operator_name)
-                # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
-                # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
-                # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
-                # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-                # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
-                # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-
 
                 # adjust weight
                 self.update_operator_weights(operator_name, operator_info)
@@ -179,14 +164,13 @@ class Heuristic:
 
     def stopping_criterion(self, violation_array, n_iter):
         if self.stage_number == 1:
-            return not np.array_equal(violation_array, np.zeros(2)) and n_iter < self.max_iter
+            return not np.array_equal(violation_array, np.zeros(2)) and self.temperature >= self.final_temp
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
         #             and not np.array_equal(current_solution.violation_array, np.zeros(2))
         # else:
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter
         else:
             return self.temperature >= self.final_temp and time.time() < self.start_time + self.max_time
-
 
 
     def acceptance_simulated_annealing(self, change_info):

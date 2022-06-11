@@ -15,7 +15,7 @@ class Settings:
         # self.weeks = settings_json['instance_settings']['weeks']
         self.similarity = settings_json['instance_settings']['similarity']
         self.tuning = settings_json['instance_settings']['tuning']
-
+        self.max_total_time = settings_json['instance_settings']['total_time']
         # load stage_1_settings
         self.stage_1_settings = settings_json['stage_1_settings']
 
