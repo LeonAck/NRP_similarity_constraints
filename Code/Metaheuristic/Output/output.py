@@ -4,6 +4,8 @@ import numpy as np
 import json
 from statistics import mean, StatisticsError
 from collections import Counter
+
+
 # os.chdir("/output_files")
 
 def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None):
@@ -19,38 +21,48 @@ def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None)
 
     return instance_output
 
+
 def collect_total_output(output):
     total_output = {}
     print(output)
     total_output['avg_feasible_perc'] = mean([instance["stage_1"]['feasible'] for instance in output.values()]) * 100
     try:
-        total_output['avg_run_time'] = mean([instance['stage_2']['run_time'] for instance in output.values() if instance["stage_1"]['feasible']])
-        total_output['avg_iterations'] = mean([instance['stage_2']['iterations'] for instance in output.values() if instance["stage_1"]['feasible']])
-        total_output['avg_obj_value'] = mean([instance['stage_2']['best_solution'] for instance in output.values() if instance["stage_1"]['feasible']])
-         # total_output['avg_violations'] = mean_violation_array(list(output_files.values())[0]['violations_array'], output_files)
+        total_output['avg_run_time'] = mean(
+            [instance['stage_2']['run_time'] for instance in output.values() if instance["stage_1"]['feasible']])
+        total_output['avg_iterations'] = mean(
+            [instance['stage_2']['iterations'] for instance in output.values() if instance["stage_1"]['feasible']])
+        total_output['avg_obj_value'] = mean(
+            [instance['stage_2']['best_solution'] for instance in output.values() if instance["stage_1"]['feasible']])
+        # total_output['avg_violations'] = mean_violation_array(list(output_files.values())[0]['violations_array'], output_files)
     except StatisticsError:
         total_output['avg_run_time'], total_output['avg_iterations'], total_output['avg_obj_value'] = None, None, None
     return total_output
 
 
 def create_json(output_folder, output):
-    with open("C:/Master_thesis/Code/Metaheuristic/output_files/" + output_folder+"/output_files.json", "w") as output_obj:
+    with open("C:/Master_thesis/Code/Metaheuristic/output_files/" + output_folder + "/output_files.json",
+              "w") as output_obj:
         json.dump(output, output_obj)
+
 
 def create_date_time_for_folder():
     now = datetime.now()
     return now.strftime("%d_%m_%Y__%H_%M_%S")
 
-def create_output_folder(path="C:/Master_thesis/Code/Metaheuristic/output_files"):
-    folder_name = create_date_time_for_folder()
-    os.mkdir(path+"/"+folder_name)
+
+def create_output_folder(path="C:/Master_thesis/Code/Metaheuristic/output_files", folder_name="datetime"):
+    if folder_name == "datetime":
+        folder_name = create_date_time_for_folder()
+
+    os.mkdir(path + "/" + folder_name)
 
     # create plots folder
-    os.mkdir(path+"/"+folder_name+"/obj_plots")
+    os.mkdir(path + "/" + folder_name + "/obj_plots")
     os.mkdir(path + "/" + folder_name + "/weight_plots")
-    os.mkdir(path+"/"+folder_name+"/temp_plots")
+    os.mkdir(path + "/" + folder_name + "/temp_plots")
 
     return folder_name
+
 
 def beautify_violation_array(heuristic_run):
     violation_dict = {}
@@ -59,10 +71,38 @@ def beautify_violation_array(heuristic_run):
 
     return violation_dict
 
+
 def mean_violation_array(violation_array, output):
     violation_dict = {}
 
     violation_sums = {key: sum([instance_output['violations_array'][key] for instance_output
-                           in output.values()]) for key in violation_array.keys()}
-    violations_sums = {k: value/len(output) for k, value in violation_sums.items()}
+                                in output.values()]) for key in violation_array.keys()}
+    violations_sums = {k: value / len(output) for k, value in violation_sums.items()}
     return violations_sums
+
+
+def collect_output_multiple_runs():
+    pass
+    # calc average per instance
+    # get best run
+
+
+def update_dict_per_instance_metric(master_output, output, metrics):
+    for metric in metrics:
+        for k in master_output.keys():
+            if output[k]['stage_1']['feasible']:
+                master_output[k][metric].append(output[k]['stage_2'][metric])
+
+    return master_output
+
+
+def calc_min(master_output, metrics):
+    for metric in metrics:
+        for k, v in master_output.items():
+            master_output[k]["avg_" + metric] = mean(v[metric]) if len(v[metric]) > 0 \
+                else None
+
+            master_output[k]["best_" + metric] = min(v[metric]) if len(v[metric]) > 0 \
+                else None
+
+    return master_output

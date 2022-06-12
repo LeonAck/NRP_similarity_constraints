@@ -54,9 +54,16 @@ def temperature_plot(n_iter, temperatures, instance_name, output_folder, suppres
         plt.close()
 
 
-def all_plots(output_dict, output_folder):
+def all_plots(output_dict, output_folder, stage_2=True):
     for folder_name, output_info in output_dict.items():
-        if output_info['stage_1']['feasible']:
+        if not stage_2:
+            objective_value_plot(output_info['stage_1']['iterations'], output_info['stage_1']["obj_values"],
+                                 output_info['stage_1']["best_obj_values"], 1, folder_name, suppress=True,
+                                 output_folder=output_folder)
+            temperature_plot(output_info['stage_1']['iterations'], output_info['stage_1']['temperatures'], folder_name,
+                             suppress=True,
+                             output_folder=output_folder)
+        elif output_info['stage_1']['feasible']:
             objective_value_plot(output_info['stage_2']['iterations'], output_info['stage_2']["obj_values"],
                                  output_info['stage_2']["best_obj_values"], 2, folder_name, suppress=True,
                                  output_folder=output_folder)

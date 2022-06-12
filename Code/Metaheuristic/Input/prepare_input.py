@@ -30,13 +30,14 @@ def folder_to_json(path, folder_name, similarity, settings_file_path, param=None
         ref_assignments = None
 
     instance_data = create_instance_data_dict(history_data, scenario_data,
-                                              weeks_data, instance_name, history_file, weeks, skills, ref_assignments, settings_json)
+                                              weeks_data, instance_name, history_file, weeks, skills, ref_assignments, settings_json, folder_name)
     return instance_data
 
 
 def create_instance_data_dict(history_data, scenario_data, weeks_data, instance_name, history_file, weeks, skills,
-                              ref_assignments, settings_json):
+                              ref_assignments, settings_json, folder_name):
     instance_data = {}
+    instance_data['folder_name'] = folder_name
     instance_data['instance_name'] = instance_name
     instance_data['history_file'] = history_file
     instance_data['weeks'] = weeks

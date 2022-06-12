@@ -164,7 +164,8 @@ class Heuristic:
 
     def stopping_criterion(self, violation_array, n_iter):
         if self.stage_number == 1:
-            return not np.array_equal(violation_array, np.zeros(2)) and self.temperature >= self.final_temp
+            return not np.array_equal(violation_array, np.zeros(2)) and self.temperature >= self.final_temp \
+                    and time.time() < self.start_time + self.max_time
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
         #             and not np.array_equal(current_solution.violation_array, np.zeros(2))
         # else:

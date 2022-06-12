@@ -10,8 +10,10 @@ import os
 import random
 import json
 
-# params=(10, 14, 18, 22, 26, 30, 34, 38)
-def run_parameter_tuning_random(number_of_instances, params=(0.12, 0.15, 0.17, 0.2, 0.22, 0.24, 0.3), param_to_change="cut_off_ratio",
+
+
+def run_parameter_tuning_random(number_of_instances, params=(17, 18, 19, 26),
+                                param_to_change="k_swap",
                                 week_range=(4, 10), nurse_range=(30, 120),
                                 similarity=False,
                                 file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
@@ -47,13 +49,15 @@ def run_parameter_tuning_random(number_of_instances, params=(0.12, 0.15, 0.17, 0
             continue
 
         # create output dict
-        output = {tuning_list[i]: results[i] for i in range(len(tuning_list))}
+        output = {results[i]['folder_name']: results[i] for i in range(len(tuning_list))}
         # create plots
-        plot.all_plots(output, output_folder)
+        plot.all_plots(output, output_folder, stage_2=False)
 
         # remove unnecessary information
-        keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array"}
+        keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array", "feasible"}
+
         for result in results:
+            result["stage_1"] = {k: v for k, v in result["stage_1"].items() if k in keys_to_keep}
             if "stage_2" in result:
                 result["stage_2"] = {k: v for k, v in result["stage_2"].items() if k in keys_to_keep}
 
