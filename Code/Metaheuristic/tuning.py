@@ -12,8 +12,8 @@ import json
 
 
 
-def run_parameter_tuning_random(number_of_instances, params=(17, 18, 19, 26),
-                                param_to_change="k_swap",
+def run_parameter_tuning_random(number_of_instances, params=(14, 18, 20, 22, 26, 30),
+                                param_to_change="initial_temp",
                                 week_range=(4, 10), nurse_range=(30, 120),
                                 similarity=False,
                                 file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
@@ -44,6 +44,7 @@ def run_parameter_tuning_random(number_of_instances, params=(17, 18, 19, 26),
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
         try:
             results = parallel(execute_heuristic, arguments, max_workers=40)
+            print("done")
         except RuntimeError:
             print("hi")
             continue

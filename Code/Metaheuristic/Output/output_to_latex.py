@@ -28,6 +28,8 @@ hidden_instances = [
     '110-4-2-8-9-9-2', '110-4-2-9-8-4-9'
 ]
 
+
+
 late_instances = [
     '030-4-1-6-2-9-1', '030-4-1-6-7-5-3',
     '040-4-0-2-0-6-1', '040-4-2-6-1-0-6',
@@ -50,13 +52,86 @@ eight_week_instances = [
     '110-8-0-2-1-1-7-2-6-4-7', '110-8-0-3-2-4-9-4-1-3-7',
     '120-8-0-0-9-9-4-5-1-0-3', '120-8-1-7-2-6-4-5-2-0-2'
 ]
+
+eight_week_legrain_cost = [
+    2070,
+    1735,
+    2555,
+    2305,
+    2620,
+    2420,
+    4900,
+    4925,
+    2345,
+    2590,
+    4595,
+    4760,
+    4180,
+    4450,
+    2125,
+    2210,
+    4010,
+    3560,
+    2600,
+    3095
+]
+
+eight_week_ceschia_avg = [
+    2098,
+    1787,
+    2737,
+    2527,
+    2782,
+    2854,
+    5002,
+    4958.5,
+    2146,
+    2675,
+    4866,
+    50530.5,
+    4477,
+    4795,
+    2410.5,
+    2557,
+    4226,
+    3688.5,
+    2871,
+    3317
+]
+
+eight_week_ceschia_best = [
+    2055,
+    1750,
+    2705,
+    2465,
+    2695,
+    2525,
+    4935,
+    4920,
+    2375,
+    2630,
+    4785,
+    4950,
+    4350,
+    4710,
+    3650,
+    2810,
+    3260
+]
+
 file_path = "C:/Master_thesis/Code/Metaheuristic/output_files/"
 
 f = open(file_path)
 output_json = json.load(f)
 
 mock_values = list(range(len(hidden_instances)))
-data = {"hidden_instances": hidden_instances, "Avg cost": mock_values}
+hidden_dict = {"hidden_instances": hidden_instances, "legrain_et_al": {}}
+eight_week_dict = {"Instance": eight_week_instances, "Legrain et al. (2017)": eight_week_legrain_cost,
+                   "Ceschia et al. (..) \n"
+                   "Avg cost": eight_week_ceschia_avg,
+                   "Ceschia et al. (..) \n"
+                   "Best cost": eight_week_ceschia_best
+                   }
 df = pd.DataFrame(data)
 
 df.to_latex()

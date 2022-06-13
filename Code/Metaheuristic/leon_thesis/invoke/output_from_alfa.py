@@ -1,4 +1,6 @@
 import numpy as np
+
+
 def create_output_dict(folder_name, instance_name, heuristic_1, heuristic_2=None, tuning=False, similarity=False):
     output_dict = {"folder_name": folder_name, "instance_name": instance_name}
 
@@ -23,9 +25,11 @@ def create_output_dict(folder_name, instance_name, heuristic_1, heuristic_2=None
         if not tuning:
             if similarity:
                 output_dict['stage_2']['best_solution_similarity'] = heuristic_2.best_obj_values[-1]
-                output_dict['stage_2']['best_solution_no_similarity'] = calc_objective_value_violations(heuristic_2.final_violation_array[-3:], heuristic_2.rule_collection)
+                output_dict['stage_2']['best_solution_no_similarity'] = calc_objective_value_violations(
+                    heuristic_2.final_violation_array[:-3], heuristic_2.rule_collection.penalty_array[:-3])
             else:
-                output_dict['stage_2']['best_solution_similarity'] = calc_objective_value_violations(heuristic_2.final_violation_array, heuristic_2.rule_collection)
+                output_dict['stage_2']['best_solution_similarity'] = calc_objective_value_violations(
+                    heuristic_2.final_violation_array, heuristic_2.rule_collection.penalty_array)
                 output_dict['stage_2']['best_solution_no_similarity'] = heuristic_2.best_obj_values[-1]
     return output_dict
 
@@ -37,9 +41,10 @@ def beautify_violation_array(heuristic_run):
 
     return violation_dict
 
-def calc_objective_value_violations(violation_array, rule_collection):
+
+def calc_objective_value_violations(violation_array, penalty_array):
     """
     Function to calculate the objective value of a solution based on the
     applied soft constraints
     """
-    return np.matmul(violation_array, rule_collection.penalty_array)
+    return np.matmul(violation_array, penalty_array)

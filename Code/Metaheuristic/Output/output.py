@@ -92,11 +92,21 @@ def update_dict_per_instance_metric(master_output, output, metrics):
         for k in master_output.keys():
             if output[k]['stage_1']['feasible']:
                 master_output[k][metric].append(output[k]['stage_2'][metric])
+                master_output
 
     return master_output
 
+def add_feasibility_master(master_output, output):
+    for k in master_output.keys():
+        if output[k]['stage_1']['feasible']:
+            if "feasible" in master_output[k]:
+                master_output[k]['feasible'] += 1
+            else:
+                master_output[k]['feasible'] = 1
+    return master_output
 
-def calc_min(master_output, metrics):
+
+def calc_min(master_output, metrics, frequency):
     for metric in metrics:
         for k, v in master_output.items():
             master_output[k]["avg_" + metric] = mean(v[metric]) if len(v[metric]) > 0 \
@@ -104,5 +114,9 @@ def calc_min(master_output, metrics):
 
             master_output[k]["best_" + metric] = min(v[metric]) if len(v[metric]) > 0 \
                 else None
-
+    for k, v in master_output.items():
+        if "feasible" in v:
+            master_output[k]["perc_feasible"] = master_output[k]['feasible'] / frequency * 100
+        else:
+            master_output[k]["perc_feasible"] = 0
     return master_output

@@ -33,5 +33,5 @@ def run(input_dict):
     else:
         heuristic_2 = None
 
-    output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2)
+    output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2, similarity=settings.similarity)
     return output_dict

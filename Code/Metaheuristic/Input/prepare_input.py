@@ -202,7 +202,7 @@ def get_index_of_shift_type(scenario_data, shift_type_id):
     Function to get index when given a skill type
     """
     for index, s_type in enumerate(scenario_data['shiftTypes']):
-        if s_type['id'] == shift_type_id[0]:
+        if s_type['id'] == shift_type_id:
             return index
 
 

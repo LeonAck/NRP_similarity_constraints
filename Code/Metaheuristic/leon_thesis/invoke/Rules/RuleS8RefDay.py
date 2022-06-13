@@ -63,10 +63,10 @@ class RuleS8RefDay(Rule):
         """
         comparison_array = self.compare_assignment_swap(solution, swap_info, compare_function)
 
-        swap_info['{}_1'.format(comparison_object_name)] = np.ones(solution.k_swap) - np.abs(
+        swap_info['{}_1'.format(comparison_object_name)] = np.ones(swap_info['k_swap']) - np.abs(
             comparison_object[swap_info['employee_id_1']][
             swap_info['start_index']:swap_info['end_index'] + 1] - comparison_array)
-        swap_info['{}_2'.format(comparison_object_name)] = np.ones(solution.k_swap) - np.abs(
+        swap_info['{}_2'.format(comparison_object_name)] = np.ones(swap_info['k_swap']) - np.abs(
             comparison_object[swap_info['employee_id_2']][
             swap_info['start_index']:swap_info['end_index'] + 1] - comparison_array)
 

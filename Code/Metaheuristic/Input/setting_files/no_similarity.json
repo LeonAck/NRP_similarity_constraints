@@ -2,7 +2,8 @@
   "path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
   "solution_path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
   "similarity": false,
-  "tuning": false
+  "tuning": false,
+  "total_time": 800
 },
   "stage_1_settings":
   {
@@ -249,6 +250,36 @@
                        "parameter_per_employee": true,
                       "penalty": 10,
                       "parameter_1": null,
+            "swap": true},
+       "S8RefDay": {"id": "S8RefDay",
+                        "is_mandatory": false,
+                      "is_active": false,
+                      "is_horizontal": true,
+                       "parameter_per_contract": false,
+                   "parameter_per_s_type": false,
+                "parameter_per_employee": false,
+             "penalty": 10,
+             "parameter_1": null,
+            "swap": true},
+      "S8RefShift": {"id": "S8RefShift",
+                        "is_mandatory": false,
+                      "is_active": false,
+                      "is_horizontal": true,
+                       "parameter_per_contract": false,
+                   "parameter_per_s_type": false,
+        "parameter_per_employee": false,
+             "penalty": 8,
+             "parameter_1": null,
+            "swap": true},
+       "S8RefSkill": {"id": "S8RefSkill",
+                        "is_mandatory": false,
+                      "is_active": false,
+                      "is_horizontal": true,
+                       "parameter_per_contract": false,
+                   "parameter_per_s_type": false,
+         "parameter_per_employee": false,
+             "penalty": 4,
+             "parameter_1": null,
             "swap": true}
     }}
 }
