@@ -49,12 +49,15 @@ def run_multiple_files(frequency,
                               )
 
         results = []
-        arguments = [input_dict for input_dict in input_dicts]
-        for argument in arguments:
-            results.append(run(deepcopy(argument)))
+        # arguments = [[input_dict] for input_dict in input_dicts]
+        # with open("C:/Master_thesis/Code/Metaheuristic/leon_thesis/input.json",
+        #           "w") as output_obj:
+        #     json.dump(input_dicts[0], output_obj)
+        # for argument in arguments:
+        #     results.append(run(deepcopy(argument)))
         # run parallel
-        # arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
-        # results = parallel(execute_heuristic, arguments, max_workers=max_workers)
+        arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
+        results = parallel(execute_heuristic, deepcopy(arguments), max_workers=max_workers)
 
         # create output dict
         output = {folders_list[j]: results[i] for j in range(len(folders_list))}

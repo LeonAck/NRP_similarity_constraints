@@ -26,6 +26,8 @@ def folder_to_json(path, folder_name, similarity, settings_file_path, param=None
     if not param:
         ref_assignments = prev_solution_to_ref_assignments(solution_path,
                                                            folder_name, scenario_data, weeks, skills)
+        for k in ref_assignments.keys():
+            ref_assignments[k] = [ref_assignments[k][:, 0].tolist(), ref_assignments[k][:, 1].tolist()]
     else:
         ref_assignments = None
 

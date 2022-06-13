@@ -1,4 +1,4 @@
-
+import numpy as np
 
 class Instance:
     """
@@ -36,6 +36,12 @@ class Instance:
         self.history_data = self.simplify_history_data()
 
         self.ref_assignments = input_json['ref_assignments']
+        # transfer from list to array
+        if self.ref_assignments is not None:
+            for k in self.ref_assignments.keys():
+                self.ref_assignments[k] = np.array([self.ref_assignments[k][0], self.ref_assignments[k][1]]).transpose()
+
+
 
         # # get reference period
         # if not settings.tuning:

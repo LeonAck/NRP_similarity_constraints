@@ -139,3 +139,6 @@ def create_latex_table(list_of_instances, caption):
     pass
     # create dataframe with data
     # dataframe to latex
+
+def get_output_into_list(metrics):
+    pass
