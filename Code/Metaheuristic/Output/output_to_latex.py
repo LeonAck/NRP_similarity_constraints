@@ -88,7 +88,7 @@ eight_week_ceschia_avg = [
     2146,
     2675,
     4866,
-    50530.5,
+    5030.5,
     4477,
     4795,
     2410.5,
@@ -114,19 +114,22 @@ eight_week_ceschia_best = [
     4950,
     4350,
     4710,
+    2340,
+    2510,
+    4170,
     3650,
     2810,
     3260
 ]
 
-file_path = "C:/Master_thesis/Code/Metaheuristic/output_files/"
+# file_path = "C:/Master_thesis/Code/Metaheuristic/output_files/"
 
-f = open(file_path)
-output_json = json.load(f)
+# f = open(file_path)
+# output_json = json.load(f)
 
 mock_values = list(range(len(hidden_instances)))
 hidden_dict = {"hidden_instances": hidden_instances, "legrain_et_al": {}}
-eight_week_dict = {"Instance": eight_week_instances, "Legrain et al. (2017)": eight_week_legrain_cost,
+eight_week_dict = {"Instance": eight_week_instances, "Legrain et al. (2020)": eight_week_legrain_cost,
                    "Ceschia et al. (..) \n"
                    "Avg cost": eight_week_ceschia_avg,
                    "Ceschia et al. (..) \n"

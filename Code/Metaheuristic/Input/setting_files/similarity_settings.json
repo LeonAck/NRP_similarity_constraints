@@ -12,7 +12,7 @@
     "ref_as_initial": false,
     "heuristic_settings": {
         "max_time": 300,
-        "max_iter":400,
+        "max_iter":400000,
         "initial_temp": 12,
         "final_temp": 2,
         "cut_off_ratio": 0.2,
@@ -61,7 +61,7 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 100,
-        "max_iter":500,
+        "max_iter":500000,
         "initial_temp": 22,
       "cut_off_ratio": 0.15,
       "final_temp": 2,

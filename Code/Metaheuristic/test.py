@@ -18,4 +18,4 @@ else:
 # cProfile.run("run_multiple_files('C:/Master_thesis/Code
 # /Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path=settings_file_path, similarity=similarity)", sort=1)
 # run_parameter_tuning_random(number_of_instances=30)
-run_multiple_files(frequency=3, max_workers=20, similarity=True)
+run_multiple_files(frequency=12, max_workers=40, similarity=True)
