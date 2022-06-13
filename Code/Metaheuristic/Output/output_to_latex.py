@@ -28,8 +28,6 @@ hidden_instances = [
     '110-4-2-8-9-9-2', '110-4-2-9-8-4-9'
 ]
 
-
-
 late_instances = [
     '030-4-1-6-2-9-1', '030-4-1-6-7-5-3',
     '040-4-0-2-0-6-1', '040-4-2-6-1-0-6',
@@ -135,13 +133,17 @@ eight_week_dict = {"Instance": eight_week_instances, "Legrain et al. (2020)": ei
                    "Ceschia et al. (..) \n"
                    "Best cost": eight_week_ceschia_best
                    }
-df = pd.DataFrame(data)
-
-df.to_latex()
-def create_latex_table(list_of_instances, caption):
+def add_results_to_dict(path, metrics, names, dict):
     pass
-    # create dataframe with data
-    # dataframe to latex
+
+def create_latex_table(dict, caption, label):
+    df = pd.DataFrame(dict)
+
+    df.to_latex(index=False, caption=caption, label=label)
+
 
 def get_output_into_list(metrics):
     pass
+
+
+create_latex_table(eight_week_dict, caption="Results on 8-week instances", label="tab:8_week_similarity")
