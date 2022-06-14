@@ -98,7 +98,7 @@ class Heuristic:
                 operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
 
                 if not operator_info['feasible']:
-                    print("no feasible change")
+                    # print("no feasible change")
                     break
 
                 no_improve_iter += 1

@@ -109,7 +109,10 @@ def get_feasible_change(solution, scenario):
         feasible_employees.remove(change_info["employee_id"])
 
     # check whether a feasible change was possible
-    if not change_info['current_working'] and not change_info['new_working']:
+    try:
+        if not change_info['current_working'] and not change_info['new_working']:
+            change_info['feasible'] = False
+    except KeyError:
         change_info['feasible'] = False
     else:
         change_info['feasible'] = True

@@ -17,5 +17,5 @@ else:
 # run_one_stage(settings_file_path, stage_number=2)
 # cProfile.run("run_multiple_files('C:/Master_thesis/Code
 # /Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path=settings_file_path, similarity=similarity)", sort=1)
-# run_parameter_tuning_random(number_of_instances=30)
-run_multiple_files(frequency=12, max_workers=40, similarity=True)
+run_parameter_tuning_random(number_of_instances=2)
+# run_multiple_files(frequency=10, max_workers=20, similarity=True)

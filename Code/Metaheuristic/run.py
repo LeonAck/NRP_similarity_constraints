@@ -20,21 +20,25 @@ def run_multiple_files(frequency,
                        max_workers,
                        metrics=("best_solution", "best_solution_similarity", "best_solution_no_similarity"),
                        file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
-                       similarity=False):
+                       similarity=False, reg_run=False, num_files=8):
     date_folder = create_date_time_for_folder()
     master_folder = "C:/Master_thesis/Code/Metaheuristic/output_files" + "/" + date_folder
     os.mkdir(master_folder)
 
 
     folders_list = os.listdir(file_path)
-    if similarity:
-        folders_list = keep_files_with_8_weeks(folders_list)
+    if reg_run:
+        folders_list = keep_files_with_weeks(folders_list, num_files)
+        settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
+    elif similarity:
+        folders_list = keep_files_with_weeks(folders_list, 8)
         settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json"
     else:
         settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
     input_dicts = []
 
     master_output = {k: {metric: [] for metric in metrics} for k in folders_list}
+    folders_list = folders_list[2:4]
     for i in range(frequency):
         output = {}
         output_folder = create_output_folder(path=master_folder, folder_name=str(i))
@@ -45,22 +49,23 @@ def run_multiple_files(frequency,
                 solution_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
                 folder_name=folder_name, similarity=similarity,
                 settings_file_path=settings_file_path,
-                param=None, param_to_change=None)
+                param=None, param_to_change=None, reg_run=reg_run)
                               )
 
         results = []
         # arguments = [[input_dict] for input_dict in input_dicts]
         # with open("C:/Master_thesis/Code/Metaheuristic/leon_thesis/input.json",
         #           "w") as output_obj:
-        #     json.dump(input_dicts[0], output_obj)
+        #     json.dump({"input_dict":input_dicts[0]}, output_obj)
         # for argument in arguments:
         #     results.append(run(deepcopy(argument)))
         # run parallel
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
-        results = parallel(execute_heuristic, deepcopy(arguments), max_workers=max_workers)
-
+        results = execute_heuristic(arguments[1][0])
+        results = parallel(run, deepcopy(arguments), max_workers=max_workers)
+        print("done")
         # create output dict
-        output = {folders_list[j]: results[i] for j in range(len(folders_list))}
+        output = {results[j]['folder_name']: results[j] for j in range(len(folders_list))}
         # create plots
         plot.all_plots(output, date_folder+"/" + output_folder)
         keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array",
@@ -128,8 +133,8 @@ def run_two_stage(settings_file_path, folder_name, output_folder=None, similarit
         return write_output_instance(heuristic_2, feasible=True)
 
 
-def keep_files_with_8_weeks(folders_list):
-    return [folder_name for folder_name in folders_list if folder_name[4] == '8']
+def keep_files_with_weeks(folders_list, num_weeks):
+    return [folder_name for folder_name in folders_list if folder_name[4] == str(num_weeks)]
 
 
 def run_one_stage(settings_file_path, stage_number=2):

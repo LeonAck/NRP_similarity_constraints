@@ -42,6 +42,8 @@ def run_parameter_tuning_random(number_of_instances, params=(14, 18, 20, 22, 26,
                                               param_to_change=param_to_change))
         # run parallel
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
+        # arguments = [[input_dict] for input_dict in input_dicts]
+
         try:
             results = parallel(execute_heuristic, arguments, max_workers=40)
             print("done")

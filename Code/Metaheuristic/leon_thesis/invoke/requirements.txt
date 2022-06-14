@@ -1,5 +1,5 @@
 alfa-sdk~=0.1.44
 numpy>=1.19.5
-
+requests>=2.26.0
 
 

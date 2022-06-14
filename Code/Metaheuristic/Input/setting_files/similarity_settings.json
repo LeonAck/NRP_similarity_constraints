@@ -61,7 +61,7 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 100,
-        "max_iter":500000,
+        "max_iter":400000,
         "initial_temp": 22,
       "cut_off_ratio": 0.15,
       "final_temp": 2,

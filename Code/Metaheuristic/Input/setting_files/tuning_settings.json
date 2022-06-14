@@ -3,16 +3,16 @@
   "solution_path": null,
   "similarity": false,
   "tuning": true,
-  "total_time": 800
+  "total_time": 600
 },
   "stage_1_settings":
   {
     "stage_number": 1,
     "plots": false,
      "ref_as_initial": false,
-    "heuristic_settings": {
+    "heuristic_settings":{
         "max_time": 300,
-        "max_iter":400,
+        "max_iter": 400000,
         "initial_temp": 12,
         "final_temp": 2,
         "cut_off_ratio": 0.2,
@@ -61,7 +61,7 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 600,
-        "max_iter":500000,
+        "max_iter":400000,
         "initial_temp": 22,
       "final_temp": 2,
       "cut_off_ratio": 0.08,

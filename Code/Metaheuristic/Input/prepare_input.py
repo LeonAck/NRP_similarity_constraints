@@ -4,7 +4,7 @@ import json
 import numpy as np
 
 
-def folder_to_json(path, folder_name, similarity, settings_file_path, param=None, param_to_change=None, solution_path=None):
+def folder_to_json(path, folder_name, similarity, settings_file_path, param=None, param_to_change=None, solution_path=None, reg_run=False):
     f = open(settings_file_path)
     settings_json = json.load(f)
     # tuning. T
@@ -15,7 +15,7 @@ def folder_to_json(path, folder_name, similarity, settings_file_path, param=None
 
     instance_name = deduce_folder_name(folder_name)
     history_file = int(folder_name[6])
-    weeks = get_weeks_from_folder_name(folder_name, similarity)
+    weeks = get_weeks_from_folder_name(folder_name, reg_run)
 
     # create dict to store json files
     history_data, scenario_data, weeks_data = load_instance(path, instance_name, weeks, history_file)
@@ -60,14 +60,14 @@ def deduce_folder_name(folder_name):
     return "n{}w{}".format(num_nurses, num_weeks)
 
 
-def get_weeks_from_folder_name(folder_name, similarity):
+def get_weeks_from_folder_name(folder_name, reg_run=False):
     folder_name_copy = copy(folder_name)
     week_string = folder_name_copy[7:]
     weeks = []
     while len(week_string) > 0:
         weeks.append(int(week_string[1]))
         week_string = week_string[2:]
-    return weeks[4:] if similarity else weeks
+    return weeks[4:] if not reg_run else weeks
 
 
 def load_instance(path, instance_name, weeks, history_file):
@@ -122,7 +122,7 @@ def get_json_files(path_to_json):
     list of json files
     """
 
-    return [pos_json.removesuffix(".json") for pos_json
+    return [pos_json.rstrip(".json") for pos_json
             in os.listdir(path_to_json) if pos_json.endswith('.json')]
 
 
