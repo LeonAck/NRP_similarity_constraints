@@ -71,3 +71,20 @@ def all_plots(output_dict, output_folder, stage_2=True):
                                  output_folder=output_folder)
             temperature_plot(output_info['stage_2']['iterations'], output_info['stage_2']['temperatures'], folder_name, suppress=True,
                              output_folder=output_folder)
+
+def create_box_plot(list_of_data, output_folder=True, file_name="sample", tick_names=["Change", "Change + Swap + Greedy", "Change + Swap"]):
+
+    num_ticks= len(list_of_data)
+    plt.figure(figsize =(10, 7))
+
+    plt.boxplot(list_of_data)
+    plt.ylabel('Cost')
+    plt.xticks(list(range(1, num_ticks+1)), tick_names)
+    plt.show()
+    if output_folder:
+        plt.savefig(
+            'C:/Master_thesis/Code/Metaheuristic/output_files/box_plot_{}.png'.format(
+                file_name))
+
+    # plt.close()
+

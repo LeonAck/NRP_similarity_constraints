@@ -7,6 +7,7 @@ import numpy as np
 def folder_to_json(path, folder_name, similarity, settings_file_path, param=None, param_to_change=None, solution_path=None, reg_run=False):
     f = open(settings_file_path)
     settings_json = json.load(f)
+    settings_json['instance_settings']['similarity'] = similarity
     # tuning. T
     if param:
         settings_json['stage_1_settings']['heuristic_settings'][param_to_change] = param
@@ -43,12 +44,12 @@ def create_instance_data_dict(history_data, scenario_data, weeks_data, instance_
     instance_data['instance_name'] = instance_name
     instance_data['history_file'] = history_file
     instance_data['weeks'] = weeks
+    instance_data['settings'] = settings_json
     instance_data['history_data'] = history_data
     instance_data['scenario_data'] = scenario_data
     instance_data['weeks_data'] = weeks_data
     instance_data['ref_assignments'] = ref_assignments
     instance_data['skills'] = skills
-    instance_data['settings'] = settings_json
 
     return instance_data
 

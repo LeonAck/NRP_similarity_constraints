@@ -127,10 +127,10 @@ eight_week_ceschia_best = [
 
 mock_values = list(range(len(hidden_instances)))
 hidden_dict = {"hidden_instances": hidden_instances, "legrain_et_al": {}}
-eight_week_dict = {"Instance": eight_week_instances, "Legrain et al. (2020)": eight_week_legrain_cost,
-                   "Ceschia et al. (..) \n"
+eight_week_dict = {"Instance": eight_week_instances, "\cite{legrain2020rotation}": eight_week_legrain_cost,
+                   "\cite{ceschia2020solving} \n"
                    "Avg cost": eight_week_ceschia_avg,
-                   "Ceschia et al. (..) \n"
+                   "\cite{ceschia2020solving} \n"
                    "Best cost": eight_week_ceschia_best
                    }
 def add_results_to_dict(path, metrics, names, dict):

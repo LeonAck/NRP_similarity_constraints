@@ -15,7 +15,7 @@ def execute_heuristic(problem, algorithm_id="fde9e297-7579-4ac3-ab2a-078fb74e404
         problem
     )
     print("single run done")
-
+    print(result)
     return result
 
 
