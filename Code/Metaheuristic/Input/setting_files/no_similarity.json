@@ -3,7 +3,8 @@
   "solution_path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
   "similarity": false,
   "tuning": false,
-  "total_time": 650
+  "total_time": 700,
+  "skip_stage_1": true
 },
   "stage_1_settings":
   {
@@ -12,7 +13,7 @@
      "ref_as_initial": false,
     "heuristic_settings": {
         "max_time": 300,
-        "max_iter":600000,
+        "max_iter": 400,
        "initial_temp": 12,
         "final_temp": 2,
         "cut_off_ratio": 0.2,
@@ -61,7 +62,7 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 1000,
-        "max_iter":500000,
+        "max_iter":500,
         "initial_temp": 22,
       "final_temp": 2,
       "cut_off_ratio": 0.15,

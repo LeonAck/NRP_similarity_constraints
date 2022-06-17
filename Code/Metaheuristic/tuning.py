@@ -9,7 +9,7 @@ import Output.create_plots as plot
 import os
 import random
 import json
-
+import numpy as np
 
 
 def run_parameter_tuning_random(number_of_instances, params=(14, 18, 20, 22, 26, 30),
@@ -29,7 +29,6 @@ def run_parameter_tuning_random(number_of_instances, params=(14, 18, 20, 22, 26,
         tuning_list.append(get_random_folder(folders_list, file_path))
 
     for param in params:
-        print(param)
         output_folder = "tuning/" + tuning_folder + "/" + str(param)
         create_output_folder_no_date(
             "C:/Master_thesis/Code/Metaheuristic/output_files/tuning/" + tuning_folder + "/" + str(param))
@@ -70,6 +69,66 @@ def run_parameter_tuning_random(number_of_instances, params=(14, 18, 20, 22, 26,
         # save json in output_files folder
         create_json(output_folder, output)
 
+
+def tuning_single_run_create_plot(repeat, params, param_to_change,
+                                  week_range=(4, 10), nurse_range=(30, 120),
+                                  similarity=False,
+                                  file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
+                                  settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/tuning_settings.json"):
+    tuning_folder = create_date_time_for_folder()
+    os.mkdir("C:/Master_thesis/Code/Metaheuristic/output_files/tuning/" + tuning_folder)
+
+    folders_list = os.listdir(file_path)
+
+    # make selection of folders
+    folders_list = keep_files_within_selection(folders_list, week_range, nurse_range)
+    tuning_list = [get_random_folder(folders_list, file_path)]
+    # create param dict for plots
+    param_dict = {param: {} for param in params}
+
+    for param in params:
+        input_dicts = []
+
+        # create list of inputs
+        for i in range(repeat):
+            input_dicts.append(folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param,
+                                              param_to_change=param_to_change))
+
+        # run parallel
+        arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
+        # arguments = [[input_dict] for input_dict in input_dicts]
+
+        results = parallel(execute_heuristic, arguments, max_workers=40)
+
+        max_iter, max_run_time, avg_obj_values = get_info_single_instance_multiple_params(results)
+
+        param_dict = update_info_plot_multiple_params(param_dict, param, max_iter, max_run_time, avg_obj_values)
+
+    # create plot with line of avg objective
+    create_obj_value_multiple_params(param_dict)
+
+def get_info_single_instance_multiple_params(results):
+    max_run_time = 0
+    max_iter = 0
+
+    for result in results:
+        if result['stage_2']['feasible']:
+            if result['stage_2']['iterations'] > max_iter:
+                max_iter = result['stage_2']['iterations']
+            if result['stage_2']['run_time'] > max_run_time:
+                max_run_time = result['stage_2']['run_time']
+
+    if max_run_time > 0:
+        avg_obj_values = np.zeros(max_iter)
+        for result in results:
+            if result['stage_2']['feasible']:
+                # create array of length as max_iter
+                obj_values_array = np.concatenate(result['stage_2']['obj_values'], np.zeros(max_iter - result['stage_2']['iterations']))
+                avg_obj_values += obj_values_array
+    else:
+        avg_obj_values = None
+
+    return max_run_time, max_iter, avg_obj_values
 
 def get_random_folder(folders_list, file_path):
     instance_folder = random.choice(folders_list)

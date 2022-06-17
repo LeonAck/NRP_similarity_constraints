@@ -3,7 +3,8 @@
   "solution_path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
   "similarity": true,
   "tuning": false,
-  "total_time": 700
+  "total_time": 700,
+  "skip_stage_1": false
 },
   "stage_1_settings":
   {

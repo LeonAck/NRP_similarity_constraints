@@ -15,6 +15,8 @@ def run(input_dict):
     # run stage_1
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
     # check if first stage feasible
+    if input_dict['settings']['instance_settings']['skip_stage_1']:
+        heuristic_1.stage_1_feasible = True
     if heuristic_1.stage_1_feasible:
         # cap max time
         settings.stage_2_settings['heuristic_settings'][

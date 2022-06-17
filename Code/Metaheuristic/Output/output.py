@@ -6,8 +6,6 @@ from statistics import mean, StatisticsError
 from collections import Counter
 
 
-# os.chdir("/output_files")
-
 def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None):
     """
     Function to return the output_files
@@ -24,7 +22,7 @@ def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None)
 
 def collect_total_output(output):
     total_output = {}
-    print(output)
+    # print(output)
     total_output['avg_feasible_perc'] = mean([instance["stage_1"]['feasible'] for instance in output.values()]) * 100
     try:
         total_output['avg_run_time'] = mean(
@@ -64,19 +62,19 @@ def create_output_folder(path="C:/Master_thesis/Code/Metaheuristic/output_files"
     return folder_name
 
 
-def prepare_output_all_instances(results, master_output, output_folder):
+def prepare_output_all_instances(results, master_output, master_folder, folders_list, metrics, i):
     # create output dict
     output = {results[j]['folder_name']: results[j] for j in range(len(folders_list))}
     # create plots
     # plot.all_plots(output, date_folder + "/" + output_folder)
-    keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array",
-                    "feasible", 'best_solution_similarity', 'best_solution_no_similarity'}
-
-    # remove unnecessary information
-    for result in results:
-        result["stage_1"] = {k: v for k, v in result["stage_1"].items() if k in keys_to_keep}
-        if "stage_2" in result:
-            result["stage_2"] = {k: v for k, v in result["stage_2"].items() if k in keys_to_keep}
+    # keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array",
+    #                 "feasible", 'best_solution_similarity', 'best_solution_no_similarity'}
+    #
+    # # remove unnecessary information
+    # for result in results:
+    #     result["stage_1"] = {k: v for k, v in result["stage_1"].items() if k in keys_to_keep}
+    #     if "stage_2" in result:
+    #         result["stage_2"] = {k: v for k, v in result["stage_2"].items() if k in keys_to_keep}
 
     output['totals'] = collect_total_output(output)
 
@@ -89,7 +87,8 @@ def prepare_output_all_instances(results, master_output, output_folder):
     master_output = update_dict_per_instance_metric(master_output, output, metrics)
     master_output = add_feasibility_master(master_output, output)
     master_output = add_violations_similarity_master(master_output, output)
-    # print(master_output)
+
+    return master_output
 
 
 def beautify_violation_array(heuristic_run):
@@ -120,7 +119,6 @@ def update_dict_per_instance_metric(master_output, output, metrics):
         for k in master_output.keys():
             if output[k]['stage_1']['feasible']:
                 master_output[k][metric].append(output[k]['stage_2'][metric])
-
     return master_output
 
 
@@ -141,11 +139,11 @@ def add_violations_similarity_master(master_output, output):
     for k, v in master_output.items():
         if output[k]['stage_1']['feasible']:
             if "violations" in v:
-                for rule_k in v.keys():
-                    master_output[k]['violations'][rule_k].append(output["violation_array"][rule_k])
+                for rule_k, violation in output[k]['stage_2']["violation_array"].items():
+                    master_output[k]['violations'][rule_k].append(violation)
             else:
                 master_output[k]['violations'] = {}
-                for rule_k, violation in output['violation_array'].items():
+                for rule_k, violation in output[k]['stage_2']['violation_array'].items():
                     master_output[k]['violations'][rule_k] = [violation]
 
     return master_output

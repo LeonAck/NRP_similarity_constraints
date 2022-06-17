@@ -2,7 +2,7 @@ from run import run_one_stage, run_multiple_files
 from tuning import run_parameter_tuning_random
 import cProfile
 
-from tuning import run_parameter_tuning_random
+from tuning import run_parameter_tuning_random, tuning_single_run_create_plot
 
 similarity = False
 tuning = True
@@ -17,4 +17,6 @@ else:
 # cProfile.run("run_multiple_files('C:/Master_thesis/Code
 # /Metaheuristic/Input/sceschia-nurserostering/StaticSolutions', settings_file_path=settings_file_path, similarity=similarity)", sort=1)
 # run_parameter_tuning_random(number_of_instances=2)
-run_multiple_files(frequency=2, max_workers=20, similarity=True, reg_run=True)
+run_multiple_files(frequency=12, max_workers=25, similarity=True, reg_run=True)
+tuning_single_run_create_plot(repeat=2, params=(13, 16, 19), param_to_change="initial_temp"
+                              )

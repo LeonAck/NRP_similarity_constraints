@@ -128,22 +128,41 @@ eight_week_ceschia_best = [
 mock_values = list(range(len(hidden_instances)))
 hidden_dict = {"hidden_instances": hidden_instances, "legrain_et_al": {}}
 eight_week_dict = {"Instance": eight_week_instances, "\cite{legrain2020rotation}": eight_week_legrain_cost,
-                   "\cite{ceschia2020solving} \n"
-                   "Avg cost": eight_week_ceschia_avg,
-                   "\cite{ceschia2020solving} \n"
-                   "Best cost": eight_week_ceschia_best
+                   "\cite{ceschia2020solving} Avg cost": eight_week_ceschia_avg,
+                   "\cite{ceschia2020solving} Best cost": eight_week_ceschia_best,
                    }
-def add_results_to_dict(path, metrics, names, dict):
-    pass
 
-def create_latex_table(dict, caption, label):
+eight_week_run_reg = {"fixed_data": eight_week_dict,
+                      "metrics": {"avg_best_solution": "ALNS Avg cost",
+                                  "best_best_solution": "ALNS Best cost"},
+                      "caption": "Results on 8-week instances",
+                      "label": "tab:8_week_reg"
+                      }
+
+eight_week_w_wo_similarity = {"fixed_data": eight_week_dict,
+                              "metrics": {"avg_best_solution": "ALNS Avg cost",
+                                          "best_best_solution": "ALNS Best cost"},
+                              "caption": "Results on 8-week instances",
+                              "label": "tab:8_week_reg"
+                              }
+
+
+def add_results_to_dict(path, metrics, dict):
+    with open(path, "r") as file:
+        data = json.loads(file.read())
+
+    for metric, name in metrics.items():
+        dict[name] = [output[metric] for output in data.values()]
+
+    return dict
+
+
+def create_latex_table(settings, path):
+    dict = add_results_to_dict(path, settings['metrics'], settings['fixed_data'])
     df = pd.DataFrame(dict)
 
-    df.to_latex(index=False, caption=caption, label=label)
+    print(df.to_latex(index=False, caption=settings['caption'], label=settings['label'], position="h!"))
 
 
-def get_output_into_list(metrics):
-    pass
-
-
-create_latex_table(eight_week_dict, caption="Results on 8-week instances", label="tab:8_week_similarity")
+create_latex_table(eight_week_run_reg,
+                   path="C:/Master_thesis/Code/Metaheuristic/output_files/17_06_2022__15_01_52/summary.json")

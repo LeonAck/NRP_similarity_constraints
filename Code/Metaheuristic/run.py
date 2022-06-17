@@ -35,12 +35,12 @@ def run_multiple_files(frequency,
         settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json"
     else:
         settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
-    input_dicts = []
 
     master_output = {k: {metric: [] for metric in metrics} for k in folders_list}
 
     for i in range(frequency):
         output_folder = create_output_folder(path=master_folder, folder_name=str(i))
+        input_dicts = []
 
         for folder_name in folders_list:
             input_dicts.append(folder_to_json(
@@ -61,7 +61,7 @@ def run_multiple_files(frequency,
         results = parallel(execute_heuristic, deepcopy(arguments), max_workers=max_workers)
         print("done")
 
-        master_output = prepare_output_all_instances(results, master_output, output_folder)
+        master_output = prepare_output_all_instances(results, master_output, master_folder, folders_list, metrics, i)
 
     # store master file
     master_output = calc_min(master_output, metrics, frequency)
