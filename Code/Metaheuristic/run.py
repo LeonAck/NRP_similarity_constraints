@@ -8,7 +8,8 @@ import os
 import json
 from Output.output import write_output_instance, collect_total_output, \
     create_output_folder, create_json, create_date_time_for_folder, \
-    update_dict_per_instance_metric, calc_min, add_feasibility_master
+    update_dict_per_instance_metric, calc_min, add_feasibility_master, \
+    add_violations_similarity_master, prepare_output_all_instances
 from leon_thesis.invoke.output_from_alfa import create_output_dict
 from external.alfa import execute_heuristic
 from leon_thesis.invoke.utils.concurrency import parallel
@@ -39,7 +40,6 @@ def run_multiple_files(frequency,
     master_output = {k: {metric: [] for metric in metrics} for k in folders_list}
 
     for i in range(frequency):
-        output = {}
         output_folder = create_output_folder(path=master_folder, folder_name=str(i))
 
         for folder_name in folders_list:
@@ -51,47 +51,23 @@ def run_multiple_files(frequency,
                 param=None, param_to_change=None, reg_run=reg_run)
             )
 
-        results = []
-        arguments = [input_dict for input_dict in input_dicts]
-        # with open("C:/Master_thesis/Code/Metaheuristic/leon_thesis/input.json",
-        #           "w") as output_obj:
-        #     json.dump({"input_dict":input_dicts[0]}, output_obj)
+        # arguments = [input_dict for input_dict in input_dicts]
+
         # for argument in arguments:
         #     results.append(run(deepcopy(argument)))
         # run parallel
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
-        results = execute_heuristic(arguments[5][0])
-        # results = parallel(execute_heuristic, deepcopy(arguments), max_workers=max_workers)
+        # results = execute_heuristic(arguments[5][0])
+        results = parallel(execute_heuristic, deepcopy(arguments), max_workers=max_workers)
         print("done")
-        # create output dict
-    #     output = {results[j]['folder_name']: results[j] for j in range(len(folders_list))}
-    #     # create plots
-    #     plot.all_plots(output, date_folder + "/" + output_folder)
-    #     keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array",
-    #                     "feasible", 'best_solution_similarity', 'best_solution_no_similarity'}
-    #
-    #     # remove unnecessary information
-    #     for result in results:
-    #         result["stage_1"] = {k: v for k, v in result["stage_1"].items() if k in keys_to_keep}
-    #         if "stage_2" in result:
-    #             result["stage_2"] = {k: v for k, v in result["stage_2"].items() if k in keys_to_keep}
-    #
-    #     output['totals'] = collect_total_output(output)
-    #
-    #     # save json in output_files folder
-    #     with open(master_folder + "/" + str(i) + "/output.json",
-    #               "w") as output_obj:
-    #         json.dump(output, output_obj)
-    #
-    #     # update master output
-    #     master_output = update_dict_per_instance_metric(master_output, output, metrics)
-    #     master_output = add_feasibility_master(master_output, output)
-    #     # print(master_output)
-    # # store master file
-    # master_output = calc_min(master_output, metrics, frequency)
-    # with open(master_folder + "/summary.json",
-    #           "w") as output_obj:
-    #     json.dump(master_output, output_obj)
+
+        master_output = prepare_output_all_instances(results, master_output, output_folder)
+
+    # store master file
+    master_output = calc_min(master_output, metrics, frequency)
+    with open(master_folder + "/summary.json",
+              "w") as output_obj:
+        json.dump(master_output, output_obj)
 
 
 def run_two_stage(settings_file_path, folder_name, output_folder=None, similarity=False):
@@ -147,31 +123,3 @@ def run_one_stage(settings_file_path, stage_number=2):
     print(stage_2_solution.violation_array)
     print(heuristic_2.n_iter)
     return stage_2_solution
-
-# def run_two_stage_one_input_one_output(input_dict):
-#     """
-#     Function to execute heuristic
-#     """
-#
-#     settings = Settings(input_dict['settings'])
-#
-#     instance = Instance(settings, input_dict)
-#
-#     # run stage_1
-#     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
-#     # check if first stage feasible
-#
-#     if heuristic_1.stage_1_feasible:
-#         # run stage 2
-#         if not settings.similarity:
-#             heuristic_2, stage_2_solution = run_stage_add_similarity(instance, settings.stage_2_settings,
-#                                                                      previous_solution=stage_1_solution)
-#         else:
-#             heuristic_2, stage_2_solution = run_stage(instance, settings.stage_2_settings,
-#                                                       previous_solution=stage_1_solution)
-#
-#     else:
-#         heuristic_2 = None
-#
-#     output_dict = create_output_dict(instance.instance_name, heuristic_1, heuristic_2)
-#     return output_dict

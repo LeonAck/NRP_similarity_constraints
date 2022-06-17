@@ -18,7 +18,7 @@ def create_output_dict(folder_name, instance_name, heuristic_1, heuristic_2=None
                                   "run_time": heuristic_2.run_time,
                                   "violation_array": beautify_violation_array(heuristic_2),
                                   "best_solution": heuristic_2.best_obj_values[-1],
-                                  "temperatures": heuristic_2.temperatures,
+                                  # "temperatures": heuristic_2.temperatures,
                                   # "obj_values": heuristic_2.obj_values,
                                   # "best_obj_values": heuristic_2.best_obj_values,
                                   # "operator_weights": heuristic_2.oper_vars

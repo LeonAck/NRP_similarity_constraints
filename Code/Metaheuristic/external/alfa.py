@@ -6,8 +6,11 @@ from leon_thesis.invoke.Heuristic import Heuristic
 from copy import deepcopy
 from leon_thesis.invoke.utils.session import init_session
 
-def execute_heuristic(problem, algorithm_id="fde9e297-7579-4ac3-ab2a-078fb74e4040",
-                      environment="thesis_env"):
+
+def execute_heuristic(problem):
+    algorithm_id = "fde9e297-7579-4ac3-ab2a-078fb74e4040"
+    environment = "thesis_env"
+    print("started")
     session = Session(keepalive=True)
     result = session.invoke_algorithm(
         algorithm_id,
@@ -15,7 +18,7 @@ def execute_heuristic(problem, algorithm_id="fde9e297-7579-4ac3-ab2a-078fb74e404
         problem
     )
     print("single run done")
-    print(result)
+    # print(result)
     return result
 
 

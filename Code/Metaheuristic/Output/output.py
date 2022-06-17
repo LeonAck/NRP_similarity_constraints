@@ -64,6 +64,34 @@ def create_output_folder(path="C:/Master_thesis/Code/Metaheuristic/output_files"
     return folder_name
 
 
+def prepare_output_all_instances(results, master_output, output_folder):
+    # create output dict
+    output = {results[j]['folder_name']: results[j] for j in range(len(folders_list))}
+    # create plots
+    # plot.all_plots(output, date_folder + "/" + output_folder)
+    keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array",
+                    "feasible", 'best_solution_similarity', 'best_solution_no_similarity'}
+
+    # remove unnecessary information
+    for result in results:
+        result["stage_1"] = {k: v for k, v in result["stage_1"].items() if k in keys_to_keep}
+        if "stage_2" in result:
+            result["stage_2"] = {k: v for k, v in result["stage_2"].items() if k in keys_to_keep}
+
+    output['totals'] = collect_total_output(output)
+
+    # save json in output_files folder
+    with open(master_folder + "/" + str(i) + "/output.json",
+              "w") as output_obj:
+        json.dump(output, output_obj)
+
+    # update master output
+    master_output = update_dict_per_instance_metric(master_output, output, metrics)
+    master_output = add_feasibility_master(master_output, output)
+    master_output = add_violations_similarity_master(master_output, output)
+    # print(master_output)
+
+
 def beautify_violation_array(heuristic_run):
     violation_dict = {}
     for i, rule_name in enumerate(heuristic_run.rule_collection.soft_rule_collection.collection.keys()):
@@ -92,9 +120,9 @@ def update_dict_per_instance_metric(master_output, output, metrics):
         for k in master_output.keys():
             if output[k]['stage_1']['feasible']:
                 master_output[k][metric].append(output[k]['stage_2'][metric])
-                master_output
 
     return master_output
+
 
 def add_feasibility_master(master_output, output):
     for k in master_output.keys():
@@ -103,6 +131,23 @@ def add_feasibility_master(master_output, output):
                 master_output[k]['feasible'] += 1
             else:
                 master_output[k]['feasible'] = 1
+    return master_output
+
+
+def add_violations_similarity_master(master_output, output):
+    """
+    Functions to store the violations of the similarity constraints in one place
+    """
+    for k, v in master_output.items():
+        if output[k]['stage_1']['feasible']:
+            if "violations" in v:
+                for rule_k in v.keys():
+                    master_output[k]['violations'][rule_k].append(output["violation_array"][rule_k])
+            else:
+                master_output[k]['violations'] = {}
+                for rule_k, violation in output['violation_array'].items():
+                    master_output[k]['violations'][rule_k] = [violation]
+
     return master_output
 
 
@@ -119,4 +164,32 @@ def calc_min(master_output, metrics, frequency):
             master_output[k]["perc_feasible"] = master_output[k]['feasible'] / frequency * 100
         else:
             master_output[k]["perc_feasible"] = 0
+
+    # calc average of violations
+    for k, v in master_output.items():
+        # check if any of the instances was feasible
+        if v['perc_feasible'] > 0:
+            master_output[k]["avg_violations"] = {}
+            for rule_k in v["violations"]:
+                master_output[k]["avg_violations"][rule_k] = mean(v["violations"][rule_k])
     return master_output
+
+
+def prepare_output_boxplot(paths, metric):
+    list_of_data = []
+
+    for path in paths:
+        f = open(settings_file_path)
+        master_output = json.load(f)
+
+        # check whether this runs with lists
+        metric_all_instances = []
+
+        # collect the metric for all instances in one list
+        for k, v in master_output.items():
+            if v['perc_feasible'] > 0:
+                metric_all_instances += v[metric]
+
+        list_of_data.append(metric_all_instances)
+
+    return list_of_data

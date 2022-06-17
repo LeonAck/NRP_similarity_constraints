@@ -13,7 +13,7 @@ def objective_value_plot(n_iter, obj_values, best_obj_values, stage_number, inst
         x_axis = np.linspace(0, n_iter, n_iter)[0:-1]
         plt.plot(x_axis, obj_values, x_axis, best_obj_values, linewidth=0.5)
         if stage_number == 2:
-            plt.ylim(0, min(obj_values)+10000)
+            plt.ylim(0, min(obj_values) + 10000)
 
         if output_folder:
             plt.savefig(
@@ -69,22 +69,23 @@ def all_plots(output_dict, output_folder, stage_2=True):
                                  output_folder=output_folder)
             operator_weight_plot(output_info['stage_2']["operator_weights"], folder_name, suppress=True,
                                  output_folder=output_folder)
-            temperature_plot(output_info['stage_2']['iterations'], output_info['stage_2']['temperatures'], folder_name, suppress=True,
+            temperature_plot(output_info['stage_2']['iterations'], output_info['stage_2']['temperatures'], folder_name,
+                             suppress=True,
                              output_folder=output_folder)
 
-def create_box_plot(list_of_data, output_folder=True, file_name="sample", tick_names=["Change", "Change + Swap + Greedy", "Change + Swap"]):
 
-    num_ticks= len(list_of_data)
-    plt.figure(figsize =(10, 7))
+def create_box_plot(list_of_data, output_folder=True, file_name="sample",
+                    tick_names=["Change", "Change + Swap + Greedy", "Change + Swap"], ylabel='Cost'):
+    num_ticks = len(list_of_data)
+    plt.figure(figsize=(10, 7))
 
     plt.boxplot(list_of_data)
     plt.ylabel('Cost')
-    plt.xticks(list(range(1, num_ticks+1)), tick_names)
-    plt.show()
+    plt.xticks(list(range(1, num_ticks + 1)), tick_names)
+    # plt.show()
     if output_folder:
         plt.savefig(
             'C:/Master_thesis/Code/Metaheuristic/output_files/box_plot_{}.png'.format(
                 file_name))
 
-    # plt.close()
-
+    plt.close()
