@@ -11,9 +11,10 @@ def run(input_dict):
     settings = Settings(input_dict['settings'])
 
     instance = Instance(settings, input_dict)
-
+    print("start_heuristc")
     # run stage_1
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
+    print("first_stage_done")
     # check if first stage feasible
     if input_dict['settings']['instance_settings']['skip_stage_1']:
         heuristic_1.stage_1_feasible = True
@@ -33,6 +34,7 @@ def run(input_dict):
 
     else:
         heuristic_2 = None
+    print("second stage done")
 
     output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2, similarity=settings.similarity)
     return output_dict

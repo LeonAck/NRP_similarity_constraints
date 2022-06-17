@@ -91,14 +91,14 @@ def tuning_single_run_create_plot(repeat, params, param_to_change,
 
         # create list of inputs
         for i in range(repeat):
-            input_dicts.append(folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param,
+            input_dicts.append(folder_to_json(file_path, tuning_list[0], similarity, settings_file_path, param=param,
                                               param_to_change=param_to_change))
 
         # run parallel
-        arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
-        # arguments = [[input_dict] for input_dict in input_dicts]
+        # arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
+        arguments = [[input_dict] for input_dict in input_dicts]
 
-        results = parallel(execute_heuristic, arguments, max_workers=40)
+        results = parallel(run, arguments, max_workers=40)
 
         max_iter, max_run_time, avg_obj_values = get_info_single_instance_multiple_params(results)
 
@@ -112,7 +112,7 @@ def get_info_single_instance_multiple_params(results):
     max_iter = 0
 
     for result in results:
-        if result['stage_2']['feasible']:
+        if result['stage_1']['feasible']:
             if result['stage_2']['iterations'] > max_iter:
                 max_iter = result['stage_2']['iterations']
             if result['stage_2']['run_time'] > max_run_time:
@@ -121,9 +121,9 @@ def get_info_single_instance_multiple_params(results):
     if max_run_time > 0:
         avg_obj_values = np.zeros(max_iter)
         for result in results:
-            if result['stage_2']['feasible']:
+            if result['stage_1']['feasible']:
                 # create array of length as max_iter
-                obj_values_array = np.concatenate(result['stage_2']['obj_values'], np.zeros(max_iter - result['stage_2']['iterations']))
+                obj_values_array = np.concatenate((np.array(result['stage_2']['obj_values']), np.zeros(max_iter - result['stage_2']['iterations'])))
                 avg_obj_values += obj_values_array
     else:
         avg_obj_values = None

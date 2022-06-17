@@ -177,7 +177,7 @@ def prepare_output_boxplot(paths, metric):
     list_of_data = []
 
     for path in paths:
-        f = open(settings_file_path)
+        f = open(path)
         master_output = json.load(f)
 
         # check whether this runs with lists
@@ -188,6 +188,6 @@ def prepare_output_boxplot(paths, metric):
             if v['perc_feasible'] > 0:
                 metric_all_instances += v[metric]
 
-        list_of_data.append(metric_all_instances)
+        list_of_data.append([metric_all_instances])
 
     return list_of_data
