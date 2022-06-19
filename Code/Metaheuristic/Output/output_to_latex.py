@@ -176,5 +176,7 @@ def create_latex_table(settings, path):
     print(df.to_latex(index=False, caption=settings['caption'], label=settings['label'], position="h!"))
 
 
-create_latex_table(eight_week_run_reg,
-                   path="C:/Master_thesis/Code/Metaheuristic/output_files/17_06_2022__15_01_52/summary.json")
+# create_latex_table(eight_week_run_reg,
+#                    path="C:/Master_thesis/Code/Metaheuristic/output_files/17_06_2022__15_01_52/summary.json")
+create_latex_table(eight_week_w_similarity,
+                   path="C:/Master_thesis/Code/Metaheuristic/output_files/19_06_2022_8_week_w_similarity_1/summary.json")

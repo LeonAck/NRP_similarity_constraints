@@ -4,7 +4,7 @@
   "similarity": false,
   "tuning": false,
   "total_time": 700,
-  "skip_stage_1": false
+  "skip_stage_1": true
 },
   "stage_1_settings":
   {

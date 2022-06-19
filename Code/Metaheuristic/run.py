@@ -34,6 +34,7 @@ def run_multiple_files(frequency,
         folders_list = keep_files_with_weeks(folders_list, 8)
         settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/similarity_settings.json"
     else:
+        folders_list = keep_files_with_weeks(folders_list, 8)
         settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 
     master_output = {k: {metric: [] for metric in metrics} for k in folders_list}
