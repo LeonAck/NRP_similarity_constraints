@@ -90,13 +90,12 @@ class Heuristic:
             n_sampled = 0
             n_accepted = 0
             while n_sampled < self.max_sampled and n_accepted < self.max_accepted:
-
+                # print(n_iter)
                 # choose operator
                 operator_name = self.roulette_wheel_selection(self.operators_to_use)
+                # print(operator_name)
                 # self.update_frequency_operator(operator_name)
-
                 operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
-
                 if not operator_info['feasible']:
                     # print("no feasible change")
                     break

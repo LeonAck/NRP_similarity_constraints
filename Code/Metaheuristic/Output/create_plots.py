@@ -96,21 +96,20 @@ def get_obj_value_multiple_params():
     pass
 
 
-def update_info_plot_multiple_params(param_dict, param, max_iter, max_run_time, avg_obj_values):
-    if avg_obj_values:
-        param_dict[param]['run_time'] = max_iter
-        param_dict[param]['iterations'] = max_run_time
-        param_dict[param]['obj_values'] = avg_obj_values
-
-    return param_dict
-
-
-def create_obj_value_multiple_params(param_dict):
+def create_obj_value_multiple_params(param_dict, instance_name, suppress=False):
     for param, info in param_dict.items():
-        x_axis = np.linspace(0, info['iterations'], info['run_time'])[0:-1]
-        plt.plot(x_axis, info['obj_values'],  linewidth=0.5)
+        x_axis = np.linspace(0, info['run_time'], info['iterations'])[0:-1]
+        plt.plot(x_axis, info['obj_values'],  linewidth=0.5, label="T_0 = {}".format(param))
 
-    plt.show()
+    plt.legend()
+    if not suppress:
+        plt.show()
+    else:
+        plt.savefig(
+            'C:/Master_thesis/Code/Metaheuristic/output_files/tuning/multiple_param_{}.png'.format(
+                instance_name))
+        plt.close()
+
 
 
 

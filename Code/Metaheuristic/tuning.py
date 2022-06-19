@@ -10,6 +10,8 @@ import os
 import random
 import json
 import numpy as np
+import cProfile
+from copy import deepcopy
 
 
 def run_parameter_tuning_random(number_of_instances, params=(14, 18, 20, 22, 26, 30),
@@ -97,15 +99,16 @@ def tuning_single_run_create_plot(repeat, params, param_to_change,
         # run parallel
         # arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
         arguments = [[input_dict] for input_dict in input_dicts]
-
-        results = parallel(run, arguments, max_workers=40)
+        # for i in range(1, 10):
+        #     results = run(deepcopy(arguments[0][0]))
+        results = parallel(run, deepcopy(arguments), max_workers=40)
 
         max_iter, max_run_time, avg_obj_values = get_info_single_instance_multiple_params(results)
 
         param_dict = update_info_plot_multiple_params(param_dict, param, max_iter, max_run_time, avg_obj_values)
 
     # create plot with line of avg objective
-    create_obj_value_multiple_params(param_dict)
+    plot.create_obj_value_multiple_params(param_dict, tuning_list[0])
 
 def get_info_single_instance_multiple_params(results):
     max_run_time = 0
@@ -119,16 +122,26 @@ def get_info_single_instance_multiple_params(results):
                 max_run_time = result['stage_2']['run_time']
 
     if max_run_time > 0:
-        avg_obj_values = np.zeros(max_iter)
+        avg_obj_values = np.zeros(max_iter-1)
         for result in results:
             if result['stage_1']['feasible']:
                 # create array of length as max_iter
-                obj_values_array = np.concatenate((np.array(result['stage_2']['obj_values']), np.zeros(max_iter - result['stage_2']['iterations'])))
+                obj_values_array = np.concatenate((np.array(result['stage_2']['obj_values']),
+                                                   np.zeros(max_iter - result['stage_2']['iterations'])))
                 avg_obj_values += obj_values_array
     else:
         avg_obj_values = None
 
-    return max_run_time, max_iter, avg_obj_values
+    return max_iter, max_run_time, avg_obj_values
+
+
+def update_info_plot_multiple_params(param_dict, param, max_iter, max_run_time, avg_obj_values):
+    if avg_obj_values is not None:
+        param_dict[param]['run_time'] = max_run_time
+        param_dict[param]['iterations'] = max_iter
+        param_dict[param]['obj_values'] = avg_obj_values
+
+    return param_dict
 
 def get_random_folder(folders_list, file_path):
     instance_folder = random.choice(folders_list)

@@ -139,13 +139,25 @@ eight_week_run_reg = {"fixed_data": eight_week_dict,
                       "label": "tab:8_week_reg"
                       }
 
-eight_week_w_wo_similarity = {"fixed_data": eight_week_dict,
-                              "metrics": {"avg_best_solution": "ALNS Avg cost",
-                                          "best_best_solution": "ALNS Best cost"},
-                              "caption": "Results on 8-week instances",
-                              "label": "tab:8_week_reg"
+eight_week_w_similarity = {"fixed_data": {"Instance": eight_week_instances},
+                              "metrics": {"avg_best_solution_similarity": "Extended model Avg cost",
+                                          "best_best_solution_similarity": "Extended model Best cost",
+                                          "avg_best_solution_no_similarity": "Extended model Avg cost",
+                                          "best_best_solution_no_similarity": "Extended model Best cost"
+                                          },
+                              "caption": "Results on new 4-week instances with similarity constraints",
+                              "label": "tab:8_week_similarity"
                               }
 
+eight_week_wo_similarity = {"fixed_data": {"Instance": eight_week_instances},
+                              "metrics": {"avg_best_solution_similarity": "Basic Avg cost",
+                                          "best_best_solution_similarity": "Basic Best cost",
+                                          "avg_best_solution_no_similarity": "Basic Avg cost",
+                                          "best_best_solution_no_similarity": "Basic Best cost"
+                                          },
+                              "caption": "Results on new 4-week instances without similarity constraints",
+                              "label": "tab:8_week_similarity"
+                              }
 
 def add_results_to_dict(path, metrics, dict):
     with open(path, "r") as file:
