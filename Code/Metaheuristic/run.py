@@ -58,7 +58,7 @@ def run_multiple_files(frequency,
         #     results.append(run(deepcopy(argument)))
         # run parallel
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
-        # results = execute_heuristic(arguments[5][0])
+        # results = run(arguments[0])
         results = parallel(execute_heuristic, deepcopy(arguments), max_workers=max_workers)
         print("done")
 

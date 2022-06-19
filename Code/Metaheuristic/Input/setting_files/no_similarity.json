@@ -259,7 +259,7 @@
                        "parameter_per_contract": false,
                    "parameter_per_s_type": false,
                 "parameter_per_employee": false,
-             "penalty": 10,
+             "penalty": 20,
              "parameter_1": null,
             "swap": true},
       "S8RefShift": {"id": "S8RefShift",
@@ -269,7 +269,7 @@
                        "parameter_per_contract": false,
                    "parameter_per_s_type": false,
         "parameter_per_employee": false,
-             "penalty": 8,
+             "penalty": 10,
              "parameter_1": null,
             "swap": true},
        "S8RefSkill": {"id": "S8RefSkill",
@@ -279,7 +279,7 @@
                        "parameter_per_contract": false,
                    "parameter_per_s_type": false,
          "parameter_per_employee": false,
-             "penalty": 4,
+             "penalty": 5,
              "parameter_1": null,
             "swap": true}
     }}

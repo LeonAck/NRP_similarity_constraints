@@ -2,7 +2,7 @@ from Domain.settings import Settings
 from Domain.input_NRC import Instance
 from output_from_alfa import create_output_dict
 from run_stage_functions import run_stage, run_stage_add_similarity
-
+import numpy as np
 
 def run(input_dict):
     """
@@ -11,10 +11,8 @@ def run(input_dict):
     settings = Settings(input_dict['settings'])
 
     instance = Instance(settings, input_dict)
-    print("start_heuristc")
     # run stage_1
     heuristic_1, stage_1_solution = run_stage(instance, settings.stage_1_settings)
-    print("first_stage_done")
     # check if first stage feasible
     if input_dict['settings']['instance_settings']['skip_stage_1']:
         heuristic_1.stage_1_feasible = True
@@ -34,7 +32,14 @@ def run(input_dict):
 
     else:
         heuristic_2 = None
-    print("second stage done")
 
-    output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2, similarity=settings.similarity)
+    if not settings.similarity:
+        rule_settings = input_dict['settings']['stage_2_settings']['rules']
+        similarity_penalties = np.array([rule_settings['S8RefDay']['penalty'],
+                                         rule_settings['S8RefShift']['penalty'],
+                                         rule_settings['S8RefSkill']['penalty']])
+        output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2,
+                                         similarity=settings.similarity, similarity_penalties=similarity_penalties)
+    else:
+        output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2, similarity=settings.similarity)
     return output_dict

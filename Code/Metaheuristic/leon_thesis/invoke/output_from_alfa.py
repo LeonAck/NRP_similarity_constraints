@@ -1,17 +1,17 @@
 import numpy as np
 
 
-def create_output_dict(folder_name, instance_name, heuristic_1, heuristic_2=None, tuning=False, similarity=False):
-    output_dict = {"folder_name": folder_name, "instance_name": instance_name}
-
-    output_dict["stage_1"] = {"iterations": heuristic_1.n_iter,
-                              "run_time": heuristic_1.run_time,
-                              "feasible": heuristic_1.stage_1_feasible,
-                              "violation_array": beautify_violation_array(heuristic_1),
-                              # "temperatures": heuristic_1.temperatures,
-                              # "obj_values": heuristic_1.obj_values,
-                              # "best_obj_values": heuristic_1.best_obj_values
-                              }
+def create_output_dict(folder_name, instance_name, heuristic_1, heuristic_2=None, tuning=False, similarity=False,
+                       similarity_penalties=None):
+    output_dict = {"folder_name": folder_name, "instance_name": instance_name,
+                   "stage_1": {"iterations": heuristic_1.n_iter,
+                               "run_time": heuristic_1.run_time,
+                               "feasible": heuristic_1.stage_1_feasible,
+                               "violation_array": beautify_violation_array(heuristic_1),
+                               # "temperatures": heuristic_1.temperatures,
+                               # "obj_values": heuristic_1.obj_values,
+                               # "best_obj_values": heuristic_1.best_obj_values
+                               }}
 
     if heuristic_1.stage_1_feasible:
         output_dict["stage_2"] = {"iterations": heuristic_2.n_iter,
@@ -29,8 +29,9 @@ def create_output_dict(folder_name, instance_name, heuristic_1, heuristic_2=None
                 output_dict['stage_2']['best_solution_no_similarity'] = calc_objective_value_violations(
                     heuristic_2.final_violation_array[:-3], heuristic_2.rule_collection.penalty_array[:-3])
             else:
+                extended_penalties = np.concatenate((heuristic_2.rule_collection.penalty_array, similarity_penalties))
                 output_dict['stage_2']['best_solution_similarity'] = calc_objective_value_violations(
-                    heuristic_2.final_violation_array, heuristic_2.rule_collection.penalty_array)
+                    heuristic_2.final_violation_array, extended_penalties)
                 output_dict['stage_2']['best_solution_no_similarity'] = heuristic_2.best_obj_values[-1]
     return output_dict
 
