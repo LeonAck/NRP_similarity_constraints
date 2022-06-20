@@ -173,7 +173,7 @@ def create_latex_table(settings, path):
     dict = add_results_to_dict(path, settings['metrics'], settings['fixed_data'])
     df = pd.DataFrame(dict)
 
-    print(df.to_latex(index=False, caption=settings['caption'], label=settings['label'], position="h!"))
+    print(df.to_latex(index=False, caption=settings['caption'], label=settings['label'], position="h!", float_format="%.1f"))
 
 
 # create_latex_table(eight_week_run_reg,

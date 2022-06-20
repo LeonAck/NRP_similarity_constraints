@@ -11,7 +11,7 @@ from Output.output import write_output_instance, collect_total_output, \
     update_dict_per_instance_metric, calc_min, add_feasibility_master, \
     add_violations_similarity_master, prepare_output_all_instances
 from leon_thesis.invoke.output_from_alfa import create_output_dict
-from external.alfa import execute_heuristic
+from external.alfa import execute_heuristic, execute_heuristic_2
 from leon_thesis.invoke.utils.concurrency import parallel
 from leon_thesis.invoke.main import run
 from Input.prepare_input import folder_to_json
@@ -52,14 +52,17 @@ def run_multiple_files(frequency,
                 param=None, param_to_change=None, reg_run=reg_run)
             )
 
-        # arguments = [input_dict for input_dict in input_dicts]
+        # arguments = [[input_dict] for input_dict in input_dicts]
 
         # for argument in arguments:
         #     results.append(run(deepcopy(argument)))
         # run parallel
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
         # results = run(arguments[0])
-        results = parallel(execute_heuristic, deepcopy(arguments), max_workers=max_workers)
+        # result = execute_heuristic_2(arguments[0][0])
+        results = parallel(execute_heuristic_2, deepcopy(arguments), max_workers=max_workers)
+        # results = parallel(run, deepcopy(arguments), max_workers=max_workers)
+        #
         print("done")
 
         master_output = prepare_output_all_instances(results, master_output, master_folder, folders_list, metrics, i)

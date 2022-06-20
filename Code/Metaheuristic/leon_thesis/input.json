@@ -82,7 +82,7 @@
           "initial_temp": 22,
           "final_temp": 2,
           "cut_off_ratio": 0.15,
-          "cooling_rate": 0.995,
+          "cooling_rate": 0.99,
           "no_improve_max": 100,
           "operators": [
             "swap",
