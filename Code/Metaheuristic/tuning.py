@@ -14,8 +14,9 @@ import cProfile
 from copy import deepcopy
 
 
-def run_parameter_tuning_random(number_of_instances, params=(14, 18, 20, 22, 26, 30),
-                                param_to_change="initial_temp",
+def run_parameter_tuning_random(number_of_instances, params=(["change"], ['change', 'swap'],
+                                                             ['change', 'swap', 'greedy_change']),
+                                param_to_change="operators",
                                 week_range=(4, 10), nurse_range=(30, 120),
                                 similarity=False,
                                 file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
@@ -72,7 +73,7 @@ def run_parameter_tuning_random(number_of_instances, params=(14, 18, 20, 22, 26,
         create_json(output_folder, output)
 
 
-def tuning_single_run_create_plot(repeat, params, param_to_change,
+def tuning_single_run_create_plot(repeat, params, param_to_change, max_workers,
                                   week_range=(4, 10), nurse_range=(30, 120),
                                   similarity=False,
                                   file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
@@ -101,7 +102,7 @@ def tuning_single_run_create_plot(repeat, params, param_to_change,
         arguments = [[input_dict] for input_dict in input_dicts]
         # for i in range(1, 10):
         #     results = run(deepcopy(arguments[0][0]))
-        results = parallel(run, deepcopy(arguments), max_workers=40)
+        results = parallel(run, deepcopy(arguments), max_workers=max_workers)
 
         max_iter, max_run_time, avg_obj_values = get_info_single_instance_multiple_params(results)
 

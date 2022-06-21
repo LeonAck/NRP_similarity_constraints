@@ -101,12 +101,12 @@ class BuildSolution(Solution):
 
         # get violations
         self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
+        self.violation_array = self.get_violations(self.scenario, self.scenario.rule_collection)
 
         # calc objective value
         self.obj_value = self.calc_objective_value_violations(
             violation_array=self.violation_array,
             rule_collection=self.scenario.rule_collection)
-
     def assign_skill_requests(self):
         """
         Function to assign skill request to employees

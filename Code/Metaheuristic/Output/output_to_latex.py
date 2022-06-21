@@ -140,24 +140,25 @@ eight_week_run_reg = {"fixed_data": eight_week_dict,
                       }
 
 eight_week_w_similarity = {"fixed_data": {"Instance": eight_week_instances},
-                              "metrics": {"avg_best_solution_similarity": "Extended model Avg cost",
-                                          "best_best_solution_similarity": "Extended model Best cost",
-                                          "avg_best_solution_no_similarity": "Extended model Avg cost",
-                                          "best_best_solution_no_similarity": "Extended model Best cost"
-                                          },
-                              "caption": "Results on new 4-week instances with similarity constraints",
-                              "label": "tab:8_week_similarity"
-                              }
+                           "metrics": {"avg_best_solution_similarity": "Extended model Avg cost",
+                                       "best_best_solution_similarity": "Extended model Best cost",
+                                       "avg_best_solution_no_similarity": "Basic Avg cost",
+                                       "best_best_solution_no_similarity": "Basic model Best cost"
+                                       },
+                           "caption": "Results on new 4-week instances with similarity constraints",
+                           "label": "tab:8_week_similarity"
+                           }
 
 eight_week_wo_similarity = {"fixed_data": {"Instance": eight_week_instances},
-                              "metrics": {"avg_best_solution_similarity": "Basic Avg cost",
-                                          "best_best_solution_similarity": "Basic Best cost",
-                                          "avg_best_solution_no_similarity": "Basic Avg cost",
-                                          "best_best_solution_no_similarity": "Basic Best cost"
-                                          },
-                              "caption": "Results on new 4-week instances without similarity constraints",
-                              "label": "tab:8_week_similarity"
-                              }
+                            "metrics": {"avg_best_solution_similarity": "Extended Avg cost",
+                                        "best_best_solution_similarity": "Extended Best cost",
+                                        "avg_best_solution_no_similarity": "Basic Avg cost",
+                                        "best_best_solution_no_similarity": "Basic Best cost"
+                                        },
+                            "caption": "Results on new 4-week instances without similarity constraints",
+                            "label": "tab:8_week_similarity"
+                            }
+
 
 def add_results_to_dict(path, metrics, dict):
     with open(path, "r") as file:
@@ -173,10 +174,14 @@ def create_latex_table(settings, path):
     dict = add_results_to_dict(path, settings['metrics'], settings['fixed_data'])
     df = pd.DataFrame(dict)
 
-    print(df.to_latex(index=False, caption=settings['caption'], label=settings['label'], position="h!", float_format="%.1f"))
+    print(df.to_latex(index=False, caption=settings['caption'], label=settings['label'], position="h!",
+                      float_format="%.1f"))
 
 
 # create_latex_table(eight_week_run_reg,
 #                    path="C:/Master_thesis/Code/Metaheuristic/output_files/17_06_2022__15_01_52/summary.json")
 create_latex_table(eight_week_w_similarity,
                    path="C:/Master_thesis/Code/Metaheuristic/output_files/19_06_2022_8_week_w_similarity_1/summary.json")
+
+create_latex_table(eight_week_wo_similarity,
+                   path="C:/Master_thesis/Code/Metaheuristic/output_files/20_06_2022_9_runs_no_similarity/summary.json")

@@ -10,7 +10,7 @@ def folder_to_json(path, folder_name, similarity, settings_file_path, param=None
     settings_json['instance_settings']['similarity'] = similarity
     # tuning. T
     if param:
-        settings_json['stage_1_settings']['heuristic_settings'][param_to_change] = param
+        # settings_json['stage_1_settings']['heuristic_settings'][param_to_change] = param
         settings_json['stage_2_settings']['heuristic_settings'][param_to_change] = param
     # information for loading instance
 

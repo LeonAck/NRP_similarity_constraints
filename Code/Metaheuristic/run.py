@@ -21,14 +21,14 @@ def run_multiple_files(frequency,
                        max_workers,
                        metrics=("best_solution", "best_solution_similarity", "best_solution_no_similarity"),
                        file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
-                       similarity=False, reg_run=False, num_files=8):
+                       similarity=False, reg_run=False, num_weeks=4):
     date_folder = create_date_time_for_folder()
     master_folder = "C:/Master_thesis/Code/Metaheuristic/output_files" + "/" + date_folder
     os.mkdir(master_folder)
 
     folders_list = os.listdir(file_path)
     if reg_run:
-        folders_list = keep_files_with_weeks(folders_list, num_files)
+        folders_list = keep_files_with_weeks(folders_list, num_weeks)
         settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
     elif similarity:
         folders_list = keep_files_with_weeks(folders_list, 8)
@@ -58,9 +58,9 @@ def run_multiple_files(frequency,
         #     results.append(run(deepcopy(argument)))
         # run parallel
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
-        # results = run(arguments[0])
+        results = run(arguments[1][0]['input_dict'])
         # result = execute_heuristic_2(arguments[0][0])
-        results = parallel(execute_heuristic_2, deepcopy(arguments), max_workers=max_workers)
+        # results = parallel(execute_heuristic_2, deepcopy(arguments), max_workers=max_workers)
         # results = parallel(run, deepcopy(arguments), max_workers=max_workers)
         #
         print("done")

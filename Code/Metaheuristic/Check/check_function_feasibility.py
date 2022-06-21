@@ -1,9 +1,9 @@
 import numpy as np
-# from deepdiff import DeepDiff
+from deepdiff import DeepDiff
 import pprint
-from invoke.Solutions.initial_solution import BuildSolution
-from invoke.Rules.RuleH3 import RuleH3
-from invoke.Rules import RuleS6Max
+from leon_thesis.invoke.Solutions.initial_solution import BuildSolution
+from leon_thesis.invoke.Rules.RuleH3 import RuleH3
+from leon_thesis.invoke.Rules import RuleS6Max
 
 
 class FeasibilityCheck:
@@ -131,49 +131,49 @@ class FeasibilityCheck:
     #
     #     return flag
     #
-    # def work_stretches_info_employee(self, solution, scenario, operator_info, operator_name):
-    #     if operator_name == "change":
-    #         return self.work_stretches_info_change(solution, scenario, operator_info)
-    #     elif operator_name == "swap":
-    #         return self.work_stretches_info_swap(solution, scenario, operator_info)
-    #
-    # def work_stretches_info_swap(self, solution, scenario, operator_info):
-    #     flag = True
-    #     collected_work_stretches_1 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info['employee_id_1'])
-    #     collected_work_stretches_2 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info[
-    #         'employee_id_2'])
-    #
-    #     if collected_work_stretches_1 != solution.work_stretches[operator_info['employee_id_1']]\
-    #             or collected_work_stretches_2 != solution.work_stretches[operator_info['employee_id_2']]:
-    #         print("stretches is false")
-    #         flag = False
-    #         if not flag:
-    #             deepdiff_1 = DeepDiff(collected_work_stretches_1, solution.work_stretches[operator_info['employee_id_1']])
-    #
-    #             pprint.pprint(deepdiff_1)
-    #
-    #             deepdiff_2 = DeepDiff(collected_work_stretches_2,
-    #                                   solution.work_stretches[operator_info['employee_id_2']])
-    #
-    #             pprint.pprint(deepdiff_2)
-    #             print("hi")
-    #     return flag
-    #
-    # def work_stretches_info_change(self, solution, scenario, operator_info):
-    #     flag = True
-    #     collected_work_stretches_1 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info[
-    #         'employee_id'])
-    #
-    #     if collected_work_stretches_1 != solution.work_stretches[operator_info['employee_id']]:
-    #         print("stretches is false")
-    #         flag = False
-    #         if not flag:
-    #             deepdiff_1 = DeepDiff(collected_work_stretches_1,
-    #                                   solution.work_stretches[operator_info['employee_id']])
-    #
-    #             pprint.pprint(deepdiff_1)
-    #             print("hi")
-    #
+    def work_stretches_info_employee(self, solution, scenario, operator_info, operator_name):
+        if operator_name == "change":
+            return self.work_stretches_info_change(solution, scenario, operator_info)
+        elif operator_name == "swap":
+            return self.work_stretches_info_swap(solution, scenario, operator_info)
+
+    def work_stretches_info_swap(self, solution, scenario, operator_info):
+        flag = True
+        collected_work_stretches_1 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info['employee_id_1'])
+        collected_work_stretches_2 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info[
+            'employee_id_2'])
+
+        if collected_work_stretches_1 != solution.work_stretches[operator_info['employee_id_1']]\
+                or collected_work_stretches_2 != solution.work_stretches[operator_info['employee_id_2']]:
+            print("stretches is false")
+            flag = False
+            if not flag:
+                deepdiff_1 = DeepDiff(collected_work_stretches_1, solution.work_stretches[operator_info['employee_id_1']])
+
+                pprint.pprint(deepdiff_1)
+
+                deepdiff_2 = DeepDiff(collected_work_stretches_2,
+                                      solution.work_stretches[operator_info['employee_id_2']])
+
+                pprint.pprint(deepdiff_2)
+                print("hi")
+        return flag
+
+    def work_stretches_info_change(self, solution, scenario, operator_info):
+        flag = True
+        collected_work_stretches_1 = BuildSolution(scenario).collect_work_stretches_employee(solution, operator_info[
+            'employee_id'])
+
+        if collected_work_stretches_1 != solution.work_stretches[operator_info['employee_id']]:
+            print("stretches is false")
+            flag = False
+            if not flag:
+                deepdiff_1 = DeepDiff(collected_work_stretches_1,
+                                      solution.work_stretches[operator_info['employee_id']])
+
+                pprint.pprint(deepdiff_1)
+                print("hi")
+
     #
     # def check_number_of_work_stretches(self, solution, scenario):
     #     flag = True
@@ -185,40 +185,40 @@ class FeasibilityCheck:
     #             break
     #
     #     return flag
-    #
-    # def day_off_stretches_info(self, solution, scenario, change_info):
-    #     """
-    #     Function to find differences in the day off stretch information
-    #     """
-    #     flag = True
-    #
-    #     collected_day_off_stretches = BuildSolution(scenario).collect_day_off_stretches(solution)
-    #
-    #     if collected_day_off_stretches != solution.day_off_stretches:
-    #         print("stretches is false")
-    #         flag = False
-    #
-    #     if not flag:
-    #         deepdiff = DeepDiff(collected_day_off_stretches, solution.day_off_stretches)
-    #         try:
-    #             employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
-    #         except KeyError:
-    #             try:
-    #                 employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
-    #             except KeyError:
-    #                 employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
-    #         # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-    #         # print("current working: {}, new working: {}".format(change_info['current_working'],
-    #         #                                                     change_info['new_working']))
-    #
-    #         pprint.pprint(deepdiff)
-    #         print("true", collected_day_off_stretches[employee_id])
-    #         print("saved", solution.day_off_stretches[employee_id])
-    #         print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
-    #
-    #         print("hi")
-    #
-    #     return flag
+
+    def day_off_stretches_info(self, solution, scenario, change_info):
+        """
+        Function to find differences in the day off stretch information
+        """
+        flag = True
+
+        collected_day_off_stretches = BuildSolution(scenario).collect_day_off_stretches(solution)
+
+        if collected_day_off_stretches != solution.day_off_stretches:
+            print("stretches is false")
+            flag = False
+
+        if not flag:
+            deepdiff = DeepDiff(collected_day_off_stretches, solution.day_off_stretches)
+            try:
+                employee_id = list(deepdiff['values_changed'].keys())[0].split("['", 1)[1].split("']")[0]
+            except KeyError:
+                try:
+                    employee_id = deepdiff['dictionary_item_added'][0].split("['", 1)[1].split("']")[0]
+                except KeyError:
+                    employee_id = deepdiff['dictionary_item_removed'][0].split("['", 1)[1].split("']")[0]
+            # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+            # print("current working: {}, new working: {}".format(change_info['current_working'],
+            #                                                     change_info['new_working']))
+
+            pprint.pprint(deepdiff)
+            print("true", collected_day_off_stretches[employee_id])
+            print("saved", solution.day_off_stretches[employee_id])
+            print("shift_assignment", solution.shift_assignments[employee_id][:, 0])
+
+            print("hi")
+
+        return flag
     #
     # def shift_stretches_info(self, solution, scenario, operator_info, operator_name):
     #     if operator_name == "change":
@@ -307,73 +307,73 @@ class FeasibilityCheck:
             flag = False
 
         return flag
-    # def check_violation_array(self, solution, scenario, operator_info, operator_name):
-    #     if operator_name == "change":
-    #         return self.check_violation_array_change(solution, scenario, operator_info)
-    #     elif operator_name == "swap":
-    #         return self.check_violation_array_swap(solution, scenario, operator_info)
-    #
-    # def check_violation_array_change(self, solution, scenario, change_info):
-    #     """
-    #     Check whether tracked violations are different from calculated
-    #     """
-    #     flag = True
-    #     calc_violations = solution.get_violations(scenario, scenario.rule_collection)
-    #     for i, violation in enumerate(solution.violation_array):
-    #         if calc_violations[i] != violation:
-    #             # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-    #             # print("current working: {}, new working: {}".format(change_info['current_working'],
-    #             #                                                     change_info['new_working']))
-    #
-    #             print("number of violation for soft constraint {} is tracked {} and calc {}".format(
-    #                 i, violation, calc_violations[i]
-    #             ))
-    #
-    #             flag = False
-    #
-    #     return flag
-    #
-    # def check_violation_array_swap(self, solution, scenario, swap_info):
-    #     flag = True
-    #     calc_violations = solution.get_violations(scenario, scenario.rule_collection)
-    #     for i, violation in enumerate(solution.violation_array):
-    #         if calc_violations[i] != violation:
-    #             # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
-    #             # print("current working: {}, new working: {}".format(change_info['current_working'],
-    #             #                                                     change_info['new_working']))
-    #
-    #             print("number of violation for soft constraint {} is tracked {} and calc {}".format(
-    #                 i, violation, calc_violations[i]
-    #             ))
-    #             print("start", swap_info['start_index'])
-    #             print("end", swap_info['end_index'])
-    #             # print("working_1:", solution.num_working_weekends[swap_info['employee_id_1']])
-    #             # print("change_weekends_1: ", swap_info['change_working_weekends'][swap_info['employee_id_1']])
-    #             # print("parameter_1: ", solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_1']])
-    #             # print("working_2: ", solution.num_working_weekends[swap_info['employee_id_2']])
-    #             # print("change_weekends_2: ", swap_info['change_working_weekends'][swap_info['employee_id_2']])
-    #             # print("parameter_2: ",
-    #             #       solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_2']])
-    #             # pprint.pprint(solution.day_collection.weekends)
-    #             print(solution.forbidden_shift_type_successions)
-    #             print("employee_1, start-1: {}, start: {},  end: {}, end + 1: {}".format(
-    #                 solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']-1][0],
-    #             solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']][0],
-    #             solution.shift_assignments[swap_info['employee_id_1']][swap_info['end_index']][0],
-    #             solution.shift_assignments[swap_info['employee_id_1']][swap_info['end_index']+1][0]))
-    #             print("employee_2, start-1: {}, start: {},  end: {}, end + 1: {}".format(
-    #                 solution.shift_assignments[swap_info['employee_id_2']][swap_info['start_index'] - 1][0],
-    #                 solution.shift_assignments[swap_info['employee_id_2']][swap_info['start_index']][0],
-    #                 solution.shift_assignments[swap_info['employee_id_2']][swap_info['end_index']][0],
-    #                 solution.shift_assignments[swap_info['employee_id_2']][swap_info['end_index'] + 1][0]))
-    #             print(solution.shift_assignments[swap_info['employee_id_1']][:,0])
-    #             print(solution.shift_assignments[swap_info['employee_id_2']][:,0])
-    #             print("hi")
-    #
-    #             flag = False
-    #             a = 5
-    #
-    #     return flag
+    def check_violation_array(self, solution, scenario, operator_info, operator_name):
+        if operator_name == "change":
+            return self.check_violation_array_change(solution, scenario, operator_info)
+        elif operator_name == "swap":
+            return self.check_violation_array_swap(solution, scenario, operator_info)
+
+    def check_violation_array_change(self, solution, scenario, change_info):
+        """
+        Check whether tracked violations are different from calculated
+        """
+        flag = True
+        calc_violations = solution.get_violations(scenario, scenario.rule_collection)
+        for i, violation in enumerate(solution.violation_array):
+            if calc_violations[i] != violation:
+                # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+                # print("current working: {}, new working: {}".format(change_info['current_working'],
+                #                                                     change_info['new_working']))
+
+                print("number of violation for soft constraint {} is tracked {} and calc {}".format(
+                    i, violation, calc_violations[i]
+                ))
+
+                flag = False
+
+        return flag
+
+    def check_violation_array_swap(self, solution, scenario, swap_info):
+        flag = True
+        calc_violations = solution.get_violations(scenario, scenario.rule_collection)
+        for i, violation in enumerate(solution.violation_array):
+            if calc_violations[i] != violation:
+                # print("on {} for employee {}".format(change_info['d_index'], change_info['employee_id']))
+                # print("current working: {}, new working: {}".format(change_info['current_working'],
+                #                                                     change_info['new_working']))
+
+                print("number of violation for soft constraint {} is tracked {} and calc {}".format(
+                    i, violation, calc_violations[i]
+                ))
+                print("start", swap_info['start_index'])
+                print("end", swap_info['end_index'])
+                # print("working_1:", solution.num_working_weekends[swap_info['employee_id_1']])
+                # print("change_weekends_1: ", swap_info['change_working_weekends'][swap_info['employee_id_1']])
+                # print("parameter_1: ", solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_1']])
+                # print("working_2: ", solution.num_working_weekends[swap_info['employee_id_2']])
+                # print("change_weekends_2: ", swap_info['change_working_weekends'][swap_info['employee_id_2']])
+                # print("parameter_2: ",
+                #       solution.rule_collection.collection['S6'].parameter_per_employee[swap_info['employee_id_2']])
+                # pprint.pprint(solution.day_collection.weekends)
+                print(solution.forbidden_shift_type_successions)
+                print("employee_1, start-1: {}, start: {},  end: {}, end + 1: {}".format(
+                    solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']-1][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['start_index']][0],
+                solution.shift_assignments[swap_info['employee_id_1']][swap_info['end_index']+1][0]))
+                print("employee_2, start-1: {}, start: {},  end: {}, end + 1: {}".format(
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['start_index'] - 1][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['start_index']][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['end_index']][0],
+                    solution.shift_assignments[swap_info['employee_id_2']][swap_info['end_index'] + 1][0]))
+                print(solution.shift_assignments[swap_info['employee_id_1']][:,0])
+                print(solution.shift_assignments[swap_info['employee_id_2']][:,0])
+                print("hi")
+
+                flag = False
+                a = 5
+
+        return flag
     #
     # def check_working_weekends(self, solution, scenario):
     #     for employee_id in scenario.employees._collection.keys():
