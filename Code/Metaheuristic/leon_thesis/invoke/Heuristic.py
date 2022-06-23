@@ -85,6 +85,7 @@ class Heuristic:
 
         n_iter = 1
         no_improve_iter = 0
+
         while self.stopping_criterion(current_solution.violation_array, n_iter):
             n_sampled = 0
             n_accepted = 0

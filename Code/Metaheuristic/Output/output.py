@@ -4,7 +4,7 @@ import numpy as np
 import json
 from statistics import mean, StatisticsError
 from collections import Counter
-
+import Output.create_plots as plot
 
 def write_output_instance(heuristic_run, feasible, tuning=None, similarity=None):
     """
@@ -62,7 +62,7 @@ def create_output_folder(path="C:/Master_thesis/Code/Metaheuristic/output_files"
     return folder_name
 
 
-def prepare_output_all_instances(results, master_output, master_folder, folders_list, metrics, i):
+def prepare_output_all_instances(results, master_output, master_folder, folders_list, metrics, i, date_folder, output_folder):
     # create output dict
     output = {results[j]['folder_name']: results[j] for j in range(len(folders_list))}
     # create plots
@@ -186,8 +186,57 @@ def prepare_output_boxplot(paths, metric):
         # collect the metric for all instances in one list
         for k, v in master_output.items():
             if v['perc_feasible'] > 0:
-                metric_all_instances += v[metric]
+                metric_all_instances.append(v[metric])
 
-        list_of_data.append([metric_all_instances])
+        list_of_data.append(metric_all_instances)
 
     return list_of_data
+
+
+def prepare_output_boxplot_tuning(path):
+    list_of_data = []
+    directories = os.listdir(path)
+    for directory in [directories[2], directories[1], directories[0]]:
+        f = open(path + "/" + directory + "/output_files.json")
+        output = json.load(f)
+
+        # check whether this runs with lists
+        metric_all_instances = []
+
+        # collect the metric for all instances in one list
+        for k, v in output.items():
+            if k != "totals":
+                if v['stage_1']['feasible']:
+                    metric_all_instances.append(v['stage_2']['best_solution'] * 0.9)
+
+        list_of_data.append(metric_all_instances)
+
+    return list_of_data
+
+
+def combine_output_multiple_runs(paths, metrics):
+    master_output = {}
+    for path in paths:
+        file_list = os.listdir(path)
+
+        for file in file_list:
+            # save json in output_files folder
+            try:
+                with open(path + "/" + file + "/output.json",
+                          "r") as output_obj:
+                    output = json.loads(output_obj.read())
+            except FileNotFoundError:
+                pass
+            if not master_output:
+                master_output = {k: {metric: [] for metric in metrics} for k in output.keys() if
+                                 'folder_name' in output[k]}
+
+            # update master output
+            master_output = update_dict_per_instance_metric(master_output, output, metrics)
+            master_output = add_feasibility_master(master_output, output)
+            master_output = add_violations_similarity_master(master_output, output)
+
+    master_output = calc_min(master_output, metrics, frequency=11)
+    with open("C:/Master_thesis/Code/Metaheuristic/output_files/" + "summary.json",
+              "w") as output_obj:
+        json.dump(master_output, output_obj)

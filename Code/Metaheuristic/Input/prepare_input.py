@@ -12,8 +12,8 @@ def folder_to_json(path, folder_name, similarity, settings_file_path, param=None
     if param:
         # settings_json['stage_1_settings']['heuristic_settings'][param_to_change] = param
         settings_json['stage_2_settings']['heuristic_settings'][param_to_change] = param
-    # information for loading instance
 
+    # information for loading instance
     instance_name = deduce_folder_name(folder_name)
     history_file = int(folder_name[6])
     weeks = get_weeks_from_folder_name(folder_name, reg_run)

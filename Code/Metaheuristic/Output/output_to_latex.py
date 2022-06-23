@@ -120,6 +120,19 @@ eight_week_ceschia_best = [
     3260
 ]
 
+four_week_late_legrain = [
+    1685, 1840, 1640, 1865,
+    1445, 1405, 2465, 1730,
+    3320, 3240, 1230, 1855,
+    2165, 2220
+]
+
+four_week_late_ceschia_avg = [
+    1693.5, 1855.5, 1626.5, 1847,
+    1417.5, 1404, 2592.5, 2786,
+    3424, 3323, 1315, 1934, 2123.5, 2172.5
+]
+
 # file_path = "C:/Master_thesis/Code/Metaheuristic/output_files/"
 
 # f = open(file_path)
@@ -127,37 +140,48 @@ eight_week_ceschia_best = [
 
 mock_values = list(range(len(hidden_instances)))
 hidden_dict = {"hidden_instances": hidden_instances, "legrain_et_al": {}}
-eight_week_dict = {"Instance": eight_week_instances, "\cite{legrain2020rotation}": eight_week_legrain_cost,
-                   "\cite{ceschia2020solving} Avg cost": eight_week_ceschia_avg,
-                   "\cite{ceschia2020solving} Best cost": eight_week_ceschia_best,
+eight_week_dict = {"Instance": eight_week_instances,
+                   "\textcite{ceschia2020solving} Avg cost": eight_week_ceschia_avg,
+                   "\textcite{legrain2020rotation}": eight_week_legrain_cost
                    }
 
 eight_week_run_reg = {"fixed_data": eight_week_dict,
-                      "metrics": {"avg_best_solution": "ALNS Avg cost",
-                                  "best_best_solution": "ALNS Best cost"},
+                      "metrics": {"avg_best_solution": "Us Avg cost",
+                                  "best_best_solution": "Us Best cost"},
                       "caption": "Results on 8-week instances",
                       "label": "tab:8_week_reg"
                       }
 
 eight_week_w_similarity = {"fixed_data": {"Instance": eight_week_instances},
-                           "metrics": {"avg_best_solution_similarity": "Extended model Avg cost",
-                                       "best_best_solution_similarity": "Extended model Best cost",
-                                       "avg_best_solution_no_similarity": "Basic Avg cost",
-                                       "best_best_solution_no_similarity": "Basic model Best cost"
+                           "metrics": {"avg_best_solution_similarity": "Extended model during ALNS Avg cost evaluated at equation \ref{eq:obj_extended}",
+                                       # "best_best_solution_similarity": "Extended model Best cost incl.",
+                                       "avg_best_solution_no_similarity": "Extended model during ALNS Avg cost evaluated at equation \ref{eq:obj_basic}",
+                                       # "best_best_solution_no_similarity": "Basic model Best cost"
                                        },
                            "caption": "Results on new 4-week instances with similarity constraints",
                            "label": "tab:8_week_similarity"
                            }
 
 eight_week_wo_similarity = {"fixed_data": {"Instance": eight_week_instances},
-                            "metrics": {"avg_best_solution_similarity": "Extended Avg cost",
-                                        "best_best_solution_similarity": "Extended Best cost",
-                                        "avg_best_solution_no_similarity": "Basic Avg cost",
-                                        "best_best_solution_no_similarity": "Basic Best cost"
+                            "metrics": {"avg_best_solution_similarity": "Basic model during ALNS Avg cost evaluated at equation \ref{eq:obj_extended}",
+                                        # "best_best_solution_similarity": "Extended Best cost",
+                                        "avg_best_solution_no_similarity": "Basic model during ALNS Avg cost evaluated at equation \ref{eq:obj_basic}",
+                                        # "best_best_solution_no_similarity": "Basic Best cost"
                                         },
                             "caption": "Results on new 4-week instances without similarity constraints",
                             "label": "tab:8_week_similarity"
                             }
+
+four_week_late_dict = {"fixed_data": {
+    "Instance": late_instances,
+    "\textcite{ceschia2020solving}": four_week_late_ceschia_avg,
+    "\textcite{legrain2020rotation}": four_week_late_legrain
+},
+    "metrics": {"avg_best_solution": "Us Avg cost",
+                "best_best_solution": "Us Best cost"},
+    "caption": "Results on 4-week late instances",
+    "label": "tab:4_week_reg"
+}
 
 
 def add_results_to_dict(path, metrics, dict):
@@ -165,23 +189,45 @@ def add_results_to_dict(path, metrics, dict):
         data = json.loads(file.read())
 
     for metric, name in metrics.items():
-        dict[name] = [output[metric] for output in data.values()]
-
+        # dict[name] = [output[metric] for k, output in data.items() if k in dict['Instance']]
+        dict[name] = [data[k][metric] for k in dict['Instance']]
     return dict
 
 
 def create_latex_table(settings, path):
     dict = add_results_to_dict(path, settings['metrics'], settings['fixed_data'])
+    # dict['Us Avg cost'][0] = 9780
+    # dict['Us Best cost'][0] = 8645
+    # dict['Us Avg cost'][0] = 29820
+    # dict['Us Best cost'][0] = 26430
+    dict['Instance'] = ["S-" + instance for instance in dict['Instance']]
     df = pd.DataFrame(dict)
 
     print(df.to_latex(index=False, caption=settings['caption'], label=settings['label'], position="h!",
                       float_format="%.1f"))
 
+    return df
+
+# create_latex_table(four_week_late_dict,
+#                             path="C:/Master_thesis/Code/Metaheuristic/output_files/4_week_reg_runs_summary.json")
+
 
 # create_latex_table(eight_week_run_reg,
-#                    path="C:/Master_thesis/Code/Metaheuristic/output_files/17_06_2022__15_01_52/summary.json")
-create_latex_table(eight_week_w_similarity,
-                   path="C:/Master_thesis/Code/Metaheuristic/output_files/19_06_2022_8_week_w_similarity_1/summary.json")
+#                    path="C:/Master_thesis/Code/Metaheuristic/output_files/om_te_verwerken/20_06_2022_reg_run_8_weeks/summary.json")
+df_sim = create_latex_table(eight_week_w_similarity,
+                            path="C:/Master_thesis/Code/Metaheuristic/output_files/om_te_verwerken/19_06_2022_8_week_w_similarity_1/summary.json")
+# df_sim['Instance'] = ["S-" + instance for instance in df_sim['Instance']]
+df_no_sim = create_latex_table(eight_week_wo_similarity,
+                               path="C:/Master_thesis/Code/Metaheuristic/output_files/om_te_verwerken/20_06_2022_9_runs_no_similarity/summary.json")
 
-create_latex_table(eight_week_wo_similarity,
-                   path="C:/Master_thesis/Code/Metaheuristic/output_files/20_06_2022_9_runs_no_similarity/summary.json")
+df_comb = pd.concat([df_sim, df_no_sim.drop(columns=['Instance'])], axis=1)
+column_titles = ["Instance", "Extended model during ALNS Avg cost evaluated at equation \ref{eq: obj_extended}",
+                    "Basic model during ALNS Avg cost evaluated at equation \ref{eq: obj_extended}",
+                 "Extended model during ALNS Avg cost evaluated at equation \ref{eq: obj_basic}",
+                 "Basic model during ALNS Avg cost evaluated at equation \ref{eq: obj_basic}"]
+
+df = df_comb[column_titles]
+
+print(df.to_latex(index=False, caption='Results with and without similarity constraints on new 4-week instances',
+                  label="tab:compare_w_wo_sim", position="h!",
+                  float_format="%.1f"))

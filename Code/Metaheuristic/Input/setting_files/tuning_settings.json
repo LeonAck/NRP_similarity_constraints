@@ -68,7 +68,7 @@
       "cut_off_ratio": 0.08,
         "cooling_rate": 0.99,
         "no_improve_max": 150,
-        "operators": ["swap", "change"],
+        "operators": ["swap", "change", "greedy_change"],
          "k_swap": 26,
       "greedy_number": 5,
         "reaction_factor": 0.9,

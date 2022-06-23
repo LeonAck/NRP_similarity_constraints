@@ -4,14 +4,22 @@ import pandas as pd
 
 
 def objective_value_plot(n_iter, obj_values, best_obj_values, stage_number, instance_name, suppress=True,
-                         output_folder=None):
+                         output_folder=None, run_time=None):
     """
     Function to create the objective value plot
     """
 
     if suppress:
-        x_axis = np.linspace(0, n_iter, n_iter)[0:-1]
-        plt.plot(x_axis, obj_values, x_axis, best_obj_values, linewidth=0.5)
+        if run_time:
+            x_axis = np.linspace(0, 550, n_iter)[0:-1]
+            plt.plot(x_axis, obj_values, x_axis, best_obj_values, linewidth=0.5)
+            plt.ylabel('Cost')
+            plt.xlabel('Run time')
+        else:
+            x_axis = np.linspace(0, n_iter, n_iter)[0:-1]
+            plt.plot(x_axis, obj_values, x_axis, best_obj_values, linewidth=0.5)
+            plt.ylabel('Cost')
+            plt.xlabel('Iterations')
         if stage_number == 2:
             plt.ylim(0, min(obj_values) + 10000)
 
@@ -66,12 +74,12 @@ def all_plots(output_dict, output_folder, stage_2=True):
         elif output_info['stage_1']['feasible']:
             objective_value_plot(output_info['stage_2']['iterations'], output_info['stage_2']["obj_values"],
                                  output_info['stage_2']["best_obj_values"], 2, folder_name, suppress=True,
-                                 output_folder=output_folder)
-            operator_weight_plot(output_info['stage_2']["operator_weights"], folder_name, suppress=True,
-                                 output_folder=output_folder)
-            temperature_plot(output_info['stage_2']['iterations'], output_info['stage_2']['temperatures'], folder_name,
-                             suppress=True,
-                             output_folder=output_folder)
+                                 output_folder=output_folder, run_time=output_info['stage_2']['run_time'])
+            # operator_weight_plot(output_info['stage_2']["operator_weights"], folder_name, suppress=True,
+            #                      output_folder=output_folder)
+            # temperature_plot(output_info['stage_2']['iterations'], output_info['stage_2']['temperatures'], folder_name,
+            #                  suppress=True,
+            #                  output_folder=output_folder)
 
 
 def create_box_plot(list_of_data, output_folder=True, file_name="sample",

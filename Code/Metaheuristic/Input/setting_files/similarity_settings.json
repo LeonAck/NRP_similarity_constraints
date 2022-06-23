@@ -3,14 +3,14 @@
   "solution_path": "C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/StaticSolutions",
   "similarity": true,
   "tuning": false,
-  "total_time": 700,
+  "total_time": 750,
   "skip_stage_1": false
 },
   "stage_1_settings":
   {
     "stage_number": 1,
     "plots": false,
-    "ref_as_initial": false,
+    "ref_as_initial": true,
     "heuristic_settings": {
         "max_time": 300,
         "max_iter":400000,

@@ -35,13 +35,13 @@ def run(input_dict):
     else:
         heuristic_2 = None
 
-    if not settings.similarity:
+    if settings.similarity or settings.tuning:
+        output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2, similarity=settings.similarity, tuning=settings.tuning)
+    else:
         rule_settings = input_dict['settings']['stage_2_settings']['rules']
         similarity_penalties = np.array([rule_settings['S8RefDay']['penalty'],
                                          rule_settings['S8RefShift']['penalty'],
                                          rule_settings['S8RefSkill']['penalty']])
         output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2,
                                          similarity=settings.similarity, similarity_penalties=similarity_penalties)
-    else:
-        output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2, similarity=settings.similarity)
     return output_dict
