@@ -2,7 +2,6 @@ import time
 import random
 import numpy as np
 from Operators import change_operator, swap_operator, greedy_change, similarity_operator
-
 from Solutions.solution import Solution
 from copy import deepcopy
 
@@ -71,7 +70,7 @@ class Heuristic:
         """
 
         # take initial solution as current solution
-        current_solution = Solution(deepcopy(starting_solution))
+        current_solution = Solution(starting_solution)
         # take initial solution as best solution
         best_solution = Solution(starting_solution)
 
@@ -86,29 +85,22 @@ class Heuristic:
 
         n_iter = 1
         no_improve_iter = 0
+
         while self.stopping_criterion(current_solution.violation_array, n_iter):
             n_sampled = 0
             n_accepted = 0
             while n_sampled < self.max_sampled and n_accepted < self.max_accepted:
-                # print("\nIteration: ", n_iter)
-                # if n_iter % 100 == 0:
-                #     # print(current_solution.violation_array)
-                #     print("\nIteration: ", n_iter)
-                # print(current_solution.violation_array)
-
+                # print(n_iter)
                 # choose operator
                 operator_name = self.roulette_wheel_selection(self.operators_to_use)
+                # print(operator_name)
+                # print(current_solution.violation_array)
                 # self.update_frequency_operator(operator_name)
-
                 operator_info = self.operator_collection[operator_name](current_solution, self.scenario)
-
                 if not operator_info['feasible']:
-                    print("no feasible change")
+                    # print("no feasible change")
                     break
-                # print("current: {}, new: {}".format(change_info['current_working'], change_info['new_working']))
 
-                # if operator_name == "change":
-                #     change_counters = self.update_change_counter(change_counters, operator_info)
                 no_improve_iter += 1
                 if operator_info['cost_increment'] <= 0:
                     # update solutions accordingly
@@ -136,20 +128,14 @@ class Heuristic:
                 n_sampled += 1
                 # if any(current_solution.violation_array) < 0:
                 #     print("hi")
-                # # FeasibilityCheck().check_objective_value(current_solution, self.scenario, change_info)
-                # if "S2Max" in current_solution.rules:
-                #     FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
                 # if "S3Max" in current_solution.rules:
                 #     FeasibilityCheck().day_off_stretches_info(current_solution, self.scenario, operator_info)
+                # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
+                # if "S2Max" in current_solution.rules:
+                #     FeasibilityCheck().work_stretches_info_employee(current_solution, self.scenario, operator_info, operator_name)
+
                 # if "S2ShiftMax" in current_solution.rules:
                 #     FeasibilityCheck().shift_stretches_info(current_solution, self.scenario, operator_info, operator_name)
-                # FeasibilityCheck().check_number_of_assignments_per_nurse(current_solution, self.scenario, operator_info)
-                # FeasibilityCheck().check_working_weekends(current_solution, self.scenario)
-                # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
-                # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-                # FeasibilityCheck().check_violation_array(current_solution, self.scenario, operator_info, operator_name)
-                # FeasibilityCheck().h2_check_function(current_solution, self.scenario)
-
 
                 # adjust weight
                 self.update_operator_weights(operator_name, operator_info)
@@ -179,14 +165,14 @@ class Heuristic:
 
     def stopping_criterion(self, violation_array, n_iter):
         if self.stage_number == 1:
-            return not np.array_equal(violation_array, np.zeros(2)) and n_iter < self.max_iter
+            return not np.array_equal(violation_array, np.zeros(2)) and self.temperature >= self.final_temp \
+                    and time.time() < self.start_time + self.max_time
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter \
         #             and not np.array_equal(current_solution.violation_array, np.zeros(2))
         # else:
         #     return time.time() < self.start_time + self.max_time and n_iter < self.max_iter
         else:
             return self.temperature >= self.final_temp and time.time() < self.start_time + self.max_time
-
 
 
     def acceptance_simulated_annealing(self, change_info):

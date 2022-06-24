@@ -1,4 +1,4 @@
-
+import numpy as np
 
 class Instance:
     """
@@ -36,6 +36,12 @@ class Instance:
         self.history_data = self.simplify_history_data()
 
         self.ref_assignments = input_json['ref_assignments']
+        # transfer from list to array
+        if self.ref_assignments is not None:
+            for k in self.ref_assignments.keys():
+                self.ref_assignments[k] = np.array([self.ref_assignments[k][0], self.ref_assignments[k][1]]).transpose()
+
+
 
         # # get reference period
         # if not settings.tuning:
@@ -282,10 +288,10 @@ class Instance:
             for requirements in value['requirements']:
                 translate_req = {}
                 for key in requirements.keys():
-                    if key.startswith("requirementOn"):
-                        translate_req[key] = self.weekday_to_index(
-                            key.lstrip("requirementOn"))
-                        # key.removeprefix("requirementOn"))
+                        if key.startswith("requirementOn"):
+                            translate_req[key] = self.weekday_to_index(
+                                key.lstrip("requirementOn"))
+                            # key.removeprefix("requirementOn"))
 
                 for old, new in translate_req.items():
                     requirements[new] = requirements.pop(old)
@@ -325,16 +331,6 @@ class Instance:
         """
         Function to simplify scenario
         """
-
-        # # change week key into integer
-        # translate = {}
-        # # save new keys
-        # for key in self.weeks_data.keys():
-        #     translate[key] = self.simplify_week_key(key)
-        #
-        # # replace old keys by new keys
-        # for old, new in translate.items():
-        #     self.weeks_data[new] = self.weeks_data.pop(old)
 
         # changes keys of weekly requirements
         self.requirement_key_to_index()

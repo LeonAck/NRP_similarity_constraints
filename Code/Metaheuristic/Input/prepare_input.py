@@ -4,18 +4,19 @@ import json
 import numpy as np
 
 
-def folder_to_json(path, folder_name, similarity, settings_file_path, param=None, param_to_change=None, solution_path=None):
+def folder_to_json(path, folder_name, similarity, settings_file_path, param=None, param_to_change=None, solution_path=None, reg_run=False):
     f = open(settings_file_path)
     settings_json = json.load(f)
+    settings_json['instance_settings']['similarity'] = similarity
     # tuning. T
     if param:
-        settings_json['stage_1_settings']['heuristic_settings'][param_to_change] = param
+        # settings_json['stage_1_settings']['heuristic_settings'][param_to_change] = param
         settings_json['stage_2_settings']['heuristic_settings'][param_to_change] = param
-    # information for loading instance
 
+    # information for loading instance
     instance_name = deduce_folder_name(folder_name)
     history_file = int(folder_name[6])
-    weeks = get_weeks_from_folder_name(folder_name, similarity)
+    weeks = get_weeks_from_folder_name(folder_name, reg_run)
 
     # create dict to store json files
     history_data, scenario_data, weeks_data = load_instance(path, instance_name, weeks, history_file)
@@ -26,26 +27,29 @@ def folder_to_json(path, folder_name, similarity, settings_file_path, param=None
     if not param:
         ref_assignments = prev_solution_to_ref_assignments(solution_path,
                                                            folder_name, scenario_data, weeks, skills)
+        for k in ref_assignments.keys():
+            ref_assignments[k] = [ref_assignments[k][:, 0].tolist(), ref_assignments[k][:, 1].tolist()]
     else:
         ref_assignments = None
 
     instance_data = create_instance_data_dict(history_data, scenario_data,
-                                              weeks_data, instance_name, history_file, weeks, skills, ref_assignments, settings_json)
+                                              weeks_data, instance_name, history_file, weeks, skills, ref_assignments, settings_json, folder_name)
     return instance_data
 
 
 def create_instance_data_dict(history_data, scenario_data, weeks_data, instance_name, history_file, weeks, skills,
-                              ref_assignments, settings_json):
+                              ref_assignments, settings_json, folder_name):
     instance_data = {}
+    instance_data['folder_name'] = folder_name
     instance_data['instance_name'] = instance_name
     instance_data['history_file'] = history_file
     instance_data['weeks'] = weeks
+    instance_data['settings'] = settings_json
     instance_data['history_data'] = history_data
     instance_data['scenario_data'] = scenario_data
     instance_data['weeks_data'] = weeks_data
     instance_data['ref_assignments'] = ref_assignments
     instance_data['skills'] = skills
-    instance_data['settings'] = settings_json
 
     return instance_data
 
@@ -57,14 +61,14 @@ def deduce_folder_name(folder_name):
     return "n{}w{}".format(num_nurses, num_weeks)
 
 
-def get_weeks_from_folder_name(folder_name, similarity):
+def get_weeks_from_folder_name(folder_name, reg_run=False):
     folder_name_copy = copy(folder_name)
     week_string = folder_name_copy[7:]
     weeks = []
     while len(week_string) > 0:
         weeks.append(int(week_string[1]))
         week_string = week_string[2:]
-    return weeks[4:] if similarity else weeks
+    return weeks[4:] if not reg_run else weeks
 
 
 def load_instance(path, instance_name, weeks, history_file):
@@ -119,7 +123,7 @@ def get_json_files(path_to_json):
     list of json files
     """
 
-    return [pos_json.removesuffix(".json") for pos_json
+    return [pos_json.rstrip(".json") for pos_json
             in os.listdir(path_to_json) if pos_json.endswith('.json')]
 
 
@@ -201,7 +205,7 @@ def get_index_of_shift_type(scenario_data, shift_type_id):
     Function to get index when given a skill type
     """
     for index, s_type in enumerate(scenario_data['shiftTypes']):
-        if s_type['id'] == shift_type_id[0]:
+        if s_type['id'] == shift_type_id:
             return index
 
 

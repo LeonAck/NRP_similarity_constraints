@@ -10,7 +10,7 @@ from Rules import RuleS8RefDay
 from Rules.RuleS8RefShift import RuleS8RefShift
 from Rules import RuleS8RefSkill
 from copy import deepcopy, copy
-
+import marshal
 
 class Solution:
     """
@@ -29,10 +29,10 @@ class Solution:
             self.num_shift_types = other_solution.num_shift_types
 
             # employee shift assignments
-            self.shift_assignments = deepcopy(other_solution.shift_assignments)
+            self.shift_assignments = self.copy_array_in_dict(other_solution.shift_assignments)
 
             # H2
-            self.diff_min_request = deepcopy(other_solution.diff_min_request)
+            self.diff_min_request = np.array(other_solution.diff_min_request)
 
             # H3
             self.forbidden_shift_type_successions = other_solution.forbidden_shift_type_successions
@@ -40,7 +40,7 @@ class Solution:
 
             # S1
             if 'S1' in self.rules:
-                self.diff_opt_request = deepcopy(other_solution.diff_opt_request)
+                self.diff_opt_request = np.array(other_solution.diff_opt_request)
 
             # S2
             if 'S2Max' in self.rules:
@@ -63,7 +63,7 @@ class Solution:
 
             # S7 number of working weekends
             if 'S7' in self.rules:
-                self.num_working_weekends = deepcopy(other_solution.num_working_weekends)
+                self.num_working_weekends = copy(other_solution.num_working_weekends)
 
             # S7 similarity
             if 'S7Day' in self.rules:
@@ -87,9 +87,12 @@ class Solution:
             # objective value
             self.obj_value = copy(other_solution.obj_value)
 
-            self.violation_array = deepcopy(other_solution.violation_array)
+            self.violation_array = copy(other_solution.violation_array)
             # information to keep track of solution per nurse
             self.working_days = deepcopy(other_solution.working_days)
+
+    def copy_array_in_dict(self, dict):
+        return {k: np.array(v) for k,v in dict.items()}
 
     def replace_shift_assignment(self, employee_id, d_index, s_index, sk_index):
         """
@@ -347,7 +350,6 @@ class Solution:
         self.violation_array += swap_info['violation_increment']
 
     def swap_assignments(self, start_index, end_index, employee_id_1, employee_id_2):
-        # TODO check whether swap is made
         # save stretch of employee 1
         stretch_1 = self.shift_assignments[employee_id_1][start_index:end_index + 1, ].copy()
 

@@ -1,6 +1,8 @@
 import numpy as np
 from Rules import RuleS8RefSkill, RuleS8RefDay, RuleS8RefShift
 from copy import copy
+
+
 class EndSolution:
     """
        Class to add similarity violations to best solution
@@ -21,7 +23,6 @@ class EndSolution:
 
         # get violations
         self.violation_array = self.add_similarity_violations()
-
 
     def collect_day_comparison_ref(self, solution):
         """
@@ -56,7 +57,7 @@ class EndSolution:
         for employee_id in self.scenario.employees._collection.keys():
             shift_comparison_empl = [
                 (
-                      1 if solution.check_if_same_shift_type_ref(employee_id, d_index) else 0
+                    1 if solution.check_if_same_shift_type_ref(employee_id, d_index) else 0
                 )
                 if solution.check_if_working_day(
                     employee_id, d_index)
@@ -84,12 +85,12 @@ class EndSolution:
         skill_assignment_comparison = {}
 
         for employee_id in self.scenario.employees._collection.keys():
-            skill_comparison_empl =[]
+            skill_comparison_empl = []
             for d_index in range(0, self.scenario.day_collection.num_days_in_horizon):
                 if self.multi_skill[employee_id]:
                     if solution.check_if_working_day(employee_id, d_index) \
-                   and solution.check_if_working_day_ref(employee_id, d_index)\
-                    and solution.check_if_same_shift_type_ref(employee_id, d_index):
+                            and solution.check_if_working_day_ref(employee_id, d_index) \
+                            and solution.check_if_same_shift_type_ref(employee_id, d_index):
                         if solution.check_if_same_skill_type_ref(employee_id, d_index):
                             skill_comparison_empl.append(1)
                         else:
@@ -113,4 +114,3 @@ class EndSolution:
         ])
         violation_array = np.append(violation_array, similarity_violations)
         return violation_array
-

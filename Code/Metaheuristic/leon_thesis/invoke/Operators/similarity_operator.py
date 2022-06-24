@@ -4,6 +4,7 @@ from Operators.change_operator import calc_new_costs_after_change, \
 import random
 import numpy as np
 
+
 def similarity_operator(solution, scenario):
     """
         Function to change activity of one nurse.
@@ -20,7 +21,9 @@ def similarity_operator(solution, scenario):
 
     # add penalty to objective
     if change_info['feasible']:
-        change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution, scenario, change_info)
+        change_info["cost_increment"], change_info['violation_increment'] = calc_new_costs_after_change(solution,
+                                                                                                        scenario,
+                                                                                                        change_info)
 
     return change_info
 
@@ -53,7 +56,8 @@ def get_feasible_change_improving_similarity(solution, scenario):
 
         while len(feasible_days) > 0 and not feasible:
             # choose day
-            change_info["d_index"] = choose_day_improving_similarity(feasible_days, solution.ref_comparison_day_level[change_info["employee_id"]])
+            change_info["d_index"] = choose_day_improving_similarity(feasible_days, solution.ref_comparison_day_level[
+                change_info["employee_id"]])
             # if no possible d_index
             if change_info["d_index"] is None:
                 break
@@ -71,9 +75,12 @@ def get_feasible_change_improving_similarity(solution, scenario):
                                                          change_info["d_index"])
 
                 # check if copying reference period is possible
-                if solution.ref_assignments[change_info["employee_id"]][change_info["d_index"]][0] in allowed_shift_types:
-                    change_info["new_s_type"] = solution.ref_assignments[change_info["employee_id"]][change_info["d_index"]][0]
-                    change_info["new_sk_type"] = solution.ref_assignments[change_info["employee_id"]][change_info["d_index"]][1]
+                if solution.ref_assignments[change_info["employee_id"]][change_info["d_index"]][
+                    0] in allowed_shift_types:
+                    change_info["new_s_type"] = \
+                    solution.ref_assignments[change_info["employee_id"]][change_info["d_index"]][0]
+                    change_info["new_sk_type"] = \
+                    solution.ref_assignments[change_info["employee_id"]][change_info["d_index"]][1]
                     change_info["new_working"] = True
                     feasible = True
                 else:
@@ -82,7 +89,8 @@ def get_feasible_change_improving_similarity(solution, scenario):
                         change_info["new_s_type"] = random.choice(allowed_shift_types)
 
                         # choose skill type
-                        change_info["new_sk_type"] = random.choice(scenario.employees._collection[change_info["employee_id"]].skill_indices)
+                        change_info["new_sk_type"] = random.choice(
+                            scenario.employees._collection[change_info["employee_id"]].skill_indices)
                         change_info["new_working"] = True
                         feasible = True
 
@@ -99,7 +107,8 @@ def get_feasible_change_improving_similarity(solution, scenario):
         change_info['feasible'] = True
     return change_info
 
+
 def choose_day_improving_similarity(feasible_days, similarity_object):
     # get intersections of feasible days and where similarity object can be improved
-    set_of_options = np.intersect1d(np.array(feasible_days), np.where(similarity_object==0)[0])
+    set_of_options = np.intersect1d(np.array(feasible_days), np.where(similarity_object == 0)[0])
     return random.choice(set_of_options) if set_of_options.any() else None

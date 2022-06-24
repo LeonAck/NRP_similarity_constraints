@@ -168,9 +168,11 @@ def find_skill_compatible_employees(feasible_employees, employee_collection, inf
         if employee_id_1 in combination:
             combination.remove(employee_id_1)
             try:
-                employees_w_skill_set.remove(combination[0])
-            except ValueError or IndexError:
+                if combination[0] in employees_w_skill_set:
+                    employees_w_skill_set.remove(combination[0])
+            except IndexError:
                 pass
+
     # check if nonempty
     if employees_w_skill_set:
         employee_id_2 = random.choice(employees_w_skill_set)
