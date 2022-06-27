@@ -14,9 +14,9 @@ import cProfile
 from copy import deepcopy
 
 
-def run_parameter_tuning_random(number_of_instances, params=([0.08]),
-                                param_to_change="cut_off_ratio",
-                                week_range=(4, 6), nurse_range=(30, 100),
+def run_parameter_tuning_random(number_of_instances, params=(12, 14, 18, 22, 26),
+                                param_to_change="initial_temp",
+                                week_range=(4, 8), nurse_range=(30, 120),
                                 similarity=False,
                                 file_path="C:/Master_thesis/Code/Metaheuristic/Input/sceschia-nurserostering/Datasets/JSON",
                                 settings_file_path="C:/Master_thesis/Code/Metaheuristic/Input/setting_files/tuning_settings.json"):
@@ -42,18 +42,18 @@ def run_parameter_tuning_random(number_of_instances, params=([0.08]),
             input_dicts.append(folder_to_json(file_path, folder_name, similarity, settings_file_path, param=param,
                                               param_to_change=param_to_change, reg_run=True))
         # run parallel
-        arguments = [[input_dict] for input_dict in input_dicts]
+        arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
         # arguments = [[input_dict] for input_dict in input_dicts]
         # result = run(arguments[0][0]['input_dict'])
 
-        # results = parallel(execute_heuristic_2, arguments, max_workers=40)
-        results = parallel(run, deepcopy(arguments), max_workers=40)
+        results = parallel(execute_heuristic_2, arguments, max_workers=40)
+        # results = parallel(run, deepcopy(arguments), max_workers=40)
         print("done")
 
         # create output dict
         output = {results[i]['folder_name']: results[i] for i in range(len(tuning_list))}
         # create plots
-        plot.all_plots(output, output_folder, stage_2=True)
+        # plot.all_plots(output, output_folder, stage_2=True)
         #
         # remove unnecessary information
         keys_to_keep = {"iterations", "run_time", "best_solution", "violation_array", "feasible"}

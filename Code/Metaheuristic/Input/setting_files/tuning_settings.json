@@ -3,8 +3,8 @@
   "solution_path": null,
   "similarity": false,
   "tuning": true,
-  "total_time": 700,
-  "skip_stage_1": false
+  "total_time": 800,
+  "skip_stage_1": true
 },
   "stage_1_settings":
   {
@@ -12,8 +12,8 @@
     "plots": false,
      "ref_as_initial": false,
     "heuristic_settings":{
-        "max_time": 300,
-        "max_iter": 400000,
+        "max_time": 350,
+        "max_iter": 400,
         "initial_temp": 12,
         "final_temp": 2,
         "cut_off_ratio": 0.2,
@@ -62,7 +62,7 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 600,
-        "max_iter":500000,
+        "max_iter":400,
         "initial_temp": 22,
       "final_temp": 2,
       "cut_off_ratio": 0.08,

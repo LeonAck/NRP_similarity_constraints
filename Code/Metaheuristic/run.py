@@ -38,6 +38,7 @@ def run_multiple_files(frequency,
         settings_file_path = "C:/Master_thesis/Code/Metaheuristic/Input/setting_files/no_similarity.json"
 
     master_output = {k: {metric: [] for metric in metrics} for k in folders_list}
+    folders_list = [folders_list[9]]
     for i in range(frequency):
         output_folder = create_output_folder(path=master_folder, folder_name=str(i))
         input_dicts = []
@@ -51,16 +52,18 @@ def run_multiple_files(frequency,
                 param=None, param_to_change=None, reg_run=reg_run)
             )
 
-        # arguments = [[input_dict] for input_dict in input_dicts]
+
 
         # for argument in arguments:
         #     results.append(run(deepcopy(argument)))
         # run parallel
         arguments = [[{"input_dict": input_dict}] for input_dict in input_dicts]
-        # results = run(arguments[1][0]['input_dict'])
         # result = execute_heuristic_2(arguments[0][0])
-        results = parallel(execute_heuristic_2, deepcopy(arguments), max_workers=max_workers)
+        # results = parallel(execute_heuristic_2, deepcopy(arguments), max_workers=max_workers)
+        # arguments = [[input_dict] for input_dict in input_dicts]
         # results = parallel(run, deepcopy(arguments), max_workers=max_workers)
+        results = run(arguments[0][0]['input_dict'])
+
         #
         print("done")
 

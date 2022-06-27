@@ -188,8 +188,9 @@ class RuleH3(Rule):
                     flag = False
 
             # check if not the last day, no violation before and working the day after day d_index
-            if d_index < scenario.num_days_in_horizon - 1 and flag and check_if_working_day(shift_assignments, employee.id,
-                                                                                                     d_index + 1):
+            if d_index < scenario.num_days_in_horizon - 1 and flag and check_if_working_day(shift_assignments,
+                                                                                            employee.id,
+                                                                                            d_index + 1):
                 if shift_assignments[employee.id][d_index + 1][0] - 1 \
                         in scenario.forbidden_shift_type_successions[
                     shift_assignments[employee.id][d_index][0] - 1][1]:
@@ -256,20 +257,33 @@ def check_forbidden_given_shifts(forbidden_successions, s_index_1, s_index_2):
 def check_forbidden_before_day(solution, forbidden_successions, employee_id_1, employee_id_2,
                                d_index):
     if d_index == 0:
-        # TODO functie vervangen
-        return check_forbidden_given_shifts(forbidden_successions,
-                                            solution.last_assigned_shift[employee_id_1],
-                                            solution.shift_assignments[employee_id_2][d_index][0],
-                                            ) \
+        return solution.shift_assignments[employee_id_2][d_index][0] in forbidden_successions[
+            solution.last_assigned_shift[employee_id_1]][1] \
             if solution.last_assigned_shift[employee_id_1] != -1 \
-               and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
             else False
     if d_index > 0:
-            return check_forbidden_given_shifts(forbidden_successions,
-                                                solution.shift_assignments[employee_id_1][d_index - 1][0],
-                                                solution.shift_assignments[employee_id_2][d_index][0],
-                                                ) \
-                if solution.shift_assignments[employee_id_1][d_index - 1][0] != -1 \
-                   and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
-                else False
+        return solution.shift_assignments[employee_id_2][d_index][0] in \
+               forbidden_successions[solution.shift_assignments[employee_id_1][d_index - 1][0]][1] \
+            if solution.shift_assignments[employee_id_1][d_index - 1][0] != -1 \
+            else False
 
+
+# def check_forbidden_before_day(solution, forbidden_successions, employee_id_1, employee_id_2,
+#                                d_index):
+#     if d_index == 0:
+#         # TODO functie vervangen
+#         return check_forbidden_given_shifts(forbidden_successions,
+#                                             solution.last_assigned_shift[employee_id_1],
+#                                             solution.shift_assignments[employee_id_2][d_index][0],
+#                                             ) \
+#             if solution.last_assigned_shift[employee_id_1] != -1 \
+#                and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
+#             else False
+#     if d_index > 0:
+#             return check_forbidden_given_shifts(forbidden_successions,
+#                                                 solution.shift_assignments[employee_id_1][d_index - 1][0],
+#                                                 solution.shift_assignments[employee_id_2][d_index][0],
+#                                                 ) \
+#                 if solution.shift_assignments[employee_id_1][d_index - 1][0] != -1 \
+#                    and solution.shift_assignments[employee_id_2][d_index][0] != -1 \
+#                 else False

@@ -7,8 +7,8 @@ from Output.create_plots import create_box_plot
 from leon_thesis.invoke.main import run
 
 
-# run_parameter_tuning_random(number_of_instances=2)
-run_multiple_files(frequency=6, max_workers=50, similarity=True, reg_run=True, num_weeks=8)
+run_parameter_tuning_random(number_of_instances=10)
+# run_multiple_files(frequency=6, max_workers=50, similarity=True, reg_run=True, num_weeks=8)
 # tuning_single_run_create_plot(repeat=5, max_workers=20, params=(["change"], ['change', 'swap'],
 #                                                              ['change', 'swap', 'greedy_change']), param_to_change="operators")
 # cProfile.run("run_multiple_files(frequency=2, max_workers=25, similarity=True, reg_run=True, num_weeks=8)", sort=1)

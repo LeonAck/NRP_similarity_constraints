@@ -110,10 +110,12 @@ class RuleS2Min(Rule):
                                                                                      'd_index'] > 0 else employee_parameter
                 the_work_stretch = work_stretch
                 break
-
-        return np.maximum(employee_parameter - length_1, 0) \
-               + np.maximum(employee_parameter - length_2, 0) \
-               - np.maximum(employee_parameter - the_work_stretch['length'], 0)
+        try:
+            return np.maximum(employee_parameter - length_1, 0) \
+                   + np.maximum(employee_parameter - length_2, 0) \
+                   - np.maximum(employee_parameter - the_work_stretch['length'], 0)
+        except TypeError:
+            print("hi")
 
     def find_work_stretch_end(self, solution, employee_id, d_index):
         """
