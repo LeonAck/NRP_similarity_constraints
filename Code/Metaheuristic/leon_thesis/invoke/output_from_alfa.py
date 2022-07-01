@@ -33,6 +33,8 @@ def create_output_dict(folder_name, instance_name, heuristic_1, heuristic_2=None
                 output_dict['stage_2']['best_solution_similarity'] = calc_objective_value_violations(
                     heuristic_2.final_violation_array, extended_penalties)
                 output_dict['stage_2']['best_solution_no_similarity'] = heuristic_2.best_obj_values[-1]
+                output_dict['stage_2']['violation_array_similarity'] = heuristic_2.final_violation_array
+
     return output_dict
 
 

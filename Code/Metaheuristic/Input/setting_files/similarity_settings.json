@@ -10,7 +10,7 @@
   {
     "stage_number": 1,
     "plots": false,
-    "ref_as_initial": true,
+    "ref_as_initial": false,
     "heuristic_settings": {
         "max_time": 300,
         "max_iter":400000,
@@ -62,13 +62,13 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 100,
-        "max_iter":500000,
+        "max_iter":300000,
         "initial_temp": 22,
       "cut_off_ratio": 0.15,
       "final_temp": 2,
         "cooling_rate": 0.99,
         "no_improve_max": 150,
-        "operators": ["swap", "change"],
+        "operators": ["swap", "change", "similarity"],
          "k_swap": 26,
       "greedy_number": 5,
         "reaction_factor": 0.9,

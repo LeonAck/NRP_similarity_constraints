@@ -4,7 +4,7 @@
   "similarity": false,
   "tuning": true,
   "total_time": 800,
-  "skip_stage_1": true
+  "skip_stage_1": false
 },
   "stage_1_settings":
   {
@@ -13,7 +13,7 @@
      "ref_as_initial": false,
     "heuristic_settings":{
         "max_time": 350,
-        "max_iter": 400,
+        "max_iter": 400000,
         "initial_temp": 12,
         "final_temp": 2,
         "cut_off_ratio": 0.2,
@@ -62,13 +62,13 @@
     "plots": true,
     "heuristic_settings": {
         "max_time": 600,
-        "max_iter":400,
+        "max_iter":300000,
         "initial_temp": 22,
       "final_temp": 2,
       "cut_off_ratio": 0.08,
         "cooling_rate": 0.99,
         "no_improve_max": 150,
-        "operators": ["swap", "change", "greedy_change"],
+        "operators": ["swap", "change"],
          "k_swap": 26,
       "greedy_number": 5,
         "reaction_factor": 0.9,

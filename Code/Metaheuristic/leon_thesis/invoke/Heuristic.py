@@ -272,7 +272,7 @@ class Heuristic:
         if operator_info['cost_increment'] < 0:
             for operator in self.operators_to_use:
                 self.operator_weights[operator] = \
-                    np.maximum(self.frequency_operator_improvement[operator] / self.frequency_operator_improvement['total'], 1/len(self.operators_to_use))
+                    np.maximum(self.frequency_operator_improvement[operator] / self.frequency_operator_improvement['total'], 1/(len(self.operators_to_use)+1))
 
 
     def create_oper_vars(self):
