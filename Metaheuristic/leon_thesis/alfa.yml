@@ -1,0 +1,19 @@
+id: fde9e297-7579-4ac3-ab2a-078fb74e4040
+environment: thesis_env
+version: 0.1.0
+description: ''
+
+functions:
+- invoke:
+    provider:
+      architecture: serverless
+      runtime: python
+      timeout: 900
+      instance:
+        memory: 256
+    function:
+      handler: main.run
+    package:
+      exclude:
+      - '**/venv/**'
+      - '**/__pycache__/**'
