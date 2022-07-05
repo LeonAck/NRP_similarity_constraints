@@ -1,5 +1,0 @@
-[run]
-omit =
-    invoke/venv/*
-    invoke/tests/*
-    **/__pycache__/
