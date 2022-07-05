@@ -12,16 +12,18 @@ def objective_value_plot(n_iter, obj_values, best_obj_values, stage_number, inst
     if suppress:
         if run_time:
             x_axis = np.linspace(0, 550, n_iter)[0:-1]
-            plt.plot(x_axis, obj_values, x_axis, best_obj_values, linewidth=0.5)
+            # plt.plot(x_axis, obj_values, x_axis, best_obj_values, linewidth=0.5)
+            plt.plot(x_axis, obj_values, linewidth=0.5)
             plt.ylabel('Cost')
             plt.xlabel('Run time')
+            plt.legend(['Current solution', 'Best solution'], loc='upper right')
         else:
             x_axis = np.linspace(0, n_iter, n_iter)[0:-1]
             plt.plot(x_axis, obj_values, x_axis, best_obj_values, linewidth=0.5)
             plt.ylabel('Cost')
             plt.xlabel('Iterations')
-        if stage_number == 2:
-            plt.ylim(0, min(obj_values) + 10000)
+        # if stage_number == 2:
+        #     plt.ylim(0, min(obj_values) + 10000)
 
         if output_folder:
             plt.savefig(
@@ -39,8 +41,9 @@ def operator_weight_plot(oper_weights, instance_name, output_folder, suppress=Tr
     operator_data_perc = oper_df.divide(oper_df.sum(axis=1), axis=0)
     if suppress:
         # Operator weight plot
-        operator_data_perc.plot.area(title='100 % stacked area chart for operator weights')
-        plt.legend(loc='best')
+        operator_data_perc.plot.area(colormap='coolwarm')
+        better_names = {"change": "Change", "swap": "MultiSwap", "greedy_change": "GreedyChange", "similarity": "SimilarityChange"}
+        plt.legend([better_names[k] for k in oper_weights.keys()], loc='best')
 
         if output_folder:
             plt.savefig(
@@ -72,11 +75,11 @@ def all_plots(output_dict, output_folder, stage_2=True):
                              suppress=True,
                              output_folder=output_folder)
         elif output_info['stage_1']['feasible']:
-            objective_value_plot(output_info['stage_2']['iterations'], output_info['stage_2']["obj_values"],
-                                 output_info['stage_2']["best_obj_values"], 2, folder_name, suppress=True,
-                                 output_folder=output_folder, run_time=output_info['stage_2']['run_time'])
-            # operator_weight_plot(output_info['stage_2']["operator_weights"], folder_name, suppress=True,
-            #                      output_folder=output_folder)
+            # objective_value_plot(output_info['stage_2']['iterations'], output_info['stage_2']["obj_values"],
+            #                      output_info['stage_2']["best_obj_values"], 2, folder_name, suppress=True,
+            #                      output_folder=output_folder, run_time=output_info['stage_2']['run_time'])
+            operator_weight_plot(output_info['stage_2']["operator_weights"], folder_name, suppress=True,
+                                 output_folder=output_folder)
             # temperature_plot(output_info['stage_2']['iterations'], output_info['stage_2']['temperatures'], folder_name,
             #                  suppress=True,
             #                  output_folder=output_folder)
@@ -107,9 +110,9 @@ def get_obj_value_multiple_params():
 def create_obj_value_multiple_params(param_dict, instance_name, suppress=False):
     for param, info in param_dict.items():
         x_axis = np.linspace(0, info['run_time'], info['iterations'])[0:-1]
-        plt.plot(x_axis, info['obj_values'],  linewidth=0.5, label="T_0 = {}".format(param))
+        plt.plot(x_axis, info['obj_values'],  linewidth=0.5)
 
-    plt.legend()
+    plt.legend([r'$N_i = {}$'.format(param) for param in param_dict.keys()])
     if not suppress:
         plt.show()
     else:

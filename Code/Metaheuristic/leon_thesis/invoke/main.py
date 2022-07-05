@@ -37,6 +37,7 @@ def run(input_dict):
 
     if settings.similarity or settings.tuning:
         output_dict = create_output_dict(input_dict['folder_name'], instance.instance_name, heuristic_1, heuristic_2, similarity=settings.similarity, tuning=settings.tuning)
+
     else:
         rule_settings = input_dict['settings']['stage_2_settings']['rules']
         similarity_penalties = np.array([rule_settings['S8RefDay']['penalty'],

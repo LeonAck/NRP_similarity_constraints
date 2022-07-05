@@ -186,7 +186,8 @@ def prepare_output_boxplot(paths, metric):
         # collect the metric for all instances in one list
         for k, v in master_output.items():
             if v['perc_feasible'] > 0:
-                metric_all_instances.append(v[metric])
+                for number in v[metric]:
+                    metric_all_instances.append(number)
 
         list_of_data.append(metric_all_instances)
 
