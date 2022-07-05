@@ -1,8 +1,0 @@
-[
-    {
-      "rule_id": "40",
-      "violation_costs": 300.0,
-      "user_id": "1692115",
-      "rule_tag": "min_number_of_weekday_combinations_off"
-    }
-  ]

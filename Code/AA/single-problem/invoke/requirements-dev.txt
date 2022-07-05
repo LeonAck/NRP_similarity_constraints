@@ -1,4 +1,0 @@
-alfa_cli
-black
-pytest
-pytest-cov
